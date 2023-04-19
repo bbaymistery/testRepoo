@@ -106,28 +106,23 @@ const Header = () => {
     //   });
     // }, 1000);
   }
-  const gotoHomePage = () => {
+  const gotoHomePage = (index) => {
     let lang = JSON.parse(localStorage.getItem("language")) ? JSON.parse(localStorage.getItem("language")) : "en"
-
-    // setTimeout(() => {
-    //   if (lang !== 'en') {
-    //     router.push(`/${lang}`);
-
-    //   } else {
-    //     router.push('/');
-    //   }
-    // }, 1000);
-    // dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } })
-    // router.push(`/${language}`).then().reload()
-    if (language === 'en') {
-      router.push(`/`).then(() => {
-        window.location.reload();
-      });
-    } else {
-      router.push(`/${language}`).then(() => {
-        window.location.reload();
-      });
+    if (index === 0) {
+      if (language === 'en') {
+        router.push(`/`).then(() => {
+          window.location.reload();
+        });
+      } else {
+        router.push(`/${language}`).then(() => {
+          window.location.reload();
+        });
+      }
     }
+
+    /**
+     index === 0 ? () => { dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } }); dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: "heathrow" } }) } : () => { }
+     */
   }
   //when we click lang text it opens dropdown
   const setOpenLanguageDropdown = () => {
@@ -178,7 +173,7 @@ const Header = () => {
         <div className={styles.header_flex_div}>
           <div className={styles.left_items}>
             <div className={styles.left_items_flex_div}>
-              <p className={`${styles.logo_tag} cursor_pointer`} onClick={gotoHomePage}>
+              <p className={`${styles.logo_tag} cursor_pointer`} onClick={() => gotoHomePage(0)}>
                 <Image src={logoImage} alt="Airport-pickups-london Logo" width={30} height={30} priority />
                 <span>Airport Pickups London</span>
               </p>
@@ -189,7 +184,7 @@ const Header = () => {
                     return (
                       // as={`${path==='/'?"/":""}`}
                       <li key={innerText} className={`${styles.li_item} ${type === "list" ? styles.has_children : ""}`}>
-                        <Link onClick={index === 0 ? () => { dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } }); dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: "heathrow" } }) } : () => { }} tabIndex="-1" href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${!path.length ? styles.nocursor : ""}`}>
+                        <Link onClick={() => gotoHomePage(index)} tabIndex="-1" href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${!path.length ? styles.nocursor : ""}`}>
                           <span>{innerText}</span>
                           {/* <span>{index === 0 ? appData?.words[innerText] : innerText}</span> */}
                           {type === "list" ? <i className="fa-solid fa-angle-down"></i> : ""}
@@ -200,7 +195,7 @@ const Header = () => {
                               //hasTaxideals setting taxiDealsName to redux
                               let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals } = item
                               //!
-                              
+
                               return (
                                 <li key={listInnerText} className={`${styles.li_item}`}>
                                   <Link

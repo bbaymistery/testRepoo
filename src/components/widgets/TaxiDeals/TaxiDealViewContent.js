@@ -53,24 +53,7 @@ let images = {
             image: "/images/gatwickto/gtoBirmingham.jfif",
 
         },
-        {
-            id: 6,
-            image: "/images/gatwickto/gtoascot.jpg",
-        },
-        {
-            id: 5,
-            image: "/images/gatwickto/gtobath.jfif",
-        },
-        {
-            id: 7,
-            image: "/images/gatwickto/gtoascot.jpg",
-
-        },
-        {
-            id: 8,
-            image: "/images/gatwickto/gtoBirmingham.jfif",
-
-        },
+       
     ],
     "luton": [
         {
@@ -329,7 +312,6 @@ import Image from 'next/image'
 
 const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
     const { appData } = useSelector(state => state.initialReducer)
-
     function filterDatas(datas) {
         const heathRowValid = [
             "Heathrow to Oxford transfer",
@@ -346,6 +328,9 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
             return datas
                 .filter(({ pageTitle }) => heathRowValid.includes(pageTitle))
                 .sort((a, b) => heathRowValid.indexOf(a.pageTitle) - heathRowValid.indexOf(b.pageTitle));
+        }
+        else { 
+            return datas = points
         }
     }
     const filteredDatas = filterDatas(points);
@@ -387,12 +372,13 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
                 <div className={styles.cards}>
 
                     {points.length > 1 ?
-                        points.slice(4, 8).map((item, index) => {
+                        filteredDatas.slice(4, 8).map((item, index) => {
 
                             return (
                                 <a data-id="a" title={item?.pageTitle} href={item.pathname} className={`${styles.card}`} key={item.id}>
                                     <div className={styles.card_image_div}>
-                                        <img src={images?.[dealsName]?.[index + 4]?.image} alt={item.title} />
+                                        <Image src={`${images?.[dealsName]?.[index+4]?.image}`} className={styles.img} fill priority alt={item.pageTitle} sizes="(max-width: 768px) 100vw, 50vw" />
+
                                     </div>
                                     <div className={styles.card_body}>
                                         <h4>{item?.translatedPageTitle ? item?.translatedPageTitle : item?.title}</h4>

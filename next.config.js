@@ -19,8 +19,8 @@ async function getRoutes() {
     locale: false
   }));
   const allLanguagesWithRouting = languages.map(lang => ({
-    source: `/:${lang}/:path*`,
-    destination: '/:path*',
+    source: `/:${lang}/:path`,
+    destination: '/:path',
     locale: false
   }));
 

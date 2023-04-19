@@ -40,12 +40,12 @@ const tabsBttons = [
 //showTabs=>they come from here > heathrow-airport-transfer
 //isLinknameComponent comes driom [..linkname]
 const TaxiDeals = (props) => {
-    
+
 
     let { showTabs = true, bggray = false, islinknamecomponent = false } = props
     const dispatch = useDispatch()
     const state = useSelector(state => state.pickUpDropOffActions)
-    let { params: { direction, language, pointsModalStatus, hasTaxiDeals="heathrow" } } = state
+    let { params: { direction, language, pointsModalStatus, hasTaxiDeals = "heathrow" } } = state
 
     const [tabs, setTabs] = useState(0)
     const [taxiPoints, setTaxiPoints] = useState([])
@@ -75,7 +75,7 @@ const TaxiDeals = (props) => {
         fecthPoints({ dealsNameProp: hasTaxiDeals, language })
     }, [language, hasTaxiDeals])
 
-    
+
     return (
         <>
             {
