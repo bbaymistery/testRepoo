@@ -40,7 +40,9 @@ const Footer = (props) => {
                 <Link href={`${language === 'en' ? `/about-us` : `${language}/about-us`}`} title={appData.words["aboutUs"]} tabIndex="-1" >
                   {appData.words["aboutUs"]}
                 </Link>
-                <a tabIndex="-1" href="#">Careers</a>
+                <Link href={`${language === 'en' ? `/drivers-wanted` : `${language}/drivers-wanted`}`} tabIndex="-1" >
+                  Drivers
+                </Link>
                 <a tabIndex="-1" href="#">Blog</a>
                 <a tabIndex="-1" href="#">Press</a>
                 <a tabIndex="-1" href="#">Gift Cards</a>
@@ -58,9 +60,7 @@ const Footer = (props) => {
                 <a tabIndex="-1" href="#">Privacy Policy</a>
                 <a tabIndex="-1" href="#">Terms and Conditions</a>
                 <a tabIndex="-1" href="#">Sitemap</a>
-                <Link href={`${language === 'en' ? `/drivers-wanted` : `${language}/drivers-wanted`}`}  tabIndex="-1" >
-                  Drivers - wanted
-                </Link>
+              
               </ul>
 
             </div>

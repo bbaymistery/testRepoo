@@ -2,35 +2,35 @@ let images = {
     "heathrow": [
         {
             id: 1,
-            image: "/images/hgtto/tooxford.jpg",
+            image: "/images/hgtto/toOxford.jpg",
         },
         {
             id: 2,
-            image: "/images/hgtto/tobirmingham.jpg",
+            image: "/images/hgtto/toBrimingham.jpg",
         },
         {
             id: 3,
-            image: "/images/hgtto/tocambridge.jpg",
+            image: "/images/hgtto/toCambridge1.jpg",
         },
         {
             id: 4,
-            image: "/images/hgtto/tobath.jpg",
+            image: "/images/hgtto/toBath.jpg",
         },
         {
             id: 5,
-            image: "/images/hgtto/tobristol.jpg",
+            image: "/images/hgtto/toBristol.jpg",
         },
         {
             id: 6,
-            image: "/images/hgtto/tobrighton.jpg",
+            image: "/images/hgtto/toBrighton.jpg",
         },
         {
             id: 7,
-            image: "/images/hgtto/tonorwich.jpg",
+            image: "/images/hgtto/toNorwich.jpg",
         },
         {
             id: 8,
-            image: "/images/hgtto/tocanterbury.jpg",
+            image: "/images/hgtto/toCanterburry.jpg",
         },
 
     ],

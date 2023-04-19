@@ -17,7 +17,7 @@ const DriversWanted = () => {
             <div className={styles.content}>
 
               <div className={styles.left}>
-                <h1>Careers: Drivers Wanted</h1>
+                <h1>Become an APL Driver</h1>
                 <p>
                   Join our growing team of professional drivers at APL Cars.
                   We are currently accepting applications for MPV, SUV, and 8-seater vehicles.
