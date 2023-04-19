@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import env from '../../../resources/env'
 import PointsModal from '../../elements/PointsModal'
-
+ 
 import styles from "./styles.module.scss"
 import TaxiDealViewContent from './TaxiDealViewContent'
 const tabsBttons = [
