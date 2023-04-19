@@ -58,6 +58,9 @@ const Footer = (props) => {
                 <a tabIndex="-1" href="#">Privacy Policy</a>
                 <a tabIndex="-1" href="#">Terms and Conditions</a>
                 <a tabIndex="-1" href="#">Sitemap</a>
+                <Link href={`${language === 'en' ? `/drivers-wanted` : `${language}/drivers-wanted`}`}  tabIndex="-1" >
+                  Drivers - wanted
+                </Link>
               </ul>
 
             </div>
