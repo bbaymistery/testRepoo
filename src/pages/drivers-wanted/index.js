@@ -28,27 +28,21 @@ const DriversWanted = () => {
                   To register, please follow these steps:
                 </p>
                 <p>
-                  Download our APL Driver App:
+                 1. Download our APL Driver App:
                   <ul>
                     <li>
-                      Fill out the driver registration form in the app.
+                 2.     Fill out the driver registration form in the app.
                     </li>
                     <li>
-                      After completing the registration process, visit our office at APL Office, Novotel Cherry Lane, UB7 9HJ (FREE parking).
+                   3.   After completing the registration process, visit our office at APL Office, Novotel Cherry Lane, UB7 9HJ (FREE parking).
                     </li>
                   </ul>
                 </p>
                 <h2>APL Driver App</h2>
-                {/* <p>
-                  If you encounter any difficulties during the registration process, please contact us on WhatsApp at
-                  <a target="_blank" href="https://wa.me/447809536620"> &nbsp; +44 7809 536620  &nbsp;</a>
-                  for assistance.
-                  After completing your registration, visit our office at APL Office, Novotel Cherry Lane, UB7 9HJ (FREE parking).
-                </p> */}
-               
+    
 
                 <div className={styles.ios_android_div}>
-                  <p>1 - For Iphone: please click on the link below</p>
+                  <p> For Iphone: please click on the link below</p>
                   <a href="https://apps.apple.com/gb/app/apl-drivers/id1661484765">
                     <div>
                       <img src="images/iosicon.png" alt="Aiport pickups-london ios-icon" />
@@ -60,7 +54,7 @@ const DriversWanted = () => {
 
                 &nbsp;
                 <div className={styles.ios_android_div}>
-                  <p>2 - For Android Phones: Please click on the link below or download from Google PLAY Store</p>
+                  <p> For Android Phones: Please click on the link below or download from Google PLAY Store</p>
                   <a href="https://apps.apple.com/gb/app/apl-drivers/id1661484765">
                     <div>
                       <img src="images/androidicon.png" alt="Aiport pickups-london ios-icon" />

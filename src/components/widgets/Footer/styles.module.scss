@@ -71,9 +71,10 @@
                             font-size: 16px;
                             transition: $tr-cubic;
                             text-transform: capitalize;
-
+                                font-weight: 500;
                             &:hover {
-                                color: #0a58ca;
+                                color: $primary;
+                               
                             }
                         }
                     }
@@ -85,12 +86,13 @@
 
                         p {
                             color: $dark-1;
+
                         }
 
                         a {
-                            color: $blue-1;
-                            font-size: 19px;
                             font-weight: 500;
+                            color: $dark-1;
+                            font-size: 19px;
                         }
                     }
                 }
@@ -108,14 +110,16 @@
                     }
 
                     p {
-                        color: $dark-1;
+                        color: $black-1;
                         font-size: 16px;
                         font-weight: 500;
                         word-break: break-word;
                         line-height: 30px;
 
                         span {
-                            color: #0a58ca;
+                            color: $primary;
+                            font-weight: 500;
+                            font-size: 18px;
                         }
                     }
                 }
@@ -159,11 +163,11 @@
 
                         a {
                             transition: $tr-cubic;
-text-transform: capitalize;
+                            text-transform: capitalize;
                         }
 
                         a:hover {
-                            color: #0a58ca;
+                            color: $primary;
                         }
                     }
                 }

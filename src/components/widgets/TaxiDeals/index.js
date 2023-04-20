@@ -52,10 +52,9 @@ const TaxiDeals = (props) => {
     const [tabs, setTabs] = useState(0)
     const [taxiPoints, setTaxiPoints] = useState([])
     const [dealsName, setdealsName] = useState(hasTaxiDeals)
-    // const refs = tabsBttons.map(() => useRef(null));
-    // const ripples = refs.map(ref => useRipple(ref));
-    // const ref = useRef(null);
-    // const ripples = useRipple(ref);
+    const refs = tabsBttons.map(() => useRef(null));
+    const ripples = refs.map((ref) => useRipple(ref));
+
 
     const fecthPoints = async (params = {}) => {
         let { language, dealsNameProp = hasTaxiDeals } = params
@@ -80,45 +79,48 @@ const TaxiDeals = (props) => {
 
     useEffect(() => {
         fecthPoints({ dealsNameProp: hasTaxiDeals, language })
-    }, [language, hasTaxiDeals])
+    }, [language, hasTaxiDeals, ])
 
 
     return (
         <>
             {
-                taxiPoints.length > 1 ? <div className={`${styles.taxideals} ${direction} ${islinknamecomponent ? styles.islinkname : ""} page `} bggray={String(bggray)} >
+                <div className={`${styles.taxideals} ${direction} ${islinknamecomponent ? styles.islinkname : ""} page `} bggray={String(bggray)} >
                     {pointsModalStatus && <PointsModal points={taxiPoints} title={`${dealsName} Transfer Deals`} />}
                     <div className={`${styles.taxideals_section} page_section`}>
                         <div className={`${styles.taxideals_section_container} page_section_container`}>
-                            <div className={styles.title}>
-                                {hasTaxiDeals === 'dover' || hasTaxiDeals === 'southampton' || hasTaxiDeals === 'portsmouth' || hasTaxiDeals === 'harwich' ? <h1>{hasTaxiDeals} Cruise Port</h1> : <h1>{hasTaxiDeals} Taxi Deals</h1>}
-                                {islinknamecomponent ? "" : <p>All Inclusive Price !</p>}
-                            </div>
 
+                            {taxiPoints.length > 1 ?
+                                <div className={styles.title}>
+                                    {hasTaxiDeals === 'dover' || hasTaxiDeals === 'southampton' || hasTaxiDeals === 'portsmouth' || hasTaxiDeals === 'harwich' ? <h1>{hasTaxiDeals} Cruise Port</h1> : <h1>{hasTaxiDeals} Taxi Deals</h1>}
+                                    {islinknamecomponent ? "" : <p>All Inclusive Price !</p>}
+                                </div> : <></>}
                             {showTabs ?
                                 <div className={`${styles.tabs} ${styles.btn_div}`}>
                                     {tabsBttons.map((btn, index) => {
-                                        return (<button onClick={() => tabsHandler({ index, dealsNameProp: btn.dealsName })} className={`${tabs === index ? styles.active : ""} btn`} key={index}>
-                                            {/* {ripples.length > 0 ? ripples[index] : <> </>} */}
+                                        return (<button
+                                            onClick={() => tabsHandler({ index, dealsNameProp: btn.dealsName })}
+                                            className={`${tabs === index ? styles.active : ""} btn`}
+                                            key={index}
+                                            ref={refs[index]}
+                                        >
+                                            <div className="ripple-wrapper">{ripples[index]}</div>
                                             {btn.name}
                                         </button>)
                                     }
                                     )}
                                 </div>
                                 : <></>}
-                            <TaxiDealViewContent islinknamecomponent={islinknamecomponent} points={taxiPoints} dealsName={showTabs ? dealsName : hasTaxiDeals} />
-                            <div className={styles.btn_div}>
+                            {taxiPoints.length > 1 ? <TaxiDealViewContent islinknamecomponent={islinknamecomponent} points={taxiPoints} dealsName={showTabs ? dealsName : hasTaxiDeals} /> : <></>}
+                            {taxiPoints.length > 1 ? <div className={styles.btn_div}>
                                 <button className='btn' onClick={() => { setModal() }}>
                                     View All
                                     <i className="fa-solid fa-arrow-right"></i>
                                 </button>
-                            </div>
+                            </div> : <></>}
                         </div>
                     </div>
-                </div> : <></>
-            }
-
-
+                </div >}
         </>
     )
 }
