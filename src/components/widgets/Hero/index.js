@@ -12,10 +12,11 @@ import styles from "./styles.module.scss"
 import env from '../../../resources/env'
 import RadioButton from './RadioButton'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import WaveLoading from '../../elements/LoadingWave';
 import Features from '../Features';
 import Link from 'next/link';
+import useRipple from '../../../hooks/useRipple';
 
 const collectPoints = (params = {}, callback = () => { }) => {
 
@@ -278,7 +279,8 @@ const Hero = (props) => {
 
 
     }, [])
-
+    const ref = useRef(null);
+    const ripples = useRipple(ref);
     // useEffect(() => {
     //     if (islinknamecomponent) {
     //         reviewsBadgeRibbon("badge-ribbon", {
@@ -483,7 +485,8 @@ const Hero = (props) => {
                                                             <WaveLoading />
                                                         </div>
                                                         :
-                                                        <button className={`btn btn_primary`} onClick={(e) => getQuotations(e)}>
+                                                        <button ref={ref} onClick={(e) => getQuotations(e)} className={`btn btn_primary`}>
+                                                            {ripples}
                                                             <i className="fa-solid fa-magnifying-glass"></i>
                                                             <span>{appData?.words["seGetQuotation"]}</span>
                                                         </button>}
@@ -497,7 +500,7 @@ const Hero = (props) => {
                                                         <div className={`btn btn_primary mt_0 disabled_button ${styles.waveloadingdiv}`}>
                                                         </div>
                                                         :
-                                                        <button className={`btn btn_primary`} onClick={(e) => getQuotations(e)}>
+                                                        <button ref={ref} className={`btn btn_primary`} onClick={(e) => getQuotations(e)}>
                                                         </button>}
                                                 </div>
                                                 : <React.Fragment></React.Fragment>}

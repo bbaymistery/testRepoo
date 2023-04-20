@@ -6,6 +6,8 @@ import PointsModal from '../../elements/PointsModal'
 
 import styles from "./styles.module.scss"
 import TaxiDealViewContent from './TaxiDealViewContent'
+import useRipple from '../../../hooks/useRipple'
+import { useRef } from 'react'
 const tabsBttons = [
     {
         name: "Heathrow Taxi Deals",
@@ -51,6 +53,9 @@ const TaxiDeals = (props) => {
     const [taxiPoints, setTaxiPoints] = useState([])
     const [dealsName, setdealsName] = useState(hasTaxiDeals)
 
+    const refs = tabsBttons.map(() => useRef(null));
+    const ripples = refs.map(ref => useRipple(ref));
+
     const fecthPoints = async (params = {}) => {
         let { language, dealsNameProp = hasTaxiDeals } = params
         let channelId = state.reservations[0].reservationDetails.channelId
@@ -91,8 +96,9 @@ const TaxiDeals = (props) => {
                             {showTabs ?
                                 <div className={`${styles.tabs} ${styles.btn_div}`}>
                                     {tabsBttons.map((btn, index) =>
-                                        <button onClick={() => tabsHandler({ index, dealsNameProp: btn.dealsName })} className={`${tabs === index ? styles.active : ""} btn`} key={index}>
+                                        <button ref={refs[index]} refs={"refs"} onClick={() => tabsHandler({ index, dealsNameProp: btn.dealsName })} className={`${tabs === index ? styles.active : ""} btn`} key={index}>
                                             {btn.name}
+                                            {ripples[index]}
                                         </button>
                                     )}
                                 </div>

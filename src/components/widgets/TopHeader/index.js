@@ -11,8 +11,10 @@ import store from "../../../store/store";
 import { useRouter } from "next/router";
 import { extractLanguage } from "../../../helpers/extractLanguage";
 import OutsideClickAlert from "../../elements/OutsideClickAlert";
+import useRipple from "../../../hooks/useRipple";
 const Header = () => {
-
+  const ref = useRef(null);
+  const ripples = useRipple(ref);
   const router = useRouter()
   const menuRef = useRef(null);
   const mobileMenu = useRef(null)
@@ -277,7 +279,7 @@ const Header = () => {
             <div className={styles.buttons}>
               <div className={styles.whitebtn_div}>
                 <Link href="/corporate" title="Corporate" >
-                  <button >Corporate</button>
+                  <button ref={ref} >{ripples} Corporate</button>
                 </Link>
               </div>
               <div className={styles.bluebtn_div}>

@@ -20,7 +20,8 @@
     transition: $tr-ease;
     border: none;
     font-size: 14px;
- 
+    position: relative;
+    overflow: hidden;
 }
 
 .btn_primary {
@@ -49,7 +50,7 @@
     border-color: darken($primary, 2%);
 
     &:hover {
-        background-color: lighten($primary,11%);
+        background-color: lighten($primary, 11%);
         color: white;
     }
 }
