@@ -19,9 +19,7 @@ const DriversWanted = () => {
               <div className={styles.left}>
                 <h1>Become an APL Driver</h1>
                 <p>
-                  Join our growing team of professional drivers at APL Cars.
-                  We are currently accepting applications for MPV, SUV, and 8-seater vehicles.
-                  Additionally, we are accepting applications for Business Class saloon vehicles such as Mercedes, BMW, Tesla, and Jaguar.
+                  Join our growing team of professional drivers at APL Cars. We are currently accepting applications for MPV, SUV, and 8-seater vehicles. Additionally, we are accepting applications for Business Class saloon vehicles such as Mercedes, BMW, Tesla, and Jaguar.
                 </p>
                 <h2>
                   Driver Registration
@@ -33,23 +31,21 @@ const DriversWanted = () => {
                   Download our APL Driver App:
                   <ul>
                     <li>
-                      For iOS devices: Download APL Drivers from the App Store.
+                      Fill out the driver registration form in the app.
                     </li>
                     <li>
-                      For Android devices: Download APL Drivers from the Google Play Store.
+                      After completing the registration process, visit our office at APL Office, Novotel Cherry Lane, UB7 9HJ (FREE parking).
                     </li>
                   </ul>
                 </p>
-
-                <p>
+                <h2>APL Driver App</h2>
+                {/* <p>
                   If you encounter any difficulties during the registration process, please contact us on WhatsApp at
                   <a target="_blank" href="https://wa.me/447809536620"> &nbsp; +44 7809 536620  &nbsp;</a>
                   for assistance.
                   After completing your registration, visit our office at APL Office, Novotel Cherry Lane, UB7 9HJ (FREE parking).
-                </p>
-                <p>
-                  After completing your registration, visit our office at APL Office, Novotel Cherry Lane, UB7 9HJ (FREE parking).
-                </p>
+                </p> */}
+               
 
                 <div className={styles.ios_android_div}>
                   <p>1 - For Iphone: please click on the link below</p>
