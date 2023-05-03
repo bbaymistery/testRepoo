@@ -241,7 +241,9 @@ const AccountRegister = (props) => {
                             </div>
                             <div className={styles.accountRegister_content_registration_right}>
                                 <div className={styles.image_div}>
-                                    <img src="/images/aboutPage.jpg" alt="APL registration" />
+                                    {/* <img src="/images/aboutPage.jpg" alt="APL registration" /> */}
+                                    <img src="/images/aplAirport.jpg" alt="APL registration" />
+                                    {/*  */}
                                 </div>
                             </div>
                         </div>
