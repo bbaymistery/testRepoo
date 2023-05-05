@@ -1,0 +1,156 @@
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
+
+const Draft = () => {
+    //!double journey icin
+    useEffect(() => {
+        if (parseInt(journeyType) === 0) {
+            if (reservations[0].selectedDropoffPoints.length > 0 && reservations[0].selectedPickupPoints.length > 0) {
+                dispatch({
+                    type: "ADD_NEW_POINT_AT_PATHNAME",
+                    data: {
+                        pickupPoints: reservations[0].selectedPickupPoints,
+                        dropoffPoints: reservations[0].selectedDropoffPoints,
+                        index: 0
+                    }
+                })
+            } else {
+                //   point = { ...point, ...objectDetailss[point.pcatId] }   flightDetails{ flightNumber="",waitingPickupTime=0}
+                let pickupPoints = pickUps.length > 0 ? [{ ...pickUps[0], ...objectDetailss[pickUps[0].pcatId] }] : []
+                let dropoffPoints = dropoffs.length > 0 ? [{ ...dropoffs[0], ...objectDetailss[dropoffs[0].pcatId] }] : []
+                dispatch({ type: "ADD_NEW_POINT_AT_PATHNAME", data: { pickupPoints, dropoffPoints, index: 0 } })
+            }
+        }
+        else {
+            if (reservations[0]?.selectedDropoffPoints.length > 0 && reservations[0]?.selectedPickupPoints.length > 0) {
+                dispatch({
+                    type: "ADD_NEW_POINT_AT_PATHNAME",
+                    data: {
+                        pickupPoints: reservations[0].selectedPickupPoints,
+                        dropoffPoints: reservations[0].selectedDropoffPoints,
+                        index: 0
+                    }
+                })
+            }
+            if (reservations[1]?.selectedDropoffPoints.length > 0 && reservations[1]?.selectedPickupPoints.length > 0) {
+                dispatch({
+                    type: "ADD_NEW_POINT_AT_PATHNAME",
+                    data: {
+                        pickupPoints: reservations[1].selectedPickupPoints,
+                        dropoffPoints: reservations[1].selectedDropoffPoints,
+                        index: 1
+                    }
+                })
+            }
+        }
+    }, [])
+
+    //get datas on front side
+    const router = useRouter();
+    const { pathname = [] } = router.query;
+
+    const fetchByPathname = async () => {
+        if (pathname.length > 1) {
+            let body = { taxiDealPathname: `/${pathname.join("/")}`, language }
+            let url = `${env.apiDomain}/api/v1/taxi-deals/details`
+            let { status, data } = await postDataAPI({ url, body })
+            if (status === 200) {
+                let { taxiDeal: { pickupPoints, dropoffPoints } } = data
+                // select first item from all points
+                if (pickupPoints.length >= 1) {
+                    pickupPoints = [pickupPoints[0]]
+                } else {
+                    pickupPoints = []
+                }
+                if (dropoffPoints.length >= 1) {
+                    dropoffPoints = [dropoffPoints[0]]
+                } else {
+                    dropoffPoints = []
+                }
+
+                dispatch({ type: "GET_QUOTATION_AT_PATHNAME", data: { results: data, journeyType } })
+                dispatch({ type: "ADD_NEW_POINT_AT_PATHNAME", data: { pickupPoints, dropoffPoints, index: 0 } })
+
+            }
+
+            //set guotations to store
+        }
+    }
+    // redirect to error page
+    if (pathname.length === 1) return <Error404 />
+    useEffect(() => {
+        fetchByPathname()
+    }, [pathname])
+
+
+
+    // Head tag script functions
+    useEffect(() => {
+
+        //CREATE ELEMENT ADD TO THE HEAD
+        let scriptLocalBusiness = document.createElement("script");	// Create a new element
+        scriptLocalBusiness.setAttribute("type", "application/ld+json");
+        scriptLocalBusiness.textContent = JSON.stringify(data.taxiDeal.schema.LocalBusiness, null, 2);
+
+        let scriptProduct = document.createElement("script");	// Create a new element
+        scriptProduct.setAttribute("type", "application/ld+json");
+        scriptProduct.textContent = JSON.stringify(data.taxiDeal.schema.Product, null, 2);
+        // /.get to head element
+        let head = document.getElementsByTagName("head")[0];
+        // head.appendChild(scriptLocalBusiness)
+        // head.appendChild(scriptProduct)
+
+        let checkIfScriptExist = false
+        let scripts = document.getElementsByTagName("script");
+        for (var i = 0; i < scripts.length; i++) {
+            if (scripts[i].type && scripts[i].innerHTML.includes("Productsss")) {
+
+            } else {
+
+            }
+
+
+        }
+    }, [])
+
+    return (
+        <div>Draft</div>
+    )
+}
+
+export default Draft
+
+export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
+    const dealUrl = `${etc.resolvedUrl}`
+    const language = store.getState().pickUpDropOffActions.params.language
+    const body = { taxiDealPathname: dealUrl, language }
+    const url = `${env.apiDomain}/api/v1/taxi-deals/details`
+    const { status, data } = await postDataAPI({ url, body })
+    let { taxiDeal: { pickupPoints, dropoffPoints } } = data
+    let pickUps = []
+    let dropoffs = []
+
+    //getting apdata categories
+    // const appDataUrl = `${env.apiDomain}/app/${language}`;
+    // const responseAppDataUrl = await getDataApi({ url: appDataUrl })
+
+    //  objectDetails=>>  point = { ...point, ...objectDetailss[point.pcatId] }//...point    flightDetails{ flightNumber="",waitingPickupTime=0}
+    // const objectDetailss = await responseAppDataUrl?.pointTypeCategories?.reduce((obj, item) => ({ ...obj, [item.id]: JSON.parse(item.objectDetails), }), {});
+
+    if (status === 200) {
+        // select first item from all points
+        if (pickupPoints.length >= 1) {
+            pickUps = [pickupPoints[0]]
+            // pickUps = [{ ...pickupPoints[0], ...objectDetailss[pickupPoints[0].pcatId] }]
+        } else {
+            pickUps = []
+        }
+        if (dropoffPoints.length >= 1) {
+            // dropoffs = [{ ...dropoffPoints[0], ...objectDetailss[dropoffPoints[0].pcatId] }]
+            dropoffs = [dropoffPoints[0]]
+        } else {
+            dropoffs = []
+        }
+    }
+    return { props: { data, pickUps, dropoffs, urlOfPage: dealUrl }, }
+});
