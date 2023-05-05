@@ -45,7 +45,7 @@ import SET_CONTACT_DETAILS from "./SET_CONTACT_DETAILS";
 const INITIAL_STATE = {
     accountRegisterDatas: {
         applicantForCreditAccount: {
-            companyName: "",
+            companyName: "companyName",
             natureOfBusiness: "natureOfBusiness",
             postCode: "postCode",
             address: "address",

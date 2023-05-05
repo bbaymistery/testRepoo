@@ -40,7 +40,7 @@ const AccountRegister = (props) => {
 
     let { applicantForCreditAccount, contactDetails, approximateSpend } = accountRegisterDatas
     let { contactName, jobTitle, department, email, telephoneNo } = contactDetails
-    let { companyName, natureOfBusiness, postCode, address, registrationNo, companyTel } = applicantForCreditAccount
+    let { companyName, natureOfBusiness, address, registrationNo, companyTel } = applicantForCreditAccount
 
     let [internalState, setInternalState] = React.useReducer((s, o) => ({ ...s, ...o }), {
         'errorHolder': [],
@@ -55,7 +55,7 @@ const AccountRegister = (props) => {
         if (['contactName', 'jobTitle', "department", "email"].includes(name))
             dispatch({ type: 'SET_CONTACT_DETAILS', data: { name, value } })
 
-        if (['companyName', "natureOfBusiness", "postCode", "address", "registrationNo"].includes(name))
+        if (['companyName', "natureOfBusiness", "address", "registrationNo"].includes(name))
             dispatch({ type: 'SET_APPLICANT_FOR_CREADIT_DETAILS', data: { name, value } })
     }
 
@@ -90,7 +90,7 @@ const AccountRegister = (props) => {
                                 <div className={styles.details_div}>
                                     <h1>{appData.words["strApplicationForCreditAccount"]}</h1>
                                     <div className={`${styles.details} ${styles.first_column} `}>
-                                        <div className={`${styles.input_div} ${styles.last_input_item}`} >
+                                        <div className={`${styles.input_div} `} >
                                             <TextInput
                                                 type="text"
                                                 value={companyName}
@@ -99,7 +99,7 @@ const AccountRegister = (props) => {
                                                 label={`${appData?.words["strCompanyName"]}/Sole Trader Name`}
                                                 errorMessage={errorHolder?.accountRegisterDatas?.applicantForCreditAccount?.companyName} />
                                         </div>
-                                        <div className={styles.input_div}>
+                                        <div className={`${styles.input_div} `} >
                                             <TextInput
                                                 type="text"
                                                 value={natureOfBusiness}
@@ -109,15 +109,7 @@ const AccountRegister = (props) => {
                                                 errorMessage={errorHolder?.accountRegisterDatas?.applicantForCreditAccount?.natureOfBusiness} />
                                         </div>
 
-                                        <div className={styles.input_div}>
-                                            <TextInput
-                                                type="text"
-                                                name="postCode"
-                                                value={postCode}
-                                                onChange={e => onchangeHandler(e)}
-                                                label={appData?.words["strPostcode"]}
-                                                errorMessage={errorHolder?.accountRegisterDatas?.applicantForCreditAccount?.postCode} />
-                                        </div>
+
                                         <div className={`${styles.input_div} ${direction === "rtl" ? "phone_input_direction" : ""}`}>
                                             <PhoneInput
                                                 className={`phone_input ${direction === "rtl" ? "phone_input_direction" : ""}`}
@@ -215,7 +207,9 @@ const AccountRegister = (props) => {
                                 </div>
 
                                 <div className={styles.details_div}>
-                                    <h1>{appData.words["strTheAmountOfMonthlyCreditYouRequire"]}</h1>
+                                    <h1>Operation Notes</h1>
+
+                                    <p className={styles.amount_credit_title}>{appData.words["strTheAmountOfMonthlyCreditYouRequire"]}</p>
                                     <p className={styles.approximatle_div}>
                                         <span >{appData?.words["strApproximateSpend"]}</span>
                                         <input
@@ -229,10 +223,7 @@ const AccountRegister = (props) => {
                                     <p className='mb_1'>Provide an estimate of how much you anticipate spending with Airport Pickups London in any given month</p>
                                     <p dangerouslySetInnerHTML={{ __html: appData?.words["strAppNoteTwoAddAccountForm"].replace("_AMOUNT_", `<input value="${approximateSpend}" type="text"  readonly style="border: 1px solid #ccc; border-radius:5px ; height:24px;outline: none;cursor: not-allowed;width: 46px; text-align:center;" />`) }}></p>
 
-                                </div>
-
-                                <div className={styles.details_div}>
-                                    <h1>Operation Notes</h1>
+                                    &nbsp;
                                     <div className={`${styles.details} ${styles.operation_details}`}>
 
                                         <div className={`${styles.input_div} ${styles.emergency_div}`}>
@@ -245,7 +236,7 @@ const AccountRegister = (props) => {
                                             <p>In case of extra payment for airport transfers, who pays for the extras?</p>
                                             <div className={styles.radio_input_content}>
                                                 <div>
-                                                    <input checked type="radio" id="Account" name="AccountPassenger" value="Account" />
+                                                    <input defaultChecked type="radio" id="Account" name="AccountPassenger" value="Account" />
                                                     <label htmlFor="Account">Account</label><br />
                                                 </div>
                                                 <div>
@@ -269,6 +260,8 @@ const AccountRegister = (props) => {
                                         <button className='btn btn_primary ' ref={btnRef}>{ripples} {appData.words["strNext"]}</button>
                                     </div>
                                 </div>
+
+
                             </div>
                             <div className={styles.accountRegister_content_registration_right}>
                                 <AdressInformations direction={direction} />
