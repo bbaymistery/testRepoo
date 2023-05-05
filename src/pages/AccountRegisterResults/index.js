@@ -123,28 +123,28 @@ export default AccountRegisterResults
 const makestore = () => store;
 const wrapper = createWrapper(makestore);
 
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
+// export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
 
-    const initialLanguages = store.getState().initialReducer?.appData?.languages
-    const langs = initialLanguages.map((lang) => lang.value)
+//     const initialLanguages = store.getState().initialReducer?.appData?.languages
+//     const langs = initialLanguages.map((lang) => lang.value)
 
-    for (let i = 0; i < langs.length; i++) {
-        const lang = langs[i]
-        const langUrl = lang === 'en' ? '/AccountRegisterResults' : `/${lang}/AccountRegisterResults`
-        if (req.url === langUrl) {
-            return {
-                redirect: {
-                    destination: lang === 'en' ? "/" : `/${lang}`,
-                    permanent: false
-                }
-            }
-        }
-    }
+//     for (let i = 0; i < langs.length; i++) {
+//         const lang = langs[i]
+//         const langUrl = lang === 'en' ? '/AccountRegisterResults' : `/${lang}/AccountRegisterResults`
+//         if (req.url === langUrl) {
+//             return {
+//                 redirect: {
+//                     destination: lang === 'en' ? "/" : `/${lang}`,
+//                     permanent: false
+//                 }
+//             }
+//         }
+//     }
 
 
-    return {
-        props: {
-            data: ''
-        }
-    }
-});
+//     return {
+//         props: {
+//             data: ''
+//         }
+//     }
+// });
