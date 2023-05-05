@@ -6,7 +6,7 @@ const indexPage = (props) => {
     let { bggray } = props
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction } } = state
-
+ 
     let description = ""
     let title = ""
     let keywords = ""
