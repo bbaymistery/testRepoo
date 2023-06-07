@@ -6,7 +6,7 @@
 // },
 async function getRoutes() {
   // fetch data here
-  let languages = ["en", "es", "tr"]
+  let languages = ["en"]
   try {
     const response = await fetch(`https://api.london-tech.com/app/en`).then((res) => res.json())
     if (response.status === 200) languages = response?.languages.map(language => language.value);
