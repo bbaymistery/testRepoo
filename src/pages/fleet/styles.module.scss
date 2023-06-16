@@ -1,6 +1,8 @@
 @import '../../styles/variables';
 @import '../../styles/_fonts';
-
+$checkbox-size: 14px;
+$checkbox-border: #cecece;
+$checkbox-selected: lighten($dark-1, 5%); // Primary colour
 .fleet {
     background-color: #f5f7fc;
     padding-bottom: 10px;
