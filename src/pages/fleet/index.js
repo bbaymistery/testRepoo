@@ -25,10 +25,14 @@ const Fleet = (props) => {
             <div className={`${styles.fleet} ${direction} page`} bggray={String(bggray === "true")}>
                 <div className={`${styles.fleet_section} page_section`}>
                     <div className={`${styles.fleet_section_container} page_section_container`}>
-                  
+                        <div className={`${styles.fleet_header}`}>
+                            <h1>Welcome to our fleet page!</h1>
+                            <p>We offer a range of vehicles to suit your needs, whether you're traveling for business or leisure.
+                                <br />
+                                Take a look at our options below:</p>
+                        </div>
                         {Object.values(quotationImagesObj)?.map((item, index) => {
 
-                            console.log({ name: carObject[item?.id]?.name, id: carObject[item?.id]?.id })
                             return (
                                 <div dataid={index === 0 ? "first_car" : ""} key={index} className={`${styles.card_item}`}    >
                                     <div data={item?.id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${item?.image})` }}> </div>
@@ -88,11 +92,8 @@ const Fleet = (props) => {
                         })}
 
                         &nbsp;
-                        <div className={`${styles.fleet_header}`}>
-                            <h1>Welcome to our fleet page!</h1>
-                            <p>We offer a range of vehicles to suit your needs, whether you're traveling for business or leisure.
-                                <br />
-                                Take a look at our options below:</p>
+                        <div className={`${styles.fleet_footer}`}>
+                           
                             <h2>Economy Class</h2>
                             <ul>
                                 <li>
