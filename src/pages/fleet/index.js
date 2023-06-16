@@ -25,7 +25,7 @@ const Fleet = (props) => {
             <div className={`${styles.fleet} ${direction} page`} bggray={String(bggray === "true")}>
                 <div className={`${styles.fleet_section} page_section`}>
                     <div className={`${styles.fleet_section_container} page_section_container`}>
-                        <div className={styles.right_content}>
+                        <div className={styles.left_content}>
                             <div className={styles.quotation_panel_istaxideal}>
 
                                 <div className={`${styles.left_info} ${styles.tripad_left_info}`} >
@@ -116,7 +116,7 @@ const Fleet = (props) => {
 
                             </div>
                         </div>
-                        <div className={styles.left_content}>
+                        <div className={styles.right_content}>
                             <div className={`${styles.fleet_header}`}>
                                 <h1>Welcome to our fleet page!</h1>
                                 <p>We offer a range of vehicles to suit your needs, whether you're traveling for business or leisure.

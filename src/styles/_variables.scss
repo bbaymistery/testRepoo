@@ -5,8 +5,6 @@ $tr-cubic: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 //*colors
 
 
-
-
 $gray-1: #424242;
 $gray-2: #3b3b3b;
 $gray-3: #777;
@@ -34,6 +32,10 @@ $blue-2: #E5F0FD;
 
 $input_text_color:#62666cd7;
 $label_text_color: rgba(105, 116, 136, 0.579);
+
+$checkbox-size: 14px;
+$checkbox-border: #cecece;
+$checkbox-selected: lighten($dark-1, 5%); // Primary colour
 
 // $green-1: #EBFCEA;
 // $green-2: #008009;
