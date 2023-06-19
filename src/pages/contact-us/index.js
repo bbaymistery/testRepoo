@@ -153,7 +153,10 @@ const ContactUs = (props) => {
 
                                 {/* <AdressInformation direction={direction} /> */}
                                 <div className={styles.right}>
-                                    <AdressInformations direction={direction} appData={appData}/>
+                                    <AdressInformations direction={direction} appData={appData} />
+                                    <div className={styles.qr_image_div}>
+                                        <img src="/images/contactUsQr.jpeg" alt="" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
