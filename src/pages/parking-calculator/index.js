@@ -225,7 +225,13 @@ const ParkingCalculator = (props) => {
                                 </table>
 
                             </div>
-
+                            <span className={styles.radio_button_div}>
+                                <input type="radio" id="check1" checked={freeWaitingTime === 30} onChange={handleCheckboxChange} />
+                                <label htmlFor="check1">APL</label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="check2" checked={freeWaitingTime === 45} onChange={handleCheckboxChange} />
+                                <label htmlFor="check2">Booking.com</label>
+                            </span>
 
                             <div className={styles.input_informations_div}>
                                 <div className={styles.landing_time_div}>
