@@ -145,9 +145,11 @@
                     color: black;
                     user-select: none;
                     display: none;
-@media (max-width: 1050px) {
-        display: block;
-    }
+
+                    @media (max-width: 1050px) {
+                        display: block;
+                    }
+
                     label,
                     input {
                         cursor: pointer;

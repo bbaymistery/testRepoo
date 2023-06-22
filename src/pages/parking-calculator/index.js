@@ -102,8 +102,12 @@ const ParkingCalculator = (props) => {
     // Function to add minutes to a given time string (hh:mm)
     useEffect(() => {
         //show the howmanyDivInputs when minute hour is selected
-        if (landingHourSelection !== 'Select-hour' && landingMinuteSelection !== 'Select-minute') howmanyMinutesRef?.current.focus()
-
+        if (landingHourSelection !== 'Select-hour' && landingMinuteSelection !== 'Select-minute') {
+            howmanyMinutesRef?.current.focus()
+        } else {
+            setdriverActualPickUpMinuteSelection(minutes[0])
+            setdriverActualPickupHourSelection(hours[0])
+        }
         if (landingHourSelection !== 'Select-hour' && landingMinuteSelection !== 'Select-minute' && how_many_minutes !== '') {
             const selectedTime = `${landingHourSelection}:${landingMinuteSelection}`;
             const minutesToAdd = parseInt(how_many_minutes);
