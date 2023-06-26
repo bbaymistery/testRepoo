@@ -108,6 +108,7 @@ const ParkingCalculator = (props) => {
             setdriverActualPickUpMinuteSelection(minutes[0])
             setdriverActualPickupHourSelection(hours[0])
         }
+
         if (landingHourSelection !== 'Select-hour' && landingMinuteSelection !== 'Select-minute' && how_many_minutes !== '') {
             const selectedTime = `${landingHourSelection}:${landingMinuteSelection}`;
             const minutesToAdd = parseInt(how_many_minutes);
@@ -303,9 +304,13 @@ const ParkingCalculator = (props) => {
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-
-
+                    <div className={`${styles.parking_section_container} page_section_container`}>
+                        <ul className={styles.description}>
+                            <li> 1-  Please ask the driver to send you his parking ticket to verify his entry time at the terminal. Most drivers arrive late and still request additional money.</li>
+                            <li>  2-    Please DO NOT charge the customer for up to 5 minutes. Drivers pay £6 for up to 44 minutes. </li>
+                        </ul>
 
                     </div>
                 </div>
