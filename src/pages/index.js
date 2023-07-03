@@ -1,38 +1,24 @@
-import GlobalLayout from "../components/layouts/GlobalLayout";
-import Hero from "../components/widgets/Hero";
-import CarsSlider from "../components/widgets/CarsSlider";
-import TaxiDeals from "../components/widgets/TaxiDeals";
-
-
-export default function Home() {
-
+import React from "react";
+import styles from "../styles/Home.module.scss";
+import Layout from "../components/layouts/Layout";
+import Hero from "../components/elements/Hero";
+import UiView from "../components/widgets/UiView";
+import HappyCustomer from "../components/widgets/HappyCustomer";
+import TopDestination from "../components/widgets/TopDestination";
+export default function HomePage(props) {
   return (
-    <GlobalLayout>
-      <Hero />
-      <TaxiDeals />
-      <CarsSlider bggray={true} />
-    </GlobalLayout>
-  )
+    <Layout>
+      <div className={styles.homecontainer}>
+        <Hero isHeroContentActive={true} isBgImageActive={true} />
+        <UiView />
+        <HappyCustomer />
+        <TopDestination />
+        {/* <Alert message="salam" alert={true} close={true} /> */}
+      </div>
+    </Layout>
+  );
 }
 
-// const makestore = () => store;
-// const wrapper = createWrapper(makestore);
-
-// export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
-//   const paymentUrl = `${env.apiDomain}/api/v1/payment-types`;
-//   const appDataUrl = `${env.apiDomain}/app/en`;
-//   const urls = [paymentUrl, appDataUrl];
-
-//   let response = await Promise.all(urls.map(async url => {
-//     let resp = await fetch(url);
-//     return resp.json();
-//   }));
-
-//   const appData = response[1];
-//   const paymentTypes = response[0].data;
-//   // Dispatch values to Redux store
-//   store.dispatch({ type: "GET_APP_DATA", data: { appData: appData, paymentTypes: paymentTypes, }, });
-
-// });
-
-
+export async function getServerSideProps({ req, res }) {
+  return { props: { hi: 5 } };
+}

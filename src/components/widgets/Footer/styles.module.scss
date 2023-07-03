@@ -1,183 +1,68 @@
-@import '../../../styles/variables';
-@import '../../../styles/_fonts';
+@import '../../../styles/colors';
 
-.footer[bggray="true"] {
-    background-color: $light-2;
-}
+.element_section_inside {
+    background-color: $bgBlackDark !important;
+    min-height: 100px;
+    padding-top: 60px;
+    padding-right: 0px;
+    padding-bottom: 30px;
+    padding-left: 0px;
 
-.footer[bggray="false"] {
-    background-color: white !important;
-}
+    .section_inside {
 
-.footer {
-    height: 100%;
-    position: relative;
-    margin-top: 0px;
-    border-bottom: 1px solid $border;
-    border-top: 1px solid $border;
-    border-left: 0px;
-    border-right: 0px;
-    padding-bottom: 30px !important;
+        margin: 0 var(--window-margin);
 
-    &_section {
+        .section_container_inside {
+            padding: 0px 15px;
 
-        &_container {
-            .content {
-                display: flex;
-                width: 100%;
+            .boxes {
                 display: flex;
                 justify-content: space-between;
 
-                @media(max-width:1250px) {
-                    display: grid;
-                    grid-template-columns: 2fr 1fr 1fr;
-                    grid-template-rows: 1fr 1fr;
-                    align-content: space-between;
+                @media (max-width:910px) {
+                    flex-direction: column;
 
                 }
 
-                @media(max-width:990px) {
-                    grid-template-columns: 2fr 1fr;
-                    grid-template-rows: 1fr 1fr;
-                }
+                .box {
+                    margin-bottom: 30px;
 
-                @media(max-width:768px) {
-                    grid-template-columns: 1fr;
-                    align-content: center;
-                    gap: 1rem;
-                }
-
-                .column {
-                    // border: 1px solid blue;
-
-                    h3 {
-                        font-weight: 500;
-                        font-size: 18px;
-                        color: $dark-1;
-                        margin-bottom: 30px;
-
-                        @media(max-width:768px) {
-                            margin-bottom: 10px;
-                        }
+                    .text_color {
+                        color: $yellow;
                     }
 
-                    .list_items {
-                        flex-direction: column;
-                        display: flex;
+                    .text_white {
+                        color: white;
+                    }
 
-                        a {
-                            padding: 5px 0px;
-                            color: $dark-1;
-                            font-size: 16px;
-                            transition: $tr-cubic;
-                            text-transform: capitalize;
-                                font-weight: 500;
-                            &:hover {
-                                color: $primary;
-                               
+                    &_one {
+                        color: white;
+
+                        .box_desc {
+                            @media (max-width:370px) {
+                                font-size: 11px;
+                                color: $yellow;
                             }
                         }
-                    }
-                }
 
-                .last_column {
-                    .description {
-                        margin-top: 30px;
+                        .box_logo {
+                            text-transform: uppercase;
+                            color: white;
+                            font-size: 20px;
 
-                        p {
-                            color: $dark-1;
+                            @media (max-width:370px) {
+                                font-size: 13px;
+                            }
+
 
                         }
 
-                        a {
-                            font-weight: 500;
-                            color: $dark-1;
-                            font-size: 19px;
-                        }
-                    }
-                }
-
-                .first_column {
-                    max-width: 350px;
-
-                    .logo {
-                        margin-bottom: 30px;
-                        display: flex;
-
-                        @media(max-width:768px) {
-                            margin-bottom: 10px;
-                        }
                     }
 
-                    p {
-                        color: $black-1;
-                        font-size: 16px;
-                        font-weight: 500;
-                        word-break: break-word;
-                        line-height: 30px;
-
-                        span {
-                            color: $primary;
-                            font-weight: 500;
+                    h4 {
+                        @media (max-width:370px) {
                             font-size: 18px;
                         }
-                    }
-                }
-            }
-
-            .subcontent {
-                border-top: 1px solid $border;
-                padding-top: 30px;
-                display: flex;
-                justify-content: space-between;
-
-                @media(max-width:990px) {
-                    gap: 1rem;
-                    flex-direction: column-reverse;
-
-                }
-
-                .subcontent_left {
-                    display: flex;
-                    align-items: center;
-                    gap: 1.5rem;
-
-                    @media(max-width:990px) {
-                        gap: 1rem;
-                        flex-direction: column-reverse;
-
-                    }
-
-                    .copyright {
-                        font-weight: 500;
-
-                        @media(max-width:530px) {
-                            font-size: 14px;
-
-                        }
-                    }
-
-                    .lists {
-                        display: flex;
-                        gap: 16px;
-
-                        a {
-                            transition: $tr-cubic;
-                            text-transform: capitalize;
-                        }
-
-                        a:hover {
-                            color: $primary;
-                        }
-                    }
-                }
-
-                .subcontent_right {
-                    .icons {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 0.7rem;
                     }
                 }
             }
