@@ -42,7 +42,7 @@ export const tourLinks = [
     },
     {
         title: "Oxford and Blenheim Palace Tour",
-        id: 5,
+        id: 6,
         urlImage: "/images/tours/oxford.jpg",
         price: "190",
         duration: "4 hours",
@@ -50,7 +50,7 @@ export const tourLinks = [
     },
     {
         title: "Bicester Village Shopping Tour",
-        id:6,
+        id:8,
         urlImage: "/images/tours/bicester.jpg",
         price: "300",
         duration: "8 hours",

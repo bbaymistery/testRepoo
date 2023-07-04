@@ -2,15 +2,17 @@ import GlobalLayout from "../components/layouts/GlobalLayout";
 import Hero from "../components/widgets/Hero";
 import CarsSlider from "../components/widgets/CarsSlider";
 import TaxiDeals from "../components/widgets/TaxiDeals";
+import Tours from "./tours";
 
 
 export default function Home() {
 
   return (
-    <GlobalLayout>
+    <GlobalLayout footerbggray={true}>
       <Hero />
       <TaxiDeals />
-      <CarsSlider bggray={true} />
+      <CarsSlider bggray={true}  />
+      <Tours insideGlobalLayout={false} />
     </GlobalLayout>
   )
 }
