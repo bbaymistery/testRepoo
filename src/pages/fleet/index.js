@@ -6,6 +6,7 @@ import { quotationImagesObj } from '../../constants/quotationImages'
 import env from '../../resources/env'
 import Image from 'next/image';
 import meetAndGret from '../../../public/images/icons/blackMeetAndGreet.svg'
+import LeftSidebarInformation from '../../components/elements/LeftSidebarInformation'
 
 let description = "Airport Pickups London vehicle types and all taxi capacity information"
 let title = "Airport Pickups London (APL Cars)  fleet information. Our vehicle types. "
@@ -26,95 +27,9 @@ const Fleet = (props) => {
                 <div className={`${styles.fleet_section} page_section`}>
                     <div className={`${styles.fleet_section_container} page_section_container`}>
                         <div className={styles.left_content}>
-                            <div className={styles.quotation_panel_istaxideal}>
 
-                                <div className={`${styles.left_info} ${styles.tripad_left_info}`} >
-                                    <p className={`${styles.left_info_title} ${direction}`}>Tripadvisor Ratings</p>
-                                    <ul>
-                                        <a
-                                            className={styles.tripad_a}
-                                            target="_blank"
-                                            href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html"
-                                            title="Tripadvisor Rating for Airport Pickups London">
-                                            <img className={styles.tripad_img} border="0" alt="Airport Pickups" src="/images/TripAdvisor2.png" />
-                                        </a>
-                                    </ul>
-                                </div>
-                                <div className={`${styles.left_info} ${styles.left_support}`} >
-                                    <p className={`${styles.left_info_title} ${direction}`}>7/24 Support</p>
-
-                                    <ul>
-                                        <li className={styles.phone}>
-                                            <img src="/images/tel.png" alt="Airport Pickups Support" />
-                                            <a href="tel:+44 73 8790 1028">+44 73 8790 1028</a>
-                                        </li>
-                                        <li className={styles.wp}>
-                                            <img src="/images/WhatsApp.svg.png" alt="Airport Pickups Support" />
-                                            <a target="_blank" href="https://wa.me/447387901028">
-                                                +44 73 8790 1028
-                                            </a>
-                                        </li>
-                                        <li className={styles.mail}>
-                                            <span>
-                                                <img border="0" alt="Airport Pickups" src="/images/mail.svg" />
-                                            </span>
-                                            <a href="mailto:info@aplcars.com" >info@aplcars.com</a>
-
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className={`${styles.left_info} ${styles.services}`} direction={String(direction === "rtl")} >
-                                    <p className={styles.left_info_title}>ALL Inclusive Prices</p>
-                                    <ul >
-                                        <li className={`${direction}`}>
-                                            <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
-                                            <label className={styles.primary_text} >
-                                            </label>
-                                            {appData?.words["strCarFeatureFreeMeetAndGreet"]}
-                                        </li>
-                                        <li className={`${direction}`}>
-                                            <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
-                                            <label className={styles.primary_text} >
-                                            </label>
-                                            Flight monitoring
-                                        </li>
-                                        <li className={`${direction}`}>
-                                            <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
-                                            <label className={styles.primary_text} >
-                                            </label>
-                                            FREE Baby/Child Seat
-                                        </li>
-                                        <li className={`${direction}`}>
-                                            <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
-                                            <label className={styles.primary_text} >
-                                            </label>
-                                            FIXED Prices
-                                        </li>
-                                        <li className={`${direction}`}>
-                                            <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
-                                            <label className={styles.primary_text} >
-                                            </label>
-                                            NO hidden charges
-                                        </li>
-                                        <li className={`${direction}`}>
-                                            <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
-                                            <label className={styles.primary_text} >
-                                            </label>
-                                            FREE Cancellation (24h)
-                                        </li>
-
-                                    </ul>
-                                </div>
-
-                                <div className={`${styles.left_info} ${styles.acceptedcards}`}>
-                                    <p className={`${styles.left_info_title} ${direction}`}> Accepted Cards</p>
-                                    <img className={styles.acceptedcards_img} border="0" alt="Airport Pickups" src="/images/payments.png" />
-                                </div>
-                                <div className={`${styles.left_info} ${styles.tfl}`}>
-                                    <img className={styles.tfl_img} border="0" alt="Airport Pickups" src="/images/tfl2.png" />
-                                </div>
-
-                            </div>
+                            {/* bura eftsidebar componentin normal div formasi yazilmisdi onu sadece reusable olsun deye tek sekilde yazdm */}
+                            <LeftSidebarInformation direction={direction} appData={appData} />
                         </div>
                         <div className={styles.right_content}>
                             <div className={`${styles.fleet_header}`}>
@@ -123,7 +38,7 @@ const Fleet = (props) => {
                                     <br />
                                     Take a look at our options below:</p>
                             </div>
-                            {Object.values(quotationImagesObj)?.map((item, index) => {
+                            {Object?.values(quotationImagesObj)?.map((item, index) => {
                                 return (
                                     <div dataid={index === 0 ? "first_car" : ""} key={index} className={`${styles.card_item}`}    >
                                         <div data={item?.id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${item?.image})` }}> </div>

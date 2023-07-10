@@ -1,14 +1,19 @@
 @import '../../styles/variables';
 @import '../../styles/_fonts';
 
+.porter[bggray="true"] {
+    background-color: $light-2;
+}
 
-.fleet {
-    background-color: #f5f7fc;
-    padding-bottom: 10px;
+.porter[bggray="false"] {
+    background-color: white !important;
+}
 
-    .fleet_section {
+.porter {
 
-        .fleet_section_container {
+    &_section {
+
+        &_container {
             display: flex;
             gap: 60px;
             padding: 0px;
@@ -23,7 +28,7 @@
                     display: none;
                 }
 
-          
+
             }
 
             .right_content {
@@ -33,7 +38,7 @@
                     flex-basis: 100%;
                 }
 
-                .fleet_header {
+                .porter_header {
                     padding: 20px;
                     border: 1px solid #f7f7f7;
                     color: $dark-1;
@@ -326,7 +331,7 @@
                     }
                 }
 
-                .fleet_footer {
+                .porter_footer {
                     padding: 20px;
                     margin-bottom: 4em;
                     border: 1px solid #f7f7f7;
@@ -386,19 +391,37 @@
                         color: $light-1;
                     }
 
-                    b {
-                        font-weight: 500;
 
+                    .img_flex_ul {
+                        display: flex;
+                        gap: 2rem;
+
+                        @media (max-width: 1400px) {
+                            flex-direction: column;
+                        }
                     }
 
                     ul {
-                        li {
-                            ul {
-                                margin-bottom: 15px;
 
-                                li {
-                                    color: $light-1;
+                        li {
+                            font-size: 15px;
+
+                            .li_circle_ul {
+                                padding-left: 20px;
+                            }
+
+                            ul {
+                                .li_circle {
+                                    list-style-type: disc;
+                                    padding: 6px 0px;
                                 }
+                            }
+
+                            img {
+                                width: 300px
+                                ;
+                                object-fit: cover;
+                                height: 200px;
                             }
                         }
                     }
@@ -406,14 +429,8 @@
 
                 }
             }
+
+
         }
     }
-}
-
-.fleet[bggray="true"] {
-    background-color: $light-2;
-}
-
-.fleet[bggray="false"] {
-    background-color: white !important;
 }
