@@ -50,7 +50,7 @@ const Porter = (props) => {
                                 </ul>
 
                                 <br />
-                                <h2>Heathrow Arrivals  Porter  includes:</h2>
+                                <h2>Heathrow Arrivals  Porter  includes</h2>
                                 <ul className={styles.img_flex_ul}>
                                     <li>
                                         At arrivals our Porters will hold your name board by the baggage carousel.
@@ -64,7 +64,7 @@ const Porter = (props) => {
                                     </li>
                                 </ul>
                                 <br />
-                                <h2>Heathrow Departures  Porter  includes:</h2>
+                                <h2>Heathrow Departures  Porter  includes</h2>
 
                                 <ul className={styles.img_flex_ul}>
                                     <li>

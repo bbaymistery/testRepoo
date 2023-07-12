@@ -125,7 +125,13 @@
                                     @media (max-width: 450px) {
                                         margin-left: 0.5rem;
                                     }
+
+
+                                    &[direction="true"] {
+                                        margin-right: 1rem;
+                                    }
                                 }
+
 
                                 &[isactive="true"] {
                                     background-color: $primary;
@@ -144,6 +150,8 @@
                                     }
 
                                 }
+
+
                             }
 
                             button:nth-child(1) {
@@ -158,6 +166,21 @@
                             button:nth-child(3) {
                                 border-top-left-radius: 0px;
                                 border-bottom-left-radius: 0px;
+                            }
+
+
+                            button[direction="true"]:nth-child(1) {
+                                border-top-left-radius: 0px;
+                                border-bottom-left-radius: 0px;
+                                border-top-right-radius: 4px;
+                                border-bottom-right-radius: 4px;
+                            }
+
+                            button[direction="true"]:nth-child(3) {
+                                border-top-right-radius: 0px;
+                                border-bottom-right-radius: 0px;
+                                border-top-left-radius: 4px;
+                                border-bottom-left-radius: 4px;
                             }
                         }
 
@@ -217,6 +240,10 @@
                                     }
                                 }
 
+                                .adults_selection_div_column_numbers_div[direction="true"] {
+                                    flex-direction: row-reverse;
+                                }
+
                                 .adults_selection_div_column_numbers_div {
                                     display: flex;
                                     align-items: center;
@@ -239,6 +266,13 @@
                                     }
                                 }
                             }
+                        }
+
+                        .price {
+                            color: red;
+                            text-align: center;
+                            font-weight: bold;
+                            letter-spacing: 1.4px;
                         }
 
                         .booknow_div {

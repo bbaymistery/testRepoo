@@ -34,15 +34,15 @@ const HeathrowVipMeet = (props) => {
         { name: "Children", desc: "(from 2 to  12y.o.)", minNum: 0, maxNum: 20 },
         { name: "Infants", desc: "(below 12y.o.)", minNum: 0, maxNum: 20 }
     ])
+    console.log(dropdownTextSelection);
+
     //inputDate value
     const [inputDateValue, setInputDateValue] = useState(currentDate())
-    const handleButtons = (index) => {
-        setActiveButton(index);
-    };
-    const onchangeDate = (e) => {
-        console.log(e.target.value);
-        setInputDateValue(e.target.value)
-    }
+
+    const [price, setPrice] = useState(180)
+    const handleButtons = (index) => setActiveButton(index);
+    const onchangeDate = (e) => setInputDateValue(e.target.value)
+
     const handleDecrement = (idx) => {
         let newSeatLists = [...seatLists];
         newSeatLists = newSeatLists.map((item, index) => {
@@ -58,6 +58,7 @@ const HeathrowVipMeet = (props) => {
             }
         });
         setseatLists(newSeatLists)
+        updatePrice(newSeatLists);
     }
 
     const handleIncrement = (idx) => {
@@ -70,7 +71,17 @@ const HeathrowVipMeet = (props) => {
             }
         });
         setseatLists(newSeatLists)
+        updatePrice(newSeatLists);
     }
+
+    const updatePrice = (newSeatLists) => {
+        let totalPrice = 180;
+        const adultsNum = newSeatLists[0].minNum;
+        const childrenNum = newSeatLists[1].minNum;
+        const totalGuests = adultsNum + childrenNum;
+        if (totalGuests > 2) totalPrice += (totalGuests - 2) * 50;
+        setPrice(totalPrice);
+    };
     return (
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
             <div className={`${styles.vipmeet} ${direction} page`} bggray={String(bggray === "true")}>
@@ -83,10 +94,13 @@ const HeathrowVipMeet = (props) => {
                                     <p className={styles.description}>select and book your service</p>
                                     <div className={styles.buttons}>
                                         {buttonLabels.map((label, index) => (
-                                            <button key={index} ref={buttonRefs[index]} isactive={String(activeButton === index)} onClick={() => handleButtons(index)} className={`btn`}  >
+                                            <button direction={String(direction === 'rtl')} key={index} ref={buttonRefs[index]} isactive={String(activeButton === index)} onClick={() => handleButtons(index)} className={`btn`}  >
                                                 {useRipple(buttonRefs[index])}
                                                 {label}
-                                                {index === 0 ? (<i className="fa-solid fa-plane-arrival"></i>) : index === 1 ? (<i className="fa-solid fa-plane-departure"></i>) : (<i className="fa-sharp fa-solid fa-circle-nodes"></i>)}
+                                                {index === 0
+                                                    ? (<i direction={String(direction === 'rtl')} className={`fa-solid fa-plane-arrival `}></i>)
+                                                    : index === 1 ? (<i direction={String(direction === 'rtl')} className="fa-solid fa-plane-departure"></i>)
+                                                        : (<i direction={String(direction === 'rtl')} className="fa-sharp fa-solid fa-circle-nodes"></i>)}
                                             </button>
                                         ))}
                                     </div>
@@ -106,7 +120,7 @@ const HeathrowVipMeet = (props) => {
                                             return <div className={styles.adults_selection_div_column}>
                                                 <p className={styles.name}> {item.name}</p>
                                                 <p className={styles.desc}>  {item.desc}</p>
-                                                <div className={styles.adults_selection_div_column_numbers_div}>
+                                                <div className={styles.adults_selection_div_column_numbers_div} direction={String(direction === 'rtl')}>
                                                     <p className={`${styles.left_arrow} ${item.minNum === 0 ? styles.disabled : ""}`} onClick={() => handleDecrement(index)}>
                                                         <i className="fa-solid fa-chevron-left"></i>
                                                     </p>
@@ -118,6 +132,10 @@ const HeathrowVipMeet = (props) => {
                                             </div>
                                         })}
                                     </div>
+
+                                    {['Heathrow Terminal 2 ', 'Heathrow Terminal 3', 'Heathrow Terminal 4', "Heathrow Terminal 5"].includes(dropdownTextSelection)
+                                        ? <div className={styles.price}> Total: £  {price}</div>
+                                        : <></>}
 
                                     <div className={styles.booknow_div}>
                                         <button className='btn '  >Book Now</button>
@@ -178,7 +196,7 @@ const HeathrowVipMeet = (props) => {
                                     </ul>
 
                                     <br />
-                                    <h2>Arrival Experience includes:</h2>
+                                    <h2>Arrival Experience includes</h2>
                                     <ul className={styles.img_flex_ul}>
                                         <li>
                                             <ul>
@@ -195,7 +213,7 @@ const HeathrowVipMeet = (props) => {
                                         </li>
                                     </ul>
                                     <br />
-                                    <h2>Departure Experience includes:</h2>
+                                    <h2>Departure Experience includes</h2>
 
                                     <ul className={styles.img_flex_ul}>
                                         <li>
@@ -216,7 +234,7 @@ const HeathrowVipMeet = (props) => {
 
 
                                     <br />
-                                    <h2>Connecting / Transit VIP services:</h2>
+                                    <h2>Connecting / Transit VIP services</h2>
                                     <ul className={styles.img_flex_ul}>
                                         <li>
                                             <ul className={styles.li_circle_ul}>
@@ -231,7 +249,7 @@ const HeathrowVipMeet = (props) => {
                                     </ul>
 
                                     <br />
-                                    <h2>Porter Service:</h2>
+                                    <h2>Porter Service</h2>
                                     <ul>
                                         <li>Our porter service price is £65.00 inclusive of all taxes.  For more information please visit our <a style={{ fontWeight: "500" }} href="/heathrow-porter-service">Porter page</a></li>
                                     </ul>

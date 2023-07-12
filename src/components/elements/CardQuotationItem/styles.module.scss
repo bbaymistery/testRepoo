@@ -21,6 +21,15 @@
        }
 
        ul> {
+           @media (max-width: 768px) {
+
+               li:nth-child(4),
+               li:nth-child(3) {
+                   display: none;
+
+               }
+           }
+
            li {
                color: rgb(0, 0, 0);
                font-size: 15px;
@@ -32,11 +41,11 @@
 
 
                @media (max-width: 768px) {
-                   font-size: 12px;
+                   //   font-size: 12px;
                }
 
                @media (max-width:558px) {
-                   font-size: 10px;
+                   //    font-size: 10px;
                }
 
                .li_icon {
@@ -320,6 +329,10 @@
                    padding-left: 15px;
                }
 
+               @media (max-width: 450px) {
+                   padding-right: 1rem;
+               }
+
                .column_second_flex_column {
                    display: flex;
                    flex-direction: column;
@@ -328,6 +341,29 @@
                        .postcode {
                            color: $light-1;
                            font-size: 13px;
+                           display: flex;
+                           justify-content: space-between;
+
+                           .feature_column {
+                               display: none;
+
+                               @media (max-width: 450px) {
+                                   display: flex;
+                                   gap: 0.5rem;
+                                   align-items: center;
+
+                                   i,
+                                   span {
+                                       font-size: 14px;
+                                       color: black;
+
+                                   }
+
+                                   span {
+                                       margin: 0px;
+                                   }
+                               }
+                           }
                        }
 
                        .name {
@@ -336,6 +372,27 @@
                            font-size: 16px;
                            font-family: $font-jost;
                            margin-bottom: 0px !important;
+                           display: flex;
+                           justify-content: space-between;
+
+                           .feature_column {
+                               display: none;
+
+                               @media (max-width: 450px) {
+                                   display: flex;
+                                   gap: 0.5rem;
+                                   align-items: center;
+
+                                   i,
+                                   span {
+                                       font-size: 14px;
+                                   }
+
+                                   span {
+                                       margin: 0px;
+                                   }
+                               }
+                           }
 
                            span {
                                color: $light-1;
@@ -369,6 +426,7 @@
 
                        @media (max-width:450px) {
                            grid-template-columns: 1fr;
+                           display: none;
                        }
 
                        .meet_greet_icon[direction="true"] {
@@ -377,6 +435,7 @@
                            justify-content: flex-end;
                        }
 
+
                        .feature_column {
                            max-width: 100%;
                            width: 100%;
@@ -384,7 +443,9 @@
                            display: flex;
                            align-items: center;
 
-                           @media (max-width: 990px) {}
+                           @media (max-width:450px) {
+                               display: none !important;
+                           }
 
                            i {
                                color: rgb(5, 16, 54);
@@ -501,6 +562,7 @@
 
                @media (max-width: 767px) {
                    padding-left: 10px;
+                   padding-top: 0px;
                }
 
                .price {
