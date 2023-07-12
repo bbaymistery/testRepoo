@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from "./styles.module.scss"
 import OutsideClickAlert from '../OutsideClickAlert'
 const DropDown = (props) => {
-  const { label="", selectedOption, setSelectedOption, options, heading="", disable = false } = props
+  const { label = "", selectedOption, setSelectedOption, options, heading = "", disable = false, headingStyle = {} } = props
 
   const [isOptionsVisible, setIsOptionsVisible] = useState(false)
 
@@ -13,7 +13,7 @@ const DropDown = (props) => {
 
   return (
     <div className={styles.dropdown}>
-      {heading ? <div className={styles.heading}>{heading}</div> : <></>}
+      {heading ? <div className={styles.heading} style={headingStyle}>{heading}</div> : <></>}
       {label ? <div className={styles.dropdown_label}>{label}</div> : <></>}
       <OutsideClickAlert onOutsideClick={() => setIsOptionsVisible(false)}>
         <div className={styles.dropdown_component} onClick={() => setIsOptionsVisible(!isOptionsVisible)} disable={String(disable)}>

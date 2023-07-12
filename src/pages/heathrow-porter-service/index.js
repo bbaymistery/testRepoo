@@ -44,7 +44,7 @@ const Porter = (props) => {
                                     </li>
 
                                     <li>
-                                        <img src="/images/porterService.jpg" alt="" />
+                                        <img src="/images/meetGreet/porterService.jpg" alt="" />
 
                                     </li>
                                 </ul>
@@ -59,7 +59,7 @@ const Porter = (props) => {
                                     </li>
 
                                     <li>
-                                        <img src="/images/heathrowArrival.jpg" alt="" />
+                                        <img src="/images/meetGreet/heathrowArrival.jpg" alt="" />
 
                                     </li>
                                 </ul>
@@ -75,7 +75,7 @@ const Porter = (props) => {
                                     </li>
 
                                     <li>
-                                        <img src="/images/departuresPorter.jpg" alt="" />
+                                        <img src="/images/meetGreet/departuresPorter.jpg" alt="" />
                                     </li>
                                 </ul>
 
