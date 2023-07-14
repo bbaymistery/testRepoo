@@ -289,6 +289,11 @@
                                     background-color: darken($primary, 5%);
                                 }
                             }
+
+                            button[active="false"] {
+                                background-color: rgb(186, 186, 186) !important;
+                                cursor: default;
+                            }
                         }
 
                         .needhelp_text {
@@ -309,7 +314,6 @@
                     -webkit-box-flex: 0;
                     flex-grow: 0;
                     max-width: 50%;
-
                     @media (max-width: 990px) {
                         flex-basis: 100%;
                         -webkit-box-flex: 0;
@@ -378,6 +382,8 @@
 
     &_section {
         &_container {
+      
+
             .information_column {
                 display: flex;
                 gap: 60px;

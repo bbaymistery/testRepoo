@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
@@ -9,6 +9,7 @@ import useRipple from '../../hooks/useRipple'
 import DropDown from '../../components/elements/Dropdown/dropdown'
 import DateInput from '../../components/elements/DateInput'
 import { currentDate } from '../../helpers/getDates'
+import MeetAndGrettForm from '../../components/elements/MeetAndGrettForm'
 
 let description = "Heathrow VIP Meet and Assist service includes meet by the plane door and assist the passenger to final detsination."
 let title = "VIP Meet and assist at Heathrow Airport"
@@ -22,6 +23,8 @@ const HeathrowVipMeet = (props) => {
 
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction } } = state
+    const formRef = useRef(null);
+
 
     //buttons
     const [activeButton, setActiveButton] = useState(0);
@@ -34,12 +37,14 @@ const HeathrowVipMeet = (props) => {
         { name: "Children", desc: "(from 2 to  12y.o.)", minNum: 0, maxNum: 20 },
         { name: "Infants", desc: "(below 12y.o.)", minNum: 0, maxNum: 20 }
     ])
-    console.log(dropdownTextSelection);
+
+    const [openTheForm, setOpenTheForm] = useState(false)
 
     //inputDate value
     const [inputDateValue, setInputDateValue] = useState(currentDate())
-
     const [price, setPrice] = useState(180)
+    const [passengersForm, setPassengersForm] = useState([{ firstname: "", lastname: "" }])
+
     const handleButtons = (index) => setActiveButton(index);
     const onchangeDate = (e) => setInputDateValue(e.target.value)
 
@@ -73,15 +78,37 @@ const HeathrowVipMeet = (props) => {
         setseatLists(newSeatLists)
         updatePrice(newSeatLists);
     }
-
+    //added insdie handleDecrement handleIncrement
     const updatePrice = (newSeatLists) => {
         let totalPrice = 180;
         const adultsNum = newSeatLists[0].minNum;
         const childrenNum = newSeatLists[1].minNum;
-        const totalGuests = adultsNum + childrenNum;
-        if (totalGuests > 2) totalPrice += (totalGuests - 2) * 50;
-        setPrice(totalPrice);
+        const totalGuestsSelected = adultsNum + childrenNum;
+        if (totalGuestsSelected > 2) totalPrice += (totalGuestsSelected - 2) * 50;
+        setPrice(totalPrice);//settng total price for theright side of box
+
+        //based on totalGuestSelected i am creating new passengers which is equal to that number
+        //if totalGuestSelected=2=>it means =[{name:"",lastname:""},{name:"",lastname:""}]
+        const newPassengersForm = Array.from({ length: totalGuestsSelected }, () => ({ firstname: "", lastname: "" }));
+        setPassengersForm(newPassengersForm);
     };
+    const IsDropdownTextSelectionValid = () => {
+        return ['Heathrow Terminal 2 ', 'Heathrow Terminal 3', 'Heathrow Terminal 4', "Heathrow Terminal 5"].includes(dropdownTextSelection)
+    }
+    const handleBookNow = () => IsDropdownTextSelectionValid() && setOpenTheForm(true)
+
+    useEffect(() => {
+        if (formRef.current) { // Add a null check
+            if (openTheForm) {
+                formRef.current.style.height = `${formRef.current.scrollHeight}px`;
+                const offset = 170; // Adjust this value based on your navbar height
+                const topPosition = formRef.current.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({ top: topPosition - offset, behavior: 'smooth' });
+            } else {
+                formRef.current.style.height = '0px';
+            }
+        }
+    }, [openTheForm]);
     return (
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
             <div className={`${styles.vipmeet} ${direction} page`} bggray={String(bggray === "true")}>
@@ -94,7 +121,7 @@ const HeathrowVipMeet = (props) => {
                                     <p className={styles.description}>select and book your service</p>
                                     <div className={styles.buttons}>
                                         {buttonLabels.map((label, index) => (
-                                            <button direction={String(direction === 'rtl')} key={index} ref={buttonRefs[index]} isactive={String(activeButton === index)} onClick={() => handleButtons(index)} className={`btn`}  >
+                                            <button key={index} direction={String(direction === 'rtl')} key={index} ref={buttonRefs[index]} isactive={String(activeButton === index)} onClick={() => handleButtons(index)} className={`btn`}  >
                                                 {useRipple(buttonRefs[index])}
                                                 {label}
                                                 {index === 0
@@ -117,7 +144,7 @@ const HeathrowVipMeet = (props) => {
 
                                     <div className={styles.adults_selection_div}>
                                         {seatLists.map((item, index) => {
-                                            return <div className={styles.adults_selection_div_column}>
+                                            return <div key={index} className={styles.adults_selection_div_column}>
                                                 <p className={styles.name}> {item.name}</p>
                                                 <p className={styles.desc}>  {item.desc}</p>
                                                 <div className={styles.adults_selection_div_column_numbers_div} direction={String(direction === 'rtl')}>
@@ -133,18 +160,23 @@ const HeathrowVipMeet = (props) => {
                                         })}
                                     </div>
 
-                                    {['Heathrow Terminal 2 ', 'Heathrow Terminal 3', 'Heathrow Terminal 4', "Heathrow Terminal 5"].includes(dropdownTextSelection)
+                                    {IsDropdownTextSelectionValid()
                                         ? <div className={styles.price}> Total: £  {price}</div>
                                         : <></>}
 
                                     <div className={styles.booknow_div}>
-                                        <button className='btn '  >Book Now</button>
+                                        <button
+                                            active={String(IsDropdownTextSelectionValid())}
+                                            onClick={handleBookNow}
+                                            className='btn'  >
+                                            Book Now
+                                        </button>
                                     </div>
 
 
                                     <div className={styles.needhelp_text}>
                                         Need Help Booking?
-                                        <a href="tel:+442071481900" class="styles_phone_tag__H5Spt">Click to call +442071481900</a>
+                                        <a href="tel:+442071481900" >Click to call +442071481900</a>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +186,19 @@ const HeathrowVipMeet = (props) => {
                 </div>
                 <div className={`${styles.vipmeet_section} page_section`}>
                     <div className={`${styles.vipmeet_section_container} page_section_container`}>
-
+                        {openTheForm ?
+                            <MeetAndGrettForm
+                                formRef={formRef}
+                                setOpenTheForm={setOpenTheForm}
+                                inputDateValue={inputDateValue}
+                                seatLists={seatLists}
+                                terminal={dropdownTextSelection}
+                                price={price}
+                                passengersForm={passengersForm}
+                                setPassengersForm={setPassengersForm}
+                                appData={appData}
+                            />
+                            : <></>}
                         <div className={styles.information_column}>
                             <div className={styles.left_content}>
 
@@ -167,7 +211,6 @@ const HeathrowVipMeet = (props) => {
                                     <p>For bookings and information please email us at   <a style={{ fontWeight: "500" }} href="mailto: info@aplcars.com"> info@aplcars.com</a>
                                     </p>
                                 </div>
-
                                 &nbsp;
                                 <div className={`${styles.vipmeet_footer}`}>
 

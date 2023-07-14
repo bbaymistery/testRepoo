@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from "./styles.module.scss"
+//http://localhost:3500/heathrow-vip-meet-and-assist   (inside here used )
 const LeftSidebarInformation = ({ direction, appData }) => {
     return (
         <div className={styles.quotation_panel_istaxideal}>

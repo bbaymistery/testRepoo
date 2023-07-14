@@ -1,0 +1,135 @@
+      @import '../../../styles/variables';
+
+      .form_to_fill {
+          transition: height 0.25s linear;
+          height: 0px;
+          color: white;
+          margin-top: 4rem;
+          position: relative;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          border-radius: 4px;
+
+          .form_to_fill_content {
+              display: flex;
+              justify-content: space-between;
+              padding: 3.5rem 16px;
+              gap: 2rem;
+
+              @media (max-width: 1100px) {
+                  flex-direction: column;
+              }
+
+              .left {
+                  color: black;
+                  padding-top: 16px;
+                  flex-basis: 75%;
+
+                  .passengers {
+                      .passengers_title {
+                          margin: 24px 0px;
+                          font-weight: 500;
+                          font-size: 1.25rem;
+                          line-height: 1.6;
+                      }
+
+                      .passengers_details_div {
+                          p {
+                              margin-bottom: 10px;
+                          }
+
+                          .passengers_details {
+                              display: grid;
+                              grid-template-columns: 1fr 1fr;
+                              gap: 1.5rem;
+                              margin-bottom: 10px;
+
+                              @media (max-width: 768px) {
+                                  grid-template-columns: 1fr;
+                              }
+                          }
+                      }
+
+                  }
+
+                  .back_next_buttons {
+                      display: flex;
+                      justify-content: space-between;
+                      margin-top: 2rem;
+
+                      button {
+                          border-radius: 4px;
+                          color: white;
+                          padding: 5px 16px;
+                          background-color: $primary;
+                      }
+                  }
+
+                  .between {
+                      justify-content: space-between;
+                  }
+
+                  .flex {
+                      justify-content: flex-end;
+                  }
+              }
+
+              .right {
+                  flex-basis: 25%;
+
+                  .right_content {
+                      color: black;
+                      padding: 16px 16px 24px 16px;
+                      border: 1px solid $border;
+                      border-radius: 4px;
+
+                      p {
+                          margin: 0px 0px 0.35em;
+                          font-weight: 500;
+                          font-size: 1.25rem;
+                          line-height: 1.6;
+                          text-align: center;
+                      }
+
+                      .border {
+                          border: 1px solid $border;
+                          margin-bottom: 1.2rem;
+                      }
+
+                      .arrival {
+                          font-weight: 500;
+                      }
+
+                      li {
+                          list-style: none;
+                          padding-bottom: 5px;
+                      }
+
+                      .total {
+                          color: red;
+                          display: flex;
+                          justify-content: space-between;
+
+                          span:nth-child(1) {
+                              font-weight: 500;
+                          }
+                      }
+                  }
+              }
+
+              .close_icon {
+                  position: absolute;
+                  right: 15px;
+                  top: 10px;
+                  cursor: pointer;
+
+                  i {
+                      font-size: 24px;
+                      color: black;
+                  }
+              }
+          }
+      }
+
+      .open {
+          height: auto;
+      }
