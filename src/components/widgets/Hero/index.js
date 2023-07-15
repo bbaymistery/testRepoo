@@ -12,7 +12,7 @@ import styles from "./styles.module.scss"
 import env from '../../../resources/env'
 import RadioButton from './RadioButton'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import WaveLoading from '../../elements/LoadingWave';
 import Features from '../Features';
 import Link from 'next/link';
@@ -41,21 +41,31 @@ const collectPointsAsync = params => new Promise((resolve, reject) => collectPoi
 //when we click getQuotations there we check fields .If fields not empty then it will be triggering
 const readyToCollectQuotations = (params = {}) => {
     (async () => {
-        let { dispatch, setInternalState, router, journeyType, reservations, language } = params
+        let { dispatch, setInternalState, router, journeyType, reservations, language, setErrorBookedMessage } = params
 
         setInternalState({ ["quotation-loading"]: true })
         let log = await collectQuotationsAsync({ reservations, journeyType })
+        console.log(log)
+
 
         //if our journey both way
         if (parseInt(journeyType) === 1) {
             let { status: status1 } = log[0]
             let { status: status2 } = log[1]
 
-            if (status1 === 200 && status2 === 200) pushToQuotationsResultPage({ dispatch, router, log, journeyType, language })
+            if (status1 === 200 && status2 === 200) {
+                pushToQuotationsResultPage({ dispatch, router, log, journeyType, language })
+            } else {
+                setInternalState({ ["error-booking-message"]: log?.error?.global[0] })
+            }
 
         } else {
             let { status } = log
-            if (status === 200) pushToQuotationsResultPage({ dispatch, router, log, journeyType, language })
+            if (status === 200) {
+                pushToQuotationsResultPage({ dispatch, router, log, journeyType, language })
+            } else {
+                setInternalState({ ["error-booking-message"]: log?.error?.global[0] })
+            }
         }
         setInternalState({ ["quotation-loading"]: false })
     })()
@@ -170,8 +180,11 @@ const Hero = (props) => {
 
         "quotation-loading": false,
         'errorHolder': [],
+        "error-booking-message": ""
 
     })
+
+    const [errorBookedMessage, setErrorBookedMessage] = useState("")
     const onChangeHanler = (params = {}) => {
         let { index, value, destination } = params
         let { passengerDetails: { token: passengerDetailsToken } } = reservations[0]
@@ -217,7 +230,7 @@ const Hero = (props) => {
     const getQuotations = (e) => {
         let errorHolder = reservationSchemeValidator({ reservations, appData });
         setInternalState({ errorHolder })
-        if (errorHolder.status === 200) readyToCollectQuotations({ dispatch, setInternalState, router, journeyType, reservations, language })
+        if (errorHolder.status === 200) readyToCollectQuotations({ dispatch, setInternalState, router, journeyType, reservations, language, setErrorBookedMessage })
 
     }
 
@@ -366,7 +379,7 @@ const Hero = (props) => {
                                                             /> : <React.Fragment></React.Fragment>}
                                                         {/* loading icon inside input */}
                                                         {internalState[`pickup-search-loading-${index}`] ?
-                                                            <div   className={styles.loading_div}     direction={String(direction === "rtl")}   popupp={String(internalState[`pickup-search-focus-${index}`])}      >
+                                                            <div className={styles.loading_div} direction={String(direction === "rtl")} popupp={String(internalState[`pickup-search-focus-${index}`])}      >
                                                                 <Loading />
                                                             </div> : <React.Fragment></React.Fragment>}
                                                         {/* error icon inside input */}
@@ -505,7 +518,15 @@ const Hero = (props) => {
 
                                 )
                             })}
+
+                            {internalState["error-booking-message"] ?
+                                <div className={styles.errorBookedMessage}>
+                                    <p>{internalState["error-booking-message"]}</p>
+                                </div>
+                                : <></>}
                         </div>
+
+
                     </div>
                 </div>
             </div>

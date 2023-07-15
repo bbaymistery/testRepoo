@@ -4,6 +4,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { composeWithDevTools } from "redux-devtools-extension";
 import { pickUpDropOffActions } from "./pickUpDropOffActions";
 import { alertReducer } from './alertReducer'
+import { meetAndGreetActions } from './meetAndGreetActions';
 import GET_APP_DATA from './pickUpDropOffActions/GET_APP_DATA';
 import { accountRegisterActions } from './accountRegisterReducer';
 //!quotations a gelende paymentTypes sorunu yasanir onu coz
@@ -23,6 +24,6 @@ const initialReducer = (state = {}, action) => {
     }
 };
 
-const reducer = combineReducers({ pickUpDropOffActions, initialReducer, alertReducer, accountRegisterActions });
+const reducer = combineReducers({ pickUpDropOffActions, initialReducer, alertReducer, accountRegisterActions, meetAndGreetActions });
 const store = createStore(reducer, composeWithDevTools(applyMiddleware()));
 export default store;

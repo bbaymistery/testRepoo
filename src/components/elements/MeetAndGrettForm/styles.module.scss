@@ -51,6 +51,16 @@
 
                   }
 
+                  .flight_details {
+                      .flight_details_title {
+                    margin-top: 24px;
+                    margin-bottom: 12px;
+                          font-weight: 500;
+                          font-size: 1.25rem;
+                          line-height: 1.6;
+                      }
+                  }
+
                   .back_next_buttons {
                       display: flex;
                       justify-content: space-between;
@@ -68,7 +78,7 @@
                       justify-content: space-between;
                   }
 
-                  .flex {
+                  .end {
                       justify-content: flex-end;
                   }
               }
@@ -81,6 +91,7 @@
                       padding: 16px 16px 24px 16px;
                       border: 1px solid $border;
                       border-radius: 4px;
+                      text-transform: capitalize;
 
                       p {
                           margin: 0px 0px 0.35em;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
 import LeftSidebarInformation from '../../components/elements/LeftSidebarInformation'
@@ -10,7 +10,6 @@ import DropDown from '../../components/elements/Dropdown/dropdown'
 import DateInput from '../../components/elements/DateInput'
 import { currentDate } from '../../helpers/getDates'
 import MeetAndGrettForm from '../../components/elements/MeetAndGrettForm'
-
 let description = "Heathrow VIP Meet and Assist service includes meet by the plane door and assist the passenger to final detsination."
 let title = "VIP Meet and assist at Heathrow Airport"
 let keywords = "VIP Meet and assist"
@@ -23,92 +22,49 @@ const HeathrowVipMeet = (props) => {
 
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction } } = state
-    const formRef = useRef(null);
 
+    const meetAndGreetState = useSelector(state => state.meetAndGreetActions)
+    let { seatLists, passengersForm, totalPrice, meetgreetDate, meetgreetActiveBtn, selectedService, terminalName, meetGreetFormStatus } = meetAndGreetState
+
+    const formRef = useRef(null);
+    const dispatch = useDispatch()
 
     //buttons
-    const [activeButton, setActiveButton] = useState(0);
     const buttonRefs = [useRef(null), useRef(null), useRef(null)];
 
-    //dropwodn
-    const [dropdownTextSelection, setDropdownTextSelection] = useState(`${buttonLabels[activeButton]} Airport`)//LandingTimeHour
-    const [seatLists, setseatLists] = useState([
-        { name: "Adults", desc: "(above 12y.o.)", minNum: 1, maxNum: 20 },
-        { name: "Children", desc: "(from 2 to  12y.o.)", minNum: 0, maxNum: 20 },
-        { name: "Infants", desc: "(below 12y.o.)", minNum: 0, maxNum: 20 }
-    ])
 
-    const [openTheForm, setOpenTheForm] = useState(false)
+    const handleButtons = (index) => dispatch({ type: "SET_MEET_GREET_ACTIVE_BTN", data: { activeBtnValue: index, newSelectedService: `${buttonLabels[index]} Airport` } })
+    const onchangeDate = (e) => dispatch({ type: "SET_MEET_GREET_DATE", data: { dateValue: e.target.value } })
+    const handleDecrement = (idx, incordec) => dispatch({ type: 'SET_SEATLISTS', data: { idx, incordec } })
+    const handleIncrement = (idx, incordec) => dispatch({ type: 'SET_SEATLISTS', data: { idx, incordec } })
+    const handleTerminalSelection = (option) => dispatch({ type: "SET_TERMINAL", data: { newTerminal: option } })
 
-    //inputDate value
-    const [inputDateValue, setInputDateValue] = useState(currentDate())
-    const [price, setPrice] = useState(180)
-    const [passengersForm, setPassengersForm] = useState([{ firstname: "", lastname: "" }])
 
-    const handleButtons = (index) => setActiveButton(index);
-    const onchangeDate = (e) => setInputDateValue(e.target.value)
+    const IsDropdownTextSelectionValid = () => dropdownLabels.slice(1).includes(terminalName)
+    const handleBookNow = () => (IsDropdownTextSelectionValid()) && dispatch({ type: 'SET_FORM_STATUS', data: { status: true } })
 
-    const handleDecrement = (idx) => {
-        let newSeatLists = [...seatLists];
-        newSeatLists = newSeatLists.map((item, index) => {
-            if (index === idx) {
-                if (idx === 0) {
-                    return (item = { ...item, minNum: item.minNum === 1 ? item.minNum : item.minNum - 1 });
-                } else {
-                    return (item = { ...item, minNum: item.minNum === 0 ? item.minNum : item.minNum - 1 });
 
-                }
-            } else {
-                return item;
-            }
-        });
-        setseatLists(newSeatLists)
-        updatePrice(newSeatLists);
-    }
 
-    const handleIncrement = (idx) => {
-        let newSeatLists = [...seatLists];
-        newSeatLists = newSeatLists.map((item, index) => {
-            if (index === idx) {
-                return (item = { ...item, minNum: item.minNum + 1 });
-            } else {
-                return item;
-            }
-        });
-        setseatLists(newSeatLists)
-        updatePrice(newSeatLists);
-    }
-    //added insdie handleDecrement handleIncrement
-    const updatePrice = (newSeatLists) => {
-        let totalPrice = 180;
-        const adultsNum = newSeatLists[0].minNum;
-        const childrenNum = newSeatLists[1].minNum;
-        const totalGuestsSelected = adultsNum + childrenNum;
-        if (totalGuestsSelected > 2) totalPrice += (totalGuestsSelected - 2) * 50;
-        setPrice(totalPrice);//settng total price for theright side of box
-
-        //based on totalGuestSelected i am creating new passengers which is equal to that number
-        //if totalGuestSelected=2=>it means =[{name:"",lastname:""},{name:"",lastname:""}]
-        const newPassengersForm = Array.from({ length: totalGuestsSelected }, () => ({ firstname: "", lastname: "" }));
-        setPassengersForm(newPassengersForm);
-    };
-    const IsDropdownTextSelectionValid = () => {
-        return ['Heathrow Terminal 2 ', 'Heathrow Terminal 3', 'Heathrow Terminal 4', "Heathrow Terminal 5"].includes(dropdownTextSelection)
-    }
-    const handleBookNow = () => IsDropdownTextSelectionValid() && setOpenTheForm(true)
 
     useEffect(() => {
         if (formRef.current) { // Add a null check
-            if (openTheForm) {
+            if (meetGreetFormStatus) {
                 formRef.current.style.height = `${formRef.current.scrollHeight}px`;
                 const offset = 170; // Adjust this value based on your navbar height
                 const topPosition = formRef.current.getBoundingClientRect().top + window.pageYOffset;
                 window.scrollTo({ top: topPosition - offset, behavior: 'smooth' });
+                console.log("dssadasda");
+                
             } else {
                 formRef.current.style.height = '0px';
             }
         }
-    }, [openTheForm]);
+    }, [meetGreetFormStatus,terminalName]);
+
+
+
+
+
     return (
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
             <div className={`${styles.vipmeet} ${direction} page`} bggray={String(bggray === "true")}>
@@ -121,7 +77,7 @@ const HeathrowVipMeet = (props) => {
                                     <p className={styles.description}>select and book your service</p>
                                     <div className={styles.buttons}>
                                         {buttonLabels.map((label, index) => (
-                                            <button key={index} direction={String(direction === 'rtl')} key={index} ref={buttonRefs[index]} isactive={String(activeButton === index)} onClick={() => handleButtons(index)} className={`btn`}  >
+                                            <button key={index} direction={String(direction === 'rtl')} ref={buttonRefs[index]} isactive={String(meetgreetActiveBtn === index)} onClick={() => handleButtons(index)} className={`btn`}  >
                                                 {useRipple(buttonRefs[index])}
                                                 {label}
                                                 {index === 0
@@ -134,10 +90,10 @@ const HeathrowVipMeet = (props) => {
 
                                     <div className={styles.arrivaldate_div}>
                                         <div className={styles.dropdown_div}>
-                                            <DropDown headingStyle={{ fontSize: "15px", marginBottom: "-2px" }} heading={`${buttonLabels[activeButton]} Airport`} options={dropdownLabels} selectedOption={dropdownTextSelection} setSelectedOption={setDropdownTextSelection} />
+                                            <DropDown headingStyle={{ fontSize: "15px", marginBottom: "-2px" }} heading={selectedService} options={dropdownLabels} selectedOption={terminalName} setSelectedOption={handleTerminalSelection} />
                                         </div>
                                         <div className={styles.date_picker_div}>
-                                            <DateInput showIcon={false} headingStyle={{ fontSize: "15px", marginBottom: "-2px" }} value={inputDateValue} min={currentDate()} title="Flight Date" onChange={onchangeDate} />
+                                            <DateInput showIcon={false} headingStyle={{ fontSize: "15px", marginBottom: "-2px" }} value={meetgreetDate} min={currentDate()} title="Flight Date" onChange={onchangeDate} />
                                         </div>
                                     </div>
 
@@ -148,11 +104,11 @@ const HeathrowVipMeet = (props) => {
                                                 <p className={styles.name}> {item.name}</p>
                                                 <p className={styles.desc}>  {item.desc}</p>
                                                 <div className={styles.adults_selection_div_column_numbers_div} direction={String(direction === 'rtl')}>
-                                                    <p className={`${styles.left_arrow} ${item.minNum === 0 ? styles.disabled : ""}`} onClick={() => handleDecrement(index)}>
+                                                    <p className={`${styles.left_arrow} ${item.minNum === 0 ? styles.disabled : ""}`} onClick={() => handleDecrement(index, "dec")}>
                                                         <i className="fa-solid fa-chevron-left"></i>
                                                     </p>
                                                     <p className={styles.number}>  {item.minNum}  </p>
-                                                    <p className={`${styles.right_arrow} `} onClick={() => handleIncrement(index)}>
+                                                    <p className={`${styles.right_arrow} `} onClick={() => handleIncrement(index, "inc")}>
                                                         <i className="fa-solid fa-chevron-right"></i>
                                                     </p>
                                                 </div>
@@ -160,15 +116,10 @@ const HeathrowVipMeet = (props) => {
                                         })}
                                     </div>
 
-                                    {IsDropdownTextSelectionValid()
-                                        ? <div className={styles.price}> Total: £  {price}</div>
-                                        : <></>}
+                                    {IsDropdownTextSelectionValid() ? <div className={styles.price}> Total: £  {totalPrice}</div> : <></>}
 
                                     <div className={styles.booknow_div}>
-                                        <button
-                                            active={String(IsDropdownTextSelectionValid())}
-                                            onClick={handleBookNow}
-                                            className='btn'  >
+                                        <button active={String(IsDropdownTextSelectionValid())} onClick={handleBookNow} className='btn'  >
                                             Book Now
                                         </button>
                                     </div>
@@ -186,17 +137,16 @@ const HeathrowVipMeet = (props) => {
                 </div>
                 <div className={`${styles.vipmeet_section} page_section`}>
                     <div className={`${styles.vipmeet_section_container} page_section_container`}>
-                        {openTheForm ?
+                        {meetGreetFormStatus && IsDropdownTextSelectionValid() ?
                             <MeetAndGrettForm
                                 formRef={formRef}
-                                setOpenTheForm={setOpenTheForm}
-                                inputDateValue={inputDateValue}
+                                inputDateValue={meetgreetDate}
                                 seatLists={seatLists}
-                                terminal={dropdownTextSelection}
-                                price={price}
+                                terminal={terminalName}
+                                price={totalPrice}
                                 passengersForm={passengersForm}
-                                setPassengersForm={setPassengersForm}
                                 appData={appData}
+                                selectedButtonLabel={buttonLabels[meetgreetActiveBtn]}
                             />
                             : <></>}
                         <div className={styles.information_column}>
