@@ -77,7 +77,7 @@ const TransferDetails = (props) => {
 
     const { ip, country } = useUserIp();
 
-    console.log({ country });
+console.log(country);
 
     const handleOnChangeNumberInput = (value, _country, index, name) => {
         dispatch({ type: 'SET_PASSEGER_DETAILS', data: { name, value, index, updateBothJourneyCheckBox: passengerDetailsStatus } })

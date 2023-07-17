@@ -56,12 +56,29 @@ const readyToCollectQuotations = (params = {}) => {
     if (parseInt(journeyType) === 1) {
       let { status: status1 } = log[0]
       let { status: status2 } = log[1]
+      if (status1 !== 200 && log[0]?.error?.global?.[0]) {
+        setInternalState({ ["error-booking-message-0"]: log[0]?.error?.global[0] })
+      }
+      if (status2 !== 200 && log[1]?.error?.global?.[0]) {
+        setInternalState({ ["error-booking-message-1"]: log[1]?.error?.global[0] })
+      }
+      if (status1 === 200 && status2 === 200) {
+        pushToQuotationsResultPage({ dispatch, router, log, journeyType })
+        setInternalState({ ["error-booking-message-1"]: "" })
+        setInternalState({ ["error-booking-message-0"]: "" })
 
-      if (status1 === 200 && status2 === 200) pushToQuotationsResultPage({ dispatch, router, log, journeyType })
-
+      }
     } else {
+
       let { status } = log
-      if (status === 200) pushToQuotationsResultPage({ dispatch, router, log, journeyType })
+
+      if (status === 200) {
+        pushToQuotationsResultPage({ dispatch, router, log, journeyType })
+        setInternalState({ ["error-booking-message-0"]: "" })
+      }
+      if (log?.error?.global?.[0]) {
+        setInternalState({ ["error-booking-message-0"]: log?.error?.global[0] })
+      }
     }
     setInternalState({ ["quotation-loading"]: false })
   })()
@@ -187,7 +204,8 @@ const QuotationResults = (props) => {
     //quotation loading
     "quotation-loading": false,
     'errorHolder': [],
-
+    "error-booking-message-0": "",
+    "error-booking-message-1": "",
 
   })
 
@@ -263,7 +281,7 @@ const QuotationResults = (props) => {
   const onChangeSetDateTimeHandler = (params = {}) => {
     let { value, hourOrMinute, journeyType } = params
     dispatch({ type: 'SET_JOURNEY_DATETIME', data: { journeyType, hourOrMinute, value } })
-    getQuotations()
+    // getQuotations()
   }
   const handleAddNewInput = (params = {}) => {
     let { index, destination } = params
@@ -343,6 +361,14 @@ const QuotationResults = (props) => {
 
   }, [])
 
+  useEffect(() => {
+    if (
+      reservations?.[0]?.transferDetails?.transferDateTimeString ||
+      reservations?.[1]?.transferDetails?.transferDateTimeString
+    ) {
+      getQuotations();
+    }
+  }, [reservations?.[0]?.transferDetails?.transferDateTimeString, reservations?.[1]?.transferDetails?.transferDateTimeString]);
 
 
 
@@ -508,7 +534,11 @@ const QuotationResults = (props) => {
                                 </div>)
                               })}
                             </div>
-
+                            {internalState[`error-booking-message-${index}`] ?
+                              <div className={styles.errorBookedMessage}>
+                                <p>{internalState[`error-booking-message-${index}`]}</p>
+                              </div>
+                              : <></>}
                             <button disabled={internalState[`quotation-loading`]} className={`btn btn_primary mt_1 ${styles.button}`} onClick={() => getQuotations()} >
                               <span>{internalState[`quotation-loading`] ? <WaveLoading /> : `${appData?.words["seUpdateQuotation"]}`}</span>
                             </button>
@@ -522,7 +552,7 @@ const QuotationResults = (props) => {
                         {/* //*Card item of results */}
 
                         <div>
-                          {selectedPickupPoints.length > 0 && selectedDropoffPoints.length > 0 &&
+                          {!internalState[`error-booking-message-${index}`] && selectedPickupPoints.length > 0 && selectedDropoffPoints.length > 0 &&
                             < CardQuotationItem
                               index={index}
                               isTaxiDeal={isTaxiDeal}

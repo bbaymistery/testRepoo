@@ -100,6 +100,14 @@
                             background-color: white;
                             border: 1px solid rgba($blue-1, .5);
 
+                            .errorBookedMessage {
+                                p {
+                                    color: red;
+                                    margin-top: 15px;
+                                    font-size: 14px !important;
+                                }
+                            }
+
                             .search_menu.error_input {
                                 border-bottom: 1px solid red !important;
                             }
@@ -604,6 +612,7 @@
                                     position: absolute;
 
                                     z-index: 0;
+
                                     @media(max-width:990px) {
                                         right: 5px;
 

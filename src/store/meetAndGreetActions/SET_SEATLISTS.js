@@ -18,8 +18,28 @@ function SET_SEATLISTS(params = {}) {
     let newState = JSON.parse(JSON.stringify(state))
     let newSeatLists = [...newState.seatLists]
 
-    if (incordec === 'inc') {
-        newSeatLists = newSeatLists.map((item, index) => {
+    if (incordec === 'inc') newSeatLists[idx].minNum += 1;
+    if (incordec === 'dec') newSeatLists[idx].minNum = Math.max(0, newSeatLists[idx].minNum - 1);
+
+
+    let { newTotalPrice, newPassengersForm } = updatePrice(newSeatLists);
+
+    newState.seatLists = newSeatLists
+    
+    newState.totalPrice = newTotalPrice
+    //by defaults seatlist price is already180 
+    //incase if seatlist changes we update price of seatlist
+    newState.seatListPrice = newTotalPrice
+    newState.passengersForm = newPassengersForm
+    return newState;
+}
+
+export default SET_SEATLISTS
+
+/*
+uzun kod yerine  yuxardaki kimi simple yazdk
+   if (incordec === 'inc') {
+        newBuggerLists = newBuggerLists.map((item, index) => {
             if (index === idx) {
                 return (item = { ...item, minNum: item.minNum + 1 });
             } else {
@@ -29,25 +49,17 @@ function SET_SEATLISTS(params = {}) {
     }
 
     if (incordec === 'dec') {
-        newSeatLists = newSeatLists.map((item, index) => {
+        newBuggerLists = newBuggerLists.map((item, index) => {
             if (index === idx) {
                 if (idx === 0) {
                     return (item = { ...item, minNum: item.minNum === 1 ? item.minNum : item.minNum - 1 });
                 } else {
                     return (item = { ...item, minNum: item.minNum === 0 ? item.minNum : item.minNum - 1 });
-
                 }
             } else {
                 return item;
             }
         });
     }
-    let { newTotalPrice, newPassengersForm } = updatePrice(newSeatLists);
 
-    newState.seatLists = newSeatLists
-    newState.totalPrice = newTotalPrice
-    newState.passengersForm = newPassengersForm
-    return newState;
-}
-
-export default SET_SEATLISTS
+*/

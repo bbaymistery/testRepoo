@@ -41,22 +41,32 @@ const collectPointsAsync = params => new Promise((resolve, reject) => collectPoi
 //when we click getQuotations there we check fields .If fields not empty then it will be triggering
 const readyToCollectQuotations = (params = {}) => {
     (async () => {
-        let { dispatch, setInternalState, router, journeyType, reservations, language, setErrorBookedMessage } = params
+        let { dispatch, setInternalState, router, journeyType, reservations, language,  } = params
 
         setInternalState({ ["quotation-loading"]: true })
         let log = await collectQuotationsAsync({ reservations, journeyType })
-        console.log(log)
 
 
         //if our journey both way
         if (parseInt(journeyType) === 1) {
             let { status: status1 } = log[0]
             let { status: status2 } = log[1]
-
+            if (status1 !== 200 && log[0]?.error?.global[0]) {
+                setInternalState({ ["error-booking-message-0"]: log[0]?.error?.global[0] })
+                setTimeout(() => {
+                    setInternalState({ [`error-booking-message-0`]: "" })
+                }, 2500);
+            }
+            if (status2 !== 200 && log[1]?.error?.global[0]) {
+                setInternalState({ ["error-booking-message-1"]: log[1]?.error?.global[0] })
+                setTimeout(() => {
+                    setInternalState({ [`error-booking-message-1`]: "" })
+                }, 2500);
+            }
             if (status1 === 200 && status2 === 200) {
                 pushToQuotationsResultPage({ dispatch, router, log, journeyType, language })
-            } else {
-                setInternalState({ ["error-booking-message"]: log?.error?.global[0] })
+                setInternalState({ ["error-booking-message-0"]: "" })
+                setInternalState({ ["error-booking-message-1"]: "" })
             }
 
         } else {
@@ -64,7 +74,10 @@ const readyToCollectQuotations = (params = {}) => {
             if (status === 200) {
                 pushToQuotationsResultPage({ dispatch, router, log, journeyType, language })
             } else {
-                setInternalState({ ["error-booking-message"]: log?.error?.global[0] })
+                setInternalState({ ["error-booking-message-0"]: log?.error?.global[0] })
+                setTimeout(() => {
+                    setInternalState({ [`error-booking-message-0`]: "" })
+                }, 2500);
             }
         }
         setInternalState({ ["quotation-loading"]: false })
@@ -180,11 +193,12 @@ const Hero = (props) => {
 
         "quotation-loading": false,
         'errorHolder': [],
-        "error-booking-message": ""
+        "error-booking-message-0": "",
+        "error-booking-message-1": ""
 
     })
 
-    const [errorBookedMessage, setErrorBookedMessage] = useState("")
+
     const onChangeHanler = (params = {}) => {
         let { index, value, destination } = params
         let { passengerDetails: { token: passengerDetailsToken } } = reservations[0]
@@ -230,7 +244,7 @@ const Hero = (props) => {
     const getQuotations = (e) => {
         let errorHolder = reservationSchemeValidator({ reservations, appData });
         setInternalState({ errorHolder })
-        if (errorHolder.status === 200) readyToCollectQuotations({ dispatch, setInternalState, router, journeyType, reservations, language, setErrorBookedMessage })
+        if (errorHolder.status === 200) readyToCollectQuotations({ dispatch, setInternalState, router, journeyType, reservations, language })
 
     }
 
@@ -514,16 +528,17 @@ const Hero = (props) => {
                                                 </div>
                                                 : <React.Fragment></React.Fragment>}
                                         </div>
+                                        {internalState[`error-booking-message-${index}`] ?
+                                            <div className={styles.errorBookedMessage}>
+                                                <p>{internalState[`error-booking-message-${index}`]}</p>
+                                            </div>
+                                            : <></>}
                                     </div>
 
                                 )
                             })}
 
-                            {internalState["error-booking-message"] ?
-                                <div className={styles.errorBookedMessage}>
-                                    <p>{internalState["error-booking-message"]}</p>
-                                </div>
-                                : <></>}
+
                         </div>
 
 

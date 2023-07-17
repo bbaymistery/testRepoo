@@ -44,7 +44,6 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
     //dealsName === 'dover' || dealsName === 'southampton' || dealsName === 'portsmouth' || dealsName === 'harwich'
 
     const filteredDatas = filterDatas(points);
-    console.log({taxidealsImages});
     
     return (
         <>

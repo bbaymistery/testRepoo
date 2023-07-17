@@ -19,6 +19,7 @@ const Select = (props) => {
           {parseInt(data)
             ? Array(data).fill().map((x, i) => <option key={i} id={i + 1} value={i + 1} >{i + 1}</option>)
             : data?.map((d, i) => {
+
               //here we check d.id typeof string for flight number (go to component Checkfor flight )
               if (typeof d.id === 'string' && typeof d.value === 'string' && flightSelectOption === true) {
                 return <option key={i} value={d.id} > {d.value}</option>
@@ -29,6 +30,7 @@ const Select = (props) => {
                 return <option key={i} value={d.id} > {d.value}</option>
               }
               else {
+
                 <option key={i} id={d.id} value={d.value}> {d.value}</option>
               }
             })}

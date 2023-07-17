@@ -11,7 +11,6 @@ const AboutUs = () => {
     const { appData } = useSelector(state => state.initialReducer)
 
     const { metaTitle, keywords, description, pageContent, pageTitle, shortDescription } = usePageContentHook("About_APL", language);
-    console.log(pageContent);
 
     return (
         <GlobalLayout keywords={keywords} title={metaTitle} description={description} footerbggray={true}>

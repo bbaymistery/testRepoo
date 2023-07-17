@@ -88,7 +88,6 @@ console.log(errorHolder);
     //The Amount Of Monthly Credit You Require
     const onApproimateSpendChange = (e) => dispatch({ type: 'SET_APPROXIMATE_DATA', data: { value: e.target.value } })
     //!check schema and the next page*
-    console.log();
 
     const btnRef = useRef(null);
     const ripples = useRipple(btnRef);

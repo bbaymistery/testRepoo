@@ -106,8 +106,6 @@ export function accountRegisterSchemaValidator(params = {}, options = {}) {
                     if (!accountRegisterDatas.applicantForCreditAccount[applicantKey]) {
                         // If empty, set the error status to 400 and add a "required" message to the error holder
                         errorHolder.status = 400;
-                        console.log("calisiyorum2");
-
                         errorHolder.accountRegisterDatas.applicantForCreditAccount[applicantKey] = "required";
                     }
                 }

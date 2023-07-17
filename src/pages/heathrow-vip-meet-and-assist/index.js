@@ -24,7 +24,7 @@ const HeathrowVipMeet = (props) => {
     let { params: { direction } } = state
 
     const meetAndGreetState = useSelector(state => state.meetAndGreetActions)
-    let { seatLists, passengersForm, totalPrice, meetgreetDate, meetgreetActiveBtn, selectedService, terminalName, meetGreetFormStatus } = meetAndGreetState
+    let { seatLists, passengersForm, totalPrice, meetgreetDate, meetgreetActiveBtn, selectedService, terminalName, meetGreetFormStatus, buggerLists, vat, buggerListTotalPrice, seatListPrice } = meetAndGreetState
 
     const formRef = useRef(null);
     const dispatch = useDispatch()
@@ -45,7 +45,8 @@ const HeathrowVipMeet = (props) => {
 
 
 
-
+    //ilk basda form_to_fill_content   div acilanda ,animation ile aclmasi ucun
+    //sonrada paasenger form degiserse yene ona gore icerigi buyur kuculur
     useEffect(() => {
         if (formRef.current) { // Add a null check
             if (meetGreetFormStatus) {
@@ -53,15 +54,15 @@ const HeathrowVipMeet = (props) => {
                 const offset = 170; // Adjust this value based on your navbar height
                 const topPosition = formRef.current.getBoundingClientRect().top + window.pageYOffset;
                 window.scrollTo({ top: topPosition - offset, behavior: 'smooth' });
-                console.log("dssadasda");
-                
+
+
             } else {
                 formRef.current.style.height = '0px';
             }
         }
-    }, [meetGreetFormStatus,terminalName]);
+    }, [meetGreetFormStatus, terminalName,  ]);
 
-
+ 
 
 
 
@@ -116,7 +117,7 @@ const HeathrowVipMeet = (props) => {
                                         })}
                                     </div>
 
-                                    {IsDropdownTextSelectionValid() ? <div className={styles.price}> Total: £  {totalPrice}</div> : <></>}
+                                    {IsDropdownTextSelectionValid() ? <div className={styles.price}> Total: £{seatListPrice} inc. VAT</div> : <></>}
 
                                     <div className={styles.booknow_div}>
                                         <button active={String(IsDropdownTextSelectionValid())} onClick={handleBookNow} className='btn'  >
@@ -143,10 +144,15 @@ const HeathrowVipMeet = (props) => {
                                 inputDateValue={meetgreetDate}
                                 seatLists={seatLists}
                                 terminal={terminalName}
-                                price={totalPrice}
+                                totalPrice={totalPrice}
                                 passengersForm={passengersForm}
                                 appData={appData}
                                 selectedButtonLabel={buttonLabels[meetgreetActiveBtn]}
+                                direction={direction}
+                                buggerLists={buggerLists}
+                                vat={vat}
+                                buggerListTotalPrice={buggerListTotalPrice}
+                           
                             />
                             : <></>}
                         <div className={styles.information_column}>
