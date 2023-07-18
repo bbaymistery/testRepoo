@@ -63,7 +63,6 @@ const bookersDetailsError = (bookerDetails) => {
     if (bookerDetails.email.trim() === "") {
         errors.email = { statusCode: 400, errorMessage: "required", };
     }
-    console.log({ errors });
 
     return errors;
 }
@@ -266,16 +265,16 @@ const MeetAndGrettForm = (props) => {
                                 <p>Booker's Details</p>
                                 <div className={styles.bookers_details}>
                                     <div className={styles.input_div}>
-                                        <TextInput errorMessage={errorHolderBookerDetails.firstname.errorMessage} label="First Name" type="text" name="firstname" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={firstname} />
+                                        <TextInput errorMessage={errorHolderBookerDetails?.firstname?.errorMessage} label="First Name" type="text" name="firstname" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={firstname} />
                                     </div>
                                     <div className={styles.input_div}>
-                                        <TextInput errorMessage={errorHolderBookerDetails.lastname.errorMessage} label="Last Name" type="text" name="lastname" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={lastname} />
+                                        <TextInput errorMessage={errorHolderBookerDetails?.lastname?.errorMessage} label="Last Name" type="text" name="lastname" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={lastname} />
                                     </div>
                                     <div className={styles.input_div}>
-                                        <TextInput errorMessage={errorHolderBookerDetails.email.errorMessage} label="E-Mail Address" type="text" name="email" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={email} />
+                                        <TextInput errorMessage={errorHolderBookerDetails?.email?.errorMessage} label="E-Mail Address" type="text" name="email" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={email} />
                                     </div>
                                     <div className={styles.input_div}>
-                                        <TextInput errorMessage={errorHolderBookerDetails.mobileNumber.errorMessage} label="Mobile Number" type="text" name="mobileNumber" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={mobileNumber} />
+                                        <TextInput errorMessage={errorHolderBookerDetails?.mobileNumber?.errorMessage} label="Mobile Number" type="text" name="mobileNumber" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={mobileNumber} />
                                     </div>
                                 </div>
                             </div>
