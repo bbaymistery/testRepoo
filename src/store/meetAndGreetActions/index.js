@@ -1,5 +1,6 @@
 import { currentDate } from "../../helpers/getDates";
 import SET_AIRLINE from "./SET_AIRLINE";
+import SET_BOOKER_DETAILS from "./SET_BOOKER_DETAILS";
 import SET_BUGGER_PORTER from "./SET_BUGGER_PORTER";
 import SET_FLIGHT_CLASS from "./SET_FLIGHT_CLASS";
 import SET_FLIGHT_NUMBER_OR_LUGGAGE from "./SET_FLIGHT_NUMBER_OR_LUGGAGE";
@@ -32,6 +33,12 @@ const INITIAL_STATE = {
         flightClass: "-- Select Class --",
         flightTime: "00:00",
         noOfLuggageBags: "",
+    },
+    bookersDetails: {
+        firstname: "",
+        lastname: "",
+        email: "",
+        mobileNumber: ""
     },
     totalPrice: 180,
     meetgreetDate: currentDate(),
@@ -80,7 +87,10 @@ export const meetAndGreetActions = (state = INITIAL_STATE, action) => {
         case "SET_FLIGHT_TIME": {
             return SET_FLIGHT_TIME({ state, action })
         }
-
+        case "SET_BOOKER_DETAILS": {
+            return SET_BOOKER_DETAILS({ state, action })
+        }
+            
         default:
             return state;
     }

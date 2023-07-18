@@ -96,9 +96,7 @@
                                   color: rgba(#130b37, 1);
                                   font-weight: 500;
 
-                                  @media(max-width:1400px) {
-                       
-                                  }
+                                  @media(max-width:1400px) {}
 
 
 
@@ -115,12 +113,13 @@
                                       // max-width: 145px;
                                       width: 100%;
                                       position: relative;
+
                                       @media(max-width:990px) {
                                           max-width: 100%;
                                       }
 
                                       select {
-                                        //   -webkit-appearance: none;
+                                          //   -webkit-appearance: none;
                                           border: none;
                                           // border-bottom: 1px solid rgba(93, 100, 109, 0.1);
                                           width: 100%;
@@ -129,7 +128,7 @@
 
                                           // padding: 7px 10px;
                                           @media(max-width:990px) {
-                                            //   -webkit-appearance: menulist;
+                                              //   -webkit-appearance: menulist;
                                           }
 
                                           &:focus {
@@ -137,7 +136,7 @@
                                           }
                                       }
 
-                                   
+
                                   }
                               }
 
@@ -235,6 +234,34 @@
                               }
                           }
                       }
+                  }
+
+                  //!step3
+                  .bookers {
+                      .bookers_title {
+                          margin: 33px 0px;
+                          font-weight: 500;
+                          font-size: 1.25rem;
+                          line-height: 1.6;
+                      }
+
+                      .bookers_details_div {
+                          p {
+                              margin-bottom: 10px;
+                          }
+
+                          .bookers_details {
+                              display: grid;
+                              grid-template-columns: 1fr 1fr;
+                              gap: 1.5rem;
+                              margin-bottom: 10px;
+
+                              @media (max-width: 768px) {
+                                  grid-template-columns: 1fr;
+                              }
+                          }
+                      }
+
                   }
 
                   .back_next_buttons {

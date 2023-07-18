@@ -5,7 +5,9 @@
 .quotation {
     background-color: #f5f7fc;
     padding-bottom: 10px;
-
+    @media (max-width: 450px) {
+    margin-top: 30px;
+        }
     .quotation_section {
 
         .quotation_section_container {

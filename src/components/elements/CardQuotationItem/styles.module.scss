@@ -273,7 +273,7 @@
                }
 
                @media (max-width: 767px) {
-                   min-height: 200px;
+                   min-height: 150px;
                    margin-bottom: 1rem;
                    background-size: 60%;
                    flex: 0.32;
@@ -286,18 +286,19 @@
 
 
                @media (max-width: 500px) {
-                   background-size: 100%;
+                   background-size: 85%;
+                   min-height: 120px;
                }
 
-               @media (max-width: 400px) {
-                   background-size: 120%;
+               @media (max-width: 420px) {
+                   background-size: 100%;
                }
 
            }
 
            .column_first[data="1"] {
                @media (max-width: 420px) {
-                   background-size: 130% !important;
+                   //    background-size: 130% !important;
                }
            }
 
@@ -420,9 +421,7 @@
 
 
 
-                       @media (max-width:767px) {
-                           //    grid-template-columns: 70px 125px 125px;
-                       }
+
 
                        @media (max-width:450px) {
                            grid-template-columns: 1fr;
@@ -539,6 +538,22 @@
 
                            }
                        }
+
+                       .show_less_than360_with_price {
+                           display: none;
+                           .price_span {
+                           }
+
+                           @media (max-width: 450px) {
+
+                               display: flex;
+                               justify-content: space-between;
+
+                               .price_span {
+                                   font-size: 32px;
+                               }
+                           }
+                       }
                    }
                }
 
@@ -588,8 +603,12 @@
                        margin-top: 1rem;
                    }
 
+                   @media (max-width: 450px) {
+                       display: none;
+                   }
+
                    @media (max-width: 360px) {
-                       margin-top: 0px;
+                       //    margin-top: 0px;
                    }
                }
 
@@ -601,6 +620,10 @@
                    margin-bottom: .75rem;
                    flex: 1;
                    text-transform: capitalize;
+
+                   @media (max-width: 450px) {
+                       display: none;
+                   }
                }
 
                button {
@@ -611,6 +634,10 @@
                    height: 45px;
                    background-color: lighten($primary, 8%);
                    text-transform: capitalize;
+
+                   @media (max-width: 450px) {
+                       margin-top: 1rem;
+                   }
                }
 
                .selectedBtn {
@@ -641,9 +668,6 @@
 
        .selectedCard {
            position: relative;
-           //    border-left: 1px solid #DDDDDD;
-           //    border-right: 1px solid #DDDDDD;
-           //    background: rgb(185 247 209 / 54%);
            background: #fafdfd;
            border-color: $border2;
            transition: .25s linear;
@@ -667,13 +691,9 @@
    .taxideal_result_container {
        flex-basis: 71%;
 
-       @media (max-width:1150px) {
-           //   flex-basis: 75%;
-       }
 
        .description {
            padding: 40px 20px;
-           //    background-color: #edf4fe;
            background-color: #fff;
            margin-top: 40px;
            border-radius: 4px;

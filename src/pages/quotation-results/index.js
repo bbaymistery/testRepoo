@@ -396,7 +396,7 @@ const QuotationResults = (props) => {
                   const [splitedDate] = splitDateTimeStringIntoDate(transferDateTimeString) || []
 
                   return (
-                    <div key={index} className={`${index === 0 ? "mb_5" : ""}`}>
+                    <div key={index} className={`${index === 0 ? "mb_1" : ""}`}>
                       {index === 0 ? <h2 className={`${styles.title} ${direction}`}>{appData?.words["seGoingDetails"]}</h2> : <React.Fragment></React.Fragment>}
                       {index === 1 ? <h2 className={`${styles.title} ${direction}`}>{appData?.words["seReturnDetails"]}</h2> : <React.Fragment></React.Fragment>}
                       <div className={`${styles.main_container} ${direction} `}>

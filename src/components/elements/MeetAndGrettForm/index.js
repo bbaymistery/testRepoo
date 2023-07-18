@@ -26,7 +26,6 @@ const passengerDetailsError = (passengersForm) => {
     return errors;
 };
 //FOR STEP _2
-
 const flightDetailsError = (flightDetails) => {
     const errors = {};
 
@@ -48,6 +47,26 @@ const flightDetailsError = (flightDetails) => {
 
     return errors;
 };
+
+const bookersDetailsError = (bookerDetails) => {
+    const errors = {};
+
+    if (bookerDetails.firstname.trim() === "") {
+        errors.firstname = { statusCode: 400, errorMessage: "required", };
+    }
+    if (bookerDetails.lastname.trim() === "") {
+        errors.lastname = { statusCode: 400, errorMessage: "required", };
+    }
+    if (bookerDetails.mobileNumber.trim() === "") {
+        errors.mobileNumber = { statusCode: 400, errorMessage: "required", };
+    }
+    if (bookerDetails.email.trim() === "") {
+        errors.email = { statusCode: 400, errorMessage: "required", };
+    }
+    console.log({ errors });
+
+    return errors;
+}
 // 2023-07-29=> to => Sat, Jul 29, 2023
 function formatDate(dateString) {
     var date = new Date(dateString);
@@ -74,11 +93,14 @@ const MeetAndGrettForm = (props) => {
     let { formRef, passengersForm, inputDateValue, seatLists, terminal, totalPrice, appData, selectedButtonLabel, direction, buggerLists, vat, buggerListTotalPrice } = props
     const dispatch = useDispatch()
     const meetAndGreetState = useSelector(state => state.meetAndGreetActions)
-    let { flightDetails: { airline, flightNumber, flightClass, flightTime, noOfLuggageBags } } = meetAndGreetState
+    let { flightDetails, bookersDetails } = meetAndGreetState
+    let { airline, flightNumber, flightClass, noOfLuggageBags } = flightDetails
+    let { firstname, lastname, email, mobileNumber } = bookersDetails
 
     const [activeStep, setActiveStep] = useState(0)
     const [errorHolderPassengerDetails, setErrorHolderPassengerDetails] = useState([])//activeStep0
     const [errorHolderFlightDetails, setErrorHolderFlightDetails] = useState([]);//activeStep1
+    const [errorHolderBookerDetails, setErrorHolderBookersDetails] = useState([]);//activeStep1
 
     const handleFormClose = () => {
         dispatch({ type: 'SET_FORM_STATUS', data: { status: false } })
@@ -102,10 +124,14 @@ const MeetAndGrettForm = (props) => {
         if (activeStep === 0) {
             errors = passengerDetailsError(passengersForm);
             setErrorHolderPassengerDetails(errors);
-            
+
         } else if (activeStep === 1) {
             errors = flightDetailsError(meetAndGreetState.flightDetails);
             setErrorHolderFlightDetails(errors);
+        }
+        else if (activeStep === 2) {
+            errors = bookersDetailsError(meetAndGreetState.bookersDetails);
+            setErrorHolderBookersDetails(errors);
         }
 
         // Check if there are any errors, if yes, return and prevent moving to the next step
@@ -120,7 +146,6 @@ const MeetAndGrettForm = (props) => {
             setActiveStep((activeStep) => activeStep + 1);
         }
     };
-    console.log(errorHolderFlightDetails);
 
 
 
@@ -132,9 +157,11 @@ const MeetAndGrettForm = (props) => {
 
     const handleDecrementBugger = (idx, incordec) => dispatch({ type: 'SET_BUGGER_PORTER', data: { idx, incordec } })
     const handleIncrementBugger = (idx, incordec) => dispatch({ type: 'SET_BUGGER_PORTER', data: { idx, incordec } })
-    const onchangeAirlineHandler = (e,) => dispatch({ type: "SET_AIRLINE", data: { newAirline: e.target.value } })
-    const onchangeFlightClassHandler = (e,) => dispatch({ type: "SET_FLIGHT_CLASS", data: { newFlightClass: e.target.value } })
+    const onchangeAirlineHandler = e => dispatch({ type: "SET_AIRLINE", data: { newAirline: e.target.value } })
+    const onchangeFlightClassHandler = e => dispatch({ type: "SET_FLIGHT_CLASS", data: { newFlightClass: e.target.value } })
     const onChangeSetDateTimeHandler = (params = {}) => dispatch({ type: 'SET_FLIGHT_TIME', data: { ...params } })
+    const onchangeBookerDetailsHandler = (params = {}) => dispatch({ type: 'SET_BOOKER_DETAILS', data: { ...params } })
+
 
     useEffect(() => {
         // Calculate the height of the content div when passenger form is changing and activestep is changing
@@ -179,7 +206,7 @@ const MeetAndGrettForm = (props) => {
                                     <Select errorMessage={errorHolderFlightDetails?.airline?.errorMessage} label="Airline" name="Airline" postCodeSelectOption={true} onChange={onchangeAirlineHandler} value={airline} data={dropdownAirlineLabels} />
                                 </div>
                                 <div className={styles.input_div}>
-                                    <TextInput errorMessage={errorHolderFlightDetails.flightNumber?.errorMessage} label={"Flight Nummber"} type="text" name="flightNumber" onChange={e => onchangeNumberLuggageHandler(e)} value={flightNumber}  />
+                                    <TextInput errorMessage={errorHolderFlightDetails.flightNumber?.errorMessage} label={"Flight Nummber"} type="text" name="flightNumber" onChange={e => onchangeNumberLuggageHandler(e)} value={flightNumber} />
                                 </div>
                                 <div className={styles.input_div}>
                                     <Select errorMessage={errorHolderFlightDetails.flightClass?.errorMessage} label="Flight Class" name="Flight Class" postCodeSelectOption={true} onChange={onchangeFlightClassHandler} value={flightClass} data={dropdownFlightClass} />
@@ -228,6 +255,30 @@ const MeetAndGrettForm = (props) => {
                                 </div>
                             </div>
 
+                        </div>
+                        : <></>}
+
+                    {/* //!step 2   Third step */}
+                    {activeStep === 2 ?
+                        <div className={styles.bookers}>
+                            <p className={styles.bookers_title}> Payment </p>
+                            <div className={styles.bookers_details_div}>
+                                <p>Booker's Details</p>
+                                <div className={styles.bookers_details}>
+                                    <div className={styles.input_div}>
+                                        <TextInput errorMessage={errorHolderBookerDetails.firstname.errorMessage} label="First Name" type="text" name="firstname" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={firstname} />
+                                    </div>
+                                    <div className={styles.input_div}>
+                                        <TextInput errorMessage={errorHolderBookerDetails.lastname.errorMessage} label="Last Name" type="text" name="lastname" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={lastname} />
+                                    </div>
+                                    <div className={styles.input_div}>
+                                        <TextInput errorMessage={errorHolderBookerDetails.email.errorMessage} label="E-Mail Address" type="text" name="email" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={email} />
+                                    </div>
+                                    <div className={styles.input_div}>
+                                        <TextInput errorMessage={errorHolderBookerDetails.mobileNumber.errorMessage} label="Mobile Number" type="text" name="mobileNumber" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={mobileNumber} />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         : <></>}
 
