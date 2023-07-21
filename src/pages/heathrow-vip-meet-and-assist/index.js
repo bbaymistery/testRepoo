@@ -1,15 +1,14 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
 import LeftSidebarInformation from '../../components/elements/LeftSidebarInformation'
 import ShowcaseRight from './ShowcaseRight'
-import { useState } from 'react'
 import useRipple from '../../hooks/useRipple'
 import DropDown from '../../components/elements/Dropdown/dropdown'
 import DateInput from '../../components/elements/DateInput'
 import { currentDate } from '../../helpers/getDates'
-import MeetAndGrettForm from '../../components/elements/MeetAndGrettForm'
+import { useRouter } from 'next/router'
 let description = "Heathrow VIP Meet and Assist service includes meet by the plane door and assist the passenger to final detsination."
 let title = "VIP Meet and assist at Heathrow Airport"
 let keywords = "VIP Meet and assist"
@@ -18,15 +17,16 @@ const dropdownLabels = ["-- Select Terminal --", 'Heathrow Terminal 2 ', 'Heathr
 
 const HeathrowVipMeet = (props) => {
     let { bggray = false } = props;
+
     const { appData } = useSelector(state => state.initialReducer)
 
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction } } = state
 
     const meetAndGreetState = useSelector(state => state.meetAndGreetActions)
-    let { seatLists, passengersForm, totalPrice, meetgreetDate, meetgreetActiveBtn, selectedService, terminalName, meetGreetFormStatus, buggerLists, vat, buggerListTotalPrice, seatListPrice } = meetAndGreetState
+    let { seatLists, meetgreetDate, meetgreetActiveBtn, selectedService, terminalName,seatListPrice } = meetAndGreetState
 
-    const formRef = useRef(null);
+    const router=useRouter()
     const dispatch = useDispatch()
 
     //buttons
@@ -41,30 +41,11 @@ const HeathrowVipMeet = (props) => {
 
 
     const IsDropdownTextSelectionValid = () => dropdownLabels.slice(1).includes(terminalName)
-    const handleBookNow = () => (IsDropdownTextSelectionValid()) && dispatch({ type: 'SET_FORM_STATUS', data: { status: true } })
-
-
-
-    //ilk basda form_to_fill_content   div acilanda ,animation ile aclmasi ucun
-    //sonrada paasenger form degiserse yene ona gore icerigi buyur kuculur
-    useEffect(() => {
-        if (formRef.current) { // Add a null check
-            if (meetGreetFormStatus) {
-                formRef.current.style.height = `${formRef.current.scrollHeight}px`;
-                const offset = 170; // Adjust this value based on your navbar height
-                const topPosition = formRef.current.getBoundingClientRect().top + window.pageYOffset;
-                window.scrollTo({ top: topPosition - offset, behavior: 'smooth' });
-
-
-            } else {
-                formRef.current.style.height = '0px';
-            }
+    const handleBookNow = () =>{
+       if (IsDropdownTextSelectionValid()){
+           router.push("/meetgreet")
         }
-    }, [meetGreetFormStatus, terminalName,  ]);
-
- 
-
-
+    }
 
     return (
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
@@ -138,23 +119,6 @@ const HeathrowVipMeet = (props) => {
                 </div>
                 <div className={`${styles.vipmeet_section} page_section`}>
                     <div className={`${styles.vipmeet_section_container} page_section_container`}>
-                        {meetGreetFormStatus && IsDropdownTextSelectionValid() ?
-                            <MeetAndGrettForm
-                                formRef={formRef}
-                                inputDateValue={meetgreetDate}
-                                seatLists={seatLists}
-                                terminal={terminalName}
-                                totalPrice={totalPrice}
-                                passengersForm={passengersForm}
-                                appData={appData}
-                                selectedButtonLabel={buttonLabels[meetgreetActiveBtn]}
-                                direction={direction}
-                                buggerLists={buggerLists}
-                                vat={vat}
-                                buggerListTotalPrice={buggerListTotalPrice}
-                           
-                            />
-                            : <></>}
                         <div className={styles.information_column}>
                             <div className={styles.left_content}>
 

@@ -5,7 +5,6 @@ import SET_BUGGER_PORTER from "./SET_BUGGER_PORTER";
 import SET_FLIGHT_CLASS from "./SET_FLIGHT_CLASS";
 import SET_FLIGHT_NUMBER_OR_LUGGAGE from "./SET_FLIGHT_NUMBER_OR_LUGGAGE";
 import SET_FLIGHT_TIME from "./SET_FLIGHT_TIME";
-import SET_FORM_STATUS from "./SET_FORM_STATUS";
 import SET_MEET_GREET_ACTIVE_BTN from "./SET_MEET_GREET_ACTIVE_BTN";
 import SET_MEET_GREET_DATE from "./SET_MEET_GREET_DATE";
 import SET_PASSENGERS_FROM from "./SET_PASSENGERS_FROM";
@@ -45,7 +44,6 @@ const INITIAL_STATE = {
     meetgreetActiveBtn: 0,
     selectedService: 'Arrival Airport',
     terminalName: "-- Select Terminal --",
-    meetGreetFormStatus: false,
     porter: 0,
     buggy: 0,
     additionalGreeter: 0,
@@ -66,9 +64,7 @@ export const meetAndGreetActions = (state = INITIAL_STATE, action) => {
         case "SET_TERMINAL": {
             return SET_TERMINAL({ state, action })
         }
-        case "SET_FORM_STATUS": {
-            return SET_FORM_STATUS({ state, action })
-        }
+     
         case "SET_PASSENGERS_FROM": {
             return SET_PASSENGERS_FROM({ state, action })
         }
