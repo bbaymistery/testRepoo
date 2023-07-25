@@ -9,6 +9,8 @@ import Select from '../../components/elements/Select';
 import { hours, minutes } from '../../constants/minutesHours';
 import { bookersDetailsError, buttonLabelsNames, dropdownAirlineLabels, dropdownFlightClass, flightDetailsError, formatDate, passengerDetailsError, stepsNames } from '../../helpers/meetgreetPageHelpers';
 import { useRouter } from 'next/router';
+import store from '../../store/store';
+import { createWrapper } from 'next-redux-wrapper';
 
 let description = ""
 let title = ""
@@ -252,3 +254,31 @@ const MeetGreet = (props) => {
 }
 
 export default MeetGreet
+const makestore = () => store;
+const wrapper = createWrapper(makestore);
+
+export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
+
+    const initialLanguages = store.getState().initialReducer?.appData?.languages
+    const langs = initialLanguages.map((lang) => lang.value)
+
+    for (let i = 0; i < langs.length; i++) {
+        const lang = langs[i]
+        const langUrl = lang === 'en' ? '/meetgreet' : `/${lang}/meetgreet`
+        if (req.url === langUrl) {
+            return {
+                redirect: {
+                    destination: lang === 'en' ? "/" : `/${lang}`,
+                    permanent: false
+                }
+            }
+        }
+    }
+
+
+    return {
+        props: {
+            data: ''
+        }
+    }
+});

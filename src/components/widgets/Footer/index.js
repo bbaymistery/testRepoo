@@ -58,6 +58,11 @@ const Footer = (props) => {
                 <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strPrivacyPolicy"]} tabIndex="-1" >
                   {appData.words["strPrivacyPolicy"]}
                 </a>
+
+                <a href={`${language === 'en' ? `/heathrow-vip-meet-and-assist` : `${language}/heathrow-vip-meet-and-assist`}`} title={appData.words["strPrivacyPolicy"]} tabIndex="-1" >
+                  Meet and assist
+                </a>
+                
               </ul>
 
             </div>

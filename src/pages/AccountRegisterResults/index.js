@@ -22,7 +22,7 @@ const AccountRegisterResults = (props) => {
 
     const { accountRegisterDatas } = useSelector(state => state.accountRegisterActions)
 
-    let { applicantForCreditAccount, contactDetails,  operationNotes } = accountRegisterDatas
+    let { applicantForCreditAccount, contactDetails, operationNotes } = accountRegisterDatas
     let { contactName, jobTitle, email, telephoneNo } = contactDetails
     let { companyName, natureOfBusiness, address, registrationNo, companyTel } = applicantForCreditAccount
     let { urgentSituationStatus, accountPassengerStatus, anyOtherOperationComments, urgentSituationNumber } = operationNotes
@@ -30,6 +30,7 @@ const AccountRegisterResults = (props) => {
     const prevRipples = useRipple(prevRef);
     const nextRef = useRef(null)
     const nextRipples = useRipple(nextRef);
+    console.log(appData);
 
     return (
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
@@ -54,7 +55,7 @@ const AccountRegisterResults = (props) => {
                                     {/*  */}
                                     {registrationNo.length > 0 ?
                                         <div className={`${styles.info} ${direction}`}>
-                                            <div className={styles.left}>{appData.words["strRegistrationNo"]}</div>
+                                            <div className={styles.left}>{appData?.words["strRegistrationNo"]}</div>
                                             <div className={styles.right}>{registrationNo}</div>
                                         </div> : <></>}
                                     <div className={`${styles.info} ${direction}`}>
@@ -80,36 +81,36 @@ const AccountRegisterResults = (props) => {
                                     </div>
 
                                     <div className={`${styles.info} ${direction}`}>
-                                        <div className={styles.left}>{appData.words["panelAccountsTelephone"]}</div>
+                                        <div className={styles.left}>{appData?.words["panelAccountsTelephone"]}</div>
                                         <div className={styles.right}>{telephoneNo}</div>
                                     </div>
                                     <div className={`${styles.info} ${direction}`}>
                                         <div className={styles.left}>{appData?.words["appContactUsEmailAddress"]}</div>
                                         <div className={styles.right}>{email}</div>
                                     </div>
-                             
-                            
+
+
                                     {/* //!Contact details */}
                                     <h1 className='mt_2'>Operation Notes</h1>
                                     <div className={`${styles.info} ${styles.operationNotes_info} ${direction}`}>
-                                        <div className={styles.left} style={{textTransform:"inherit"}}>Do you have any out-of-hours emergency number for urgent situations?</div>
+                                        <div className={styles.left} style={{ textTransform: "inherit" }}>Do you have any out-of-hours emergency number for urgent situations?</div>
                                         {urgentSituationStatus === 'Yes' ? <div className={styles.right}>+ {urgentSituationNumber}</div> : <div className={styles.right}>{urgentSituationStatus}</div>}
                                     </div>
 
                                     <div className={`${styles.info} ${styles.operationNotes_info} ${direction}`}>
-                                        <div className={styles.left} style={{textTransform:"inherit"}}>In case of extra payment for airport transfers, who pays for the extras?</div>
+                                        <div className={styles.left} style={{ textTransform: "inherit" }}>In case of extra payment for airport transfers, who pays for the extras?</div>
                                         <div className={styles.right}>{accountPassengerStatus}</div>
 
                                     </div>
 
                                     <div className={`${styles.info} ${styles.operationNotes_info} ${direction}`}>
                                         <div className={styles.left} style={{ textTransform: "inherit" }}>Any Other Operation comments</div>
-                                        <div className={styles.right}>{anyOtherOperationComments ? anyOtherOperationComments:'--'}</div>
+                                        <div className={styles.right}>{anyOtherOperationComments ? anyOtherOperationComments : '--'}</div>
 
                                     </div>
-                                    
 
-                                    
+
+
                                     <div className={styles.buttons}>
                                         <button ref={prevRef} className='btn btn_primary' onClick={() => { router.back() }}>{prevRipples} {appData?.words["strGoBack"]}</button>
                                         <button ref={nextRef} className='btn btn_primary'>{nextRipples}  Confirm</button>
@@ -117,7 +118,7 @@ const AccountRegisterResults = (props) => {
                                 </div>
                             </div>
                             <div className={styles.contact_section}>
-                                <AdressInformations />
+                                <AdressInformations appData={appData} />
                             </div>
                         </div>
                     </div>
