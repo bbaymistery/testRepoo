@@ -50,7 +50,6 @@ const INITIAL_STATE = {
             natureOfBusiness: "",
             address: "",
             registrationNo: "",
-            companyTel: ""
         },
         contactDetails: {
             contactName: "",
@@ -59,7 +58,7 @@ const INITIAL_STATE = {
             telephoneNo: ""
         },
         operationNotes: {
-            urgentSituationStatus: "No",
+            urgentSituationStatus: "Yes",
             accountPassengerStatus: "Account",
             anyOtherOperationComments: "",
             urgentSituationNumber:""

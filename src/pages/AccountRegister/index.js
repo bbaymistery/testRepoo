@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef } from 'react'
+import React, { useEffect, useReducer, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
@@ -10,6 +10,8 @@ import { accountRegisterSchemaValidator } from '../../helpers/accountRegisterSch
 import AdressInformations from '../../components/elements/AdressInformations'
 import { useRouter } from 'next/router'
 import useRipple from '../../hooks/useRipple'
+import Recaptcha from '../../components/elements/Recaptcha'
+import Loading from '../../components/elements/alert/Loading'
 
 
 
@@ -31,6 +33,9 @@ const AccountRegister = (props) => {
     let { bggray } = props
     const router = useRouter()
     const dispatch = useDispatch()
+    const [recaptchaToken, setRecapthcaToken] = useState(null);
+    const [showRecapthaComponent, setshowRecapthaComponent] = useState(false)
+    const [loadingFetch, setLoadingFetch] = useState(false)
 
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction, language } } = state
@@ -40,32 +45,25 @@ const AccountRegister = (props) => {
 
     let { applicantForCreditAccount, contactDetails, operationNotes } = accountRegisterDatas
     let { contactName, jobTitle, email, telephoneNo } = contactDetails
-    let { companyName, natureOfBusiness, address, registrationNo, companyTel } = applicantForCreditAccount
+    let { companyName, natureOfBusiness, address, registrationNo, } = applicantForCreditAccount
     let { urgentSituationStatus, accountPassengerStatus, anyOtherOperationComments, urgentSituationNumber } = operationNotes
     let [internalState, setInternalState] = React.useReducer((s, o) => ({ ...s, ...o }), {
         'errorHolder': [],
     })
     let { errorHolder } = internalState;
-console.log(errorHolder);
 
     //companyTel:creditAccountNumber   =>olarak destrctur et
     //telephoneNo:contactDetailsTelephone=>
     const onchangeHandler = (e) => {
         let { name, value, type, checked } = e.target;
-
-
         if (['contactName', 'jobTitle', "email"].includes(name))
             dispatch({ type: 'SET_CONTACT_DETAILS', data: { name, value } })
-
         if (['companyName', "natureOfBusiness", "address", "registrationNo"].includes(name))
             dispatch({ type: 'SET_APPLICANT_FOR_CREADIT_DETAILS', data: { name, value } })
-
         //in case if it is radio button
-
-
-        if (['accountPassengerStatus', "urgentSituationStatus", "anyOtherOperationComments"].includes(name)) {
+        if (['accountPassengerStatus', "urgentSituationStatus", "anyOtherOperationComments"].includes(name))
             dispatch({ type: 'SET_OPERATION_NOTES', data: { name, value } })
-        }
+
 
     }
 
@@ -77,20 +75,64 @@ console.log(errorHolder);
     }
 
 
-
     const gotoNextPage = () => {
         let errorHolder = accountRegisterSchemaValidator({ accountRegisterDatas });
         setInternalState({ errorHolder })
-        if (errorHolder.status === 200) router.push(`${language === 'en' ? "/AccountRegisterResults" : `${language}/AccountRegisterResults`}`)
+        if (errorHolder.status === 200) setshowRecapthaComponent(true)
     }
 
+    // Update the token state when the verification is successful
+    const handleRecaptchaVerify = (newToken) => setRecapthcaToken(newToken)
 
-    //The Amount Of Monthly Credit You Require
-    const onApproimateSpendChange = (e) => dispatch({ type: 'SET_APPROXIMATE_DATA', data: { value: e.target.value } })
-    //!check schema and the next page*
 
     const btnRef = useRef(null);
     const ripples = useRipple(btnRef);
+
+
+    useEffect(() => {
+        if (recaptchaToken) {
+            const method = "POST"
+            const headers = { "Content-Type": "application/json" }
+            // const url = 'https://api.london-tech.com/api/v1/corporate-account/add';
+            const url = 'https://api.london-tech.com/api/v1/corporate-account/add?passRecaptcha=true&mode=sandbox';
+            const body = {
+                "name": companyName,
+                "address": address,
+                "registrationNumber": registrationNo,
+                "natureOfBusiness": natureOfBusiness,
+
+                "contactName": contactName,
+                "jobTitle": jobTitle,
+                "contactEmail": email,
+                "telephone": telephoneNo,
+
+                "extraPaymentShouldPaidBy": accountPassengerStatus === "Account" ? 1 : 2,
+                "emergencyPhoneNumber": urgentSituationNumber,
+                "rules": anyOtherOperationComments,
+
+                "recaptchaToken": recaptchaToken
+            };
+            const config = { method, headers, body: JSON.stringify(body), };
+            setLoadingFetch(true)
+            fetch(url, config)
+                .then(response => response.json())
+                .then(jsonResponse => {
+                    console.log(jsonResponse); // Handle the response data as needed
+                    setLoadingFetch(false)
+                    if (jsonResponse.status === 100 || jsonResponse.status === 200) {
+                        router.push(`${language === 'en' ? "/AccountRegisterResults" : `${language}/AccountRegisterResults`}`)
+                    } else {
+                        alert("Something went wrong please try again")
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+            //localStorage.setItem("recaptchaToken", JSON.stringify(recaptchaToken));
+            //
+        }
+    }, [recaptchaToken])
 
     return (
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
@@ -98,6 +140,7 @@ console.log(errorHolder);
                 <div className={`${styles.accountRegister_section} page_section`}>
                     <div className={`${styles.accountRegister_section_container} page_section_container`}>
 
+                        {loadingFetch ? <Loading /> : <></>}
                         {/* <h1>{appData.words["strApplicationForCreditAccount"]}</h1> */}
                         <div className={styles.accountRegister_content}>
                             <div className={styles.accountRegister_content_left}>
@@ -129,23 +172,18 @@ console.log(errorHolder);
                                                 inputStyle={{ color: "#0b0b0cd6" }}
                                                 errorMessage={errorHolder?.accountRegisterDatas?.applicantForCreditAccount?.natureOfBusiness} />
                                         </div>
-
-
-                                        <div className={`${styles.input_div} ${direction === "rtl" ? "phone_input_direction" : ""}`}>
-                                            <PhoneInput
-                                                className={`phone_input ${direction === "rtl" ? "phone_input_direction" : ""}`}
-                                                value={companyTel}
-                                                onChange={(value, selectedCountry) => handleOnChangeNumberInput({ value, selectedCountry, name: "companyTel" })}
-
-                                                country={"gb"}
-                                                inputProps={{
-                                                    name: 'companyTel',
-                                                    required: true,
-                                                    style: { border: errorHolder?.accountRegisterDatas?.applicantForCreditAccount?.companyTel ? '1px solid red' : ' 1px solid #ced4da' }
-                                                }}
+                                        <div className={styles.input_div}>
+                                            <TextInput
+                                                type="text"
+                                                name="address"
+                                                value={address}
+                                                onChange={e => onchangeHandler(e)}
+                                                label={appData?.words["strAddress"]}
+                                                labelStyle={{ color: "#00000094", "fontWeight": 500, letterSpacing: "1px" }}
+                                                inputStyle={{ color: "#0b0b0cd6" }}
+                                                errorMessage={errorHolder?.accountRegisterDatas?.applicantForCreditAccount?.address}
                                             />
                                         </div>
-
                                         <div className={styles.input_div}>
                                             <TextInput
                                                 type="text"
@@ -156,17 +194,6 @@ console.log(errorHolder);
                                                 labelStyle={{ color: "#00000094", "fontWeight": 500, letterSpacing: "1px" }}
                                                 inputStyle={{ color: "#0b0b0cd6" }}
                                             />
-                                        </div>
-                                        {/*  */}
-                                        <div className={`${styles.input_div} ${styles.last_input_item}`} >
-                                            <Textarea
-                                                name="address"
-                                                value={address}
-                                                label={appData?.words["strAddress"]}
-                                                onChange={(e) => onchangeHandler(e)}
-                                                labelStyle={{ color: "#00000094", "fontWeight": 500, letterSpacing: "1px" }}
-                                                inputStyle={{ color: "#0b0b0cd6" }}
-                                                errorMessage={errorHolder?.accountRegisterDatas?.applicantForCreditAccount?.address} />
                                         </div>
                                     </div>
                                 </div>
@@ -244,13 +271,12 @@ console.log(errorHolder);
                                                     <label htmlFor="UrgentSituationNo">No</label><br />
                                                 </div>
                                             </div>
-                                            {urgentSituationStatus === 'No' ?
+                                            {urgentSituationStatus === 'Yes' ?
                                                 <div className={`${styles.input_div} ${direction === "rtl" ? "phone_input_direction" : ""}`}>
                                                     <PhoneInput
                                                         className={`phone_input ${direction === "rtl" ? "phone_input_direction" : ""}`}
                                                         value={urgentSituationNumber}
                                                         onChange={(value, selectedCountry) => handleOnChangeNumberInput({ value, selectedCountry, name: "urgentSituationNumber" })}
-
                                                         country={"gb"}
                                                         inputProps={{
                                                             name: 'urgentSituationNumber',
@@ -289,7 +315,7 @@ console.log(errorHolder);
 
                                 {/*//! Decleration */}
                                 <div className={styles.details_div}>
-                                    < p className={styles.amount_credit_title}>Declaration</p>
+                                    < p className={styles.amount_credit_title}>Declaration  </p>
                                     <p className={styles.declaration}>
                                         I, {`[ ${contactName} ]`}, in my capacity as {`[ ${jobTitle} ]`} of {`[ ${companyName} ]`},
                                         hereby authorize Airport Pickups London
@@ -307,13 +333,20 @@ console.log(errorHolder);
                                     </p>
 
                                     <div className={styles.btn_div} onClick={gotoNextPage}>
-                                        <button className='btn btn_primary ' ref={btnRef}>{ripples} {appData.words["strNext"]}</button>
+                                        {!recaptchaToken && !showRecapthaComponent ? <button className='btn btn_primary ' ref={btnRef}>{ripples} {appData.words["strNext"]}</button> : <></>}
+
                                     </div>
+                                    {showRecapthaComponent ?
+                                        <div className={styles.recaptcha}>
+                                            <Recaptcha onVerify={handleRecaptchaVerify} />
+                                        </div>
+                                        : <></>}
                                 </div>
                             </div>
                             <div className={styles.accountRegister_content_registration_right}>
                                 <AdressInformations appData={appData} direction={direction} />
                             </div>
+
                         </div>
 
 

@@ -1,22 +1,24 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
 import { useSelector } from 'react-redux'
 import AdressInformations from '../../components/elements/AdressInformations'
 import useRipple from '../../hooks/useRipple'
-import { useRouter } from 'next/router'
 import store from '../../store/store'
 import { createWrapper } from 'next-redux-wrapper'
+import Link from 'next/link'
+import { urlWithLangAtribute } from '../../helpers/urlWithLangAtrribute'
+import { useRouter } from 'next/router'
+import { useConfirm } from '../../hooks/useConfirm'
 let title = "APPLICATION FOR CREDIT ACCOUNT"
 let keywords = ""
 let description = "Airport Pickups London agency registration form"
 const AccountRegisterResults = (props) => {
     let { bggray } = props
 
-    const router = useRouter()
 
     const state = useSelector(state => state.pickUpDropOffActions)
-    let { params: { direction } } = state
+    let { params: { direction, language } } = state
 
     const { appData } = useSelector(state => state.initialReducer)
 
@@ -24,13 +26,29 @@ const AccountRegisterResults = (props) => {
 
     let { applicantForCreditAccount, contactDetails, operationNotes } = accountRegisterDatas
     let { contactName, jobTitle, email, telephoneNo } = contactDetails
-    let { companyName, natureOfBusiness, address, registrationNo, companyTel } = applicantForCreditAccount
+    let { companyName, natureOfBusiness, address, registrationNo } = applicantForCreditAccount
     let { urgentSituationStatus, accountPassengerStatus, anyOtherOperationComments, urgentSituationNumber } = operationNotes
     const prevRef = useRef(null);
     const prevRipples = useRipple(prevRef);
     const nextRef = useRef(null)
-    const nextRipples = useRipple(nextRef);
-    console.log(appData);
+    const router = useRouter()
+
+    //in order having confirmation message
+    //go back go forward and when change language we r not gonna have any confirmation
+    const { nexturls, previousUrls, currentUrls } = urlWithLangAtribute({ languages: appData.languages, previousUrl: 'tohome', nextUrl: "/", currentUrl: router.asPath })
+    const confirmationAlert = useConfirm({ previousUrl: previousUrls, nextUrl: nexturls, currentUrls, message: "Registration Completed Successfully. Do you want to leave this page?" })
+
+    useEffect(() => {
+        const disableBackButton = () => {
+            window.history.pushState(null, null, window.location.href);
+            window.onpopstate = () => {
+                window.history.pushState(null, null, window.location.href);
+            };
+        };
+
+        // Call disableBackButton() once when the component mounts
+        disableBackButton();
+    }, [])
 
     return (
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
@@ -40,10 +58,11 @@ const AccountRegisterResults = (props) => {
 
                         <div className={styles.content}>
                             <div className={styles.left_content}>
+                                <h1 className='text_center'>Registration Completed Succesfully</h1>
                                 <div className={styles.info_section}>
                                     {/*//! Applicant for credit */}
 
-                                    <h1>{appData.words["strApplicationForCreditAccount"]}</h1>
+                                    <h2>{appData.words["strApplicationForCreditAccount"]}</h2>
                                     <div className={`${styles.info} ${styles.companyName_info} ${direction}`}>
                                         <div className={styles.left}>{appData?.words["strCompanyName"]}/Sole Trader Name</div>
                                         <div className={styles.right}>{companyName} </div>
@@ -58,10 +77,7 @@ const AccountRegisterResults = (props) => {
                                             <div className={styles.left}>{appData?.words["strRegistrationNo"]}</div>
                                             <div className={styles.right}>{registrationNo}</div>
                                         </div> : <></>}
-                                    <div className={`${styles.info} ${direction}`}>
-                                        <div className={styles.left}>Company Tel</div>
-                                        <div className={styles.right}>{companyTel}</div>
-                                    </div>
+
 
 
                                     <div className={`${styles.info} ${direction}`}>
@@ -69,7 +85,7 @@ const AccountRegisterResults = (props) => {
                                         <div className={styles.right}>{address}</div>
                                     </div>
                                     {/* //!Contact details */}
-                                    <h1 className='mt_2'>{appData.words["strContactDetails"]}</h1>
+                                    <h2 className='mt_2'>{appData.words["strContactDetails"]}</h2>
                                     <div className={`${styles.info} ${direction}`}>
                                         <div className={styles.left}>{appData?.words["panelAccountsContactName"]} </div>
                                         <div className={styles.right}>{contactName}</div>
@@ -91,7 +107,7 @@ const AccountRegisterResults = (props) => {
 
 
                                     {/* //!Contact details */}
-                                    <h1 className='mt_2'>Operation Notes</h1>
+                                    <h2 className='mt_2'>Operation Notes</h2>
                                     <div className={`${styles.info} ${styles.operationNotes_info} ${direction}`}>
                                         <div className={styles.left} style={{ textTransform: "inherit" }}>Do you have any out-of-hours emergency number for urgent situations?</div>
                                         {urgentSituationStatus === 'Yes' ? <div className={styles.right}>+ {urgentSituationNumber}</div> : <div className={styles.right}>{urgentSituationStatus}</div>}
@@ -112,8 +128,14 @@ const AccountRegisterResults = (props) => {
 
 
                                     <div className={styles.buttons}>
-                                        <button ref={prevRef} className='btn btn_primary' onClick={() => { router.back() }}>{prevRipples} {appData?.words["strGoBack"]}</button>
-                                        <button ref={nextRef} className='btn btn_primary'>{nextRipples}  Confirm</button>
+                                        {/* <button ref={prevRef} className='btn btn_primary' onClick={() => { router.back() }}>{prevRipples} {appData?.words["strGoBack"]}</button>
+                                        <button ref={nextRef} className='btn btn_primary'>{nextRipples}  Confirm</button> */}
+
+                                        <a href={language === 'en' ? '/' : `/${language}`}>
+
+                                            <button ref={nextRef} className='btn btn_primary'>{prevRipples}Home</button>
+                                        </a>
+                                        {/* <button ref={nextRef} className='btn btn_primary'>{nextRipples}  Confirm</button> */}
                                     </div>
                                 </div>
                             </div>

@@ -51,6 +51,12 @@
                             color: $dark-1;
                         }
 
+                        .recaptcha {
+                            display: flex;
+                            justify-content: flex-end;
+                            margin-top: 2rem;
+                        }
+
                         .amount_credit_title {
                             text-transform: capitalize;
                             font-weight: 500;
@@ -58,7 +64,7 @@
                             margin-bottom: 1rem;
                         }
 
-               
+
 
                         .input_note {
                             height: 10px !important;
@@ -93,7 +99,7 @@
                                 &:nth-child(5) {
                                     order: 4;
                                 }
-                             
+
                             }
 
 
@@ -117,9 +123,10 @@
                             border-radius: 4px;
                             padding: 0px 15px 0px 15px;
                             user-select: none;
+
                             p {
                                 margin-bottom: 0px;
-                                color: darken($label_text_color,50%) !important;
+                                color: darken($label_text_color, 50%) !important;
                                 font-size: 14px;
                                 letter-spacing: 0.4px;
                                 font-weight: 500;
@@ -129,13 +136,15 @@
                                 display: flex !important;
                                 gap: 1rem;
                                 margin-bottom: 4px;
+
                                 div {
                                     display: flex;
                                     gap: 5px;
-                            color: darken($input_text_color, 36%) !important;
+                                    color: darken($input_text_color, 36%) !important;
                                     font-weight: 500;
                                     font-size: 14px;
-                                     input,
+
+                                    input,
                                     label {
                                         cursor: pointer;
                                     }
@@ -174,7 +183,7 @@
                                 border-radius: 4px;
                                 margin-top: 1rem;
                                 font-size: 17px;
-                                
+
                             }
                         }
                     }

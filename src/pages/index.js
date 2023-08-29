@@ -13,6 +13,7 @@ export default function Home() {
       <TaxiDeals />
       <CarsSlider bggray={true}  />
       <Tours insideGlobalLayout={false} />
+    
     </GlobalLayout>
   )
 }

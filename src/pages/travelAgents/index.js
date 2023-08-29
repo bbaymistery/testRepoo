@@ -31,9 +31,10 @@ const Corporate = (props) => {
                     <Link target='_blank' href="https://www.airport-pickups-london.com/Agency" >
                       <button className='btn btn_primary'>Login</button>
                     </Link>
-                    <Link href="/AccountRegister">
+              
+                    <a href={language === 'en' ? '/AccountRegister' : `/${language}/AccountRegister`} title="AccountRegister" >
                       <button className='btn btn_primary'>Register</button>
-                    </Link>
+                    </a>
                   </div>
 
                   <p>
@@ -70,9 +71,9 @@ const Corporate = (props) => {
                     <Link target='_blank' href="https://www.airport-pickups-london.com/Agency" >
                       <button className='btn btn_primary'>Login</button>
                     </Link>
-                    <Link href="/AccountRegister">
+                    <a href={language === 'en' ? '/AccountRegister' : `/${language}/AccountRegister`} title="AccountRegister" >
                       <button className='btn btn_primary'>Register</button>
-                    </Link>
+                    </a>
                   </div>
 
                   <p>

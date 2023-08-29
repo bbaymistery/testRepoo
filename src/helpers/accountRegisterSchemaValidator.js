@@ -17,7 +17,6 @@ export function accountRegisterSchemaValidator(params = {}, options = {}) {
                 natureOfBusiness: "",
                 address: "",
                 registrationNo: "",
-                companyTel: "",
             },
             contactDetails: {
                 contactName: "",
@@ -37,13 +36,7 @@ export function accountRegisterSchemaValidator(params = {}, options = {}) {
     // Loop through each key in the accountRegisterDatas object
     for (let key in accountRegisterDatas) {
 
-        // Check if the key is "approximateSpend"
-        // if (key === "approximateSpend" && !accountRegisterDatas.approximateSpend) {
-        //     // If yes, set the error status to 400 and add a "required" message to the error holder
-        //     errorHolder.status = 400;
-        //     errorHolder.accountRegisterDatas.approximateSpend = "required";
-        // }
-
+     
         // Check if the key is "contactDetails"
         // else
         if (key === "contactDetails") {
@@ -72,17 +65,10 @@ export function accountRegisterSchemaValidator(params = {}, options = {}) {
             }
         } else if (key === "operationNotes") {
             for (let operationNoteKey in accountRegisterDatas.operationNotes) {
-                if (
-                    operationNoteKey === 'urgentSituationStatus' &&
-                    accountRegisterDatas.operationNotes.urgentSituationStatus === 'No' &&
-                    !accountRegisterDatas.operationNotes["urgentSituationNumber"]
-                ) {
+                if (operationNoteKey === 'urgentSituationStatus' && accountRegisterDatas.operationNotes.urgentSituationStatus === 'Yes' &&  !accountRegisterDatas.operationNotes["urgentSituationNumber"] ) {
                     errorHolder.status = 400;
                     errorHolder.accountRegisterDatas.operationNotes["urgentSituationNumber"] = "required";
-                } else if (
-                    operationNoteKey === 'urgentSituationStatus' &&
-                    accountRegisterDatas.operationNotes.urgentSituationStatus === 'Yes'
-                ) {
+                } else if ( operationNoteKey === 'urgentSituationStatus' &&accountRegisterDatas.operationNotes.urgentSituationStatus === 'No'  ) {
                     errorHolder.accountRegisterDatas.operationNotes["urgentSituationNumber"] = "";
                 }
 

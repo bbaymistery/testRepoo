@@ -23,7 +23,7 @@
         -webkit-box-flex: 1;
         flex-grow: 1;
         background-color: rgb(238, 238, 238);
-        background-image: url('/images/meetGreet/meetShowCase.jpg');
+        background-image: url('/images/meetGreet/meetShowCase.jfif');
         background-size: cover;
         background-repeat: no-repeat;
         padding-top: 100px;
@@ -314,6 +314,7 @@
                     -webkit-box-flex: 0;
                     flex-grow: 0;
                     max-width: 50%;
+
                     @media (max-width: 990px) {
                         flex-basis: 100%;
                         -webkit-box-flex: 0;
@@ -347,6 +348,8 @@
                             font-size: 1.1rem;
                             line-height: 1.75;
                             margin-bottom: 32px;
+                            font-weight: 500;
+                            color: black;
 
                             @media (max-width: 990px) {
                                 color: black;
@@ -382,7 +385,7 @@
 
     &_section {
         &_container {
-      
+
 
             .information_column {
                 display: flex;

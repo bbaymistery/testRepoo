@@ -59,17 +59,20 @@ const Footer = (props) => {
                   {appData.words["strPrivacyPolicy"]}
                 </a>
 
-                <a href={`${language === 'en' ? `/heathrow-vip-meet-and-assist` : `${language}/heathrow-vip-meet-and-assist`}`} title={appData.words["strPrivacyPolicy"]} tabIndex="-1" >
+                <a href={`${language === 'en' ? `/heathrow-porter-service` : `${language}/heathrow-porter-service`}`} tabIndex="-1" >
+                  Porter Service
+                </a>
+                <a href={`${language === 'en' ? `/heathrow-vip-meet-and-assist` : `${language}/heathrow-vip-meet-and-assist`}`} tabIndex="-1" >
                   Meet and assist
                 </a>
-                
+
               </ul>
 
             </div>
             <div className={styles.column}>
               <h3>Cruise Ports</h3>
               <ul className={styles.list_items}>
-              
+
                 {CruisePorts.map((airport, index) => {
                   let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals } = airport
 
@@ -125,7 +128,7 @@ const Footer = (props) => {
 
               <div className={styles.description}>
                 <p>WhatsApp</p>
-        
+
 
                 {direction === 'rtl' ?
                   <a target="_blank" href="https://wa.me/447387901028" style={{ flexDirection: "row-reverse", justifyContent: "flex-end", display: 'flex' }} tabIndex="-1">
@@ -136,7 +139,7 @@ const Footer = (props) => {
 
                     +44 73 8790 1028
                   </a>}
-                 </div>
+              </div>
             </div>
           </div>
 

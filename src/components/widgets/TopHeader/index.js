@@ -104,15 +104,16 @@ const Header = () => {
     //   });
     // }, 1000);
   }
-  const gotoHomePage = (index) => {
-    if (index === 0) {
-      if (language === 'en') {
-        router.push(`/`).then(() => { window.location.reload() });
-      } else {
-        router.push(`/${language}`).then(() => { window.location.reload() });
-      }
-    }
-  }
+  //!bu fonksyonu yazmayada bilersen Asagidaki degisdirildi yazilan yeri oxu A tagi icinde yazila biler
+  // const gotoHomePage = (index) => {
+  //   if (index === 0) {
+  //     if (language === 'en') {
+  //       router.push(`/`).then(() => { window.location.reload() });
+  //     } else {
+  //       router.push(`/${language}`).then(() => { window.location.reload() });
+  //     }
+  //   }
+  // }
   //for language dropdown
   const outsideClickDropDown = (e) => {
     languagesDivRef.current.style.opacity = 0
@@ -166,10 +167,11 @@ const Header = () => {
         <div className={styles.header_flex_div}>
           <div className={styles.left_items}>
             <div className={styles.left_items_flex_div}>
-              <p className={`${styles.logo_tag} cursor_pointer`} onClick={() => gotoHomePage(0)}>
+              <a href={language === 'en' ? '/' : `/${language}`} className={`${styles.logo_tag}`}  >
                 <Image src={logoImage} alt="Airport-pickups-london Logo" width={30} height={30} priority />
                 <span>Airport Pickups London</span>
-              </p>
+              </a>
+        
               <div className={styles.header_menu_content}>
                 <ul>
                   {navigator.map((item, index) => {
@@ -177,11 +179,17 @@ const Header = () => {
                     return (
                       // as={`${path==='/'?"/":""}`}
                       <li key={innerText} className={`${styles.li_item} ${type === "list" ? styles.has_children : ""}`}>
-                        <Link onClick={() => gotoHomePage(index)} tabIndex="-1" href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${!path.length ? styles.nocursor : ""}`}>
-                          <span>{innerText}</span>
-                          {/* <span>{index === 0 ? appData?.words[innerText] : innerText}</span> */}
-                          {type === "list" ? <i className="fa-solid fa-angle-down"></i> : ""}
-                        </Link>
+                        {index === 0 ?
+                          <a href={language === 'en' ? '/' : `/${language}`} tabIndex="-1" title={title} className={`${!path.length ? styles.nocursor : ""}`} >
+                            <span>{innerText}</span>
+                          </a>
+                          :
+                          <a tabIndex="-1" href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${!path.length ? styles.nocursor : ""}`}>
+                            <span>{innerText}</span>
+                            {type === "list" ? <i className="fa-solid fa-angle-down"></i> : ""}
+                          </a>
+                        }
+
                         {type === "list" ?
                           <ul className={styles.hoverUl}>
                             {list.map((item) => {
@@ -249,8 +257,8 @@ const Header = () => {
                 </div>
                 <span data-name="language" onClick={setOpenLanguageDropdown} className={styles.lang_text}>
                   {appData?.languages[langIndex]?.innerText}
-                  {router.asPath === "/drivers-wanted" || router.asPath ==="/fleet"? <></> : <i className="fa-solid fa-angle-down"></i>}
-                
+                  {router.asPath === "/drivers-wanted" || router.asPath === "/fleet" ? <></> : <i className="fa-solid fa-angle-down"></i>}
+
                 </span>
                 <OutsideClickAlert onOutsideClick={outsideClickDropDown}>
                   <div ref={languagesDivRef} className={styles.all_languages} style={{ opacity: "0", visibility: "hidden" }} >
@@ -274,7 +282,7 @@ const Header = () => {
 
             <div className={styles.buttons}>
               <div className={styles.whitebtn_div}>
-                <a href="/travelAgents" title="Travel Agents" >
+                <a href={language === 'en' ? '/travelAgents' : `/${language}/travelAgents`} title="Travel Agents" >
                   <button ref={ref} >{ripples} Travel Agents</button>
                 </a>
               </div>
