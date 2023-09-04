@@ -44,7 +44,7 @@ const AdressInformations = ({ direction,appData }) => {
                                             4402086887744
                                         </a>
                                         : <a tabIndex="-1" target="_blank" href="https://wa.me/447387901028">
-                                            +4402086887744
+                                            +44 73 8790 1028
                                         </a>
 
 

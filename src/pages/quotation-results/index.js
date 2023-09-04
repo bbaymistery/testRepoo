@@ -610,7 +610,7 @@ const QuotationResults = (props) => {
                             <ul>
                               <li className={styles.phone}>
                                 <img src="/images/tel.png" alt="Airport Pickups Support" />
-                                <a href="tel:+44 73 8790 1028">+44 73 8790 1028</a>
+                                <a href="tel:+442088687744">+44 (0) 208 688 7744</a>
                               </li>
                               <li className={styles.wp}>
                                 <img src="/images/WhatsApp.svg.png" alt="Airport Pickups Support" />
@@ -623,13 +623,7 @@ const QuotationResults = (props) => {
                                   <img border="0" alt="Airport Pickups" src="/images/mail.svg" />
                                 </span>
                                 <a href="mailto:info@aplcars.com" >info@aplcars.com</a>
-
                               </li>
-
-
-
-
-
                             </ul>
                           </div>
                           <div className={`${styles.left_info} ${styles.services}`} direction={String(direction === "rtl")} >
