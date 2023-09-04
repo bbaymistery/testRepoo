@@ -23,7 +23,8 @@ const LeftSidebarInformation = ({ direction, appData, showAllInclusive = true, s
                 <ul>
                     <li className={styles.phone}>
                         <img src="/images/tel.png" alt="Airport Pickups Support" />
-                        <a href="tel:+44 73 8790 1028">+44 73 8790 1028</a>
+                        <a href="tel:+442088687744">+44 (0) 208 688 7744</a>
+
                     </li>
                     <li className={styles.wp}>
                         <img src="/images/WhatsApp.svg.png" alt="Airport Pickups Support" />

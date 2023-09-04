@@ -194,7 +194,7 @@ const TourContentDetails = ({ data }) => {
                                     <div className={styles.price_btn_div}>
                                         <div className={styles.price_div}>
                                             From
-                                            <span >US$72</span>
+                                            <span >£72</span>
                                         </div>
 
                                         <button className="btn" onClick={handleButtonClick} >

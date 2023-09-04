@@ -23,7 +23,7 @@
         -webkit-box-flex: 1;
         flex-grow: 1;
         background-color: rgb(238, 238, 238);
-        background-image: url('/images/meetGreet/meetShowCase.jfif');
+        background-image: url('/images/meetGreet/meetShowCase2.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         padding-top: 100px;
@@ -335,6 +335,7 @@
                             line-height: 1.167;
                             text-transform: none !important;
                             font-family: cursive;
+                            padding-top: 23px;
 
                             @media (max-width: 990px) {
                                 font-size: 2rem;
