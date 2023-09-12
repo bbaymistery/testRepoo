@@ -83,27 +83,24 @@
 
                     .title_div {
                         display: flex;
-                        flex-direction: row-reverse;
-                        justify-content: space-between;
                         align-items: center;
 
                         @media (max-width:990px) {
                             flex-direction: column-reverse;
-                                    align-items: baseline;
+                            align-items: baseline;
                         }
 
                         .tripadvisor_container {
                             display: flex;
                             align-items: center;
                             justify-content: center;
-    @media (max-width:990px) {
-         display: none;
-      
-        }
-                            .advisor_review {
 
+                            @media (max-width:990px) {
+                                display: none;
 
                             }
+
+                            .advisor_review {}
 
                             .advisor_review:nth-child(1) {
                                 img {}
@@ -1065,6 +1062,100 @@
                         width: 100%;
                         object-fit: contain;
                         height: 112px;
+                    }
+                }
+            }
+        }
+    }
+
+    .advertisiment_images_section {
+
+        .advertisiment_images_section_container {
+            // padding-right: 0px;
+            padding-right: 0px;
+            margin-top: -20px;
+            padding-bottom: 30px;
+
+            .advertisiment_images {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .review_trip_advisor {
+                    width: 260px;
+
+                    img {
+                        width: 100%;
+                    }
+
+                }
+
+                .review_trustpilot {
+                    i {
+                        color: #ffca00;
+                        color: #fdcb0d;
+                    }
+
+                    a {
+                        .top {
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+
+                            i {
+                                color: #00b67a;
+                                font-size: 26px;
+                            }
+
+                            p {
+                                font-weight: bold;
+                                font-size: 22px;
+                            }
+                        }
+
+                        .center {
+                            display: flex;
+                            // gap: 5px;
+                            margin-top: 5px;
+                            margin-bottom: 5px;
+margin-left: 4px;
+                            span {
+                                // background-color: #00b67a;
+                                // width: 20px;
+                                // height: 20px;
+                                // padding: 5px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                border-radius: 5px;
+                                border: 1px solid $light-2;
+
+                                i {
+                                    // color: white !important;
+                                    font-size: 20px;
+                                }
+                            }
+
+                        }
+
+                        .bottom {
+p{
+        display: flex;
+            justify-content: flex-end;
+}
+                            p:nth-child(1) {
+                                font-size: 24px;
+                                letter-spacing: 3px;
+                                font-weight: bold;
+                           
+                            }
+
+                            p:nth-child(2) {
+                                font-size: 14px;
+                                display: flex;
+                                justify-content: flex-end;
+                            }
+                        }
                     }
                 }
             }

@@ -141,7 +141,6 @@ const Header = () => {
 
   }
   const handleClickNavLinkMobileMenuList = (params = {}) => {
-    console.log({ params });
 
     let { hasTaxiDeals = 'heathrow' } = params
     if (hasTaxiDeals) {
@@ -192,7 +191,7 @@ const Header = () => {
                       // as={`${path==='/'?"/":""}`}
                       <li key={innerText} className={`${styles.li_item} ${type === "list" ? styles.has_children : ""}`}>
                         {index === 0 ?
-                          <a href={language === 'en' ? '/' : `/${language}`} tabIndex="-1" title={title} className={`${!path.length ? styles.nocursor : ""}`} >
+                          <a onClick={gotoHomeFromLogoClick} href={language === 'en' ? '/' : `/${language}`} tabIndex="-1" title={title} className={`${!path.length ? styles.nocursor : ""}`} >
                             <span>{innerText}</span>
                           </a>
                           :

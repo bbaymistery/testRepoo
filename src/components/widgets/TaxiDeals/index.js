@@ -8,6 +8,7 @@ import styles from "./styles.module.scss"
 import TaxiDealViewContent from './TaxiDealViewContent'
 import useRipple from '../../../hooks/useRipple'
 import { useRef } from 'react'
+import { useRouter } from 'next/router'
 const tabsBttons = [
     {
         name: "Heathrow Taxi Deals",
@@ -54,13 +55,14 @@ const TaxiDeals = (props) => {
     const [dealsName, setdealsName] = useState(hasTaxiDeals)
     const refs = tabsBttons.map(() => useRef(null));
     const ripples = refs.map((ref) => useRipple(ref));
-
+    const router = useRouter();
 
     const fecthPoints = async (params = {}) => {
         let { language, dealsNameProp = hasTaxiDeals } = params
         let channelId = state.reservations[0].reservationDetails.channelId
         let url = `${env.apiDomain}/api/v1/taxi-deals/list?points=${dealsNameProp}&language=${language}&channelId=${channelId}`;
         let response = await fetch(url);
+
         let { data, status } = await response.json();
         if (status === 200) setTaxiPoints(data.destinations)
     }
@@ -84,21 +86,28 @@ const TaxiDeals = (props) => {
     }, [language, hasTaxiDeals,])
 
     useEffect(() => {
-        if (hasTaxiDeals === "heathrow") {
-            setTabs(0)
-        }
-        if (hasTaxiDeals === "gatwick") {
-            setTabs(1)
-        }
-        if (hasTaxiDeals === "stansted") {
-            setTabs(2)
-        }
-        
-        if (hasTaxiDeals === "luton") {
-            setTabs(3)
-        }
-        if (hasTaxiDeals === "city") {
-            setTabs(4)
+        // if (hasTaxiDeals === "heathrow") {
+        //     setTabs(0)
+        // }
+        // if (hasTaxiDeals === "gatwick") {
+        //     setTabs(1)
+        // }
+        // if (hasTaxiDeals === "stansted") {
+        //     setTabs(2)
+        // }
+
+        // if (hasTaxiDeals === "luton") {
+        //     setTabs(3)
+        // }
+        // if (hasTaxiDeals === "city") {
+        //     setTabs(4)
+        // // }
+        const validPaths = ["/", "/es", "/tr", "/zh", "/ru", "/it", "/ar"];
+        if (validPaths.includes(router.pathname)) {
+            const hasTaxiDeals = "heathrow";
+            localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals));
+            dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
+            fecthPoints({ dealsNameProp: hasTaxiDeals, language });
         }
 
     }, [])

@@ -161,7 +161,6 @@ const Hero = (props) => {
     let { islinknamecomponent = false, bggray = true } = props
     const router = useRouter()
     const dispatch = useDispatch()
-    const scriptRef = useRef(null);
     const state = useSelector(state => state.pickUpDropOffActions)
     let { reservations, params } = state
     let { sessionToken: reducerSessionToken, journeyType, direction, language, hasTaxiDeals } = params
@@ -302,27 +301,14 @@ const Hero = (props) => {
         // bu rendere sebeb olur
         dispatch({ type: "CHECHK_FLIGHT_WAITING_TIME", data: { journeyType } })
 
+        localStorage.setItem("hasTaxiDeals", JSON.stringify("heathrow"))
+        dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: "heathrow" } });
 
 
     }, [])
     const ref = useRef(null);
     const ripples = useRipple(ref);
-    // useEffect(() => {
-    //     if (islinknamecomponent) {
-    //         reviewsBadgeRibbon("badge-ribbon", {
-    //             store: "airport-pickups-london-com",
-    //             size: "small",
-    //             // add any additional options here
-    //             color: "#ff0000", // change the color to red
-    //             animation: "fadeIn", // change the animation to fade in
-    //             animationDelay: 1000, // add a delay of 1 second to the animation
-    //         });
 
-    //         // set the height of the container element to 50 pixels
-    //         const container = document.getElementById("badge-ribbon");
-    //         container.style.height = "50px";
-    //     }
-    // }, []);
 
 
 
@@ -337,29 +323,10 @@ const Hero = (props) => {
                             {/* islinkname burda idi  */}
                             {/* {true ? <div className={styles.badgeribbon} id="badge-ribbon"></div> : <></>} */}
 
-                            <div className={`${islinknamecomponent ? styles.title_div_islinnkname : styles.title_div}`}>
-
-                                {!islinknamecomponent ? <div className={styles.tripadvisor_container}>
-                                    <div className={styles.advisor_review}>
-                                        <div id="TA_cdsratingsonlywide554" className="TA_cdsratingsonlywide">
-                                            <ul id="zCXZKgXcUyvV" className="TA_links 9uWOT0A">
-                                                <li id="4Lb7EN38NzI6" className="xtBWRyrH">
-                                                    <a target="_blank" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html">
-                                                        <img style={{width:"190px"}} src="https://www.tripadvisor.co.uk/img/cdsi/img2/branding/tripadvisor_logo_transp_340x80-18034-2.png" alt="TripAdvisor" />
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <script src="https://www.jscache.com/wejs?wtype=cdsratingsonlywide&amp;uniq=554&amp;locationId=11966434&amp;lang=en_UK&amp;border=true&amp;backgroundColor=gray&amp;shadow=true&amp;display_version=2"  >
-                                        </script>
-
-                                    </div>
-                                </div>
-                                    : <></>}
-
+                            <div className={`${!islinknamecomponent ? styles.title_div_islinnkname : styles.title_div}`}>
                                 <h1 style={{ textTransform: "capitalize" }} className={`${styles.title} ${direction} `}>
                                     {islinknamecomponent ? <span>{`${hasTaxiDeals} Transfer Quotation`}</span> : <span>{appData?.words["searchEngineTitle"]}</span>}
-                                    {islinknamecomponent ?
+                                    {!islinknamecomponent ?
                                         <div className={styles.review_trip_advisor}>
                                             <a href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
                                                 <img src="/images/TripAdvisorBgWhite.png" alt="" />
@@ -570,12 +537,74 @@ const Hero = (props) => {
             </div>
 
             {islinknamecomponent ? <Features bggray={true} /> : <></>}
+            {islinknamecomponent ?
+                <div className={`${styles.advertisiment_images_section} page_section`}>
+                    <div className={`${styles.advertisiment_images_section_container} page_section_container`}>
+                        <div className={styles.advertisiment_images}>
+                            <div className={styles.review_trip_advisor}>
+                                <a href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
+                                    <img src="/images/TripAdvisorBgWhite.png" alt="" />
+                                </a>
+                            </div>
+
+                            <div className={styles.review_trustpilot}>
+                                <a href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
+                                    <div className={styles.top}>
+                                        <i class="fa-solid fa-star"></i>
+                                        <p>Trustpilot</p>
+                                    </div>
+                                    <div className={styles.center}>
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+
+                                            {/* <i class="fa-solid fa-star-half-stroke"></i> */}
+                                            {/* <i class="fa-solid fa-star-half"></i> */}
+                                        </span>
+                                    </div>
+                                    <div className={styles.bottom}>
+                                        <p>Excellent</p>
+                                        <p>Reviews 4,317</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                : <></>}
         </div>
     )
 }
 
 export default Hero
+// useEffect(() => {
+//     if (islinknamecomponent) {
+//         reviewsBadgeRibbon("badge-ribbon", {
+//             store: "airport-pickups-london-com",
+//             size: "small",
+//             // add any additional options here
+//             color: "#ff0000", // change the color to red
+//             animation: "fadeIn", // change the animation to fade in
+//             animationDelay: 1000, // add a delay of 1 second to the animation
+//         });
+// const scriptRef = useRef(null);
 
+//         // set the height of the container element to 50 pixels
+//         const container = document.getElementById("badge-ribbon");
+//         container.style.height = "50px";
+//     }
+// }, []);
 // <Script
 //                                                 src="https://www.jscache.com/wejs?wtype=cdsratingsonlywide&amp;uniq=554&amp;locationId=11966434&amp;lang=en_UK&amp;border=false&amp;shadow=false&amp;display_version=2"
 //                                                 strategy='beforeInteractive'
@@ -590,7 +619,23 @@ export default Hero
 //                                             />
 
 /*
+       !islinknamecomponent ? <div className={styles.tripadvisor_container}>
+                                    <div className={styles.advisor_review}>
+                                        <div id="TA_cdsratingsonlywide554" className="TA_cdsratingsonlywide">
+                                            <ul id="zCXZKgXcUyvV" className="TA_links 9uWOT0A">
+                                                <li id="4Lb7EN38NzI6" className="xtBWRyrH">
+                                                    <a target="_blank" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html">
+                                                        <img style={{width:"190px"}} src="https://www.tripadvisor.co.uk/img/cdsi/img2/branding/tripadvisor_logo_transp_340x80-18034-2.png" alt="TripAdvisor" />
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <script src="https://www.jscache.com/wejs?wtype=cdsratingsonlywide&amp;uniq=554&amp;locationId=11966434&amp;lang=en_UK&amp;border=true&amp;backgroundColor=gray&amp;shadow=true&amp;display_version=2"  >
+                                        </script>
 
+                                    </div>
+                                </div>
+                                    : <></>
      {!islinknamecomponent ?
                                     <div className={styles.tripadvisor_container}>
                                         <div className={styles.advisor_review}>
