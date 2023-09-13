@@ -14,21 +14,10 @@ import Recaptcha from '../../components/elements/Recaptcha'
 import Loading from '../../components/elements/alert/Loading'
 
 
-
-//
-//
-//
-//
-//
-//
-//strAppNoteOneForAddAccountForm
-//strAppNoteTwoAddAccountForm
-//strNext
-
 let description = "Airport Pickups London agency registration form"
 let title = "APPLICATION FOR CREDIT ACCOUNT"
 let keywords = ""
-//!FAX ELIMINATED
+
 const AccountRegister = (props) => {
     let { bggray } = props
     const router = useRouter()
@@ -228,7 +217,6 @@ const AccountRegister = (props) => {
                                                 className={`phone_input ${direction === "rtl" ? "phone_input_direction" : ""}`}
                                                 value={telephoneNo}
                                                 onChange={(value, selectedCountry) => handleOnChangeNumberInput({ value, selectedCountry, name: "telephoneNo" })}
-
                                                 country={"gb"}
                                                 inputProps={{
                                                     name: 'telephoneNo',

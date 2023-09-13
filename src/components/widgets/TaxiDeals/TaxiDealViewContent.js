@@ -12,7 +12,6 @@ const taxiDealsValidLocations = (dealsName) => {
     dealsName = dealsName.charAt(0).toUpperCase() + dealsName.slice(1);
     if (dealsName === 'City') dealsName = 'City Airport'
     //we r destcructing to taxi trasnfer
-    console.log({ dealsName },);
     return [
         `${dealsName} to Oxford taxi`,
         `${dealsName} to Birmingham taxi`,
@@ -29,7 +28,6 @@ const taxiDealsValidLocations = (dealsName) => {
 const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
     const { appData } = useSelector(state => state.initialReducer)
 
-    console.log(dealsName);
 
     function filterDatas(datas) {
 

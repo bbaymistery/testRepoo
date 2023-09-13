@@ -52,7 +52,6 @@ const TaxiDeals = (props) => {
 
     const [tabs, setTabs] = useState(0)
     const [taxiPoints, setTaxiPoints] = useState([])
-    const [dealsName, setdealsName] = useState(hasTaxiDeals)
     const refs = tabsBttons.map(() => useRef(null));
     const ripples = refs.map((ref) => useRipple(ref));
     const router = useRouter();
@@ -62,11 +61,6 @@ const TaxiDeals = (props) => {
         let channelId = state.reservations[0].reservationDetails.channelId
         let url = `${env.apiDomain}/api/v1/taxi-deals/list?points=${dealsNameProp}&language=${language}&channelId=${channelId}`;
         let response = await fetch(url);
-        console.log(dealsNameProp)
-            ;
-        console.log(response);
-
-
         let { data, status } = await response.json();
         if (status === 200) {
             setTaxiPoints(data.destinations)
@@ -75,7 +69,7 @@ const TaxiDeals = (props) => {
     const tabsHandler = async (params = {}) => {
         let { index, dealsNameProp } = params
         setTabs(index)
-        setdealsName(dealsNameProp)
+    
         fecthPoints({ dealsNameProp, language })
         dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: dealsNameProp } });
         localStorage.setItem("hasTaxiDeals", JSON.stringify(dealsNameProp));
@@ -125,7 +119,7 @@ const TaxiDeals = (props) => {
         <>
             {
                 <div className={`${styles.taxideals} ${direction} ${islinknamecomponent ? styles.islinkname : ""} page `} bggray={String(bggray)} >
-                    {pointsModalStatus && <PointsModal points={taxiPoints} title={`${dealsName} Transfer Deals`} />}
+                    {pointsModalStatus && <PointsModal points={taxiPoints} title={`${hasTaxiDeals} Transfer Deals`} />}
                     <div className={`${styles.taxideals_section} page_section`}>
                         <div className={`${styles.taxideals_section_container} page_section_container`}>
 

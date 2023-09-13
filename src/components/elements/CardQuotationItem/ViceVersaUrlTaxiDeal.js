@@ -1,5 +1,4 @@
 import React from 'react'
-import { swapArray } from '../../../helpers/swapArray'
 import styles from "./styles.module.scss"
 const ViceVersaUrlTaxiDeal = ({ previousUrl, returnPageTitle ,returnHeadTitle ,returnPathname }) => {
 
