@@ -16,13 +16,13 @@ export default function Home() {
         const res = await fetch('/api/getCountry');
         const data = await res.json();
         console.log(data);
+        console.log(`  Country code is: ${data.country}`);
 
-        setCountryCode(data.country);
       } catch (error) {
         console.error("Failed to fetch the country:", error);
       }
     };
-  
+
 
     fetchCountry();
   }, []);
@@ -30,7 +30,6 @@ export default function Home() {
     <GlobalLayout footerbggray={true}>
       <Hero />
       <div>
-        Country code is: {countryCode}
       </div>
       <TaxiDeals />
       <CarsSlider bggray={true} />
