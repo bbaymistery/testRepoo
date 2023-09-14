@@ -1055,7 +1055,11 @@
             margin-top: -20px;
             padding-bottom: 30px;
 
-                            @media (max-width:424px) {
+            @media (max-width:653px) {
+                padding-bottom: 0px;
+            }
+
+            @media (max-width:424px) {
                 padding-left: 0px;
             }
 
@@ -1081,13 +1085,27 @@
                     @media (max-width:424px) {
                         width: 275px;
                     }
-   @media (max-width:360px) {
-       width: 245px;
-   }
+
+                    @media (max-width:360px) {}
+
                     img {
                         width: 100%;
                     }
 
+                }
+
+                .review_trip_advisor:nth-child(2) {
+                    @media (max-width:653px) {
+                        margin-right: 20px;
+
+                    }
+                }
+
+                .review_trip_advisor:nth-child(3) {
+                    @media (max-width:653px) {
+                        margin-right: 20px;
+                        margin-top: -30px;
+                    }
                 }
 
                 .review_trip_advisor:nth-child(1) {
@@ -1100,6 +1118,13 @@
                     @media (max-width:672px) {
                         order: 1;
                         margin-left: 40px;
+
+                    }
+
+                    @media (max-width:653px) {
+                        margin-left: 20px;
+                        margin-top: -30px;
+
 
                     }
                 }
