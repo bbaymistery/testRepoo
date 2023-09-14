@@ -10,13 +10,32 @@ import { createWrapper } from "next-redux-wrapper";
 export default function Home(props) {
   // console.log(`IP Address: ${props.ip}`);
   // console.log(`Country: ${props.country}`);
+  const [address, setAddress] = useState(null);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+
+    async function showPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      // Use the latitude and longitude to fetch the address
+      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+      const data = await response.json();
+      console.log(data);
+
+      setAddress(data.address);
+    }
+  }, []);
 
 
   return (
     <GlobalLayout footerbggray={true}>
       <Hero />
-      <div>
-      </div>
+      {`Country is : ${address?.country_code} `}
+
       <TaxiDeals />
       <CarsSlider bggray={true} />
       <Tours insideGlobalLayout={false} />
