@@ -42,14 +42,13 @@ export default function Home(props) {
   console.log(`Country is : ${countryCode} `);
 
   return (
-    <GlobalLayout footerbggray={true}>
+    <GlobalLayout footerbggray={false}>
       <Hero />
 
-      <br />
       <TaxiDeals />
       <CarsSlider bggray={true} />
       <Tours insideGlobalLayout={false} />
-
+      <Testimonials bggray={true} />
     </GlobalLayout>
   )
 }
