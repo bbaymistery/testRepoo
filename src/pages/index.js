@@ -4,7 +4,6 @@ import CarsSlider from "../components/widgets/CarsSlider";
 import TaxiDeals from "../components/widgets/TaxiDeals";
 import Tours from "./tours";
 import { useEffect, useState } from "react";
-import { createWrapper } from "next-redux-wrapper";
 import Testimonials from "../components/widgets/Testimonials";
 // import geoip from 'geoip-lite';
 
@@ -23,6 +22,7 @@ export default function Home(props) {
       // Use the latitude and longitude to fetch the countryCode
       const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
       const data = await response.json();
+console.log(data);
 
       setCountryCode(data.address.country_code);
     }
