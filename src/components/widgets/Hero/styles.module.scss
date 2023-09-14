@@ -976,27 +976,6 @@
                     }
                 }
 
-                //   .tripadvisor_container {
-                //       display: flex;
-                //       height: 70px;
-                //       margin-top: 2rem;
-
-                //       .advisor_review {
-                //           padding: 10px;
-
-
-                //       }
-
-                //       .advisor_review:nth-child(1) {
-                //           img {}
-                //       }
-
-                //       .advisor_review:nth-child(2) {
-                //           img {
-                //               width: 80px;
-                //           }
-                //       }
-                //   }
             }
 
             .linkname {
@@ -1076,14 +1055,35 @@
             margin-top: -20px;
             padding-bottom: 30px;
 
+                            @media (max-width:424px) {
+                padding-left: 0px;
+            }
+
             .advertisiment_images {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
 
+                @media (max-width:767px) {
+                    flex-wrap: wrap;
+                    margin-top: 2rem;
+                    align-items: center;
+                    justify-content: center;
+                }
+
                 .review_trip_advisor {
                     width: 330px;
 
+                    @media (max-width:767px) {
+                        width: 300px;
+                    }
+
+                    @media (max-width:424px) {
+                        width: 275px;
+                    }
+   @media (max-width:360px) {
+       width: 245px;
+   }
                     img {
                         width: 100%;
                     }
@@ -1092,78 +1092,18 @@
 
                 .review_trip_advisor:nth-child(1) {
                     margin-left: 18px;
-                }
 
-                .review_trustpilot {
-                    i {
-                        color: #ffca00;
-                        color: #fdcb0d;
+                    @media (max-width:767px) {
+                        margin-left: 0px;
                     }
 
-                    a {
-                        .top {
-                            display: flex;
-                            align-items: center;
-                            gap: 5px;
+                    @media (max-width:672px) {
+                        order: 1;
+                        margin-left: 40px;
 
-                            i {
-                                color: #00b67a;
-                                font-size: 26px;
-                            }
-
-                            p {
-                                font-weight: bold;
-                                font-size: 22px;
-                            }
-                        }
-
-                        .center {
-                            display: flex;
-                            // gap: 5px;
-                            margin-top: 5px;
-                            margin-bottom: 5px;
-                            margin-left: 4px;
-
-                            span {
-                                // background-color: #00b67a;
-                                // width: 20px;
-                                // height: 20px;
-                                // padding: 5px;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                border-radius: 5px;
-                                border: 1px solid $light-2;
-
-                                i {
-                                    // color: white !important;
-                                    font-size: 20px;
-                                }
-                            }
-
-                        }
-
-                        .bottom {
-                            p {
-                                display: flex;
-                                justify-content: flex-end;
-                            }
-
-                            p:nth-child(1) {
-                                font-size: 24px;
-                                letter-spacing: 3px;
-                                font-weight: bold;
-
-                            }
-
-                            p:nth-child(2) {
-                                font-size: 14px;
-                                display: flex;
-                                justify-content: flex-end;
-                            }
-                        }
                     }
                 }
+
             }
         }
     }

@@ -544,51 +544,17 @@ const Hero = (props) => {
                                 <a href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
                                     <img src="/images/advisorTrip.png" alt="" />
                                 </a>
-
-
                             </div>
 
-                            {/* <div className={styles.review_trustpilot}>
-                                <a href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
-                                    <div className={styles.top}>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>Trustpilot</p>
-                                    </div>
-                                    <div className={styles.center}>
-                                        <span>
-                                            <i class="fa-solid fa-star"></i>
-                                        </span>
-                                        <span>
-                                            <i class="fa-solid fa-star"></i>
-                                        </span>
-                                        <span>
-                                            <i class="fa-solid fa-star"></i>
-                                        </span>
-                                        <span>
-                                            <i class="fa-solid fa-star"></i>
-                                        </span>
-                                        <span>
-                                            <i class="fa-solid fa-star"></i>
-
-                                            <i class="fa-solid fa-star-half-stroke"></i>
-                                            <i class="fa-solid fa-star-half"></i>
-                                        </span>
-                                    </div>
-                                    <div className={styles.bottom}>
-                                        <p>Excellent</p>
-                                        <p>Reviews 4,317</p>
-                                    </div>
-                                </a>
-                            </div> */}
+                      
                             <div className={styles.review_trip_advisor}> 
-                                <a href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
+                                <a href="https://www.trustpilot.com/review/airport-pickups-london.com" target={"_blank"} >
                                     <img src="/images/Excellent.png" alt="" />
                                 </a>
-                           
                             </div>
 
                             <div className={styles.review_trip_advisor}>
-                                <a href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
+                                <a href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} >
                                     <img src="/images/Reviews.png" alt="" />
                                 </a>
 
