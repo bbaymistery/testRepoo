@@ -1,0 +1,75 @@
+@import '../../../styles/variables';
+@import '../../../styles/_fonts';
+
+.testimonials[bggray="true"] {
+    background-color: $light-2 !important;
+}
+
+.testimonials[bggray="false"] {
+    background-color: white !important;
+}
+
+.testimonials {
+    height: 100%;
+    position: relative;
+    padding-top: 4rem;
+    margin-top: 0px !important;
+    border-bottom: 1px solid $border;
+
+
+
+    &_section {
+
+        &_container {
+            .title {
+                text-align: center;
+
+                h1 {
+                    font-size: 30px;
+                    font-weight: 500;
+                }
+
+                p {
+                    color: $light-1;
+                    margin-top: 10px;
+                }
+
+                margin-bottom: 2rem;
+            }
+
+            p {
+
+                // max-width: 850px;
+                .bold_span {
+                    font-weight: bold;
+
+                }
+
+                .font_500 {
+                    font-weight: 500;
+                }
+
+                a {
+                    color: $blue-1;
+                }
+            }
+
+            h1 {
+                font-size: 30px;
+                font-weight: 500;
+                margin-bottom: 16px;
+            }
+h2{
+                margin-bottom: 13px;
+                font-weight: 500;
+}
+            ul {
+                li {
+                    list-style: disc;
+                    margin-left: 40px;
+                }
+            }
+
+        }
+    }
+}
