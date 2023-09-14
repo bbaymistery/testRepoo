@@ -53,7 +53,7 @@ const NavbarLinkName = (props) => {
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={false}>
             <Hero islinknamecomponent={true} bggray={false} />
             <TaxiDeals showTabs={false} bggray={false} islinknamecomponent={true} />
-            <CarsSlider bggray={false} />
+            <CarsSlider bggray={true} />
             {/* <LinkNameDescription /> */}
         </GlobalLayout>
     )

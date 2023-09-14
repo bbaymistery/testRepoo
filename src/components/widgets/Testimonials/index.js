@@ -12,67 +12,73 @@ const Testimonials = (props) => {
         <div className={`${styles.testimonials} ${direction} page`} bggray={String(bggray)}>
             <div className={`${styles.testimonials_section} page_section`}>
                 <div className={`${styles.testimonials_section_container} page_section_container`}>
-
+                    <h1>Reliable & Comfortable London Airport Transfers with APL Cars</h1>
                     <p>
                         <span title='Airport Pickups London (APL Cars)' className={styles.bold_span}>Airport Pickups London (APL Cars) </span>
                         is a premier provider of London airport transfers and shuttle services.
-                        <br /> Renowned for our reliability and comfort, we're committed to delivering
+                        {/* <br />  */}
+                        Renowned for our reliability and comfort, we're committed to delivering
                         exceptional service and value for money.
                     </p>
                     <br />
                     <p>
                         Every day, hundreds of international customers trust us for their London
                         airport transfer needs.
-                        <br />Our user-friendly website facilitates hassle-free
+                        {/* <br /> */}
+                        Our user-friendly website facilitates hassle-free
                         bookings for essential transfers to and from Gatwick, Heathrow, Stansted, Luton,
                         and City airports.
-                        <br />
+                        {/* <br /> */}
                         Whether you're arriving in London or departing to one of its major airports,
                         get in touch for a comprehensive and competitive quote.
-                        <br />
+                        {/* <br /> */}
                         We proudly serve all major UK cities and destinations.
                     </p>
                     <br />
                     <p>
                         Serving all major London airports, <span title='Airport Pickups London ' className={styles.bold_span}>Airport Pickups London</span> offers an affordable and efficient solution for your travel needs.
-                        <br />
+                        {/* <br /> */}
                         Popular routes include transfers to and from Gatwick, Heathrow, Luton, Stansted, and City Airports.
                     </p>
                     <br />
                     <h1>Why Book With Airport Pickups London?</h1>
                     <p>
                         Choose <span title='Airport Pickups London' className={styles.font_500}>APL</span> for the optimal way to travel between Heathrow, Gatwick, and Stansted airports and the heart of London.
-                        <br />
+                        {/* <br /> */}
                         Our long list of satisfied customers and high rate of repeat bookings speak volumes about our commitment to excellence.
-                        <br />
+                        {/* <br /> */}
                         We strive to not only meet but surpass your expectations.
-                        <br /> From your initial interaction with us, either online or through our dedicated call centre, you'll realize that your transfer needs are in expert hands.
+                        {/* <br />  */}
+                        From your initial interaction with us, either online or through our dedicated call centre, you'll realize that your transfer needs are in expert hands.
                     </p>
                     <br />
                     <p>
                         Should you have any queries about your London airport chauffeur service or prefer a more personal touch, our call centre operates 24/7.
-                        <br />
+                        {/* <br /> */}
                         Reach us at <span className={styles.font_500}>+44 (0)208 688 7744.</span>
                     </p>
                     <br />
                     <h2>Our Fleet</h2>
                     <p>
                         We predominantly use new and prestigious car models. Your comfort and safety are of utmost importance.
-                        <br />Experience luxury and peace of mind with our top-of-the-line vehicles for all your London airport chauffeur needs.
+                        {/* <br /> */}
+                        Experience luxury and peace of mind with our top-of-the-line vehicles for all your London airport chauffeur needs.
                     </p>
                     <br />
 
                     <h2>Our Drivers</h2>
                     <p>
                         Our drivers are fully licensed and highly skilled. Their impeccable navigation skills are matched by their politeness and courtesy.
-                        <br /> Rest assured, your London airport pickup or drop-off is managed by the best in the business.
+                        {/* <br /> */}
+                        Rest assured, your London airport pickup or drop-off is managed by the best in the business.
                     </p>
                     <br />
 
                     <h2>Comprehensive London Airport Travel Quotes – No Hidden Extras</h2>
                     <p>
                         With <span title='Airport Pickups London' className={styles.bold_span}>Airport Pickups London</span>, transparency is a hallmark. When we provide a taxi or limo quote, the price quoted is the final amount – no hidden fees.
-                        <br />Our premium chauffeur services from Heathrow to London start at a competitive rate of £39.
+                        {/* <br /> */}
+                        Our premium chauffeur services from Heathrow to London start at a competitive rate of £39.
                     </p>
 
                     <br />
@@ -89,7 +95,7 @@ const Testimonials = (props) => {
                     <h2>Secure Payment</h2>
                     <p>
                         <span className={styles.font_500}>APL</span> Cars' online booking platform operates round-the-clock for your convenience.
-                        <br />
+                        {/* <br /> */}
                         Our system is fortified with 256 Bit SSL, ensuring utmost financial security and confidentiality.
                     </p>
 
@@ -97,15 +103,17 @@ const Testimonials = (props) => {
                     <h2>Airport to Airport Transfers</h2>
                     <p>
                         Recognizing London's status as one of Europe's major transport hubs, we prioritize punctuality.
-                        <br /> Our vehicles are equipped with advanced satellite navigation systems, and our drivers are adept at finding the quickest routes between the major airports.
-                        <br />Count on us for timely transfers, be it from Heathrow to Gatwick or vice versa.
+                        {/* <br />  */}
+                        Our vehicles are equipped with advanced satellite navigation systems, and our drivers are adept at finding the quickest routes between the major airports.
+                        {/* <br /> */}
+                        Count on us for timely transfers, be it from Heathrow to Gatwick or vice versa.
                     </p>
 
                     <br />
                     <h2>London Airport to Cruise Port Private Transfers</h2>
                     <p>
                         In addition to specializing in London airport transfers, we're delighted to cater to major UK cruise ports.
-                        <br />
+                        {/* <br /> */}
                         If you need transportation between a London airport and cruise ports such as Dover, Southampton, or Portsmouth, reach out for a competitive quote or book online.
                     </p>
 
@@ -123,9 +131,11 @@ const Testimonials = (props) => {
                     <br />
                     <h2>Airport Pickups’ Business Accounts</h2>
                     <p>
-                        Interested in a corporate account?<br />
-                         Centralize all your London airport transfers on one streamlined platform; generate invoices, get priority bookings, and manage multiple reservations.
-                        <br /> Setting up a corporate account with <span title='Airport Pickups London' className={styles.bold_span}>Airport Pickups London</span>  is a breeze. <a href="/AccountRegister" target='_blank'> Learn more here.</a>
+                        Interested in a corporate account?
+                        {/* <br /> */}
+                        Centralize all your London airport transfers on one streamlined platform; generate invoices, get priority bookings, and manage multiple reservations.
+                        {/* <br />  */}
+                        Setting up a corporate account with <span title='Airport Pickups London' className={styles.bold_span}>Airport Pickups London</span>  is a breeze. <a href="/AccountRegister" target='_blank'> Learn more here.</a>
                     </p>
                 </div>
             </div>
