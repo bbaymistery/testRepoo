@@ -3,8 +3,8 @@ import styles from "./styles.module.scss"
 const ShowcaseRight = () => {
     return (
         <div className={styles.right}>
-            <div className={styles.right_content}>
-                <h1>Greeted with a Friendly Face</h1>
+            {/* <div className={styles.right_content}> */}
+                {/* <h1>Greeted with a Friendly Face</h1>
                 <p >
                     If you’re arriving at Heathrow we
                     can be there to ensure your onward journey
@@ -17,8 +17,8 @@ const ShowcaseRight = () => {
                 </p>
                 <div>
                     <a href='/contact-us' className='btn '>Get In Touch</a>
-                </div>
-            </div>
+                </div> */}
+            {/* </div> */}
         </div>
     )
 }
