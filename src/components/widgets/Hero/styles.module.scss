@@ -1046,7 +1046,13 @@
             }
         }
     }
-
+.advertisiment_images_section_islinkname{
+    .advertisiment_images_section_container {
+      .advertisiment_images{
+        margin-top: 3rem;
+      }
+    }
+}
     .advertisiment_images_section {
 
         .advertisiment_images_section_container {
@@ -1134,35 +1140,7 @@
         }
     }
 
-    .review_images_section {
-        .review_images_section_container {
-            .review_images {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                .review_trip_advisor {
-                    width: 330px;
-                    margin-top: 0rem;
-
-                    @media (max-width:767px) {
-                        width: 300px;
-                    }
-
-                    @media (max-width:424px) {
-                        width: 275px;
-                    }
-
-                    @media (max-width:360px) {}
-
-                    img {
-                        width: 100%;
-                    }
-
-                }
-            }
-        }
-    }
+  
 
     .hero_svg {
         position: absolute;
