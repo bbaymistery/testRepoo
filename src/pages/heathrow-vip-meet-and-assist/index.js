@@ -24,9 +24,9 @@ const HeathrowVipMeet = (props) => {
     let { params: { direction } } = state
 
     const meetAndGreetState = useSelector(state => state.meetAndGreetActions)
-    let { seatLists, meetgreetDate, meetgreetActiveBtn, selectedService, terminalName,seatListPrice } = meetAndGreetState
+    let { seatLists, meetgreetDate, meetgreetActiveBtn, selectedService, terminalName, seatListPrice } = meetAndGreetState
 
-    const router=useRouter()
+    const router = useRouter()
     const dispatch = useDispatch()
 
     //buttons
@@ -41,9 +41,9 @@ const HeathrowVipMeet = (props) => {
 
 
     const IsDropdownTextSelectionValid = () => dropdownLabels.slice(1).includes(terminalName)
-    const handleBookNow = () =>{
-       if (IsDropdownTextSelectionValid()){
-           router.push("/meetgreet")
+    const handleBookNow = () => {
+        if (IsDropdownTextSelectionValid()) {
+            router.push("/meetgreet")
         }
     }
 
@@ -108,8 +108,9 @@ const HeathrowVipMeet = (props) => {
 
 
                                     <div className={styles.needhelp_text}>
-                                        Need Help Booking?
-                                        <a href="tel:+442071481900" >Click to call +442071481900</a>
+                                        {/* Need Help Booking? */}
+                                        
+                                        <a href="tel:+442086887744" >Click to call +4402086887744</a>
                                     </div>
                                 </div>
                             </div>
@@ -127,28 +128,21 @@ const HeathrowVipMeet = (props) => {
                             </div>
                             <div className={styles.right_content}>
                                 <div className={`${styles.vipmeet_header}`}>
-                                    <h1>Welcome to our Heathrow VIP Meet  page!</h1>
+                                    <h1>Start Your Journey with a Smile."Meet, Greet, and Fly with Ease."</h1>
                                     <p>For bookings and information please email us at   <a style={{ fontWeight: "500" }} href="mailto: info@aplcars.com"> info@aplcars.com</a>
                                     </p>
                                 </div>
                                 &nbsp;
                                 <div className={`${styles.vipmeet_footer}`}>
 
-                                    <h2>Heathrow VIP Meet & Assist Services</h2>
+                                    <h2>Heathrow's Premier Personal Assistance Service</h2>
                                     <ul className={styles.img_flex_ul}>
                                         <li >
-                                            Our VIP meet and assist service starts from your
-                                            airplane door, this is where you will be greeted
-                                            and assisted through passport control (fast-track immigration, based on availability)
-                                            and the VIP lounges. Our assistant will contact your driver in due course and by
-                                            the time you have gone to the arrivals hall, your driver will greet you there.
-                                            The cost of service is only £170.00. (for 2 passengers, for groups over
-                                            Over 2 passengers there will be an additional charge £50 per passenger))
-                                            to give you extra comfort we can also arrange assistants to travel with you to your hotel
-                                            or residential address, , the price of this service will be £295.00
+                                            Navigating a bustling international airport like Heathrow can be overwhelming,
+                                            especially after a long flight. Whether you're a seasoned traveler or on your first
+                                            international journey, our Heathrow Meet and Assist service ensures a seamless and stress-free experience.
                                             <br />
 
-                                            For bookings and information please email us at  <a style={{ fontWeight: "500" }} href="mailto: info@aplcars.com"> info@aplcars.com</a>
 
                                         </li>
 
@@ -159,15 +153,13 @@ const HeathrowVipMeet = (props) => {
                                     </ul>
 
                                     <br />
-                                    <h2>Arrival Experience includes</h2>
+                                    <h2>From the Airplane Door to Beyond</h2>
                                     <ul className={styles.img_flex_ul}>
                                         <li>
-                                            <ul>
-                                                <li>You will be meet by a Concierge Agent from the aircraft gate</li>
-                                                <li>Assistance provided for any visas or landing card requirements (Fast track passport</li>
-                                                <li>Expedited through immigration and customs process (where relevant)</li>
-                                                <li>Baggage porter can be pre-arranged if required to collect and transfer out to your final method of transport</li>
-                                            </ul>
+                                            Our dedicated agents will be waiting
+                                            for you as soon as you step off the plane.
+                                            With a friendly smile and an in-depth knowledge
+                                            of Heathrow's layout and procedures, we'll ensure you feel taken care of from the moment you land.
                                         </li>
 
                                         <li>
@@ -176,20 +168,17 @@ const HeathrowVipMeet = (props) => {
                                         </li>
                                     </ul>
                                     <br />
-                                    <h2>Departure Experience includes</h2>
+                                    <h2>Swift Passport Control</h2>
 
                                     <ul className={styles.img_flex_ul}>
                                         <li>
-                                            <ul className={styles.li_circle_ul}>
-                                                <li className={styles.li_circle}>Met by a Concierge Agent on arrival at the airport (liaise with chauffeur or another mode of transport)</li>
-                                                <li className={styles.li_circle}>Pre-booked porters, if required, to collect luggage and transfer to check-in</li>
-                                                <li className={styles.li_circle}>Escort to check in and assist</li>
-                                                <li className={styles.li_circle}>Expedited through all check-in and security processes where available</li>
-                                            </ul>
+                                            Avoid the long queues and uncertainty at Passport Control.
+                                            With our Meet and Assist service, our agents will guide you through a
+                                            streamlined process, making sure all your documentation is in order and assisting with any questions or concerns.
                                         </li>
 
                                         <li>
-                                            <img src="/images/meetGreet/departureExperience.jpg" alt="" />
+                                            <img src="/images/meetGreet/swiftControl.jpg" alt="" />
 
                                         </li>
                                     </ul>
@@ -197,24 +186,43 @@ const HeathrowVipMeet = (props) => {
 
 
                                     <br />
-                                    <h2>Connecting / Transit VIP services</h2>
+                                    <h2>
+                                        Hassle-Free Baggage Claim
+                                    </h2>
+                                    <ul className={styles.img_flex_ul}>
+                                        <li>
+                                            No more waiting around or searching for your luggage. Our team will assist you at the baggage claim area, ensuring that you retrieve all your belongings quickly and efficiently.
+                                        </li>
+
+                                        <li>
+                                          
+
+                                        </li>
+                                    </ul>
+                                    <br />
+                                    <br />
+                                    <h2>Why Choose Our Meet and Assist Service?</h2>
                                     <ul className={styles.img_flex_ul}>
                                         <li>
                                             <ul className={styles.li_circle_ul}>
-                                                <li className={styles.li_circle}>Meet at the arriving aircraft (or as close and possible if the aircraft is on a remote stand and passengers are coached to the terminal)</li>
-                                                <li className={styles.li_circle}>If the luggage is checked through, escort through the flight connections security point and to airline desks if required. Escort to VIP lounge if applicable and final boarding gate</li>
-                                                <li className={styles.li_circle}>If the luggage is not checked through, take it through immigration to baggage reclaim and then use surface transport/walkways to connecting terminals for re-checking of passenger</li>
+                                                <li className={styles.li_circle}>Personalized Service: Our agents are trained to cater to your specific needs, ensuring a tailor-made experience every time.</li>
+                                                <li className={styles.li_circle}>Time-Saving: Navigate the airport quickly and efficiently, maximizing your time for what truly matters.</li>
+                                                <li className={styles.li_circle}>Peace of Mind: Travel can be stressful. Let us handle the complexities of the airport while you relax and enjoy the journey.</li>
                                                 <li className={styles.li_circle}>Take them to the VIP lounge if they have a booking (time permitting) and then escort them to the aircraft of the connecting flight.</li>
+                                                <br />
+                                                Join the hundreds of travelers who start their journey with a smile, knowing they're in capable hands. Choose Heathrow Meet and Assist for a smoother, more enjoyable travel experience.
                                             </ul>
                                         </li>
 
+                                        <li>
 
+                                        </li>
                                     </ul>
 
                                     <br />
                                     <h2>Porter Service</h2>
                                     <ul>
-                                        <li>Our porter service price is £65.00 inclusive of all taxes.  For more information please visit our <a style={{ fontWeight: "500" }} href="/heathrow-porter-service">Porter page</a></li>
+                                        <li>For porter service please visit our  <a style={{ fontWeight: "500" }} href="/heathrow-porter-service">Porter page</a></li>
                                     </ul>
                                 </div>
                             </div>
