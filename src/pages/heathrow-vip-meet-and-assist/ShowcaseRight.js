@@ -4,8 +4,8 @@ const ShowcaseRight = () => {
     return (
         <div className={styles.right}>
             <div className={styles.right_content}>
-                <h3>Greeted with a Friendly Face</h3>
-                <h6>
+                <h1>Greeted with a Friendly Face</h1>
+                <p >
                     If you’re arriving at Heathrow we
                     can be there to ensure your onward journey
                     runs smoothly. We have three levels of
@@ -14,7 +14,7 @@ const ShowcaseRight = () => {
                     will be noted and a car will be ready at the time requested however due to
                     strict regulations at the airports regarding vehicle waiting times
                     the car will be on standby near to your terminal.
-                </h6>
+                </p>
                 <div>
                     <a href='/contact-us' className='btn '>Get In Touch</a>
                 </div>

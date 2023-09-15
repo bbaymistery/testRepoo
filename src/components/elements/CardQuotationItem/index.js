@@ -157,7 +157,8 @@ const CardQuotationItem = (params = {}) => {
                       </span>
 
                       <span className={styles.price_span}>
-                        {quotationLoading ? "..." : `£${item?.price.split(".")[0]}`}
+                        {quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`}
+                        <span>00</span>
                       </span>
                     </p>
 
@@ -169,7 +170,7 @@ const CardQuotationItem = (params = {}) => {
               </div>
 
               <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
-                <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}`}</div>
+                <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`} <span>00</span> </div>
                 <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
                 <button onClick={() => setQuotationHandleClick({ quotation: item })} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : <React.Fragment></React.Fragment>}`}   >
                   {quotationLoading ? <WaveLoading /> : Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? `${appData?.words["quSelectedButton"]}` : `${appData?.words["quSelectButton"]}`}
