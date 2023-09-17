@@ -125,7 +125,7 @@
                                     }
 
                                     &:hover {
-                                        color: darken(#fff, 16%);
+                                        color: darken(#fff, 36%);
                                     }
 
                                     span {
@@ -201,7 +201,7 @@
 
                                         &:hover {
                                             color: lighten($primary, 15%);
-                                            background-color: rgba(53, 84, 209, 0.05);
+                                            background-color: rgba(53, 84, 209, 0.15);
                                             transition: 0.4s ease;
                                         }
 
