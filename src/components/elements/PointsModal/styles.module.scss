@@ -65,12 +65,17 @@
             background: darken($border, 14%);
         }
 
-        .icon {
-            color: $dark-1;
-            font-size: 20px;
-            cursor: pointer;
-            position: absolute;
-            right: 42px;
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .icon {
+                color: $dark-1;
+                font-size: 20px;
+                cursor: pointer;
+
+            }
         }
 
         h3 {

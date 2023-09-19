@@ -48,7 +48,9 @@ const PointsModal = ({ points, title }) => {
     return (
         <div className={styles.modal}>
             <div className={styles.main_container} ref={wrapperRef}>
-                <i onClick={() => setToFalse()} className={`fa-sharp fa-solid fa-xmark ${styles.icon}`}></i>
+                <div>
+                    <i onClick={() => setToFalse()} className={`fa-sharp fa-solid fa-xmark ${styles.icon}`}></i>
+                </div>
                 <h3>
                     {title}
                 </h3>
