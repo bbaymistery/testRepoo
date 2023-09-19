@@ -2,7 +2,7 @@ export const seaport = [
   {
     title: "Southampton Cruise Terminal",
     linkUrl: "/southampton",
-    imgUrl: "/images/seaport/southmpton.jfif",
+    imgUrl: "/images/seaport/southmpton.jpeg",
     id: 1,
 
   },
@@ -11,14 +11,14 @@ export const seaport = [
 
     title: "Dover Cruise Terminal",
     linkUrl: "/dovercruise",
-    imgUrl: "/images/seaport/dover.jpg",
+    imgUrl: "/images/seaport/dover.jpeg",
   },
   {
     id: 3,
 
     title: "Portsmouth Cruise Port",
     linkUrl: "/portsmouth",
-    imgUrl: "/images/seaport/portsmoth.jpg",
+    imgUrl: "/images/seaport/portsmoth.jpeg",
   },
 
   {

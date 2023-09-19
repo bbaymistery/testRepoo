@@ -109,7 +109,7 @@ const HeathrowVipMeet = (props) => {
 
                                     <div className={styles.needhelp_text}>
                                         {/* Need Help Booking? */}
-
+                                        
                                         <a href="tel:+442086887744" >Click to call +4402086887744</a>
                                     </div>
                                 </div>
@@ -178,7 +178,7 @@ const HeathrowVipMeet = (props) => {
                                         </li>
 
                                         <li>
-                                            <img src="/images/meetGreet/pasControl.jpg" alt="" />
+                                            <img src="/images/meetGreet/passControl2.jpeg" alt="" />
 
                                         </li>
                                     </ul>
@@ -195,7 +195,7 @@ const HeathrowVipMeet = (props) => {
                                         </li>
 
                                         <li>
-
+                                          
 
                                         </li>
                                     </ul>
