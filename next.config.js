@@ -1,9 +1,5 @@
 /** @type {import('next').NextConfig} */
-// {
-//   source: '/:lang(en|tr|es|ar|it|zh|ru)/:path',
-//   destination: '/:path',
-//   locale: false,
-// },
+
 async function getRoutes() {
   // fetch data here
   let languages = ["en"]

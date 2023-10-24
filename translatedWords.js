@@ -21,6 +21,7 @@ export let navbar = {
 //?translated words on home page
 /*
 Pickup hour 
+Travel Agents
 pickup minutes
 Landing Hour
 Landing Minute
@@ -92,7 +93,7 @@ close
  Cities
  Place oF Interests
 train Number
-address description
+address description *
 description
 passengers
 Change Car Type
@@ -163,9 +164,28 @@ Change Car Type
 
 //?translated words Foooer
 //Site Map
-
+// Cruise Ports 
+//Drivers
 //?translated words About us
 //Service Ratings
 //Happy customers
 //Total Vehicles
 //Destinations
+//About APL
+
+
+
+
+//?translated words AccountRegister
+//Company Fax
+//Confirm
+//Sole Trader Name
+//Registration No (If Applicable)
+// Declaration
+//Operation Notes
+//In case of extra payment for airport transfers, who pays for the extras?
+//Do you have any out-of-hours emergency number for urgent situations?
+
+
+//?translated words Travel Aents
+//Travel agents

@@ -286,7 +286,6 @@ const ReservationsDocument = () => {
                                         <div className={pdf.document_details_section_pdf} id="pdf_file"  >
                                             <div className={pdf.first_section}>
                                                 <div className={pdf.icon_div}><i className="fa-solid fa-check"></i></div>
-                                                <p className={pdf.succes_message}> Your order was submitted successfully!</p>
                                                 <p className={pdf.succes_message2}>Your booking is now confirmed!</p>
 
                                                 <p className={pdf.sub_succes_message}> Booking details has been sent to: admin@bookingcore.test</p>

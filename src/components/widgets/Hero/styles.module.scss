@@ -172,9 +172,6 @@
                         // display: grid;
                         display: flex;
                         flex-direction: reverse;
-                        // grid-template-columns: 318px 318px 185px 185px 130px;
-                        // grid-template-columns: 326px 326px 185px 185px auto;
-                        // grid-template-columns: minmax(280px, 316px) minmax(280px, 316px) minmax(185px, 185px) minmax(185px, 185px) auto;
                         gap: 1rem;
 
                         @media (max-width:990px) {
@@ -210,7 +207,7 @@
                         .fourth_column {
                             max-width: 195px;
                             width: 100%;
-
+  
 
                             @media (max-width:1400px) {
                                 max-width: 144px !important;
@@ -268,7 +265,7 @@
                                 top: 19px;
                                 position: absolute;
 
-                                @media (max-width:768px) {
+                                @media (max-width:990px) {
                                     display: none !important;
                                 }
                             }
@@ -585,7 +582,7 @@
                                 width: 100%;
 
                                 @media(max-width:990px) {
-                                    border-bottom: 1px solid #efefef;
+                                    // border-bottom: 1px solid #efefef;
                                     padding-right: 0px;
                                     padding-bottom: 4px;
                                     max-width: 100%;
@@ -805,7 +802,7 @@
                         .hours_minutes {
                             display: flex;
                             flex-direction: column;
-
+    
                             .select_time_div {
                                 display: flex;
                                 color: #5d646d;
@@ -814,7 +811,7 @@
                                 padding-right: 10px;
                                 color: rgba(#130b37, 1);
                                 font-weight: 500;
-
+ 
                                 @media(max-width:1400px) {
                                     max-width: 150px;
                                     width: 100%;
@@ -831,15 +828,14 @@
                                 height: 28px;
                                 gap: 16px;
 
-
+  
                                 .booking_form_hour_minute_wrapper {
                                     // max-width: 145px;
                                     max-width: 167px;
                                     width: 100%;
                                     position: relative;
-                                    border: 0px;
-                                    border-bottom: 1px solid $border;
-
+border: 0px;
+    border-bottom: 1px solid $border;
                                     @media(max-width:990px) {
                                         max-width: 100%;
                                     }
@@ -1050,15 +1046,13 @@
             }
         }
     }
-
-    .advertisiment_images_section_islinkname {
-        .advertisiment_images_section_container {
-            .advertisiment_images {
-                margin-top: 3rem;
-            }
-        }
+.advertisiment_images_section_islinkname{
+    .advertisiment_images_section_container {
+      .advertisiment_images{
+        margin-top: 3rem;
+      }
     }
-
+}
     .advertisiment_images_section {
 
         .advertisiment_images_section_container {
@@ -1146,7 +1140,7 @@
         }
     }
 
-
+  
 
     .hero_svg {
         position: absolute;

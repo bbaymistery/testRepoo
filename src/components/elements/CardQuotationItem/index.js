@@ -110,10 +110,7 @@ const CardQuotationItem = (params = {}) => {
             <div
               dataid={index === 0 ? "first_car" : ""}
               key={index}
-              className={`
-              ${styles.card_item}
-              ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : <React.Fragment></React.Fragment>}
-              `}
+              className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
               onClick={(e) => handleClickForMobile({ e, quotation: item })} >
               <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
               <div className={styles.column_second}>
@@ -156,7 +153,7 @@ const CardQuotationItem = (params = {}) => {
                         <span>{"Free Cancellation (24h)"}</span>
                       </span>
 
-                      <span className={styles.price_span}>
+                      <span className={`${styles.price_span}`} >
                         {quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`}
                         <span>00</span>
                       </span>
@@ -172,7 +169,7 @@ const CardQuotationItem = (params = {}) => {
               <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
                 <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`} <span>00</span> </div>
                 <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
-                <button onClick={() => setQuotationHandleClick({ quotation: item })} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : <React.Fragment></React.Fragment>}`}   >
+                <button onClick={() => setQuotationHandleClick({ quotation: item })} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
                   {quotationLoading ? <WaveLoading /> : Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? `${appData?.words["quSelectedButton"]}` : `${appData?.words["quSelectButton"]}`}
                 </button>
               </div>

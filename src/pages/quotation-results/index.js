@@ -38,7 +38,7 @@ const collectPoints = (params = {}, callback = () => { }) => {
     .then((res) => res.json())
     .then((res) => { callback(res) })
     .catch((error) => {
-      let message = "APL   Hero component _collectPoints()  function catch blog "
+      let message = "APL Quotation component _collectPoints()  function catch blog "
       window.handelErrorLogs(error, message, { config })
     });
 }

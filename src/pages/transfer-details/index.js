@@ -77,7 +77,7 @@ const TransferDetails = (props) => {
 
     const { ip, country } = useUserIp();
 
-console.log(country);
+    console.log(country);
 
     const handleOnChangeNumberInput = (value, _country, index, name) => {
         dispatch({ type: 'SET_PASSEGER_DETAILS', data: { name, value, index, updateBothJourneyCheckBox: passengerDetailsStatus } })
@@ -565,25 +565,30 @@ console.log(country);
                                                         <Textarea label={appData?.words["strSpecialRequestsTitle"]} name="specialRequests" value={specialRequests} onChange={(e) => onchangeHandler(e, index)} />
                                                     </div>
                                                     {index === 1 ? <CheckBox direction={direction} textSame={appData?.words["strPassengerDetailsCheckBox"]} textNotSame="" /> : <React.Fragment></React.Fragment>}
+                                                    {index === 1 || (index === 0 && +journeyType === 0) ?
+                                                        <div className={` ${direction === 'rtl' ? styles.directionbuttons : styles.buttons}  ${quotations[0]?.taxiDeal ? styles.taxideal_buttons : ""}`} >
+                                                            <div className={styles.left}>
+                                                                <Link href={`${localStorage?.getItem("path") ? localStorage?.getItem("path") : "/"}`}><button className='btn btn_primary'>{appData?.words["strGoBack"]}</button> </Link>
+                                                                <button onClick={(e) => checkValidation(e)} className='btn btn_primary'>{appData?.words["strNext"]}</button>
+                                                            </div>
 
+                                                        </div>
+                                                        : <></>}
                                                 </div>
                                                 {quotations[0].taxiDeal ? <></> : <TransferJourneySummaryPanel journeyType={journeyType} index={index} splitedHour={splitedHour} splitedMinute={splitedMinute} splitedDate={splitedDate} quotation={quotation} selectedDropoffPoints={selectedDropoffPoints} selectedPickupPoints={selectedPickupPoints} />}
                                             </div>
-                                            {index === 1 || (index === 0 && +journeyType === 0) ?
-                                                <div className={` ${direction === 'rtl' ? styles.directionbuttons : styles.buttons}  ${quotations[0]?.taxiDeal ? styles.taxideal_buttons : ""}`} >
-                                                    <div className={styles.left}>
-                                                        <Link href={`${localStorage?.getItem("path") ? localStorage?.getItem("path") : "/"}`}><button className='btn btn_primary'>{appData?.words["strGoBack"]}</button> </Link>
-                                                        <button onClick={(e) => checkValidation(e)} className='btn btn_primary'>{appData?.words["strNext"]}</button>
-                                                    </div>
-                                                    <div className={styles.right}>
-                                                        <div className={`${styles.content} ${styles.summarycontent} `}>
-                                                            <div className={`${styles.left_info} ${styles.acceptedcards} mt_0`} title="Accepted Cards for Airport Pickups London">
-                                                                <img className={styles.acceptedcards_img} border="0" alt="Accepted Cards for Airport Pickups London " src="/images/accepted-cards10Final.png" />
-                                                            </div>
+                                            {index === 1 || (index === 0 && +journeyType === 0) ?            <div className={`${direction === 'rtl' ? styles.directionbuttons_for_gap : styles.buttons_for_gap}  ${quotations[0]?.taxiDeal ? styles.taxideal_buttons : ""}`} >
+                                                <div className={styles.left}>
+
+                                                </div>
+                                                <div className={styles.right}>
+                                                    <div className={`${styles.content} ${styles.summarycontent} `}>
+                                                        <div className={`${styles.left_info} ${styles.acceptedcards} mt_0`} title="Accepted Cards for Airport Pickups London">
+                                                            <img className={styles.acceptedcards_img} border="0" alt="Accepted Cards for Airport Pickups London " src="/images/accepted-cards10Final.png" />
                                                         </div>
                                                     </div>
                                                 </div>
-                                                : <></>}
+                                            </div> : <></>}
                                         </div>
                                     )
                                 })}

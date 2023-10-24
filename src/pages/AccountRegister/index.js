@@ -12,6 +12,7 @@ import { useRouter } from 'next/router'
 import useRipple from '../../hooks/useRipple'
 import Recaptcha from '../../components/elements/Recaptcha'
 import Loading from '../../components/elements/alert/Loading'
+import env from '../../resources/env'
 
 
 let description = "Airport Pickups London agency registration form"
@@ -82,8 +83,8 @@ const AccountRegister = (props) => {
         if (recaptchaToken) {
             const method = "POST"
             const headers = { "Content-Type": "application/json" }
-            // const url = 'https://api.london-tech.com/api/v1/corporate-account/add';
-            const url = 'https://api.london-tech.com/api/v1/corporate-account/add?passRecaptcha=true&mode=sandbox';
+            // const url = 'https://api.london-tech.com/api/v1/corporate-account/add?passRecaptcha=true&mode=sandbox';
+            const url = `${env.apiDomain}/api/v1/corporate-account/add?passRecaptcha=true&mode=sandbox`;
             const body = {
                 "name": companyName,
                 "address": address,
