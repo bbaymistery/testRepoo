@@ -11,6 +11,8 @@ import { bookersDetailsError, buttonLabelsNames, dropdownAirlineLabels, dropdown
 import { useRouter } from 'next/router';
 import store from '../../store/store';
 import { createWrapper } from 'next-redux-wrapper';
+import MeetGreetBookingDetails from '../../components/elements/MeetGreetBookingDetails';
+import MeetGreetPassengerDetails from '../../components/elements/MeetGreetPassengerDetails';
 
 let description = ""
 let title = ""
@@ -47,7 +49,11 @@ const MeetGreet = (props) => {
         dispatch({ type: "SET_PASSENGERS_FROM", data: { name, value, index } })
     };
     const onchangeNumberLuggageHandler = (e) => {
+
         const { name, value } = e.target;
+        // Handle the case of a negative number (you can show an error message or take appropriate action)
+        if (name === "noOfLuggageBags") if (parseFloat(value) < 0) return;
+
         if (ifHasUnwantedCharacters(value)) return
         dispatch({ type: "SET_FLIGHT_NUMBER_OR_LUGGAGE", data: { name, value, } })
     }
@@ -212,7 +218,16 @@ const MeetGreet = (props) => {
                                             </div>
                                         </div>
                                         : <></>}
+                                    {activeStep === 3 ?
+                                        <div className={styles.bookers}>
 
+                                            <div className={styles.bookers_details_div}>
+                                                <MeetGreetBookingDetails />
+                                                <MeetGreetPassengerDetails />
+                                            </div>
+                                        </div>
+                                        : <></>}
+                                    {/* //here is confirmation part   */}
                                     <div className={`${styles.back_next_buttons}`} >
                                         {<button className='btn' onClick={gotoPreviousPage}>{appData?.words["strBack"]}</button>}
                                         <button className='btn' onClick={gotoNextPage}>{appData?.words["strNext"]}  </button>
@@ -237,7 +252,10 @@ const MeetGreet = (props) => {
                                             <p className={styles.total_price}><span>Total</span><span>£{totalPrice}</span>    </p>
                                         </div>
                                     </div>
-
+                                    <div className={`${styles.back_next_buttons}`} >
+                                        <button className='btn' onClick={gotoPreviousPage}>{appData?.words["strBack"]}</button>
+                                        <button className='btn' onClick={gotoNextPage}>{appData?.words["strNext"]}</button>
+                                    </div>
                                 </div>
 
                             </div>

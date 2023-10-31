@@ -3,7 +3,7 @@ import Head from 'next/head';
 import TopHeader from '../../widgets/TopHeader';
 import Footer from '../../widgets/Footer';
 import Alert from '../../elements/alert/Alert';
- 
+
 const GlobalLayout = (
   { children,
     title = "London Airport Transfers to Airport-Car Service-Minicab",

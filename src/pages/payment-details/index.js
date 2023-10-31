@@ -7,7 +7,6 @@ import styles from "./styles.module.scss"
 import env from '../../resources/env'
 import { splitDateTimeStringIntoDate, splitDateTimeStringIntoHourAndMinute } from '../../helpers/splitHelper'
 import { urlWithLangAtribute } from '../../helpers/urlWithLangAtrribute'
-import { extractLanguage } from '../../helpers/extractLanguage'
 
 import PaymentPageSummary from '../../components/elements/PaymentPageSummary'
 import PaymentMethods from '../../components/elements/PaymentMethods'
@@ -43,7 +42,7 @@ const PaymentDetails = () => {
         const data = await response.json();
         console.log({ data, stage });
         console.log("calisdim");
-        
+
 
     };
 
@@ -181,7 +180,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
         }
     }
 
-    
+
     return {
         props: {
             data: ''

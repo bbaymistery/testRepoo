@@ -15,11 +15,19 @@
     padding-top: 2rem;
     border: 1px solid $border;
 
+    @media (max-width: 1200px) {
+        margin-top: 0px;
+    }
 
 
     &_section {
 
         &_container {
+
+            @media (max-width: 990px) {
+                max-width: 990px !important;
+            }
+
             .form_to_fill {
                 transition: height 0.25s linear;
                 color: white;
@@ -27,13 +35,16 @@
                 position: relative;
                 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
                 border-radius: 4px;
+
                 .form_to_fill_content {
                     display: flex;
                     justify-content: space-between;
                     padding: 3.5rem 16px;
                     gap: 2rem;
 
+
                     @media (max-width: 1200px) {
+                        padding-top: 0px;
                         flex-direction: column;
                     }
 
@@ -287,6 +298,10 @@
                             justify-content: space-between;
                             margin-top: 3rem;
 
+                            @media (max-width: 1200px) {
+                                display: none;
+                            }
+
                             button {
                                 border-radius: 4px;
                                 color: white;
@@ -371,9 +386,28 @@
 
                             .total {}
                         }
+
+                        .back_next_buttons {
+                            display: flex;
+                            justify-content: space-between;
+                            margin-top: 3rem;
+
+                            display: none;
+
+                            @media (max-width: 1200px) {
+                                display: flex;
+                            }
+
+                            button {
+                                border-radius: 4px;
+                                color: white;
+                                padding: 5px 16px;
+                                background-color: $primary;
+                            }
+                        }
                     }
 
-              
+
                 }
             }
 

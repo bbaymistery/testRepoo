@@ -69,7 +69,7 @@ const TaxiDeals = (props) => {
     const tabsHandler = async (params = {}) => {
         let { index, dealsNameProp } = params
         setTabs(index)
-    
+
         fecthPoints({ dealsNameProp, language })
         dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: dealsNameProp } });
         localStorage.setItem("hasTaxiDeals", JSON.stringify(dealsNameProp));
@@ -109,7 +109,6 @@ const TaxiDeals = (props) => {
             dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
             fecthPoints({ dealsNameProp: hasTaxiDeals, language });
             console.log("calisdim pathname");
-
         }
 
     }, [])

@@ -83,7 +83,7 @@ const AccountRegister = (props) => {
         if (recaptchaToken) {
             const method = "POST"
             const headers = { "Content-Type": "application/json" }
-            // const url = 'https://api.london-tech.com/api/v1/corporate-account/add?passRecaptcha=true&mode=sandbox';
+            // const removedUrl = 'https://api.london-tech.com/api/v1/corporate-account/add?passRecaptcha=true';
             const url = `${env.apiDomain}/api/v1/corporate-account/add?passRecaptcha=true&mode=sandbox`;
             const body = {
                 "name": companyName,

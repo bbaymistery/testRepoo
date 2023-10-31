@@ -14,6 +14,7 @@ const updatePrice = (newSeatLists) => {
 function SET_SEATLISTS(params = {}) {
     let { state, action } = params;
     let { data: { idx, incordec } } = action;
+    console.log(idx, incordec);
 
     let newState = JSON.parse(JSON.stringify(state))
     let newSeatLists = [...newState.seatLists]
@@ -25,9 +26,9 @@ function SET_SEATLISTS(params = {}) {
     let { newTotalPrice, newPassengersForm } = updatePrice(newSeatLists);
 
     newState.seatLists = newSeatLists
-    
+
     newState.totalPrice = newTotalPrice
-    //by defaults seatlist price is already180 
+    //by defaults seatlist price is already180
     //incase if seatlist changes we update price of seatlist
     newState.seatListPrice = newTotalPrice
     newState.passengersForm = newPassengersForm

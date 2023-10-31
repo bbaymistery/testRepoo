@@ -6,7 +6,6 @@ import TaxiDeals from "../components/widgets/TaxiDeals";
 import Tours from "./tours";
 import { useEffect, useState } from "react";
 import Testimonials from "../components/widgets/Testimonials";
-// import geoip from 'geoip-lite';
 
 export default function Home(props) {
   const [countryCode, setCountryCode] = useState(null);
@@ -40,7 +39,7 @@ export default function Home(props) {
     }
 
   }, []);
-  console.log(`Country is : ${countryCode} `);
+  // console.log(`Country is : ${countryCode} `);
 
   return (
     <GlobalLayout footerbggray={true}>

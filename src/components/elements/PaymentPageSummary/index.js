@@ -9,7 +9,7 @@ import PickUpPoints from './PickUpPoints'
 const PaymentPageSummary = (props) => {
   let { index, selectedPickupPoints, selectedDropoffPoints, firstname, email, phone, passengersNumber, specialRequests } = props
   let state = useSelector((state) => state.pickUpDropOffActions)
-  let { params: { direction,language } } = state
+  let { params: { direction, language } } = state
 
   const { appData } = useSelector(state => state.initialReducer)
 
@@ -38,7 +38,7 @@ const PaymentPageSummary = (props) => {
 
           <div className={styles.details_div}>
             <h5 className={`${direction}`}>From</h5>
-            <PickUpPoints selectedPickupPoints={selectedPickupPoints} direction={direction} language={language }/>
+            <PickUpPoints selectedPickupPoints={selectedPickupPoints} direction={direction} language={language} />
             <div className={styles.space}> </div>
             <h5 className={`${direction}`}>To</h5>
             <DropOffPoints selectedDropoffPoints={selectedDropoffPoints} direction={direction} language={language} />
