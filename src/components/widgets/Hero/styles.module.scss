@@ -45,6 +45,10 @@
                         img {
                             width: 100%;
                         }
+
+                        a {
+                            position: relative;
+                        }
                     }
 
                     @media (max-width:990px) {
@@ -778,8 +782,6 @@
                                 }
                             }
 
-
-
                             .date_picker_icon {
 
                                 top: 56px;
@@ -806,7 +808,6 @@
                             .select_time_div {
                                 display: flex;
                                 color: #5d646d;
-                                // width: 135px;
                                 width: 194px;
                                 padding-right: 10px;
                                 color: rgba(#130b37, 1);
@@ -817,10 +818,6 @@
                                     width: 100%;
                                 }
 
-
-
-
-                                //
                                 @media(max-width:990px) {
                                     max-width: 100% !important;
                                 }
@@ -831,7 +828,6 @@
 
                                 .booking_form_hour_minute_wrapper {
                                     // max-width: 145px;
-                                    max-width: 167px;
                                     width: 100%;
                                     position: relative;
                                     border: 0px;
@@ -844,12 +840,10 @@
                                     select {
                                         -webkit-appearance: none;
                                         border: none;
-                                        // border-bottom: 1px solid rgba(93, 100, 109, 0.1);
                                         width: 100%;
                                         font-size: 15px;
                                         background-color: white;
 
-                                        // padding: 7px 10px;
                                         @media(max-width:990px) {
                                             -webkit-appearance: menulist;
                                         }
@@ -889,15 +883,6 @@
                                     }
                                 }
                             }
-
-
-                            // .select_time_div.rtl {
-                            //     background-color: red;
-                            //     display: none;
-                            //     .booking_form_hour_minute_wrapper {
-
-                            //     }
-                            // }
                         }
 
                         .btn_div {
@@ -1101,6 +1086,9 @@
                         width: 100%;
                     }
 
+                    a {
+                        position: relative;
+                    }
                 }
 
                 .review_trip_advisor:nth-child(2) {

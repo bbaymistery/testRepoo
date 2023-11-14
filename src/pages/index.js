@@ -8,37 +8,37 @@ import { useEffect, useState } from "react";
 import Testimonials from "../components/widgets/Testimonials";
 
 export default function Home(props) {
-  const [countryCode, setCountryCode] = useState(null);
+  // const [countryCode, setCountryCode] = useState(null);
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition, handleError);
-    }
+  // useEffect(() => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(showPosition, handleError);
+  //   }
 
-    async function showPosition(position) {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
+  //   async function showPosition(position) {
+  //     const lat = position.coords.latitude;
+  //     const lon = position.coords.longitude;
 
-      // Use the latitude and longitude to fetch the countryCode
-      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
-      const data = await response.json();
+  //     // Use the latitude and longitude to fetch the countryCode
+  //     const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+  //     const data = await response.json();
 
-      setCountryCode(data.address.country_code);
-    }
+  //     setCountryCode(data.address.country_code);
+  //   }
 
-    function handleError(error) {
-      switch (error.code) {
-        case error.PERMISSION_DENIED:
-        case error.POSITION_UNAVAILABLE:
-        case error.TIMEOUT:
-        case error.UNKNOWN_ERROR:
-        default:
-          setCountryCode("gb");
-          break;
-      }
-    }
+  //   function handleError(error) {
+  //     switch (error.code) {
+  //       case error.PERMISSION_DENIED:
+  //       case error.POSITION_UNAVAILABLE:
+  //       case error.TIMEOUT:
+  //       case error.UNKNOWN_ERROR:
+  //       default:
+  //         setCountryCode("gb");
+  //         break;
+  //     }
+  //   }
 
-  }, []);
+  // }, []);
   // console.log(`Country is : ${countryCode} `);
 
   return (
