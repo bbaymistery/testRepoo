@@ -68,7 +68,9 @@
 
                     div:nth-child(1) {
                         li {
-                            border: none;
+                            @media (max-width: 600px) {
+                                border: none;
+                            }
                         }
                     }
 

@@ -6,7 +6,6 @@ const MeetGreetPassengerDetails = () => {
     let state = useSelector((state) => state.pickUpDropOffActions)
     let { passengersForm, bookersDetails, flightDetails, buggy, porter, additionalGreeter } = useSelector((state) => state.meetAndGreetActions)
     let { params: { direction } } = state
-    console.log(passengersForm);
 
     return (
         <div className={styles.journey_summary_panel} >
@@ -118,7 +117,7 @@ const MeetGreetPassengerDetails = () => {
                         return (
                             <div key={idx} className={styles.passsenger_details_div}>
                                 <div>
-                                    <h5 className={`${direction}`}>{idx + 1} PASSENGER NAME</h5>
+                                    <h5 className={`${direction}`}>{`${idx + 1}.`} PASSENGER NAME</h5>
                                     <li className={`${styles.first_child}`} direction={String(direction === 'rtl')}><span>{item.firstname}</span></li>
                                     <div className={styles.space}> </div>
                                 </div>

@@ -207,7 +207,7 @@
                         .fourth_column {
                             max-width: 195px;
                             width: 100%;
-  
+
 
                             @media (max-width:1400px) {
                                 max-width: 144px !important;
@@ -802,7 +802,7 @@
                         .hours_minutes {
                             display: flex;
                             flex-direction: column;
-    
+
                             .select_time_div {
                                 display: flex;
                                 color: #5d646d;
@@ -811,7 +811,7 @@
                                 padding-right: 10px;
                                 color: rgba(#130b37, 1);
                                 font-weight: 500;
- 
+
                                 @media(max-width:1400px) {
                                     max-width: 150px;
                                     width: 100%;
@@ -828,14 +828,15 @@
                                 height: 28px;
                                 gap: 16px;
 
-  
+
                                 .booking_form_hour_minute_wrapper {
                                     // max-width: 145px;
                                     max-width: 167px;
                                     width: 100%;
                                     position: relative;
-border: 0px;
-    border-bottom: 1px solid $border;
+                                    border: 0px;
+                                    border-bottom: 1px solid $border;
+
                                     @media(max-width:990px) {
                                         max-width: 100%;
                                     }
@@ -1046,13 +1047,15 @@ border: 0px;
             }
         }
     }
-.advertisiment_images_section_islinkname{
-    .advertisiment_images_section_container {
-      .advertisiment_images{
-        margin-top: 3rem;
-      }
+
+    .advertisiment_images_section_islinkname {
+        .advertisiment_images_section_container {
+            .advertisiment_images {
+                margin-top: 3rem;
+            }
+        }
     }
-}
+
     .advertisiment_images_section {
 
         .advertisiment_images_section_container {
@@ -1074,7 +1077,7 @@ border: 0px;
                 justify-content: space-between;
                 align-items: center;
 
-                @media (max-width:767px) {
+                @media (max-width:990px) {
                     flex-wrap: wrap;
                     margin-top: 2rem;
                     align-items: center;
@@ -1140,7 +1143,7 @@ border: 0px;
         }
     }
 
-  
+
 
     .hero_svg {
         position: absolute;

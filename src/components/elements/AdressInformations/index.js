@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "./styles.module.scss"
 //for contact us
-const AdressInformations = ({ direction,appData }) => {
+const AdressInformations = ({ direction, appData }) => {
     return (
         <div className={styles.right}>
             <div className={styles.form_box}>
@@ -43,7 +43,7 @@ const AdressInformations = ({ direction,appData }) => {
                                             <span>  + </span>
                                             4402086887744
                                         </a>
-                                        : <a tabIndex="-1" target="_blank" href="https://wa.me/447387901028">
+                                        : <a target="_blank" href="https://wa.me/447387901028">
                                             +44 73 8790 1028
                                         </a>
 

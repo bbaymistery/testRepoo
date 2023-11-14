@@ -16,7 +16,7 @@ const Tours = (props) => {
 
     return (insideGlobalLayout ?
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
-            <div className={`${styles.tours} ${direction} page`}bggray={String(bggray)}>
+            <div className={`${styles.tours} ${direction} page`} bggray={String(bggray)}>
                 <div className={`${styles.tours_section} page_section`}>
                     <div className={`${styles.tours_section_container} page_section_container`}>
                         <div className={styles.title}>
@@ -30,7 +30,7 @@ const Tours = (props) => {
                                         return (
                                             <a href={`tours/${item.id}`} title={item?.pageTitle} className={`${styles.card}`} key={item.id}>
                                                 <div className={styles.card_image_div}>
-                                                    <Image src={`${item.urlImage}`} className={styles.img} fill priority alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
+                                                    <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
                                                 </div>
                                                 <div className={styles.card_body}>
                                                     <h4>{item?.title}</h4>
@@ -52,7 +52,7 @@ const Tours = (props) => {
                                         return (
                                             <a href={`tours/${item.id}`} title={item?.pageTitle} className={`${styles.card}`} key={item.id}>
                                                 <div className={styles.card_image_div}>
-                                                    <Image src={`${item.urlImage}`} className={styles.img} fill priority alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
+                                                    <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
                                                 </div>
                                                 <div className={styles.card_body}>
                                                     <h4>{item?.title}</h4>
@@ -74,7 +74,7 @@ const Tours = (props) => {
                 </div>
             </div>
         </GlobalLayout> :
-        <div className={`${styles.tours} ${direction} page`}bggray={String(bggray)} style={{ marginTop: `${!insideGlobalLayout ? '0px !important' : ""}` }}>
+        <div className={`${styles.tours} ${direction} page`} bggray={String(bggray)} style={{ marginTop: `${!insideGlobalLayout ? '0px !important' : ""}` }}>
             <div className={`${styles.tours_section} page_section`}>
                 <div className={`${styles.tours_section_container} page_section_container`}>
                     <div className={styles.title}>
@@ -88,7 +88,7 @@ const Tours = (props) => {
                                     return (
                                         <a href={`tours/${item.id}`} title={item?.pageTitle} className={`${styles.card}`} key={item.id}>
                                             <div className={styles.card_image_div}>
-                                                <Image src={`${item.urlImage}`} className={styles.img} fill priority alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
+                                                <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
                                             </div>
                                             <div className={styles.card_body}>
                                                 <h4>{item?.title}</h4>
@@ -110,7 +110,7 @@ const Tours = (props) => {
                                     return (
                                         <a href={`tours/${item.id}`} title={item?.pageTitle} className={`${styles.card}`} key={item.id}>
                                             <div className={styles.card_image_div}>
-                                                <Image src={`${item.urlImage}`} className={styles.img} fill priority alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
+                                                <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
                                             </div>
                                             <div className={styles.card_body}>
                                                 <h4>{item?.title}</h4>

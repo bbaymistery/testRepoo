@@ -14,9 +14,9 @@ import { createWrapper } from 'next-redux-wrapper';
 import MeetGreetBookingDetails from '../../components/elements/MeetGreetBookingDetails';
 import MeetGreetPassengerDetails from '../../components/elements/MeetGreetPassengerDetails';
 
-let description = ""
-let title = ""
-let keywords = ""
+let keywords = "London Airport Meet and Greet, Airport Pickups, Heathrow, Gatwick, Stansted, Luton, City Airport, Corporate Services, Stress-Free Arrivals"
+let title = "Airport Pick Ups London Meet and Greet"
+let description = "London Airport Meet and Greet Service for stress-free arrivals at Heathrow, Gatwick, Stansted, Luton, and City airports. Corporate services available."
 
 const MeetGreet = (props) => {
     let { bggray = false } = props

@@ -17,6 +17,7 @@ import WaveLoading from '../../elements/LoadingWave';
 import Features from '../Features';
 import Link from 'next/link';
 import useRipple from '../../../hooks/useRipple';
+import Image from 'next/image';
 
 const collectPoints = (params = {}, callback = () => { }) => {
 
@@ -536,14 +537,14 @@ const Hero = (props) => {
             </div>
 
             {islinknamecomponent ? <Features bggray={true} /> : <></>}
-  
-            <div className={`${styles.advertisiment_images_section} ${!islinknamecomponent ? styles.advertisiment_images_section_islinkname:""} page_section`}>
+
+            <div className={`${styles.advertisiment_images_section} ${!islinknamecomponent ? styles.advertisiment_images_section_islinkname : ""} page_section`}>
                 <div className={`${styles.advertisiment_images_section_container} page_section_container`}>
                     <div className={styles.advertisiment_images}>
                         <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '.5s', animationDuration: '1s' }}>
 
-                            <a  rel="noreferrer" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
-                                <img src="/images/advisorTrip.png" alt="Airport Pickups London Tripadvisor" />
+                            <a rel="noreferrer" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
+                                <Image width={330} height={141} src="/images/advisorTrip.png" alt="Airport Pickups London Tripadvisor" />
 
                             </a>
                         </div>
@@ -551,16 +552,16 @@ const Hero = (props) => {
 
                         <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '0.75s', animationDuration: '1s' }}>
 
-                            <a  rel="noreferrer" href="https://www.trustpilot.com/review/airport-pickups-london.com" target={"_blank"} >
-                                <img src="/images/Excellent.png" alt=" Airport Pickups London Trustpilot " />
+                            <a rel="noreferrer" href="https://www.trustpilot.com/review/airport-pickups-london.com" target={"_blank"} >
+                                <Image width={330} height={141} src="/images/Excellent.png" alt=" Airport Pickups London Trustpilot " />
 
                             </a>
                         </div>
 
                         <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '1s', animationDuration: '1s' }}>
 
-                            <a  rel="noreferrer" href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} >
-                                <img src="/images/Reviews.png" alt="Airport Pickups London Review" />
+                            <a rel="noreferrer" href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} >
+                                <Image width={330} height={141} src="/images/Reviews.png" alt="Airport Pickups London Review" />
 
                             </a>
 
@@ -569,102 +570,10 @@ const Hero = (props) => {
                 </div>
             </div>
 
-            {/* {!islinknamecomponent ?
-                <div className={`${styles.review_images_section} page_section`}>
-                    <div className={`${styles.review_images_section_container} page_section_container`}>
-                        <div className={styles.review_images}>
 
-                            <div className={styles.review_trip_advisor}>
-                                <a href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} >
-                                    <img src="/images/Reviews.png" alt="" />
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                : <></>} */}
         </div>
     )
 }
 
 export default Hero
-// useEffect(() => {
-//     if (islinknamecomponent) {
-//         reviewsBadgeRibbon("badge-ribbon", {
-//             store: "airport-pickups-london-com",
-//             size: "small",
-//             // add any additional options here
-//             color: "#ff0000", // change the color to red
-//             animation: "fadeIn", // change the animation to fade in
-//             animationDelay: 1000, // add a delay of 1 second to the animation
-//         });
-// const scriptRef = useRef(null);
 
-//         // set the height of the container element to 50 pixels
-//         const container = document.getElementById("badge-ribbon");
-//         container.style.height = "50px";
-//     }
-// }, []);
-// <Script
-//                                                 src="https://www.jscache.com/wejs?wtype=cdsratingsonlywide&amp;uniq=554&amp;locationId=11966434&amp;lang=en_UK&amp;border=false&amp;shadow=false&amp;display_version=2"
-//                                                 strategy='beforeInteractive'
-//                                                 data-loadtrk
-//                                                 async
-//                                                 onLoad={() => {
-//                                                     // Any logic you need after the script has loaded
-//                                                     if (scriptRef.current) {
-//                                                         scriptRef.current.loadtrk = true;
-//                                                     }
-//                                                 }}
-//                                             />
-
-/*
-       !islinknamecomponent ? <div className={styles.tripadvisor_container}>
-                                    <div className={styles.advisor_review}>
-                                        <div id="TA_cdsratingsonlywide554" className="TA_cdsratingsonlywide">
-                                            <ul id="zCXZKgXcUyvV" className="TA_links 9uWOT0A">
-                                                <li id="4Lb7EN38NzI6" className="xtBWRyrH">
-                                                    <a target="_blank" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html">
-                                                        <img style={{width:"190px"}} src="https://www.tripadvisor.co.uk/img/cdsi/img2/branding/tripadvisor_logo_transp_340x80-18034-2.png" alt="TripAdvisor" />
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <script src="https://www.jscache.com/wejs?wtype=cdsratingsonlywide&amp;uniq=554&amp;locationId=11966434&amp;lang=en_UK&amp;border=true&amp;backgroundColor=gray&amp;shadow=true&amp;display_version=2"  >
-                                        </script>
-
-                                    </div>
-                                </div>
-                                    : <></>
-     {!islinknamecomponent ?
-                                    <div className={styles.tripadvisor_container}>
-                                        <div className={styles.advisor_review}>
-                                            <div id="TA_cdsratingsonlywide554" className="TA_cdsratingsonlywide">
-                                                <ul id="zCXZKgXcUyvV" className="TA_links 9uWOT0A">
-                                                    <li id="4Lb7EN38NzI6" className="xtBWRyrH">
-                                                        <a target="_blank" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html">
-                                                            <img src="https://www.tripadvisor.co.uk/img/cdsi/img2/branding/v2/Tripadvisor_lockup_horizontal_secondary_registered-18034-2.svg" alt="TripAdvisor" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <script src="https://www.jscache.com/wejs?wtype=cdsratingsonlywide&amp;uniq=554&amp;locationId=11966434&amp;lang=en_UK&amp;border=true&amp;shadow=true&amp;display_version=2"  >
-                                            </script>
-
-                                        </div>
-                                        <div className={styles.advisor_review}>
-                                            <div id="TA_socialButtonBubbles520" className="TA_socialButtonBubbles">
-                                                <ul id="OAnG6kN" className="TA_links QtoQqGUhtYp">
-                                                    <li id="0yLoga" className="8nmGJI">
-                                                        <a target="_blank" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html">
-                                                            <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logomark.svg" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    : <div></div>
-                                }
-*/

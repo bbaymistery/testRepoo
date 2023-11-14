@@ -14,7 +14,7 @@ const CarItem = ({ sliderRef }) => {
           <div className={styles.car_item} key={car.id}>
             <div className={styles.card_img_div}>
               <div className={styles.card_image_link}>
-                <Image src={car.carImage} className={styles.img} fill priority alt={car.carName} sizes="(max-width: 768px) 100vw, 50vw" />
+                <Image src={car.carImage} className={styles.img} fill alt={car.carName} sizes="(max-width: 768px) 100vw, 50vw" />
               </div>
             </div>
             <div className={styles.card_body}>
