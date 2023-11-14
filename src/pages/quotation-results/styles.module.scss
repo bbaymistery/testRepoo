@@ -1,0 +1,1258 @@
+@import '../../styles/fonts';
+@import '../../styles/variables';
+
+
+.quotation {
+    background-color: #f5f7fc;
+    padding-bottom: 10px;
+    @media (max-width: 450px) {
+    margin-top: 30px;
+        }
+    .quotation_section {
+
+        .quotation_section_container {
+            @media (max-width: 1400px) {
+                max-width: 100%;
+            }
+
+
+            div {
+
+                .title {
+                    font-weight: 500;
+                    font-size: 24px !important;
+                    text-transform: capitalize;
+
+                    span {
+                        color: lighten($primary, 5%);
+                        font-weight: bold;
+                    }
+                }
+
+                //!taxi deals
+                .title_center {
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    text-align: center !important;
+                }
+
+                //!taxi deals
+                .stars {
+                    display: flex;
+                    justify-content: center;
+                    padding: 10px;
+                    gap: 2rem;
+
+                    a {
+                        font-weight: bold;
+                        color: $gray-2;
+                        font-size: 17px;
+
+                        &:nth-child(1) {
+                            i {
+                                color: orange;
+                            }
+                        }
+
+                        i {
+                            font-size: 14px;
+                            color: $gray-3;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+
+                .main_container.rtl {
+                    flex-direction: row-reverse;
+                }
+
+                .main_container {
+                    display: flex;
+                    position: relative;
+                    gap: 30px;
+                    justify-content: space-between;
+
+                    @media (max-width: 1000px) {
+                        flex-direction: column;
+                    }
+
+                    margin-bottom: 100px;
+
+                    .quotation_panel {
+                        flex-basis: 35%;
+                        margin-top: 16px;
+                        position: relative;
+                        border-radius: 4px;
+                        position: sticky !important;
+                        top: 121px;
+                        height: 800px;
+
+                        @media (max-width: 1000px) {
+                            display: none;
+                        }
+
+                        .form_div {
+                            padding: 5px 20px;
+                            padding-bottom: 20px;
+                            border: 1px solid #efefef;
+                            border-radius: 4px;
+                            font-size: 15px;
+
+                            background-color: white;
+                            border: 1px solid rgba($blue-1, .5);
+
+                            .errorBookedMessage {
+                                p {
+                                    color: red;
+                                    margin-top: 15px;
+                                    font-size: 14px !important;
+                                }
+                            }
+
+                            .search_menu.error_input {
+                                border-bottom: 1px solid red !important;
+                            }
+
+                            .search_menu {
+                                padding: 20px 0px;
+                                border-bottom: 1px solid #efefef;
+                                padding-bottom: 7px;
+
+                                h4 {
+                                    font-weight: 500;
+                                    line-height: 1.6;
+                                    font-family: $font-jost;
+                                    text-transform: none;
+                                    color: lighten($dark-1, 5%);
+                                    color: $light-1;
+
+                                    font-size: 16px;
+                                    margin-bottom: 9px !important;
+                                    text-transform: capitalize;
+                                }
+
+                                .input_div {
+                                    color: $light-1;
+                                    line-height: 1.6;
+                                    font-size: 15px;
+                                    font-family: $font-jost;
+                                    position: relative;
+
+                                    .loading_div[direction="false"] {
+                                        position: absolute;
+                                        top: -36px;
+                                        right: 72px;
+
+                                    }
+
+                                    .loading_div[direction="true"] {
+                                        position: absolute;
+                                        top: -39px;
+                                        right: 409px;
+                                        left: -27px;
+
+                                        // @media(max-width:1450px) {
+                                        //     right: 299px;
+                                        // }
+
+                                        // @media(max-width:1270px) {
+                                        //     right: 279px;
+                                        // }
+
+                                        // @media(max-width:1220px) {
+                                        //     right: 259px;
+                                        // }
+
+                                        // @media(max-width:1200px) {
+                                        //     right: 229px;
+                                        // }
+
+                                        // @media(max-width:990px) {
+                                        //     right: 80px;
+                                        // }
+                                    }
+
+                                    .input_delete_field_icon[direction="true"] {
+                                        position: absolute;
+                                        right: 95% !important;
+                                        color: red;
+                                        right: 5px;
+                                        font-size: 12px;
+                                        transform: rotate(180deg);
+                                        top: 7px;
+                                        cursor: pointer;
+                                        width: 10px;
+                                    }
+
+                                    .input_delete_field_icon {
+                                        position: absolute;
+                                        right: 9px;
+                                        top: 7px;
+                                        cursor: pointer;
+                                        color: red;
+                                    }
+
+                                    .error_icon[direction="false"] {
+                                        top: 0px;
+                                        font-size: 12px;
+                                        color: red;
+                                        right: 10px;
+                                        position: absolute;
+                                        display: inline;
+                                        width: 13px;
+                                    }
+
+                                    .error_icon[direction="true"] {
+                                        position: absolute;
+                                        top: 0px;
+                                        left: 0px !important;
+                                        font-size: 12px;
+                                        color: red;
+
+
+                                    }
+
+
+
+                                    input {
+                                        border: 0;
+                                        outline: none;
+                                        width: 100%;
+                                        background-color: transparent;
+                                        color: $dark-1;
+                                        outline-offset: -2px;
+                                        font-weight: 500;
+                                        font-family: $font-jost;
+                                        position: relative;
+                                        font-size: 14px;
+                                        text-transform: capitalize !important;
+
+                                        &::placeholder {
+                                            color: $light-1;
+                                            // color: rgb(5, 16, 54);
+                                            font-weight: 400;
+                                            text-transform: capitalize;
+                                        }
+                                    }
+
+
+
+                                    // background-color: red;
+                                    input[type="date"]:after {
+                                        font-family: "Font Awesome 5 Free";
+                                        font-weight: 900;
+                                        content: "\f073";
+                                        top: 15px;
+                                        right: 15px;
+                                        font-size: 14px;
+                                        user-select: none;
+                                        color: #5d646d;
+                                        position: absolute;
+
+                                    }
+
+                                    input[type="date"] {
+                                        position: relative;
+                                        text-align: left;
+                                        min-width: 100%;
+                                        max-width: 100%;
+                                        -webkit-appearance: none;
+                                        -moz-appearance: none;
+                                        min-height: 53.6px !important;
+                                        height: 53.6px !important;
+                                        background-color: rgb(255, 255, 255);
+                                        -webkit-border-radius: 0;
+                                        -webkit-width: 100%
+                                    }
+
+
+
+                                    /* change color of symbol on hover */
+                                    input[type="date"]:hover:after {
+                                        //  color: #bf1400;
+                                    }
+
+                                    /* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+                                    input[type="date"]::-webkit-calendar-picker-indicator {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        right: 0;
+                                        bottom: 0;
+                                        width: auto;
+                                        height: auto;
+                                        color: transparent;
+                                        background: transparent;
+                                        user-select: none;
+                                    }
+
+                                    /* adjust increase/decrease button */
+                                    input[type="date"]::-webkit-inner-spin-button {
+                                        z-index: 1;
+
+                                    }
+
+                                    /* adjust clear button */
+                                    input[type="date"]::-webkit-clear-button {
+                                        z-index: 1;
+                                    }
+
+                                    //iphonelarda 2 aralik 2022 ni ortaliyan budur
+                                    input::-webkit-date-and-time-value {
+                                        text-align: left;
+                                        text-align: -webkit-left;
+                                        display: flex;
+                                        align-items: center;
+                                        height: 100%;
+                                    }
+
+                                    input[type="date"]::-webkit-datetime-edit,
+                                    input[type="date"]::-webkit-inner-spin-button,
+                                    input[type="date"]::-webkit-clear-button {
+                                        color: rgb(253, 253, 253);
+                                        position: relative;
+                                        left: 0px;
+                                        text-align: left;
+                                    }
+
+                                    input[type="date"]::-webkit-datetime-edit-year-field {
+                                        position: absolute !important;
+                                        border-left: 1px solid #8c8c8c2f;
+                                        padding: 2px 7px;
+                                        color: #000;
+                                        left: 56px;
+                                    }
+
+                                    input[type="date"]::-webkit-datetime-edit-month-field {
+                                        position: absolute !important;
+                                        border-left: 1px solid #8c8c8c2f;
+                                        padding: 2px 7px;
+                                        color: rgb(0, 0, 0);
+                                        left: 26px;
+                                    }
+
+
+                                    input[type="date"]::-webkit-datetime-edit-day-field {
+                                        position: absolute !important;
+                                        color: #000;
+                                        padding: 2px 0px;
+                                        left: 4px;
+
+                                    }
+
+                                    input::-webkit-datetime-edit-day-field:focus,
+                                    input::-webkit-datetime-edit-month-field:focus,
+                                    input::-webkit-datetime-edit-year-field:focus {
+                                        background-color: rgb(12, 155, 243);
+                                        color: white;
+                                        outline: none;
+                                    }
+
+
+                                }
+
+                                .addrtl {
+                                    i {
+                                        margin-left: 0.70rem !important;
+                                    }
+                                }
+
+                                .add_point_div {
+                                    display: flex;
+                                    align-items: center;
+                                    padding: 2px 10px;
+                                    // margin-bottom: 1rem;
+                                    color: $light-1;
+                                    transition: .2s ease;
+                                    text-transform: capitalize;
+
+                                    .add_point_icon {
+                                        font-size: 14px;
+                                        margin-right: 0.70rem;
+                                    }
+
+
+                                    &:hover {
+                                        cursor: pointer;
+                                        color: $dark-1;
+                                    }
+                                }
+
+                            }
+
+                            //2022-12-12
+                            .book_input_date {
+                                position: relative;
+
+
+                                .date_div_rtl {
+
+                                    @media(max-width:990px) {
+                                        display: flex;
+                                        justify-content: flex-end;
+                                        align-items: center;
+                                        padding-right: 5rem;
+                                    }
+                                }
+
+                                .date_div.rtl {
+                                    display: flex;
+                                    justify-content: flex-start;
+                                }
+
+                                .date_div {
+                                    // max-width: 184px;
+                                    width: 100%;
+                                    // background-color: red;
+
+                                    @media(max-width:990px) {
+                                        border-bottom: 1px solid #efefef;
+                                        padding-right: 0px;
+                                        padding-bottom: 4px;
+                                        max-width: 100%;
+                                    }
+
+                                    input[type="date"] {
+                                        position: relative;
+                                        text-align: left;
+                                        min-width: 100%;
+                                        max-width: 100%;
+                                        -webkit-appearance: none;
+                                        -moz-appearance: none;
+                                        -webkit-border-radius: 0;
+                                        -webkit-width: 100%;
+                                        min-height: 28px !important;
+                                        height: 28px !important;
+                                        border: 0;
+                                        outline: none;
+                                        padding: 1px 2px;
+                                        outline-offset: -2px;
+
+                                        @media (max-width:990px) {
+                                            padding: 1px 0px;
+                                        }
+
+                                        font-weight: 500;
+                                        font-family: $font-jost;
+                                        font-size: 15px;
+
+                                        &:before {
+                                            content: '';
+                                            position: absolute;
+                                            // width: 100%;
+                                            height: 50%;
+                                            border-color: transparent transparent transparent rgba(#5d646d, .5);
+                                            border-style: solid;
+                                            border-width: 1px;
+                                            transform: skewX(-15deg);
+                                            top: 6px;
+                                            left: 23px;
+
+                                            @media (max-width:768px) {
+                                                display: none !important;
+                                            }
+                                        }
+
+                                        &:after {
+                                            content: '';
+                                            position: absolute;
+                                            // width: 100%;
+                                            height: 50%;
+                                            border-color: transparent transparent transparent rgba(#5d646d, .5);
+                                            border-style: solid;
+                                            border-width: 1px;
+                                            transform: skewX(-15deg);
+                                            left: 52px;
+                                            top: 6px;
+
+                                            @media (max-width:768px) {
+                                                display: none !important;
+                                            }
+                                        }
+                                    }
+
+
+
+                                    /* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+                                    input[type="date"]::-webkit-calendar-picker-indicator {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        right: 0;
+                                        bottom: 0;
+                                        width: auto;
+                                        height: auto;
+                                        color: transparent;
+                                        background: transparent;
+                                        user-select: none;
+                                        z-index: 1;
+                                    }
+
+                                    /* adjust increase/decrease button */
+                                    input[type="date"]::-webkit-inner-spin-button {
+                                        z-index: 1;
+
+                                    }
+
+                                    /* adjust clear button */
+                                    input[type="date"]::-webkit-clear-button {
+                                        z-index: 1;
+                                    }
+
+                                    //iphonelarda 2 aralik 2022 ni ortaliyan budur
+                                    input::-webkit-date-and-time-value {
+                                        text-align: left;
+                                        text-align: -webkit-left;
+                                        display: flex;
+                                        align-items: center;
+                                        height: 100%;
+                                    }
+
+                                    input[type="date"]::-webkit-datetime-edit,
+                                    input[type="date"]::-webkit-inner-spin-button,
+                                    input[type="date"]::-webkit-clear-button {
+                                        color: rgb(253, 253, 253);
+                                        position: relative;
+                                        left: 0px;
+                                        text-align: left;
+                                    }
+
+                                    input[type="date"]::-webkit-datetime-edit-year-field {
+                                        position: absolute !important;
+                                        // border-left: 1px solid #8c8c8c2f;
+                                        padding: 0px 7px;
+                                        color: #03091f;
+                                        left: 54px;
+
+
+
+                                    }
+
+                                    input[type="date"]::-webkit-datetime-edit-month-field {
+                                        position: absolute !important;
+                                        // border-left: 1px solid #8c8c8c2f;
+                                        padding: 0px 7px;
+                                        color: #03091f;
+                                        left: 22px;
+                                    }
+
+
+                                    input[type="date"]::-webkit-datetime-edit-day-field {
+                                        position: absolute !important;
+                                        color: #03091f;
+                                        padding: 0px 0px;
+                                        left: 0px;
+
+                                    }
+
+                                    input::-webkit-datetime-edit-day-field:focus,
+                                    input::-webkit-datetime-edit-month-field:focus,
+                                    input::-webkit-datetime-edit-year-field:focus {
+                                        background-color: rgb(12, 155, 243);
+                                        color: white;
+                                        outline: none;
+                                    }
+
+                                    // in case if it is arabic language
+
+                                    input[type="date"].rtl {
+                                        &:before {
+                                            left: 91px;
+
+                                            @media(max-width:1250px) {
+                                                left: 73px;
+                                            }
+                                        }
+
+                                        &:after {
+                                            left: 59px;
+
+                                            @media(max-width:1250px) {
+                                                left: 47px;
+                                            }
+                                        }
+                                    }
+
+                                    input[type="date"].rtl::-webkit-datetime-edit-year-field {
+                                        left: 8px;
+
+                                        // @media(max-width:1250px) {
+                                        //     left: 0px;
+                                        // }
+                                    }
+
+                                    input[type="date"].rtl::-webkit-datetime-edit-month-field {
+                                        left: 58px;
+
+                                        // @media(max-width:1250px) {
+                                        //     left: 45px;
+                                        // }
+                                    }
+
+
+                                    input[type="date"].rtl::-webkit-datetime-edit-day-field {
+                                        left: 96px;
+
+                                        // @media(max-width:1250px) {
+                                        //     left: 80px;
+                                        // }
+
+
+                                    }
+                                }
+
+
+                                .date_picker_icon {
+
+                                    top: 74px !important;
+                                    transform: translateY(-100%);
+                                    right: 13px;
+                                    font-size: 14px;
+                                    user-select: none;
+                                    color: lighten(#03091f, 15%);
+                                    position: absolute;
+
+                                    z-index: 0;
+
+                                    @media(max-width:990px) {
+                                        right: 5px;
+
+                                    }
+                                }
+
+                                .date_picker_icon_left {
+
+                                    top: 74px !important;
+
+
+
+                                }
+                            }
+
+                            .select_time_div {
+                                display: flex;
+                                position: relative;
+                                gap: 1.5rem;
+                                padding-top: 20px;
+                                padding-bottom: 10px;
+
+                                .booking_form_hour_minute_wrapper {
+                                    flex: 1;
+                                    display: flex;
+                                    flex-direction: column;
+                                    position: relative;
+
+                                    i {
+                                        position: absolute;
+                                        right: 12px;
+                                        top: 44px;
+                                        // color: #bbb;
+                                        z-index: 0;
+                                        pointer-events: none;
+                                        color: darken($dark-1, 5%);
+                                        font-size: 14px;
+                                        display: none;
+                                    }
+
+                                    label {
+                                        color: $light-1;
+                                        font-weight: 500;
+                                        line-height: 1.6;
+                                        font-family: $font-jost;
+                                        margin-bottom: 5px;
+                                        font-size: 15px;
+                                    }
+
+                                    select {
+                                        width: calc(100%);
+                                        padding: 6px 0px;
+                                        background: transparent;
+                                        border: none;
+                                        font-size: 16px;
+                                        color: darken($dark-1, 5%);
+                                        margin: 0;
+                                        font-weight: 500;
+                                        font-family: $font-jost;
+                                        border-bottom: 1px solid #efefef;
+                                        // -webkit-appearance: none;
+                                        font-size: 14px;
+                                        background-color: rgb(255, 255, 255);
+
+                                        &:focus {
+                                            outline: none !important;
+                                        }
+                                    }
+                                }
+
+                            }
+
+                            .button {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                border-radius: 4px !important;
+                                width: 100%;
+                                font-size: 18px;
+                                min-height: 50px;
+                                text-transform: capitalize;
+
+                                i {
+                                    margin-right: 10px;
+                                }
+                            }
+                        }
+
+                        .map_direction {
+                            min-height: 230px;
+                            margin-top: 10px;
+                        }
+                    }
+
+                    //gecerli degil Card quotationa bax
+
+
+
+
+                    //here is result uotaion container which all cars
+
+
+
+                    .items_buttons {
+                        position: absolute;
+                        right: 0px;
+                        display: flex;
+                        width: 100%;
+                        justify-content: flex-end;
+
+                        :nth-child(2) {
+                            margin-left: 2rem;
+                        }
+
+                        margin-top: 20px;
+
+                        @media (max-width: 820px) {
+                            justify-content: space-between;
+                        }
+
+                        button {
+                            letter-spacing: 0.4px;
+                            font-size: 15px;
+                            padding: 0px 16px;
+                            line-height: 37px;
+                            transition: all 0.3s;
+                            cursor: pointer;
+                            border: none;
+                            border-radius: 4px;
+                            font-weight: 500;
+                            position: relative;
+                            display: inline-block;
+                            border: 1px solid $primary;
+                            width: 100%;
+                            color: $primary !important;
+                            background-color: white !important;
+                            transition: .5s ease;
+                            text-transform: capitalize;
+                            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+
+                            @media (max-width: 450px) {
+                                font-size: 13px;
+                                padding: 0px 15px;
+                                line-height: 29px;
+
+                            }
+
+
+                            &:hover {
+                                box-shadow: none !important;
+                                transition: .5s ease;
+                            }
+
+                        }
+                    }
+
+                    //!taxi deals
+                    .quotation_panel_istaxideal {
+                        flex-basis: 23%;
+
+                        gap: 1rem;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative !important;
+                        top: 0px;
+                        padding-top: 11rem;
+                        // padding-top: 1rem;
+
+                        @media (max-width:1400px) {
+                            // flex-basis: 20%;
+                        }
+
+                        @media (max-width: 1000px) {
+
+
+                            display: none;
+
+                        }
+
+                        .modal_map {
+                            .modal_map_container {
+                                position: relative;
+                                width: 990px;
+                                height: 650px;
+
+                                @media only screen and (max-width: 1200px) {
+                                    padding: 20px;
+                                }
+
+
+                                .close_div {
+                                    position: absolute;
+                                    right: 5px;
+                                    top: 5px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    z-index: 1;
+                                    background-color: rgb(255, 255, 255);
+                                    width: 35px;
+                                    cursor: pointer;
+                                    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                                    border-radius: 3px;
+
+                                    @media only screen and (max-width: 1200px) {
+                                        top: 25px;
+                                        right: 25px;
+                                    }
+
+                                    i {
+                                        color: rgb(0, 0, 0);
+                                        font-size: 25px;
+                                    }
+                                }
+
+
+                                .google_map {
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                        }
+
+                        .map_direction {
+                            margin-top: 0px;
+                            min-height: 144px;
+                            background-image: url('/images/mapLondonn.png');
+                            background-size: cover;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 4px;
+                            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+                            button {
+                                padding: 10px 18px;
+                                border-radius: 4px;
+                                font-size: 20px;
+                            }
+                        }
+
+                        .left_info[direction="true"] {
+                            li {
+                                gap: 0px;
+                            }
+                        }
+
+
+
+                        .left_info {
+                            color: $dark-1;
+                            padding: 10px 10px;
+                            font-weight: 500;
+                            border-bottom: solid 1px #d8e4e7;
+
+                            a {
+                                font-weight: 400;
+                            }
+
+                            .left_info_title {
+                                font-size: 24px;
+                                margin-bottom: 10px;
+                                font-weight: 500;
+                            }
+
+                            ul {
+
+                                li {
+                                    margin-bottom: 7px;
+                                    // margin-left: 5px;
+                                    // padding-left: 11px;
+                                    display: flex;
+                                    align-items: center;
+                                    font-size: 15px;
+                                    font-weight: 400;
+                                    gap: 10px;
+                                    position: relative;
+
+                                    .checkbox {
+                                        position: absolute;
+                                        user-select: none;
+                                        cursor: pointer;
+                                        font-family: $font-jost;
+                                        opacity: 0;
+
+                                        // Text
+                                        &+label {
+                                            padding-left: $checkbox-size ;
+                                            user-select: none;
+
+                                            // Checkbox
+                                            &:before {
+                                                position: absolute;
+                                                display: block;
+                                                left: 0;
+                                                top: 48%;
+                                                transform: translateY(-50%);
+                                                content: "";
+                                                background: transparent;
+                                                width: $checkbox-size;
+                                                height: $checkbox-size;
+                                                border-radius: 4px;
+                                                transition: 200ms ease-in-out all;
+                                            }
+
+                                            // Tick
+                                            &:after {
+                                                position: absolute;
+                                                display: block;
+                                                top: 7px;
+                                                left: 5px;
+                                                content: "";
+                                                width: 5px;
+                                                height: 8px;
+                                                border-right: 2px solid transparent;
+                                                border-bottom: 2px solid transparent;
+                                                transform: rotate(45deg);
+                                                transition: 200ms ease-in-out all;
+
+                                            }
+                                        }
+
+                                        // Hover
+                                        &+label:hover {
+                                            color: #333;
+                                        }
+
+                                        // Focus
+                                        &+label:focus {
+                                            outline: none;
+                                        }
+
+                                        // Checked
+                                        &:checked {
+                                            &+label {
+                                                &:before {
+                                                    background: $checkbox-selected;
+                                                    box-shadow: none;
+                                                }
+
+                                                &:after {
+                                                    border-color: white;
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+
+
+
+                                .badge__content {
+                                    border-radius: 12px;
+                                    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 3%);
+                                    border-radius: 15px;
+                                    background-color: #3c466d;
+
+                                    .badge_stars {
+                                        color: #ffe234;
+                                        text-align: center;
+                                        font-size: 22px;
+                                        gap: 2px;
+                                        display: flex;
+                                        justify-content: center;
+                                        padding-top: 10px;
+                                        padding-bottom: 10px;
+                                        background-color: #fff;
+
+
+                                    }
+
+                                    .badge_stats {
+                                        color: #000;
+                                        border-bottom-left-radius: 15px;
+                                        border-bottom-right-radius: 15px;
+                                        text-align: center;
+                                        font-weight: 400;
+
+                                        .stats_wrpa {
+                                            background-color: #fff;
+
+                                            .stats__score {
+                                                .ruk_rating {
+                                                    font-weight: bold;
+                                                    font-size: 19px;
+                                                    margin-right: 5px;
+                                                }
+                                            }
+
+                                            .stats__count {
+                                                .ruk_count {
+                                                    font-weight: bold;
+                                                    font-size: 19px;
+                                                    margin-right: 5px;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    a {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+
+                                        img {
+                                            width: 175px;
+                                            height: 45px;
+                                        }
+                                    }
+
+
+                                }
+
+
+
+                                .heathrow_image_video_a {
+                                    cursor: pointer;
+
+                                    .heathrow_image_video_img {
+                                        height: 100px;
+                                        object-fit: cover;
+                                        width: 100%;
+                                    }
+                                }
+
+                                .whichterminal_a {
+                                    img {
+                                        width: 100%;
+                                        height: 53px;
+                                    }
+                                }
+
+                                .approve_a {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+
+                                    img {
+                                        object-fit: cover;
+                                    }
+                                }
+                            }
+
+
+
+
+                        }
+
+                        .tripad_left_info {
+                            padding: 10px 0px;
+
+                            .tripad_a {
+                                .tripad_img {
+                                    transform: translateX(-20px);
+                                    width: 110%;
+                                    height: 105px;
+                                    object-fit: contain;
+
+                                    @media(max-width:1500px) {
+                                        width: 104%;
+                                        transform: translateX(-20px);
+                                    }
+
+                                    @media(max-width:1450px) {
+                                        object-fit: contain;
+                                        transform: translateX(-28px);
+                                        width: 106%;
+                                    }
+
+                                    @media(max-width:1350px) {
+                                        width: 110%;
+                                    }
+                                }
+                            }
+                        }
+
+                        .acceptedcards {
+                            padding-bottom: 29px;
+                            padding: 10px 0px;
+
+                            img {
+                                width: 105%;
+                                transform: translateX(-10px);
+                            }
+                        }
+
+                        .tfl {
+                            padding: 10px 5px;
+
+                            img {
+                                width: 112%;
+                                transform: translateX(-25px);
+                            }
+                        }
+
+
+                        .left_support {
+                            padding: 10px 0px;
+
+                            p {
+                                margin-bottom: 20px !important;
+                            }
+
+                            ul {
+                                .mail {
+                                    img {
+                                        width: 18px;
+                                        margin-bottom: -5px;
+                                        margin-left: 4px;
+                                    }
+                                }
+
+                                .wp {
+
+                                    img {
+                                        width: 25px;
+                                        margin-bottom: 2px;
+                                    }
+                                }
+
+                                .phone {
+                                    margin-bottom: 13px;
+
+                                    img {
+                                        width: 20px;
+                                        margin-bottom: 2px;
+                                        margin-left: 3px;
+                                    }
+                                }
+
+                                li {
+
+                                    display: grid;
+                                    grid-template-columns: 20px 1fr;
+
+
+
+
+
+
+
+                                    span {}
+                                }
+                            }
+                        }
+
+                        .services {
+                            padding: 10px 0px !important;
+                            text-transform: capitalize;
+                        }
+
+                        .form_div {
+                            .radio_button_div {
+                                margin-top: 10px;
+                                user-select: none;
+                                cursor: pointer;
+                                display: block;
+
+                                input,
+                                label {
+                                    cursor: pointer;
+                                    margin-left: 6px;
+                                    color: rgb(115, 115, 115);
+                                    font-size: 20px;
+                                    font-family: $font-jost;
+                                    text-transform: capitalize;
+                                }
+                            }
+
+                            .search_menu {
+                                border-bottom: 1px solid transparent !important;
+
+
+                            }
+
+                            //2022-12-12
+                            .book_input_date {
+                                position: relative;
+                            }
+
+                            .dropoff_div {
+                                // padding-top: 0px !important;
+                            }
+
+                        }
+                    }
+                }
+
+                .main_container_taxideal {
+                    display: flex;
+                    position: relative;
+                    gap: 30px;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}
+
+.google-maps-markerwithlabel {
+    position: relative;
+    transform: translate(0, -50%);
+}
+
+.google-maps-markerwithlabel:hover {
+    z-index: 12000;
+}
+
+.google-maps-markerwithlabel>img {
+    width: 64px;
+    height: 64px;
+}
+
+.google-maps-markerwithlabel>p {
+    position: absolute;
+    top: 32px;
+    left: 60px;
+    display: block;
+    white-space: nowrap;
+    background-color: #fff;
+    padding: 4px 8px;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    transform: translate(0, -80%);
+}
+
+.google-maps-markerwithlabel>p[d='right'] {
+    left: unset;
+    right: 60px;
+}
+
+.google-maps-markerwithlabel>span {
+    position: absolute;
+    top: 8px;
+    left: 32px;
+    transform: translate(-50%);
+    color: #000;
+    font-weight: 900;
+    font-size: 26px;
+}
