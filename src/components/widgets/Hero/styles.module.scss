@@ -39,24 +39,6 @@
                     display: flex;
                     justify-content: space-between;
 
-                    .review_trip_advisor {
-                        width: 250px;
-
-                        img {
-                            width: 100%;
-                        }
-
-                        a {
-                            position: relative;
-                        }
-                    }
-
-                    @media (max-width:990px) {
-                        .review_trip_advisor {
-                            margin-top: 8px;
-                        }
-                    }
-
                     @media (max-width:768px) {
                         flex-direction: column;
                         align-items: center;
@@ -64,16 +46,6 @@
 
                     @media (max-width:500px) {
                         font-size: 23px;
-
-                        .review_trip_advisor {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-
-                            img {
-                                width: 200px;
-                            }
-                        }
                     }
                 }
 
@@ -1070,7 +1042,8 @@
                 }
 
                 .review_trip_advisor {
-                    width: 330px;
+                    position: relative;
+
 
                     @media (max-width:767px) {
                         width: 300px;
@@ -1088,6 +1061,10 @@
 
                     a {
                         position: relative;
+                        max-width: 330px;
+                        width: 100%;
+                        height: 141px;
+                        display: block;
                     }
                 }
 

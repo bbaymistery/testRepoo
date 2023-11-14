@@ -544,7 +544,7 @@ const Hero = (props) => {
                         <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '.5s', animationDuration: '1s' }}>
 
                             <a rel="noreferrer" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
-                                <Image width={330} height={141} src="/images/advisorTrip.png" alt="Airport Pickups London Tripadvisor" />
+                                <Image fill sizes="(max-width: 768px) 100vw, 50vw" src="/images/advisorTrip.png" alt="Airport Pickups London Tripadvisor" />
 
                             </a>
                         </div>
@@ -553,7 +553,7 @@ const Hero = (props) => {
                         <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '0.75s', animationDuration: '1s' }}>
 
                             <a rel="noreferrer" href="https://www.trustpilot.com/review/airport-pickups-london.com" target={"_blank"} >
-                                <Image width={330} height={141} src="/images/Excellent.png" alt=" Airport Pickups London Trustpilot " />
+                                <Image fill sizes="(max-width: 768px) 100vw, 50vw" src="/images/Excellent.png" alt=" Airport Pickups London Trustpilot " />
 
                             </a>
                         </div>
@@ -561,7 +561,7 @@ const Hero = (props) => {
                         <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '1s', animationDuration: '1s' }}>
 
                             <a rel="noreferrer" href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} >
-                                <Image width={330} height={141} src="/images/Reviews.png" alt="Airport Pickups London Review" />
+                                <Image fill sizes="(max-width: 768px) 100vw, 50vw" src="/images/Reviews.png" alt="Airport Pickups London Review" />
 
                             </a>
 
