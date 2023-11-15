@@ -14,6 +14,6 @@ Am i gonna add it manually?
 //!6.[linkname]=>deki title metaga taglar(http://localhost:3500/tr/heathrow-airport-transfer)
 //*8.special offers(en son bunu sorus)
 //!meetgreet  =>step 2 flight => Select Airlenis ne gelicek ?hangi Airleni?
-
+//https://www.airport-pickups-london.com/Cruise-taxi       busehfe yapilicakmidir   => bizdeki garsiliqi ise    CrusePorts Yazisidir
 
 
