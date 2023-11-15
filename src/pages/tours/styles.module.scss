@@ -1,0 +1,180 @@
+@import '../../styles/variables';
+@import '../../styles/_fonts';
+
+.tours[bggray="true"] {
+    background-color: $light-2;
+}
+
+.tours[bggray="false"] {
+    background-color: white !important;
+}
+
+.tours {
+    height: 100%;
+    position: relative;
+    padding-top: 4rem;
+    border: 1px solid $border;
+    margin-top: 0px !important;
+
+
+    &_section {
+
+        &_container {
+            .title {
+                h1 {
+                    text-align: center;
+                    font-size: 30px;
+                    font-weight: 500;
+                }
+
+                p {
+                    color: $light-1;
+                    margin-top: 10px;
+                }
+
+                margin-bottom: 2rem;
+            }
+
+            .cards_content {
+                .cards {
+                    display: flex;
+                    gap: 1rem;
+                    justify-content: space-between;
+
+                    .card:hover {
+
+
+                        .card_image_div {
+
+
+                            img {
+                                transform: scale(1.15);
+                            }
+                        }
+
+                        .card_body {
+                            h2 {
+                                &::after {
+                                    width: 100%;
+                                }
+                            }
+
+                            .start_from {
+                                color: #0a58ca;
+                            }
+                        }
+                    }
+
+                    @media(max-width:990px) {
+                        display: grid;
+                        gap: 2rem;
+                        grid-template-columns: 1fr 1fr;
+                    }
+
+                    @media(max-width:510px) {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .card {
+                        max-width: 300px;
+                        width: 100%;
+
+                        @media (max-width:1400px) {
+                            max-width: 255px;
+                        }
+
+                        @media(max-width:1200px) {
+                            max-width: 210px;
+                        }
+
+                        @media(max-width:990px) {
+                            max-width: 100%;
+                        }
+
+                        .card_image_div {
+                            overflow: hidden;
+                            width: 300px;
+                            height: 300px;
+                            margin-bottom: 10px;
+                            border-radius: 4px;
+                            position: relative;
+
+                            @media(max-width:1400px) {
+                                width: 100%;
+                            }
+
+
+                            .img {
+                                width: 100%;
+                                object-fit: cover;
+                                transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+                                height: 100%;
+                            }
+
+                        }
+
+                        .card_body {
+                            @media (max-width:1200px) {
+                                height: 75px;
+                                display: flex;
+                                justify-content: space-between;
+                                flex-direction: column;
+                            }
+
+                            h2 {
+                                color: $dark-1;
+                                position: relative;
+                                margin-bottom: 16px;
+                                font-size: 17px;
+                                font-weight: 500;
+
+                                @media (max-width:1200px) {
+                                    margin-bottom: 0px;
+                                }
+
+                                &::after {
+                                    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+                                    width: 0%;
+                                    background-color: $dark-2;
+                                    content: '';
+                                    height: 2px;
+                                    position: absolute;
+                                    bottom: -2px;
+                                    left: 0px;
+                                }
+                            }
+
+
+                            .start_from {
+                                display: flex;
+                                align-items: center;
+                                margin-top: 5px;
+                                color: $dark-1;
+                                font-weight: 500;
+                                font-size: 16px;
+                                gap: 10px;
+                                transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+                                .start_from_text_left {
+                                    text-transform: capitalize;
+                                }
+
+                                .start_from_text_right {
+                                    color: #0a58ca;
+                                    font-size: 17px;
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+
+
+                .haveSpace {
+                    margin-top: 50px;
+                }
+            }
+        }
+    }
+}
