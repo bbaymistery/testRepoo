@@ -108,7 +108,6 @@ const TaxiDeals = (props) => {
             localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals));
             dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
             fecthPoints({ dealsNameProp: hasTaxiDeals, language });
-            console.log("calisdim pathname");
         }
 
     }, [])

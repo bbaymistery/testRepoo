@@ -21,7 +21,7 @@ const leftLinks = [
 const Terms = (props) => {
     let { bggray = false } = props;
     const state = useSelector(state => state.pickUpDropOffActions);
-    const { params: { language ,direction} } = state;
+    const { params: { language, direction } } = state;
     const [isActiveId, setIsActiveId] = useState(1);
     const [pagePathname, setPagePathname] = useState("Terms");
 
@@ -42,7 +42,7 @@ const Terms = (props) => {
                             <div className={`${styles.link_content} p_2`}>
                                 {leftLinks.map((link, index) => {
                                     return <div key={index} className={`${styles.link_content_item} ${isActiveId === link.id ? styles.link_content_item_active : ""}`}>
-                                        <button tabIndex="-1" onClick={() => handleLinkNames(link)}>
+                                        <button onClick={() => handleLinkNames(link)}>
                                             {link.linkName}
                                         </button>
                                     </div>

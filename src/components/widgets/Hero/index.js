@@ -541,31 +541,23 @@ const Hero = (props) => {
             <div className={`${styles.advertisiment_images_section} ${!islinknamecomponent ? styles.advertisiment_images_section_islinkname : ""} page_section`}>
                 <div className={`${styles.advertisiment_images_section_container} page_section_container`}>
                     <div className={styles.advertisiment_images}>
-                        <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '.5s', animationDuration: '1s' }}>
+                        <a rel="noreferrer" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
+                            <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '.5s', animationDuration: '1s' }}>
+                                <Image fill style={{ objectFit: 'contain' }} src="/images/advisorTrip.png" alt="Airport Pickups London Tripadvisor" />
+                            </div>
+                        </a>
 
-                            <a rel="noreferrer" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
-                                <Image fill sizes="(max-width: 768px) 100vw, 50vw" src="/images/advisorTrip.png" alt="Airport Pickups London Tripadvisor" />
+                        <a rel="noreferrer" href="https://www.trustpilot.com/review/airport-pickups-london.com" target={"_blank"} >
+                            <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '0.75s', animationDuration: '1s' }}>
+                                <Image fill style={{ objectFit: 'contain' }} src="/images/Excellent.png" alt=" Airport Pickups London Trustpilot " />
+                            </div>
+                        </a>
 
-                            </a>
-                        </div>
-
-
-                        <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '0.75s', animationDuration: '1s' }}>
-
-                            <a rel="noreferrer" href="https://www.trustpilot.com/review/airport-pickups-london.com" target={"_blank"} >
-                                <Image fill sizes="(max-width: 768px) 100vw, 50vw" src="/images/Excellent.png" alt=" Airport Pickups London Trustpilot " />
-
-                            </a>
-                        </div>
-
-                        <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '1s', animationDuration: '1s' }}>
-
-                            <a rel="noreferrer" href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} >
-                                <Image fill sizes="(max-width: 768px) 100vw, 50vw" src="/images/Reviews.png" alt="Airport Pickups London Review" />
-
-                            </a>
-
-                        </div>
+                        <a rel="noreferrer" href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} >
+                            <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '1s', animationDuration: '1s' }}>
+                                <Image fill style={{ objectFit: 'contain' }} src="/images/Reviews.png" alt="Airport Pickups London Review" />
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

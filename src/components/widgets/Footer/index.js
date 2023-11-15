@@ -41,27 +41,27 @@ const Footer = (props) => {
             <div className={styles.column}>
               <h3>Company</h3>
               <ul className={styles.list_items}>
-                <a href={`${language === 'en' ? `/drivers-wanted` : `${language}/drivers-wanted`}`} tabIndex="-1" title='Drivers' >
+                <a href={`${language === 'en' ? `/drivers-wanted` : `${language}/drivers-wanted`}`} title='Drivers' >
                   Drivers
                 </a>
                 <a href="#">Sitemap</a>
-                <a href={`${language === 'en' ? `/about-us` : `${language}/about-us`}`} title={appData.words["aboutUs"]} tabIndex="-1" >
+                <a href={`${language === 'en' ? `/about-us` : `${language}/about-us`}`} title={appData.words["aboutUs"]}>
                   {appData.words["aboutUs"]}
                 </a>
-                <a href={`${language === 'en' ? `/contact-us` : `${language}/contact-us`}`} title={appData.words["appContactUsHeader"]} tabIndex="-1" >
+                <a href={`${language === 'en' ? `/contact-us` : `${language}/contact-us`}`} title={appData.words["appContactUsHeader"]} >
                   {appData.words["appContactUsHeader"]}
                 </a>
-                <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strTermsOfUse"]} tabIndex="-1" >
+                <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strTermsOfUse"]}  >
                   {appData.words["strTermsOfUse"]}
                 </a>
-                <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strPrivacyPolicy"]} tabIndex="-1" >
+                <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strPrivacyPolicy"]}  >
                   {appData.words["strPrivacyPolicy"]}
                 </a>
 
-                <a href={`${language === 'en' ? `/heathrow-porter-service` : `${language}/heathrow-porter-service`}`} tabIndex="-1" >
+                <a href={`${language === 'en' ? `/heathrow-porter-service` : `${language}/heathrow-porter-service`}`}  >
                   Porter Service
                 </a>
-                <a href={`${language === 'en' ? `/heathrow-vip-meet-and-assist` : `${language}/heathrow-vip-meet-and-assist`}`} tabIndex="-1" >
+                <a href={`${language === 'en' ? `/heathrow-vip-meet-and-assist` : `${language}/heathrow-vip-meet-and-assist`}`}  >
                   Meet and assist
                 </a>
 
@@ -79,7 +79,7 @@ const Footer = (props) => {
                     key={index}
                     onClick={() => { dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } }); dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } }) }}
                     href={`${language === 'en' ? `${listPath}` : `${language}${listPath}`}`}
-                    title={listTitle} tabIndex="-1" >
+                    title={listTitle}>
                     <span>{listInnerText}</span>
                   </Link>
                 })}
@@ -150,10 +150,10 @@ const Footer = (props) => {
                 Copyrights  © 2022  Airport Pickups London
               </div>
               <ul className={styles.lists}>
-                <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strPrivacyPolicy"]} tabIndex="-1" >
+                <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strPrivacyPolicy"]} >
                   {appData.words["strPrivacyPolicy"]}
                 </a>
-                <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strTermsOfUse"]} tabIndex="-1" >
+                <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strTermsOfUse"]} >
                   {appData.words["strTermsOfUse"]}
                 </a>
                 <a href="#">Site Map</a>

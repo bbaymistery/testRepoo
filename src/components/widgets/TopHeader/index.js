@@ -13,6 +13,7 @@ import { extractLanguage } from "../../../helpers/extractLanguage";
 import OutsideClickAlert from "../../elements/OutsideClickAlert";
 import useRipple from "../../../hooks/useRipple";
 
+
 const Header = () => {
   const ref = useRef(null);
   const ripples = useRipple(ref);
@@ -191,11 +192,11 @@ const Header = () => {
                       // as={`${path==='/'?"/":""}`}
                       <li key={innerText} className={`${styles.li_item} ${type === "list" ? styles.has_children : ""}`}>
                         {index === 0 ?
-                          <a onClick={gotoHomeFromLogoClick} href={language === 'en' ? '/' : `/${language}`} tabIndex="-1" title={title} className={`${!path.length ? styles.nocursor : ""}`} >
+                          <a onClick={gotoHomeFromLogoClick} href={language === 'en' ? '/' : `/${language}`} title={title} className={`${!path.length ? styles.nocursor : ""}`} >
                             <span>{innerText}</span>
                           </a>
                           :
-                          <a tabIndex="-1" href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${!path.length ? styles.nocursor : ""}`}>
+                          <a href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${!path.length ? styles.nocursor : ""}`}>
                             <span>{innerText}</span>
                             {type === "list" ? <i className="fa-solid fa-angle-down"></i> : ""}
                           </a>
@@ -213,7 +214,7 @@ const Header = () => {
                                   <Link
                                     onClick={() => { dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } }); dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } }); localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals)); }}
                                     href={`${language === 'en' ? `${listPath}` : `${language}${listPath}`}`}
-                                    title={listTitle} tabIndex="-1" >
+                                    title={listTitle}>
                                     <span>{listInnerText}</span>
                                   </Link>
                                 </li>
@@ -232,7 +233,7 @@ const Header = () => {
                     let { path, innerText, list, type, title, firstChild } = item
                     return (
                       <li key={innerText} className={`${styles.li_item} ${type === "list" ? styles.has_children : ""}`} id="navLink">
-                        <Link onClick={() => handleClickNavLinkMobileMenuNotList({ index })} tabIndex="-1" href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${!path.length ? styles.nocursor : ""}  ${firstChild ? styles.first_child_a : ""} `} >
+                        <Link onClick={() => handleClickNavLinkMobileMenuNotList({ index })} href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${!path.length ? styles.nocursor : ""}  ${firstChild ? styles.first_child_a : ""} `} >
                           <span>{innerText}</span>
                           {/* <span>{index === 0 ? appData?.words[innerText] : innerText}</span> */}
                           {type === "list" ? <i className="fa-solid fa-angle-down"></i> : ""}
@@ -242,7 +243,7 @@ const Header = () => {
                             {list.map((item) => {
                               let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals } = item
                               return (
-                                <li tabIndex="-1" key={listInnerText} className={`${styles.li_item} ${!listPath.length ? styles.nocursor : ""}  `}>
+                                <li key={listInnerText} className={`${styles.li_item} ${!listPath.length ? styles.nocursor : ""}  `}>
                                   <Link onClick={() => handleClickNavLinkMobileMenuList({ hasTaxiDeals })} href={`${language === 'en' ? `${listPath}` : `${language}${listPath}`}`} title={listTitle} tabIndex="-1">
                                     <span>{listInnerText}</span>
                                   </Link>
@@ -275,17 +276,17 @@ const Header = () => {
                   <div ref={languagesDivRef} className={styles.all_languages} style={{ opacity: "0", visibility: "hidden" }} >
                     {appData?.languages.map((item, index) => {
                       let { innerText: text, value: key, dir: direction } = item
-
                       return (
                         <div className={styles.content} name={key} key={index} onClick={(e) => handleLanguage({ e, text, key, direction, index })}>
                           <div className={styles.img_div}>
-                            <Image src={`/languages/${key}.gif`} width={20} height={11} priority alt={text} />
+                            <Image src={`/languages/${key}.gif`} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 50vw" alt={text} />
                           </div>
                           <span>{text}</span>
                         </div>
                       )
                     })}
                   </div>
+
                 </OutsideClickAlert>
               </div>
 
