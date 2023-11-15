@@ -223,7 +223,7 @@
                             position: relative;
                             display: flex;
                             flex-direction: column;
-                            // gap: 6px;
+                            user-select: none;
 
                             @media (max-width:990px) {
                                 border-right: none;

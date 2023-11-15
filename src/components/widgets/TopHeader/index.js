@@ -196,7 +196,7 @@ const Header = () => {
                             <span>{innerText}</span>
                           </a>
                           :
-                          <a href={`${language === 'en' ? `${path}` : `${language}${path}`} ${!path.length ? "#" : ""}`} title={title} className={`${!path.length ? styles.nocursor : ""}`}>
+                          <a href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${!path.length ? styles.nocursor : ""}`}>
                             <span>{innerText}</span>
                             {type === "list" ? <i className="fa-solid fa-angle-down"></i> : ""}
                           </a>
@@ -238,7 +238,7 @@ const Header = () => {
                     let { path, innerText, list, type, title, firstChild } = item
                     return (
                       <li key={innerText} className={`${styles.li_item} ${type === "list" ? styles.has_children : ""}`} id="navLink">
-                        <Link onClick={() => handleClickNavLinkMobileMenuNotList({ index })} href={`${language === 'en' ? `${path}` : `${language}${path}`} ${!path.length ? "#" : ""}`} title={title} className={`${!path.length ? styles.nocursor : ""}  ${firstChild ? styles.first_child_a : ""} `} >
+                        <Link onClick={() => handleClickNavLinkMobileMenuNotList({ index })} href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${!path.length ? styles.nocursor : ""}  ${firstChild ? styles.first_child_a : ""} `} >
                           <span>{innerText}</span>
                           {/* <span>{index === 0 ? appData?.words[innerText] : innerText}</span> */}
                           {type === "list" ? <i className="fa-solid fa-angle-down"></i> : ""}
@@ -249,7 +249,7 @@ const Header = () => {
                               let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals } = item
                               return (
                                 <li key={listInnerText} className={`${styles.li_item} ${!listPath.length ? styles.nocursor : ""}  `}>
-                                  <Link onClick={() => handleClickNavLinkMobileMenuList({ hasTaxiDeals })} href={`${language === 'en' ? `${listPath}` : `${language}${listPath}`}`} title={listTitle}>
+                                  <Link onClick={() => handleClickNavLinkMobileMenuList({ hasTaxiDeals })} href={`${language === 'en' ? `${listPath}` : `${language}${listPath}`}`} title={listTitle} tabIndex="-1">
                                     <span>{listInnerText}</span>
                                   </Link>
                                 </li>

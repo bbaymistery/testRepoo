@@ -33,7 +33,7 @@ const Tours = (props) => {
                                                     <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
                                                 </div>
                                                 <div className={styles.card_body}>
-                                                    <h4>{item?.title}</h4>
+                                                    <h2>{item?.title}</h2>
                                                     <div className={styles.start_from}>
                                                         <div className={styles.start_from_text_left}>{appData.words["strStartFrom"]} </div>
                                                         <div className={styles.start_from_text_right}> £ {item?.price} </div>
@@ -55,7 +55,7 @@ const Tours = (props) => {
                                                     <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
                                                 </div>
                                                 <div className={styles.card_body}>
-                                                    <h4>{item?.title}</h4>
+                                                    <h2>{item?.title}</h2>
                                                     <div className={styles.start_from}>
                                                         <div className={styles.start_from_text_left}>{appData.words["strStartFrom"]} </div>
                                                         <div className={styles.start_from_text_right}> £ {item?.price} </div>
@@ -91,7 +91,7 @@ const Tours = (props) => {
                                                 <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
                                             </div>
                                             <div className={styles.card_body}>
-                                                <h4>{item?.title}</h4>
+                                                <h2>{item?.title}</h2>
                                                 <div className={styles.start_from}>
                                                     <div className={styles.start_from_text_left}>{appData.words["strStartFrom"]} </div>
                                                     <div className={styles.start_from_text_right}> £ {item?.price} </div>
@@ -113,7 +113,7 @@ const Tours = (props) => {
                                                 <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
                                             </div>
                                             <div className={styles.card_body}>
-                                                <h4>{item?.title}</h4>
+                                                <h2>{item?.title}</h2>
                                                 <div className={styles.start_from}>
                                                     <div className={styles.start_from_text_left}>{appData.words["strStartFrom"]} </div>
                                                     <div className={styles.start_from_text_right}> £ {item?.price} </div>

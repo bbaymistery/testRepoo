@@ -18,7 +18,7 @@ const CarItem = ({ sliderRef }) => {
               </div>
             </div>
             <div className={styles.card_body}>
-              <h3 className={`${direction} ${styles.card_body_title}`}>{car.carName}</h3>
+              <h2 className={`${direction} ${styles.card_body_title}`}>{car.carName}</h2>
               <br />
               <div className={styles.card_body_attributes}>
 

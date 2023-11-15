@@ -286,7 +286,7 @@ const Hero = (props) => {
     }
     const closeModal = (params = {}) => {
         let { index, destination } = params
-        let inputField = document.getElementById("input_focused")
+        let inputField = document.getElementById(`${destination}_input_focused_${index}`)
         inputField.style.opacity = 1
         setInternalState({ [`${destination}-search-focus-${index}`]: false, [`${destination}-search-value-${index}`]: "", [`collecting-${destination}-points-${index}`]: [] })
 
@@ -320,18 +320,9 @@ const Hero = (props) => {
                 <div className={`${styles.hero_section_container} page_section_container`}>
                     <div className={styles.points_content}>
                         <div className={styles.main_search}>
-                            {/* islinkname burda idi  */}
-                            {/* {true ? <div className={styles.badgeribbon} id="badge-ribbon"></div> : <></>} */}
-
                             <div className={`${!islinknamecomponent ? styles.title_div_islinnkname : styles.title_div}`}>
                                 <h1 style={{ textTransform: "capitalize" }} className={`${styles.title} ${direction} `}>
                                     {islinknamecomponent ? <span>{`${hasTaxiDeals} Transfer Quotation`}</span> : <span>{appData?.words["searchEngineTitle"]}</span>}
-                                    {/* {!islinknamecomponent ?
-                                        <div className={styles.review_trip_advisor}>
-                                            <a href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
-                                                <img src="/images/TripAdvisorBgWhite.png" alt="" />
-                                            </a>
-                                        </div> : <></>} */}
                                 </h1>
                             </div>
                             <br />
@@ -341,7 +332,6 @@ const Hero = (props) => {
                                 let reservationError = (internalState.errorHolder.status === 403 && Array.isArray(internalState.errorHolder.reservations)) ? internalState.errorHolder.reservations?.[index] : {};
                                 let { transferDetails, selectedPickupPoints, selectedDropoffPoints } = obj
                                 let { transferDateTimeString } = transferDetails
-
                                 const [splitedHour, splitedMinute] = splitDateTimeStringIntoHourAndMinute(transferDateTimeString) || []
                                 const [splitedDate] = splitDateTimeStringIntoDate(transferDateTimeString) || []
                                 return (
@@ -372,7 +362,7 @@ const Hero = (props) => {
                                                             <input
                                                                 type="text"
                                                                 autoComplete="off"
-                                                                id="input_focused"//this is for scrolling top when ever we focus on mobile
+                                                                id={`pickup_input_focused_${index}`}//this is for scrolling top when ever we focus on mobile
                                                                 placeholder={"Add pick up point"}
                                                                 value={internalState[`pickup-search-value-${index}`]}
                                                                 autoFocus={internalState[`pickup-search-focus-${index}`]}
@@ -428,7 +418,7 @@ const Hero = (props) => {
                                                             <input
                                                                 type="text"
                                                                 autoComplete="off"
-                                                                id="input_focused"//this is for scrolling top when ever we focus on mobile
+                                                                id={`dropoff_input_focused_${index}`}//this is for scrolling top when ever we focus on mobile
                                                                 placeholder={"Add drop off point"}
                                                                 value={internalState[`dropoff-search-value-${index}`]}
                                                                 autoFocus={internalState[`dropoff-search-focus-${index}`]}
@@ -460,6 +450,7 @@ const Hero = (props) => {
                                                 <p className={direction}>{selectedPickupPoints[0]?.pcatId === 1 ? appData?.words["seLandingDate"] : appData?.words["sePickUpDate"]}</p>
                                                 <div className={`${styles.date_div} ${direction === 'rtl' && styles.date_div_rtl}`}>
                                                     <input
+                                                        aria-label="date"
                                                         type="date"
                                                         name="pickup-date"
                                                         className={direction === "rtl" ? styles.rtl : ""}
@@ -476,8 +467,10 @@ const Hero = (props) => {
                                                     {Array.from(new Array(2)).map((arr, i) => {
                                                         return (
                                                             <div key={i} className={styles.booking_form_hour_minute_wrapper}>
+                                                                <label htmlFor={i}></label>
                                                                 <i className={`fa-sharp fa-solid fa-angle-down ${direction === "rtl" ? styles.left : ""}`}></i>
                                                                 <select
+                                                                    aria-label={i}
                                                                     defaultValue={i === 0 ? splitedHour : splitedMinute}
                                                                     onChange={(e) => onChangeSetDateTimeHandler({ value: e.target.value, hourOrMinute: i === 0 ? "hour" : "minute", journeyType: index })} >
                                                                     {/* //if index==0 thenhours will show up if not then minutes show up */}
@@ -543,19 +536,19 @@ const Hero = (props) => {
                     <div className={styles.advertisiment_images}>
                         <a rel="noreferrer" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
                             <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '.5s', animationDuration: '1s' }}>
-                                <Image fill style={{ objectFit: 'contain' }} src="/images/advisorTrip.png" alt="Airport Pickups London Tripadvisor" />
+                                <Image fill priority style={{ objectFit: 'contain' }} src="/images/advisorTrip.png" alt="Airport Pickups London Tripadvisor" />
                             </div>
                         </a>
 
                         <a rel="noreferrer" href="https://www.trustpilot.com/review/airport-pickups-london.com" target={"_blank"} >
                             <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '0.75s', animationDuration: '1s' }}>
-                                <Image fill style={{ objectFit: 'contain' }} src="/images/Excellent.png" alt=" Airport Pickups London Trustpilot " />
+                                <Image fill priority style={{ objectFit: 'contain' }} src="/images/Excellent.png" alt=" Airport Pickups London Trustpilot " />
                             </div>
                         </a>
 
                         <a rel="noreferrer" href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} >
                             <div className={`${styles.review_trip_advisor} bottom_to_top_animation2`} style={{ animationDelay: '1s', animationDuration: '1s' }}>
-                                <Image fill style={{ objectFit: 'contain' }} src="/images/Reviews.png" alt="Airport Pickups London Review" />
+                                <Image fill priority style={{ objectFit: 'contain' }} src="/images/Reviews.png" alt="Airport Pickups London Review" />
                             </div>
                         </a>
                     </div>

@@ -22,7 +22,7 @@ class CustomDocument extends Document {
         return (
             <Html lang="en">
                 <Head >
-                    <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin />
+                    <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="true" />
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" media="all" />
                     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossOrigin="anonymous"  ></script>
                     {schemaOfTaxiDeals?.length > 0 && schemaOfTaxiDeals?.map(((schema, index) => {

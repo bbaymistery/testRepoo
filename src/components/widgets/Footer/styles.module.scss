@@ -65,18 +65,23 @@
                         flex-direction: column;
                         display: flex;
 
-                        a {
+                        li {
                             padding: 5px 0px;
-                            color: $dark-1;
-                            font-size: 16px;
-                            transition: $tr-cubic;
-                            text-transform: capitalize;
+
+                            a {
+                                color: $dark-1;
+                                font-size: 16px;
+                                transition: $tr-cubic;
+                                text-transform: capitalize;
                                 font-weight: 500;
-                            &:hover {
-                                color: $primary;
-                               
+
+                                &:hover {
+                                    color: $primary;
+
+                                }
                             }
                         }
+
                     }
                 }
 

@@ -277,7 +277,7 @@ export const navigatorMobile = [
     },
     {
         innerText: "Cruise Ports",
-        path: "/cruiseports",
+        path: "",
         firstChild: true,
         type: "list",
         hasTaxiDeals: "",

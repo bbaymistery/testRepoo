@@ -54,7 +54,7 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
                                     }
                                 </div>
                                 <div className={styles.card_body}>
-                                    <h4>{item?.translatedPageTitle ? item?.translatedPageTitle : item?.title}</h4>
+                                    <h2>{item?.translatedPageTitle ? item?.translatedPageTitle : item?.title}</h2>
                                     <div className={styles.review}>
                                         <div className={styles.review_left}>{item.point} </div>
                                         <div className={styles.review_center}>Exceptional </div>
@@ -92,7 +92,7 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
 
                                 </div>
                                 <div className={styles.card_body}>
-                                    <h4>{item?.translatedPageTitle ? item?.translatedPageTitle : item?.title}</h4>
+                                    <h2>{item?.translatedPageTitle ? item?.translatedPageTitle : item?.title}</h2>
                                     <div className={styles.review}>
                                         <div className={styles.review_left}>{item.point} </div>
                                         <div className={styles.review_center}>Exceptional </div>
