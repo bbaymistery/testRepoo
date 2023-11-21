@@ -475,7 +475,7 @@ const Hero = (props) => {
                                                                     onChange={(e) => onChangeSetDateTimeHandler({ value: e.target.value, hourOrMinute: i === 0 ? "hour" : "minute", journeyType: index })} >
                                                                     {/* //if index==0 thenhours will show up if not then minutes show up */}
                                                                     {i === 0
-                                                                        ? hours.map((hour) => (<option key={hour.id} id={hour.id} value={hour.value}> {hour.value} </option>))
+                                                                        ? hours.map((hour) => (<option key={hour.id} id={hour.id + 50} value={hour.value}> {hour.value} </option>))
                                                                         : minutes.map((minute) => (<option key={minute.id} id={minute.id} value={minute.value}  > {minute.value} </option>))}
                                                                 </select>
                                                             </div>)

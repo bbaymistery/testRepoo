@@ -92,7 +92,7 @@ export const navigator = [
     },
     {
         innerText: "airports",
-        path: "",
+        path: "/",
         type: "list",
         hasTaxiDeals: "",
 
@@ -142,7 +142,7 @@ export const navigator = [
     },
     {
         innerText: "Cruise Ports",
-        path: "",
+        path: "/",
         type: "list",
         hasTaxiDeals: "",
 
@@ -221,7 +221,7 @@ export const navigatorMobile = [
     },
     {
         innerText: "airports",
-        path: "",
+        path: "/",
         type: "list",
         hasTaxiDeals: "",
 
@@ -277,7 +277,7 @@ export const navigatorMobile = [
     },
     {
         innerText: "Cruise Ports",
-        path: "",
+        path: "/",
         firstChild: true,
         type: "list",
         hasTaxiDeals: "",

@@ -192,11 +192,11 @@ const Header = () => {
                       // as={`${path==='/'?"/":""}`}
                       <li key={innerText} className={`${styles.li_item} ${type === "list" ? styles.has_children : ""}`}>
                         {index === 0 ?
-                          <a onClick={gotoHomeFromLogoClick} href={language === 'en' ? '/' : `/${language}`} title={title} className={`${!path.length ? styles.nocursor : ""}`} >
+                          <a onClick={gotoHomeFromLogoClick} href={language === 'en' ? '/' : `/${language}`} title={title} className={`${path.length ? styles.nocursor : ""}`} >
                             <span>{innerText}</span>
                           </a>
                           :
-                          <a href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${!path.length ? styles.nocursor : ""}`}>
+                          <a href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${path.length ? styles.nocursor : ""}`}>
                             <span>{innerText}</span>
                             {type === "list" ? <i className="fa-solid fa-angle-down"></i> : ""}
                           </a>
