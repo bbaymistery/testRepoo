@@ -1,33 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
 import { seaport } from "../../../constants/seaportTransfers";
 import Image from 'next/image'
-import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 const index = (props) => {
-  const observerOptions = { root: null, rootMargin: "10px 0px", threshold: 0, once: true };
-
-
   let { bggray = false, } = props
-  // // Use the custom hook for the title elements
-  // useIntersectionObserver('.seaportTtile', (entries) => {
-  //   entries.forEach((entry) => {
-  //     if (entry.isIntersecting) {
-  //       entry.target.classList.add('zoom_out');
-  //     }
-  //   });
-  // }, observerOptions);
-
-  // // Use the custom hook for the list elements
-  // useIntersectionObserver('.seaportt', (entries) => {
-  //   entries.forEach((entry) => {
-  //     if (entry.isIntersecting) {
-  //       entry.target.classList.add('bottom_to_top_animation2');
-  //     }
-  //   });
-  // }, observerOptions);
-
-
-
   return (
     <div className={`${styles.seaport} page`} bggray={String(bggray)}>
       <div className={`${styles.seaport_section} page_section`}>

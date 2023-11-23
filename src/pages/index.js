@@ -2,11 +2,10 @@ import GlobalLayout from "../components/layouts/GlobalLayout";
 import Hero from "../components/widgets/Hero";
 import SeaportTransfers from "../components/widgets/SeaportTransfers";
 import CarsSlider from "../components/widgets/CarsSlider";
-import TaxiDeals from "../components/widgets/TaxiDeals";
 import Tours from "./tours";
-import { useEffect, useState } from "react";
 import Testimonials from "../components/widgets/Testimonials";
-
+import dynamic from 'next/dynamic'
+const TaxiDeals = dynamic(() => import('../components/widgets/TaxiDeals'))
 export default function Home(props) {
   // const [countryCode, setCountryCode] = useState(null);
 

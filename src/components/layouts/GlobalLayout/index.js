@@ -12,21 +12,7 @@ const GlobalLayout = (
     footerbggray = false
   }
 ) => {
-  useEffect(() => {
-    // Create script element
-    const script = document.createElement('script');
-    script.src = "https://cdn.socket.io/4.4.1/socket.io.min.js";
-    script.integrity = "sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H";
-    script.crossOrigin = "anonymous";
 
-    // Append the script to the head
-    document.head.appendChild(script);
-
-    // Optionally, handle cleanup if the component is unmounted
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []); // Empty array ensures this runs once on mount
   return (
     <>
       <Head>
@@ -38,6 +24,10 @@ const GlobalLayout = (
         {/* no follow  */}
         <meta name="googlebot" content="noindex" />
         <meta name="robots" content="noindex" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preload" href="/images/Excellent.webp" as="image" />
+        <link rel="preload" href="/images/Reviews.webp" as="image" />
+        <link rel="preload" href="/images/advisorTrip.webp" as="image" />
       </Head>
       <Alert />
       <TopHeader />

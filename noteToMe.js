@@ -20,3 +20,4 @@
 
 //!ing sec transfer detailsa kadar gel** Sonra dili arabic ele back quotationa gec goreceksenki dil deyisir Ama degismemelidir!
 //!next config.js  https://aplairtest.netlify.app/    adresini genel adres ile degis
+//!ask about scoket cdn which is on document js

@@ -22,8 +22,9 @@ class CustomDocument extends Document {
         return (
             <Html lang="en">
                 <Head >
-                    <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="true" />
                     <link rel="stylesheet" href="/fontawesome/css/all.min.css" />
+                    {/* <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossOrigin="anonymous"  ></script> */}
+
                     {schemaOfTaxiDeals?.length > 0 && schemaOfTaxiDeals?.map(((schema, index) => {
                         return <Script key={index} type="application/ld+json" strategy='beforeInteractive' >{JSON.stringify(schema, null, 2)}</Script>
                     }))}

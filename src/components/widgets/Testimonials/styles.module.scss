@@ -28,6 +28,22 @@
                 text-align: justify;
                 color: darken($light_1, 45%);
 
+                button {
+                    background-color: transparent;
+                    text-decoration: underline;
+                    color: $blue-1;
+                    border: 1px solid transparent;
+                    margin-left: 10px;
+                    font-size: 17px;
+                    display: none;
+                    font-weight: 500;
+
+                    @media (max-width:768px) {
+                        display: inline;
+                        cursor: pointer;
+                    }
+                }
+
                 @media (max-width:767px) {
                     font-size: 16px;
                 }
