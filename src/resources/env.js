@@ -1,8 +1,8 @@
-const isDevelopment = false; // localohst -> true || live -> false
+const isDevelopment = true; // localohst -> true || live -> false
 const env = {
   websiteDomain: isDevelopment
-    ? "http://localhost:8000"
-    : "https://london-heathrow.taxi",
+    ? "http://localhost:3500"
+    : "https://aplairtest.netlify.app",
   apiDomain: "https://api.london-tech.com",
   status: {
     success: 200,
