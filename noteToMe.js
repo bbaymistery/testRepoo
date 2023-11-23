@@ -19,3 +19,4 @@
 //6231028Fatih!   >PAROL CHAT GPT =>jay@aplcars.com
 
 //!ing sec transfer detailsa kadar gel** Sonra dili arabic ele back quotationa gec goreceksenki dil deyisir Ama degismemelidir!
+//!next config.js  https://aplairtest.netlify.app/    adresini genel adres ile degis

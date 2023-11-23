@@ -5,8 +5,13 @@
     padding-bottom: 0px;
     padding-top: 0px;
 
+    @media (max-width:768px) {
+        margin-top: 50px;
+
+    }
+
     @media(max-width:700px) {
-        padding-bottom: 40px;
+        padding-bottom: 30px;
     }
 }
 
@@ -25,6 +30,10 @@
     background-color: $light-2;
     width: 100%;
     position: relative;
+
+    @media (max-width:768px) {
+        margin-top: 0px;
+    }
 
     &_section {
         padding-top: 30px;
@@ -1006,7 +1015,12 @@
     }
 
     .advertisiment_images_section_islinkname {
+
         .advertisiment_images_section_container {
+            @media (max-width:768px) {
+                display: block;
+            }
+
             .advertisiment_images {
                 margin-top: 3rem;
             }
@@ -1014,8 +1028,15 @@
     }
 
     .advertisiment_images_section {
+        @media (max-width:768px) {
+            padding-bottom: 3rem;
+        }
 
         .advertisiment_images_section_container {
+            @media (max-width:768px) {
+                display: none;
+            }
+
             // padding-right: 0px;
             padding-right: 0px;
             margin-top: -20px;

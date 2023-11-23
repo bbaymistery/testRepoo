@@ -15,7 +15,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
 import WaveLoading from '../../elements/LoadingWave';
 import Features from '../Features';
-import Link from 'next/link';
+
 import useRipple from '../../../hooks/useRipple';
 import Image from 'next/image';
 

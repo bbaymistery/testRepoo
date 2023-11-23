@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head';
 import TopHeader from '../../widgets/TopHeader';
 import Footer from '../../widgets/Footer';
@@ -12,6 +12,21 @@ const GlobalLayout = (
     footerbggray = false
   }
 ) => {
+  useEffect(() => {
+    // Create script element
+    const script = document.createElement('script');
+    script.src = "https://cdn.socket.io/4.4.1/socket.io.min.js";
+    script.integrity = "sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H";
+    script.crossOrigin = "anonymous";
+
+    // Append the script to the head
+    document.head.appendChild(script);
+
+    // Optionally, handle cleanup if the component is unmounted
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []); // Empty array ensures this runs once on mount
   return (
     <>
       <Head>
