@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[5126],{3234:function(n,_,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/tours",function(){return u(7711)}])}},function(n){n.O(0,[8247,5277,7711,9774,2888,179],function(){return n(n.s=3234)}),_N_E=n.O()}]);
