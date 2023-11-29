@@ -10,15 +10,3 @@ function SET_PAYMENT_TYPE_AND_TOKEN(params = {}) {
   return newState;
 }
 export default SET_PAYMENT_TYPE_AND_TOKEN
-
-
-// if (parseInt(journeyType) === 0) {
-//   let paymentDetails = newState.reservations[0].paymentDetails
-//   newState.reservations[0].paymentDetails = { ...paymentDetails, token, paymentType }
-// } else {
-//   let paymentDetailsTransfer = newState.reservations[0].paymentDetails
-//   let paymentDetailsReturn = newState.reservations[1].paymentDetails
-//   newState.reservations[0].paymentDetails = { ...paymentDetailsTransfer, token, paymentType }
-//   newState.reservations[1].paymentDetails = { ...paymentDetailsReturn, token, paymentType }
-
-// }

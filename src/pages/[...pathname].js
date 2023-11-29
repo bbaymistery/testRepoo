@@ -13,7 +13,7 @@ import { parse } from 'url'
 import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttributeOntheUrl';
 
 function Pages(props) {
-    let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle,returnPageTitle } = props
+    let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle, returnPageTitle } = props
 
     if (data === "not found") return <Error404 />
 
@@ -77,6 +77,7 @@ function Pages(props) {
                 //for first time
                 //   point = { ...point, ...objectDetailss[point.pcatId] }   flightDetails{ flightNumber="",waitingPickupTime=0}
                 let pickupPoints = pickUps.length > 0 ? [{ ...pickUps[0], ...objectDetailss[pickUps[0].pcatId] }] : []
+
                 let dropoffPoints = dropoffs.length > 0 ? [{ ...dropoffs[0], ...objectDetailss[dropoffs[0].pcatId] }] : []
                 dispatch({ type: "ADD_NEW_POINT_AT_PATHNAME", data: { pickupPoints, dropoffPoints, index: 0 } })
             }
@@ -109,12 +110,19 @@ export default Pages
 const makestore = () => store;
 const wrapper = createWrapper(makestore);
 const cache = {}
+// function getJsonSizeInKB(jsonObject) {
+//     const jsonString = JSON.stringify(jsonObject);
+//     const bytes = jsonString.length * 2;
+//     const kilobytes = bytes / 1024;
+//     console.log({ kilobytes });
+
+//     return kilobytes;
+// }
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
     let pickUps = []
     let dropoffs = []
     let dealUrl = `${req.url}`
     const { pathname } = parse(req.url, true)
-
 
     dealUrl = pathname.replace(/^\/_next\/data\/[^/]+\//, '/').replace(/\.[^/.]+$/, '').replace(/\.json$/, '')
     const cacheKey = `page-${req.url}`
@@ -122,14 +130,14 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
     // Check if the data is cached
     if (cache[cacheKey]) return { props: cache[cacheKey] }
 
-    const body = { language, checkRedirect: true, taxiDealPathname: dealUrl, }
+    const body = { language, checkRedirect: true, taxiDealPathname: dealUrl, withoutExprectedPoints: true, }
     const url = `${env.apiDomain}/api/v1/taxi-deals/details`
     const { status, data } = await postDataAPI({ url, body })
-
-
+    console.log("calisdim");
     if (status === 205) return { redirect: { destination: data.redirectPathname, permanent: false } }
     // homepagedeki appDatafalanbunu asagisinda idi
     if (status === 200) {
+        // getJsonSizeInKB(data)
         let { taxiDeal: { pickupPoints, dropoffPoints, pageTitle = "", headTitle = "", description = "", keywords = "", returnPathname = "", pageContent = "", returnHeadTitle = "", returnPageTitle = "" } } = data
         // select first item from all points
         pickUps = pickupPoints?.length >= 1 ? [pickupPoints[0]] : []
@@ -165,126 +173,4 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
 });
 
 
-// const cache = {}
-// export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
-//     let dealUrl = `${etc.resolvedUrl}`
-//     const cacheKey = `page-${etc.resolvedUrl}`
 
-
-//     if (containsUppercase(dealUrl)) {
-//         //convert uppercase to lowercase
-//         dealUrl = dealUrl.replace(/[A-Z]/g, function (match) {
-//             return match.toLowerCase();
-//         });
-
-//     }
-
-
-//     //rediction if html or asp exist in the url
-//     if (dealUrl.includes(".asp") || dealUrl.includes(".html")) {
-//         dealUrl = dealUrl.split(".")[0]
-//         return { redirect: { destination: dealUrl, permanent: false } }
-//     }
-
-//     let hasLangauge = dealUrl.split('/').filter(s => s.length > 0)[0];
-
-//     //check if tr ar exist in url
-//     let language = store.getState().pickUpDropOffActions.params.language
-//     if ((hasLangauge || '').length === 2) {
-//         language = hasLangauge;
-//         dealUrl = dealUrl.slice(3)
-//     }
-
-//     const body = { taxiDealPathname: dealUrl, language }
-//     const url = `${env.apiDomain}/api/v1/taxi-deals/details`
-//     const { status, data } = await postDataAPI({ url, body })
-
-//     let pickUps = []
-//     let dropoffs = []
-//     let titleOfTaxiDeal = ""
-
-
-//     if (status === 200) {
-//         let { taxiDeal: { pickupPoints, dropoffPoints, title } } = data
-//         //in case  /heathrow/london/taxi-to-oxfordstreet    this url title ends with  by   ( )
-//         titleOfTaxiDeal = title.split("by")[0]
-//         // select first item from all points
-//         pickUps = pickupPoints?.length >= 1 ? [pickupPoints[0]] : []
-//         dropoffs = dropoffPoints?.length >= 1 ? [dropoffPoints[0]] : []
-//         //make redirection to home page with else part of if
-
-//         let scriptProductSchema = (data?.taxiDeal?.schema?.Product)
-//         let scriptLocalBusinessSchema = (data?.taxiDeal?.schema?.LocalBusiness)
-//         return {
-//             props: { data, pickUps, dropoffs, urlOfPage: dealUrl, titleOfTaxiDeal, minPrice: data.quotationOptions[0].price, hasLangauge, scriptProductSchema, scriptLocalBusinessSchema },
-//         }
-
-//     } else {
-//         return { props: { data: "not found", loading: false } }
-//     }
-
-// });
-
-//https://api.london-tech.com/api/v1/taxi-deals/list?pickup=gatwick&dropoff=woking&language=tr&channelId=2
-
-
-//https://api.london-tech.com/api/v1/taxi-deals/list?points=heathrow&language=tr&channelId=2
-
-/*
-!replace with json
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
-    let pickUps = []
-    let dropoffs = []
-    let dealUrl = `${req.url}`
-    const { pathname, query } = parse(req.url, true)
-    // dealUrl = pathname
-    dealUrl = pathname.replace(/^\/_next\/data\/[^/]+\//, '/').replace(/\.[^/.]+$/, '').replace(/\.json$/, '')
-    const cacheKey = `page-${req.url}`
-    let language = checkLanguageAttributeOntheUrl(dealUrl)
-
-
-    // Check if the data is cached
-    if (cache[cacheKey]) return { props: cache[cacheKey] }
-
-    const body = { language, checkRedirect: true, taxiDealPathname: dealUrl, }
-    const url = `${env.apiDomain}/api/v1/taxi-deals/details`
-    const { status, data } = await postDataAPI({ url, body })
-
-
-    if (status === 205) return { redirect: { destination: data.redirectPathname, permanent: false } }
-    // homepagedeki appDatafalanbunu asagisinda idi
-    if (status === 200) {
-        let { taxiDeal: { pickupPoints, dropoffPoints, pageTitle, headTitle, description, keywords, returnPathname } } = data
-        // select first item from all points
-        pickUps = pickupPoints?.length >= 1 ? [pickupPoints[0]] : []
-        dropoffs = dropoffPoints?.length >= 1 ? [dropoffPoints[0]] : []
-        let scriptProductSchema = data?.taxiDeal?.schema?.Product
-        let scriptLocalBusinessSchema = data?.taxiDeal?.schema?.LocalBusiness
-        let scriptQAPage = data?.taxiDeal?.schema?.QAPage
-
-
-        // Cache the data
-        cache[cacheKey] = {
-            data,
-            pickUps,
-            dropoffs,
-            keywords,
-            language,
-            pageTitle,
-            headTitle,
-            description,
-            scriptQAPage,
-            returnPathname,
-            urlOfPage: dealUrl,
-            scriptProductSchema,
-            scriptLocalBusinessSchema,
-        }
-
-        return { props: cache[cacheKey] }
-
-    } else {
-        return { props: { data: "not found", } }
-    }
-});
-
-*/

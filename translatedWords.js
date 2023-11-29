@@ -20,7 +20,7 @@ export let navbar = {
 
 //?translated words on home page
 /*
-Pickup hour 
+Pickup hour
 Travel Agents
 pickup minutes
 Landing Hour
@@ -36,7 +36,7 @@ exceptional
 reviews
 "Add drop off point"
 "Add pick up point"
-Southampton||Heathrow || Gatwick || Harwick ||City ||Luton ||Stansted || ||Portsmouth  ||Dover||  Transfer Quotation 
+Southampton||Heathrow || Gatwick || Harwick ||City ||Luton ||Stansted || ||Portsmouth  ||Dover||  Transfer Quotation
 */
 
 //?translated thiings on reservation schema
@@ -71,7 +71,7 @@ customer reviews
 //?translated words on transfer details page
 /*
 Booking Details
-Return Journey Booking Details 
+Return Journey Booking Details
 FROM
 TO
 ON    For example (ON 12-12-2022)
@@ -85,8 +85,8 @@ Meet & Greet by Arrivals
 Your Booking Details
 Number of passengers
 Number of suitcases
-Selected Pick Up points  
-Selected Drop Off points  
+Selected Pick Up points
+Selected Drop Off points
 the passenger details are not the same for both journey
 close
  Universities And Colleges
@@ -164,7 +164,7 @@ Change Car Type
 
 //?translated words Foooer
 //Site Map
-// Cruise Ports 
+// Cruise Ports
 //Drivers
 //?translated words About us
 //Service Ratings
@@ -187,5 +187,5 @@ Change Car Type
 //Do you have any out-of-hours emergency number for urgent situations?
 
 
-//?translated words Travel Aents
+//?translated words Travel Agents
 //Travel agents

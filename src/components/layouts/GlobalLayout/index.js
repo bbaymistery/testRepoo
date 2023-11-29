@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Head from 'next/head';
 import TopHeader from '../../widgets/TopHeader';
 import Footer from '../../widgets/Footer';
-// import Alert from '../../elements/alert/Alert';
-
+import dynamic from 'next/dynamic'
+const Alert = dynamic(() => import('../../elements/alert/Alert'));
 const GlobalLayout = (
   { children,
     title = "London Airport Transfers to Airport-Car Service-Minicab",
@@ -28,8 +28,9 @@ const GlobalLayout = (
         <link rel="preload" href="/images/Excellent.webp" as="image" />
         <link rel="preload" href="/images/Reviews.webp" as="image" />
         <link rel="preload" href="/images/advisorTrip.webp" as="image" />
+
       </Head>
-      {/* <Alert /> */}
+      <Alert />
       <TopHeader />
       <main>
         {children}

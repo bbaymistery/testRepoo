@@ -1,10 +1,9 @@
 import { useSelector } from 'react-redux'
-import Toast from './Toast'
-import Loading from './Loading'
-
+import dynamic from 'next/dynamic'
+const Toast = dynamic(() => import('./Toast'));
+const Loading = dynamic(() => import('./Loading'));
 const Alert = () => {
     const alert = useSelector((state) => state.alertReducer)
-
     return (
         <div>
             {alert.loading && <Loading />}

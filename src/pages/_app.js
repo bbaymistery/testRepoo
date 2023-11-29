@@ -8,7 +8,11 @@ import "../styles/global.scss";
 import { useRouter } from 'next/router';
 import { extractLanguage } from '../helpers/extractLanguage';
 import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttributeOntheUrl';
-
+// import * as Font from '@next/font'
+// const jost = Font.load({
+//   url: 'https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap',
+//   preload: true,
+// })
 export const MyApp = ({ Component, pageProps }) => {
   const router = useRouter()
   const dispatch = useDispatch()

@@ -120,31 +120,31 @@ const ContactUs = (props) => {
                                     <p className={styles.popular_topics_title}>Booking and Reservations </p>
                                     {bookingAndReservations.map((ac, i) => {
                                         return (
-                                            <Accordion title={ac.title} active={active} setActive={setActive} toggleState={toggleState} content={ac.content} key={i} />
+                                            <Accordion key={i} title={ac.title} active={active} setActive={setActive} toggleState={toggleState} content={ac.content} key={i} />
                                         );
                                     })}
                                     <p className={styles.popular_topics_title}>Pricing and Payment </p>
                                     {pricePayments.map((ac, i) => {
                                         return (
-                                            <Accordion title={ac.title} active={active} setActive={setActive} toggleState={toggleState} content={ac.content} key={i} />
+                                            <Accordion key={i} title={ac.title} active={active} setActive={setActive} toggleState={toggleState} content={ac.content} key={i} />
                                         );
                                     })}
                                     <p className={styles.popular_topics_title}>Waiting Time Charges </p>
                                     {waitingTimeCharges.map((ac, i) => {
                                         return (
-                                            <Accordion dangerouslyHtml={true} title={ac.title} active={active} setActive={setActive} toggleState={toggleState} content={ac.content} key={i} />
+                                            <Accordion key={i} dangerouslyHtml={true} title={ac.title} active={active} setActive={setActive} toggleState={toggleState} content={ac.content} key={i} />
                                         );
                                     })}
                                     <p className={styles.popular_topics_title}>Vehicles and Services</p>
                                     {vehicles.map((ac, i) => {
                                         return (
-                                            <Accordion dangerouslyHtml={false} title={ac.title} active={active} setActive={setActive} toggleState={toggleState} content={ac.content} key={i} />
+                                            <Accordion key={i} dangerouslyHtml={false} title={ac.title} active={active} setActive={setActive} toggleState={toggleState} content={ac.content} key={i} />
                                         );
                                     })}
                                     <p className={styles.popular_topics_title}>Pickup and Drop-off</p>
                                     {pickdropoff.map((ac, i) => {
                                         return (
-                                            <Accordion dangerouslyHtml={true} title={ac.title} active={active} setActive={setActive} toggleState={toggleState} content={ac.content} key={i} />
+                                            <Accordion key={i} dangerouslyHtml={true} title={ac.title} active={active} setActive={setActive} toggleState={toggleState} content={ac.content} key={i} />
                                         );
                                     })}
 

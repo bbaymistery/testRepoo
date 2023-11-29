@@ -3,7 +3,7 @@ export const postDataAPI = async (params = {}) => {
     const method = "POST"
     const headers = { "Content-Type": "application/json", }
     const reqOpt = { body: JSON.stringify(body), method, headers }
-    
+
     const response = await fetch(url, reqOpt);
     const datas = await response.json();
 

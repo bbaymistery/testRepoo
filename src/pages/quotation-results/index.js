@@ -175,8 +175,6 @@ const QuotationResults = (props) => {
   const { appData } = useSelector(state => state.initialReducer)
   const objectDetailss = appData?.pointTypeCategories?.reduce((obj, item) => ({ ...obj, [item.id]: JSON.parse(item.objectDetails), }), {});
 
-
-
   //in order having confirmation message
   //go back go forward and when change language we r not gonna have any confirmation
   const { nexturls, previousUrls, currentUrls } = urlWithLangAtribute({ languages: appData.languages, previousUrl: 'tohome', nextUrl: "/transfer-details", currentUrl: router.asPath })
@@ -208,13 +206,7 @@ const QuotationResults = (props) => {
     "error-booking-message-1": "",
 
   })
-
-
   const [taxidealMapStatus, setTaxidealMapStatus] = useState(false)
-
-
-
-
   const onChangeHanler = (params = {}) => {
     let { index, value, destination } = params
     let { passengerDetails: { token: passengerDetailsToken } } = reservations[0]
@@ -252,7 +244,6 @@ const QuotationResults = (props) => {
       setInternalState({ [`collecting-${destination}-points-${index}`]: [] })
     }
   }
-
   //it is valid when our journey is both way
   const gotoTransferDetailsClick = () => {
     let { quotation: transferQuotation } = reservations[0]
@@ -699,6 +690,7 @@ const QuotationResults = (props) => {
                           pageContent={pageContent}
                           returnHeadTitle={returnHeadTitle}
                           returnPageTitle={returnPageTitle}
+                          objectDetailss={objectDetailss}
                         // breadCrumbFrom={quotations[index]?.taxiDeal?.pickup}
                         // breadCrumbTo={`${quotations[index]?.taxiDeal?.dropoff}`}
                         />
@@ -748,159 +740,3 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
     }
   }
 });
-// export async function getServerSideProps({ req, res }) {
-  // if (req.url === "/quotation-results") {
-  //   return {
-  //     redirect: {
-  //       destination: `/`,
-  //       permanent: false
-  //     }
-  //   }
-  // }
-//   const paymentUrl = `${env.apiDomain}/api/v1/payment-types`;
-//   const appDataUrl = `${env.apiDomain}/app/en`;
-//   const urls = [paymentUrl, appDataUrl];
-
-//   let response = await Promise.all(urls.map(async url => {
-//     let resp = await fetch(url);
-//     return resp.json();
-//   }));
-
-//   const appData = response[1];
-//   const paymentTypes = response[0].data;
-//   // Dispatch values to Redux store
-//   store.dispatch({ type: "GET_APP_DATA", data: { appData: appData, paymentTypes: paymentTypes, }, });
-
-//   return {
-//     props: {
-//       data: "",
-//     },
-//   };
-// }
-/*
-left ino
-
-       <div className={`${styles.left_info} ${styles.covid}`}>
-                            <p className={`${styles.left_info_title} ${direction}`}>For Covid-19: Latest Updates</p>
-                            <a href="https://www.airport-pickups-london.com/News/covid19-prevention-measures" target={"_blank"}>
-                              Please click here
-                            </a>
-                          </div>
-
-                          <div className={`${styles.left_info} ${styles.our_hgt_video}`}  >
-                            <p className={styles.left_info_title}>Our Heathrow Video</p>
-
-                            <ul>
-                              <a href='https://www.youtube.com/watch?v=m3lBsM61EhQ' target="_blank" className={styles.heathrow_image_video_a}>
-                                <img className={styles.heathrow_image_video_img} src="/images/Heathrow_taxi.png" alt="Our Heathrow Video" />
-                              </a>
-                            </ul>
-                          </div>
-
-                          <div className={`${styles.left_info} ${styles.terminal}`}>
-                            <p className={styles.left_info_title}>WhichTerminal</p>
-                            <ul>
-                              <a
-                                href="https://www.heathrow.com/at-the-airport/terminal-guides/which-terminal"
-                                title="WhichTerminal"
-                                rel="nofollow"
-                                target="_blank"
-                                className={styles.whichterminal_a}
-                              >
-                                <img src="/images/heathrow.jpg" alt="WhichTerminal" /></a>
-                            </ul>
-                          </div>
-
-
-                          <div className={`${styles.left_info} ${styles.approve_vehicle}`}>
-                            <ul>
-                              <a
-                                href="/"
-                                title="HeathrowAirportinformationforOxfordtravellers"
-                                rel="nofollow"
-                                target="_blank"
-                                className={styles.approve_a}
-                              >
-                                <img src="/images/HeathrowAirportGuide_white.png" alt="HeathrowAirportinformationforOxfordtravellers" />
-                              </a>
-
-                            </ul>
-                          </div>
-*/
-/*
-languages
-
-  // useEffect(() => {
-
-  //   if (isTaxiDeal && languageFromTaxiDeal?.length > 0 && directionFromTaxiDeal?.length > 0) {
-  //     let index
-  //     appData?.languages.map((item, idx) => {
-  //       let { value: key, } = item
-  //       if (languageFromTaxiDeal === key) {
-  //         index = idx
-  //       }
-  //     })
-  //     dispatch({ type: "SET_NEW_LANGUAGE", data: { languageKey: languageFromTaxiDeal, direction: directionFromTaxiDeal, langIndex: index } })
-
-  //     //set language and dicertion  to localstorage
-  //     localStorage.setItem("language", JSON.stringify(languageFromTaxiDeal));
-  //     localStorage.setItem("direction", JSON.stringify(directionFromTaxiDeal));
-
-
-  //   }
-  // }, [])
-*/
-/*
-//hansiki reservatonu component icinde update elemeliyik orneyi
-Yuxarda heleki isledigi ucun biz bunu heleki saxladig
-const handleSelectTaxiDeals = (params = {}) => {
-    let { e, destination, index } = params
-    let { value } = e.target
-    let point = { ...JSON.parse(value), ...objectDetailss[JSON.parse(value).pcatId] }//...point    flightDetails{ flightNumber="",waitingPickupTime=0}
-
-
-    if (destination === 'pickup') {
-      dispatch({ type: "ADD_NEW_POINT_AT_PATHNAME", data: { pickupPoints: [point], dropoffPoints: reservations[index].selectedDropoffPoints, index } })
-      // reservations[index][`selectedPickupPoints`] = [point]
-      // reservations[index][`selectedDropoffPoints`] = reservations[index].selectedDropoffPoints
-    } else {
-      dispatch({ type: "ADD_NEW_POINT_AT_PATHNAME", data: { pickupPoints: reservations[index].selectedPickupPoints, dropoffPoints: [point], index } })
-      // reservations[index][`selectedPickupPoints`] = reservations[index].selectedPickupPoints
-      // reservations[index][`selectedDropoffPoints`] = [point]
-    }
-    getQuotations()
-
-  }
-*/
-/*
-
-title
-
-    <h1 className={`${styles.title} ${styles.title_center} ${direction}`}>{titleOfTaxiDeal} from: <span> {`£ ${minPriceTaxiDeal}`}</span></h1>
-                      <div className={styles.stars}>
-                        <a
-                          href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com"
-                          target={"_blank"}
-                          title="Airport Pickups London Reviews"
-                          className={styles.reviews}
-                          rel="noreferrer"
-                        >
-                          <i className="fa-solid fa-star"></i>
-                          <i className="fa-solid fa-star"></i>
-                          <i className="fa-solid fa-star"></i>
-                          <i className="fa-solid fa-star"></i>
-                          <i className="fa-solid fa-star"></i>
-                          5/5
-                        </a>
-                        <a
-                          href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com"
-                          target={"_blank"}
-                          title="Airport Pickups London Reviews"
-                          className={styles.reviews}
-                          rel="noreferrer"
-                        >
-                          <i className="fa-solid fa-comment"></i>
-                          ( 473 customer reviews )
-                        </a>
-                      </div>
-*/

@@ -77,7 +77,6 @@ const TransferDetails = (props) => {
 
     const { ip, country } = useUserIp();
 
-    console.log(country);
 
     const handleOnChangeNumberInput = (value, _country, index, name) => {
         dispatch({ type: 'SET_PASSEGER_DETAILS', data: { name, value, index, updateBothJourneyCheckBox: passengerDetailsStatus } })
@@ -264,7 +263,7 @@ const TransferDetails = (props) => {
                 <div className={`${styles.tr_details_section} page_section`}>
                     <div className={`${styles.tr_details_section_container} page_section_container`}>
                         {quotations[0].taxiDeal ?
-                            // !isTaxideal true
+                            // isTaxideal true
                             <div className={styles.taxideals_subcontainer}>
                                 {/* taxiDeal is gonna exist if when ever we choice go by taxiDeals  */}
                                 {quotations[0]?.taxiDeal ?
@@ -577,7 +576,7 @@ const TransferDetails = (props) => {
                                                 </div>
                                                 {quotations[0].taxiDeal ? <></> : <TransferJourneySummaryPanel journeyType={journeyType} index={index} splitedHour={splitedHour} splitedMinute={splitedMinute} splitedDate={splitedDate} quotation={quotation} selectedDropoffPoints={selectedDropoffPoints} selectedPickupPoints={selectedPickupPoints} />}
                                             </div>
-                                            {index === 1 || (index === 0 && +journeyType === 0) ?            <div className={`${direction === 'rtl' ? styles.directionbuttons_for_gap : styles.buttons_for_gap}  ${quotations[0]?.taxiDeal ? styles.taxideal_buttons : ""}`} >
+                                            {index === 1 || (index === 0 && +journeyType === 0) ? <div className={`${direction === 'rtl' ? styles.directionbuttons_for_gap : styles.buttons_for_gap}  ${quotations[0]?.taxiDeal ? styles.taxideal_buttons : ""}`} >
                                                 <div className={styles.left}>
 
                                                 </div>

@@ -11,6 +11,23 @@ import HeaderOfResults from './HeaderOfResults';
 import TaxiDealsContents from '../TaxiDealsContents';
 import TitleTaxiDeal from './TitleTaxiDeal';
 import ViceVersaUrlTaxiDeal from './ViceVersaUrlTaxiDeal';
+import { postDataAPI } from '../../../helpers/fetchDatas';
+function mergeDetails(points, objectDetails) {
+  return points.map(point => {
+    // Extract the pcatId from the point
+    const { pcatId } = point;
+
+    // Find the corresponding detail in objectDetails
+    const detail = objectDetails[pcatId];
+
+    // If detail exists, spread its properties into point
+    if (detail) {
+      return { ...point, ...detail };
+    }
+
+    return point;
+  });
+}
 const checkJourneyTypeAndAddQuotationToReducer = (params = {}) => {
   //by this index  we r gonna assure in which journey we should add quotation
   //by journey type we r gonn assure should we directly pass to next page or not
@@ -54,7 +71,8 @@ const CardQuotationItem = (params = {}) => {
     pageTitle,
     pageContent,
     returnPageTitle,
-    returnHeadTitle
+    returnHeadTitle,
+    objectDetailss
   } = params
 
   const router = useRouter();
@@ -66,8 +84,24 @@ const CardQuotationItem = (params = {}) => {
   //cartypes object for card item as {1:{image:'sds, name:Economy}}
   const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
 
-  const setQuotationHandleClick = (params = {}) => {
+  const setQuotationHandleClick = async (params = {}) => {
     let { quotation } = params
+    checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
+
+
+    if (isTaxiDeal) {
+      const body = { language, checkRedirect: true, taxiDealPathname: previousUrl, withoutExprectedPoints: false, }
+      const url = `${env.apiDomain}/api/v1/taxi-deals/details`
+      const { status, data } = await postDataAPI({ url, body })
+      let { taxiDeal: { pickupPoints, dropoffPoints, } } = data
+      pickupPoints = mergeDetails(pickupPoints, objectDetailss)
+      dropoffPoints = mergeDetails(dropoffPoints, objectDetailss)
+      // dispatch({ type: "ADD_NEW_POINT_AT_PATHNAME", data: { pickupPoints, dropoffPoints, index: 0 } })
+      // console.log(status);
+      dispatch({ type: "GET_QUOTATION_AT_PATHNAME", data: { results: data, journeyType } })
+
+
+    }
 
     // if (isTaxiDeal) {
     //   let errorHolder = reservationSchemeValidator({ reservations, appData });
@@ -76,7 +110,6 @@ const CardQuotationItem = (params = {}) => {
     //     checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch })
 
     // } else {
-    checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
 
     // }
 

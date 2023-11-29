@@ -4,9 +4,6 @@ import styles from "./styles.module.scss";
 
 const HeaderOfResults = ({ distance, duration }) => {
   const { appData } = useSelector(state => state.initialReducer)
-
-
-  
   return (
     <div className={` ${styles.quotation_header}`}>
       <ul>

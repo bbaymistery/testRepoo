@@ -9,10 +9,10 @@ import { useRouter } from "next/router";
 import { extractLanguage } from "../../../helpers/extractLanguage";
 import OutsideClickAlert from "../../elements/OutsideClickAlert";
 import useRipple from "../../../hooks/useRipple";
-import MobileMenu from "../../elements/MobileMenu";
 import { useWindowSize } from "../../../hooks/useWindowSize";
-import DesktopMenu from "../../elements/DesktopMenu";
-
+import dynamic from 'next/dynamic'
+const MobileMenu = dynamic(() => import('../../elements/MobileMenu'),);
+const DesktopMenu = dynamic(() => import('../../elements/DesktopMenu'),);
 const Header = () => {
   const ref = useRef(null);
   const ripples = useRipple(ref);
