@@ -163,8 +163,8 @@ const ReservationsDocument = () => {
 
         const beforeRouteHandler = (url) => {
             // User is trying to go back to the previous page, prevent it
-            if (!previousUrls.includes(url))  return;
-            
+            if (!previousUrls.includes(url)) return;
+
 
             // User is trying to leave the current page, show a warning message
             window.addEventListener("beforeunload", beforeUnloadHandler);
@@ -370,7 +370,7 @@ const ReservationsDocument = () => {
                                     </div>
                                 </div>
                                 <div className={styles.document_details_section}>
-                                    <div className={styles.btn_div}><button onClick={generatePdf} className='btn btn_primary mb_3'>Downland The Confirmation</button></div>
+                                    <div className={styles.btn_div}><button style={{ marginBottom: '2rem' }} onClick={generatePdf} className='btn btn_primary '>Downland The Confirmation</button></div>
                                 </div>
                             </div>
                             :

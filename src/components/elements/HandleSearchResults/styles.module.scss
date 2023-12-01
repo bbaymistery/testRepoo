@@ -19,7 +19,7 @@
     top: 44px;
     width: 405px;
 
-    
+
 
     @media (max-width:768px) {
         overflow-x: hidden;
@@ -157,7 +157,7 @@
                     transition: all 0.3s ease;
                     width: 100%;
                     font-size: 14px;
-                    font-family: $font-jost;
+                    // font-family: $font-jost;
                     padding-bottom: 0px !important;
 
                     &:hover {
@@ -196,7 +196,7 @@
                 color: rgb(115, 115, 115);
                 padding-left: 10px;
                 font-weight: 400 !important;
-                font-family: $font-jost;
+                // font-family: $font-jost;
                 font-size: 13px !important;
 
                 a {
@@ -212,5 +212,5 @@
 .istaxideal_search_results {
     max-width: 100%;
     width: 100%;
-        z-index: 9999;
+    z-index: 9999;
 }

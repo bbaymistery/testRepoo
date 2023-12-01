@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import logoImage from '../../../../public/logos/square_dark_blue.webp'
 import Image from "next/image";
@@ -8,14 +8,14 @@ import store from "../../../store/store";
 import { useRouter } from "next/router";
 import { extractLanguage } from "../../../helpers/extractLanguage";
 import OutsideClickAlert from "../../elements/OutsideClickAlert";
-import useRipple from "../../../hooks/useRipple";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import dynamic from 'next/dynamic'
+const TopHeaderWhiteLeftButtons = dynamic(() => import('../../elements/TopHeaderWhiteLeftButtons'),);
+const DropDownAllLanguages = dynamic(() => import('../../elements/DropDownAllLanguages'),);
 const MobileMenu = dynamic(() => import('../../elements/MobileMenu'),);
 const DesktopMenu = dynamic(() => import('../../elements/DesktopMenu'),);
 const Header = () => {
-  const ref = useRef(null);
-  const ripples = useRipple(ref);
+
   const router = useRouter()
   const dispatch = useDispatch()
   const { appData } = useSelector(state => state.initialReducer)
@@ -176,8 +176,6 @@ const Header = () => {
                 <Image src={logoImage} alt="Airport-pickups-london Logo" width={30} height={30} priority />
                 <span>Airport Pickups London</span>
               </a>
-
-
               {width > 1200 ? < DesktopMenu journeyType={journeyType} gotoHomeFromLogoClick={gotoHomeFromLogoClick} language={language} /> : <></>}
               {/* mobile  */}
               {openMenu ?
@@ -196,41 +194,15 @@ const Header = () => {
                 <span data-name="language" onClick={setOpenLanguageDropdown} className={styles.lang_text}>
                   {appData?.languages[langIndex]?.innerText}
                   {router.asPath === "/drivers-wanted" || router.asPath === "/fleet" ? <></> : <i className="fa-solid fa-angle-down"></i>}
-
                 </span>
-
                 {languageStatus ?
                   <OutsideClickAlert onOutsideClick={outsideClickDropDown}>
-                    <div className={styles.all_languages} style={{ opacity: `${languageStatus ? 1 : 0}`, visibility: `${languageStatus ? "visible" : "hidden"}` }} >
-                      {appData?.languages.map((item, index) => {
-                        let { innerText: text, value: key, dir: direction } = item
-                        return (
-                          <div className={styles.content} name={key} key={index} onClick={(e) => handleLanguage({ e, text, key, direction, index })}>
-                            <div className={styles.img_div}>
-                              <Image src={`/languages/${key}.gif`} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 50vw" alt={text} />
-                            </div>
-                            <span>{text}</span>
-                          </div>
-                        )
-                      })}
-                    </div>
+                    <DropDownAllLanguages languageStatus={languageStatus} handleLanguage={handleLanguage} />
                   </OutsideClickAlert> : <></>}
               </div>
-
             </div>
 
-            <div className={styles.buttons}>
-              <div className={styles.whitebtn_div}>
-                <a href={language === 'en' ? '/travelAgents' : `/${language}/travelAgents`} title="Travel Agents" >
-                  <button ref={ref} >{ripples} Travel Agents</button>
-                </a>
-              </div>
-              <div className={styles.bluebtn_div}>
-                <a href="/manage-booking.html" title="Manage Booking" target="_blank">
-                  <button>Manage My Booking</button>
-                </a>
-              </div>
-            </div>
+            {width > 1200 ? <TopHeaderWhiteLeftButtons language={language} /> : <></>}
             <div onClick={toggleMenu} className={`${styles.menu} ${openMenu ? styles.menuActive : ""}`} id="menu"   >
               <span className={styles.line}></span>
               <span className={styles.line}></span>

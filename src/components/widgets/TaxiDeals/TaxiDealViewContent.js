@@ -69,7 +69,7 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
                             </a>
                         )
                     }) :
-                    <div className='text_center w_100'>
+                    <div style={{ textAlign: 'center', width: '100%' }}>
                         No content
                     </div>
                 }

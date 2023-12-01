@@ -31,14 +31,13 @@
                 @media(max-width:1250px) {
                     display: grid;
                     grid-template-columns: 2fr 1fr 1fr;
-                    grid-template-rows: 1fr 1fr;
+                    grid-row-gap: 3rem;
                     align-content: space-between;
 
                 }
 
                 @media(max-width:990px) {
                     grid-template-columns: 2fr 1fr;
-                    grid-template-rows: 1fr 1fr;
                 }
 
                 @media(max-width:768px) {
@@ -48,13 +47,15 @@
                 }
 
                 .column {
-                    // border: 1px solid blue;
-
-                    h3 {
+                    .title {
                         font-weight: 500;
-                        font-size: 18px;
+                        font-size: 22px;
                         color: $dark-1;
-                        margin-bottom: 30px;
+                        margin-bottom: 15px;
+
+                        @media(max-width:1250px) {
+                            margin-bottom: 10px;
+                        }
 
                         @media(max-width:768px) {
                             margin-bottom: 10px;
@@ -77,21 +78,22 @@
 
                                 &:hover {
                                     color: $primary;
-
                                 }
                             }
                         }
-
                     }
                 }
 
                 .last_column {
                     .description {
-                        margin-top: 30px;
+                        margin-top: 10px;
+
+                        @media(max-width:1250px) {
+                            margin-top: 10px;
+                        }
 
                         p {
                             color: $dark-1;
-
                         }
 
                         a {
@@ -106,8 +108,12 @@
                     max-width: 350px;
 
                     .logo {
-                        margin-bottom: 30px;
+                        margin-bottom: 15px;
                         display: flex;
+
+                        @media(max-width:1250px) {
+                            margin-bottom: 10px;
+                        }
 
                         @media(max-width:768px) {
                             margin-bottom: 10px;
@@ -139,7 +145,6 @@
                 @media(max-width:990px) {
                     gap: 1rem;
                     flex-direction: column-reverse;
-
                 }
 
                 .subcontent_left {
@@ -150,7 +155,6 @@
                     @media(max-width:990px) {
                         gap: 1rem;
                         flex-direction: column-reverse;
-
                     }
 
                     .copyright {
@@ -186,8 +190,6 @@
                     }
                 }
             }
-
-
         }
     }
 }

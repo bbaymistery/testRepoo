@@ -1,9 +1,10 @@
-import Link from 'next/link';
+
 import React, { useRef } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
-import styles from "./styles.module.scss"
+import styles from "./styles.module.scss";
+
 const PointsModal = ({ points, title }) => {
     const wrapperRef = useRef();
     const dispatch = useDispatch()
@@ -19,7 +20,6 @@ const PointsModal = ({ points, title }) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("loaded");
                 entry.target.classList.remove("loadinUp");
-
             }
             else {
                 // to fade out images out of the viewport
@@ -40,7 +40,6 @@ const PointsModal = ({ points, title }) => {
         if (clickedOutside) {
             dispatch({ type: "SET_POINTS_MODAL", data: { trueOrFalse: false } });
             document.body.style.overflow = "unset";
-
         }
     }, [clickedOutside])
 
@@ -57,7 +56,7 @@ const PointsModal = ({ points, title }) => {
                 <ul>
                     {points?.map((point, index) => {
                         return <a href={point.pathname} key={index}>
-                            <li className='li_item'>
+                            <li className='li_item' >
                                 <span className={styles.title}>{point?.translatedPageTitle ? point?.translatedPageTitle : point?.title}</span>
                                 <span className={styles.start_from}>{appData.words["strStartFrom"]} <span className={styles.price}>{point.price}</span>  </span>
                             </li>

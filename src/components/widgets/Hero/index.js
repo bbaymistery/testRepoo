@@ -9,8 +9,7 @@ import styles from "./styles.module.scss"
 import env from '../../../resources/env'
 import RadioButton from './RadioButton'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef, } from 'react'
-import useRipple from '../../../hooks/useRipple';
+import React, { useCallback, useEffect, } from 'react'
 import Image from 'next/image';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import dynamic from 'next/dynamic'
@@ -20,143 +19,10 @@ const WaveLoading = dynamic(() => import('../../elements/LoadingWave'))
 const Loading = dynamic(() => import('../../elements/Loading'))
 const Features = dynamic(() => import('../Features'))
 
-const collectPoints = (params = {}, callback = () => { }) => {
-
-    let { value = '', reducerSessionToken = "", language = "" } = params;
-
-
-    const url = `${env.apiDomain}/api/v1/suggestions`;
-    const method = "POST"
-    const headers = { "Content-Type": "application/json" }
-    const body = JSON.stringify({ value, "session-token": reducerSessionToken, language })
-    const config = { method, headers, body }
-
-    fetch(url, config)
-        .then((res) => res.json())
-        .then((res) => { callback(res) })
-        .catch((error) => {
-            let message = "APL   Hero component _collectPoints()  function catch blog "
-            window.handelErrorLogs(error, message, { config })
-        });
-}
-const collectPointsAsync = params => new Promise((resolve, reject) => collectPoints(params, log => resolve(log)))
-//when we click getQuotations there we check fields .If fields not empty then it will be triggering
-const readyToCollectQuotations = (params = {}) => {
-    (async () => {
-        let { dispatch, setInternalState, router, journeyType, reservations, language, } = params
-
-        setInternalState({ ["quotation-loading"]: true })
-        let log = await collectQuotationsAsync({ reservations, journeyType })
-
-
-        //if our journey both way
-        if (parseInt(journeyType) === 1) {
-            let { status: status1 } = log[0]
-            let { status: status2 } = log[1]
-            if (status1 !== 200 && log[0]?.error?.global[0]) {
-                setInternalState({ ["error-booking-message-0"]: log[0]?.error?.global[0] })
-                setTimeout(() => {
-                    setInternalState({ [`error-booking-message-0`]: "" })
-                }, 2500);
-            }
-            if (status2 !== 200 && log[1]?.error?.global[0]) {
-                setInternalState({ ["error-booking-message-1"]: log[1]?.error?.global[0] })
-                setTimeout(() => {
-                    setInternalState({ [`error-booking-message-1`]: "" })
-                }, 2500);
-            }
-            if (status1 === 200 && status2 === 200) {
-                pushToQuotationsResultPage({ dispatch, router, log, journeyType, language })
-                setInternalState({ ["error-booking-message-0"]: "" })
-                setInternalState({ ["error-booking-message-1"]: "" })
-            }
-
-        } else {
-            let { status } = log
-            if (status === 200) {
-                pushToQuotationsResultPage({ dispatch, router, log, journeyType, language })
-            } else {
-                setInternalState({ ["error-booking-message-0"]: log?.error?.global[0] })
-                setTimeout(() => {
-                    setInternalState({ [`error-booking-message-0`]: "" })
-                }, 2500);
-            }
-        }
-        setInternalState({ ["quotation-loading"]: false })
-    })()
-}
-
-//getting quotations
-const collectQuotations = (params = {}, callback = () => { }) => {
-
-    let { reservations, journeyType } = params
-
-    //transfer
-    let trSelectedPickPoints = reservations[0]?.selectedPickupPoints;
-    let trSelectedDroppPoints = reservations[0]?.selectedDropoffPoints;
-    let transferDAteTimeString = reservations[0]?.transferDetails?.transferDateTimeString;
-    //return
-    let returnPickPoints = reservations[1]?.selectedPickupPoints;
-    let returnDroppPoints = reservations[1]?.selectedDropoffPoints;
-    let returnDAteTimeString = reservations[1]?.transferDetails?.transferDateTimeString;
-
-    const url = `${env.apiDomain}/api/v1/quotation`;
-    const method = "POST"
-    const headers = { "Content-Type": "application/json" }
-
-    const configTransfer = {
-        method,
-        headers,
-        body: JSON.stringify({
-            selectedPickupPoints: trSelectedPickPoints,
-            selectedDropoffPoints: trSelectedDroppPoints,
-            transferDateTimeString: transferDAteTimeString,
-        }),
-    };
-
-
-    const configReturn = {
-        method,
-        headers,
-        body: JSON.stringify({
-            selectedPickupPoints: returnPickPoints,
-            selectedDropoffPoints: returnDroppPoints,
-            transferDateTimeString: returnDAteTimeString,
-        }),
-    };
-
-    //check if tru then get oneway guotations
-    if (parseInt(journeyType) === 0) {
-        fetch(url, configTransfer)
-            .then((res) => res.json())
-            .then((data) => {
-                callback(data, "data");
-
-            })
-            .catch((error) => {
-                let message = "APL  Hero component _collectQuotations()  function catch blog  parseInt(journeyType) === 0"
-                window.handelErrorLogs(error, message, { configTransfer })
-            });
-    } else {
-        Promise.all([fetch(url, configTransfer), fetch(url, configReturn)])
-            .then(function (responses) { return Promise.all(responses.map(function (response) { return response.json() })) })
-            .then(function (data) {
-                callback(data, "data");
-            })
-            .catch(function (error) {
-                let message = "APL  Hero component _collectQuotations()  function catch blog  else part of>> parseInt(journeyType) === 0"
-                window.handelErrorLogs(error, message, { configReturn })
-            });
-    }
-}
-const collectQuotationsAsync = params => new Promise((resolve, reject) => collectQuotations(params, log => resolve(log)))
-
 const pushToQuotationsResultPage = (params = {}) => {
     let { dispatch, router, log, journeyType, language } = params
     dispatch({ type: "GET_QUOTATION", data: { results: log, journeyType } })
     router.push(`${language === 'en' ? "/quotation-results" : `${language}/quotation-results`}`)
-
-
     // router.push("/quotation-results")
 }
 const Hero = (props) => {
@@ -198,8 +64,92 @@ const Hero = (props) => {
         "error-booking-message-1": ""
 
     })
+    const collectPoints = useCallback((params = {}, callback = () => { }) => {
 
-    const onChangeHanler = (params = {}) => {
+        let { value = '', reducerSessionToken = "", language = "" } = params;
+        const url = `${env.apiDomain}/api/v1/suggestions`;
+        const method = "POST"
+        const headers = { "Content-Type": "application/json" }
+        const body = JSON.stringify({ value, "session-token": reducerSessionToken, language })
+        const config = { method, headers, body }
+
+        fetch(url, config)
+            .then((res) => res.json())
+            .then((res) => { callback(res) })
+            .catch((error) => {
+                let message = "APL   Hero component _collectPoints()  function catch blog "
+                window.handelErrorLogs(error, message, { config })
+            });
+    }, [params]);
+    const collectPointsAsync = params => new Promise((resolve, reject) => collectPoints(params, log => resolve(log)))
+
+    //getting quotations
+    const collectQuotations = useCallback((params = {}, callback = () => { }) => {
+
+        let { reservations, journeyType } = params
+
+        //transfer
+        let trSelectedPickPoints = reservations[0]?.selectedPickupPoints;
+        let trSelectedDroppPoints = reservations[0]?.selectedDropoffPoints;
+        let transferDAteTimeString = reservations[0]?.transferDetails?.transferDateTimeString;
+        //return
+        let returnPickPoints = reservations[1]?.selectedPickupPoints;
+        let returnDroppPoints = reservations[1]?.selectedDropoffPoints;
+        let returnDAteTimeString = reservations[1]?.transferDetails?.transferDateTimeString;
+
+        const url = `${env.apiDomain}/api/v1/quotation`;
+        const method = "POST"
+        const headers = { "Content-Type": "application/json" }
+
+        const configTransfer = {
+            method,
+            headers,
+            body: JSON.stringify({
+                selectedPickupPoints: trSelectedPickPoints,
+                selectedDropoffPoints: trSelectedDroppPoints,
+                transferDateTimeString: transferDAteTimeString,
+            }),
+        };
+
+
+        const configReturn = {
+            method,
+            headers,
+            body: JSON.stringify({
+                selectedPickupPoints: returnPickPoints,
+                selectedDropoffPoints: returnDroppPoints,
+                transferDateTimeString: returnDAteTimeString,
+            }),
+        };
+
+        //check if tru then get oneway guotations
+        if (parseInt(journeyType) === 0) {
+            fetch(url, configTransfer)
+                .then((res) => res.json())
+                .then((data) => {
+                    callback(data, "data");
+
+                })
+                .catch((error) => {
+                    let message = "APL  Hero component _collectQuotations()  function catch blog  parseInt(journeyType) === 0"
+                    window.handelErrorLogs(error, message, { configTransfer })
+                });
+        } else {
+            Promise.all([fetch(url, configTransfer), fetch(url, configReturn)])
+                .then(function (responses) { return Promise.all(responses.map(function (response) { return response.json() })) })
+                .then(function (data) {
+                    callback(data, "data");
+                })
+                .catch(function (error) {
+                    let message = "APL  Hero component _collectQuotations()  function catch blog  else part of>> parseInt(journeyType) === 0"
+                    window.handelErrorLogs(error, message, { configReturn })
+                });
+        }
+    }, [reservations, journeyType]);
+    const collectQuotationsAsync = useCallback(params =>
+        new Promise((resolve, reject) => collectQuotations(params, log => resolve(log))),
+        [collectQuotations]);
+    const onChangeHanler = useCallback((params = {}) => {
         let { index, value, destination } = params
         let { passengerDetails: { token: passengerDetailsToken } } = reservations[0]
 
@@ -235,18 +185,63 @@ const Hero = (props) => {
             //reset collecting points
             setInternalState({ [`collecting-${destination}-points-${index}`]: [] })
         }
-    }
-    const onChangeSetDateTimeHandler = (params = {}) => {
+    }, [reservations, dispatch, setInternalState, ifHasUnwantedCharacters, collectPointsAsync, reducerSessionToken, language]);
+    const onChangeSetDateTimeHandler = useCallback((params = {}) => {
         let { value, hourOrMinute, journeyType } = params
         dispatch({ type: 'SET_JOURNEY_DATETIME', data: { journeyType, hourOrMinute, value } })
-    }
+    }, [params, dispatch]);
+    //when we click getQuotations there we check fields .If fields not empty then it will be triggering
+    const readyToCollectQuotations = useCallback(async (params = {}) => {
+        (async () => {
+            let { dispatch, setInternalState, router, journeyType, reservations, language, } = params
 
-    const getQuotations = (e) => {
+            setInternalState({ ["quotation-loading"]: true })
+            let log = await collectQuotationsAsync({ reservations, journeyType })
+
+
+            //if our journey both way
+            if (parseInt(journeyType) === 1) {
+                let { status: status1 } = log[0]
+                let { status: status2 } = log[1]
+                if (status1 !== 200 && log[0]?.error?.global[0]) {
+                    setInternalState({ ["error-booking-message-0"]: log[0]?.error?.global[0] })
+                    setTimeout(() => {
+                        setInternalState({ [`error-booking-message-0`]: "" })
+                    }, 2500);
+                }
+                if (status2 !== 200 && log[1]?.error?.global[0]) {
+                    setInternalState({ ["error-booking-message-1"]: log[1]?.error?.global[0] })
+                    setTimeout(() => {
+                        setInternalState({ [`error-booking-message-1`]: "" })
+                    }, 2500);
+                }
+                if (status1 === 200 && status2 === 200) {
+                    pushToQuotationsResultPage({ dispatch, router, log, journeyType, language })
+                    setInternalState({ ["error-booking-message-0"]: "" })
+                    setInternalState({ ["error-booking-message-1"]: "" })
+                }
+
+            } else {
+                let { status } = log
+                if (status === 200) {
+                    pushToQuotationsResultPage({ dispatch, router, log, journeyType, language })
+                } else {
+                    setInternalState({ ["error-booking-message-0"]: log?.error?.global[0] })
+                    setTimeout(() => {
+                        setInternalState({ [`error-booking-message-0`]: "" })
+                    }, 2500);
+                }
+            }
+            setInternalState({ ["quotation-loading"]: false })
+        })()
+    }, [collectQuotationsAsync, pushToQuotationsResultPage, setInternalState, params]);
+    const getQuotations = useCallback((e) => {
         let errorHolder = reservationSchemeValidator({ reservations, appData });
-        setInternalState({ errorHolder })
-        if (errorHolder.status === 200) readyToCollectQuotations({ dispatch, setInternalState, router, journeyType, reservations, language })
-
-    }
+        setInternalState({ errorHolder });
+        if (errorHolder.status === 200) {
+            readyToCollectQuotations({ dispatch, setInternalState, router, journeyType, reservations, language });
+        }
+    }, [reservations, appData, setInternalState, readyToCollectQuotations, dispatch, router, journeyType, language]);
 
     const setFocusToInput = (params = {}) => {
         let { e, destination, index } = params
@@ -283,14 +278,12 @@ const Hero = (props) => {
         //it means if we have seggested points then it will work otherwise it is nt
         if (!Array.isArray(internalState[`collecting-${destination}-points-${index}`]))
             setInternalState({ [`collecting-${destination}-points-${index}`]: [], [`${destination}-search-focus-${index}`]: false })
-
     }
     const closeModal = (params = {}) => {
         let { index, destination } = params
         let inputField = document.getElementById(`${destination}_input_focused_${index}`)
         inputField.style.opacity = 1
         setInternalState({ [`${destination}-search-focus-${index}`]: false, [`${destination}-search-value-${index}`]: "", [`collecting-${destination}-points-${index}`]: [] })
-
     }
     //when we go quotation page then go back In that case we should check
     //if we have points or not.
@@ -303,13 +296,8 @@ const Hero = (props) => {
         // bu rendere sebeb olur
         dispatch({ type: "CHECHK_FLIGHT_WAITING_TIME", data: { journeyType } })
     }, [])
-    const ref = useRef(null);
-    const ripples = useRipple(ref);
-
     let size = useWindowSize();
     let { width } = size
-
-
 
     return (
         <div className={`${styles.hero} ${direction} page`} islinknamecomponent={String(islinknamecomponent)}>
@@ -485,12 +473,12 @@ const Hero = (props) => {
                                             {index === 1 && reservations.length > 1 || index === 0 && reservations.length === 1 ?
                                                 <div className={`${styles.btn_div} ${styles.fifth_column}`}  >
                                                     {internalState[`quotation-loading`] ?
-                                                        <div className={`btn btn_primary mt_0 disabled_button ${styles.waveloadingdiv}`}>
+                                                        <div className={`btn btn_primary  disabled_button ${styles.waveloadingdiv}`} style={{ marginTop: '0px' }}>
                                                             <WaveLoading />
                                                         </div>
                                                         :
-                                                        <button ref={ref} onClick={(e) => getQuotations(e)} className={`btn btn_primary`}>
-                                                            {ripples}
+                                                        <button onClick={(e) => getQuotations(e)} className={`btn btn_primary`}>
+
                                                             <i className="fa-solid fa-magnifying-glass"></i>
                                                             <span>{appData?.words["seGetQuotation"]}</span>
                                                         </button>}
@@ -501,19 +489,21 @@ const Hero = (props) => {
                                             {reservations.length > 1 && index === 0 ?
                                                 <div className={`${styles.btn_div} ${styles.fifth_column} ${styles.hide_mobile} `}  >
                                                     {internalState[`quotation-loading`] ?
-                                                        <div className={`btn btn_primary mt_0 disabled_button ${styles.waveloadingdiv}`}>
+                                                        <div className={`btn btn_primary  disabled_button ${styles.waveloadingdiv}`}>
                                                         </div>
                                                         :
-                                                        <button ref={ref} className={`btn btn_primary`} onClick={(e) => getQuotations(e)}>
+                                                        <button className={`btn btn_primary`} onClick={(e) => getQuotations(e)}>
                                                         </button>}
                                                 </div>
                                                 : <React.Fragment></React.Fragment>}
                                         </div>
-                                        {internalState[`error-booking-message-${index}`] ?
-                                            <div className={styles.errorBookedMessage}>
-                                                <p>{internalState[`error-booking-message-${index}`]}</p>
-                                            </div>
-                                            : <></>}
+                                        {
+                                            internalState[`error-booking-message-${index}`] ?
+                                                <div className={styles.errorBookedMessage}>
+                                                    <p>{internalState[`error-booking-message-${index}`]}</p>
+                                                </div>
+                                                : <></>
+                                        }
                                     </div>
 
                                 )
@@ -534,19 +524,19 @@ const Hero = (props) => {
                     <div className={styles.advertisiment_images}>
                         <a rel="noreferrer" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" target={"_blank"} >
                             <div className={`${styles.review_trip_advisor} ${width < 768 ? "" : "bottom_to_top_animation2"}`} style={{ animationDelay: '.5s', animationDuration: '1s' }}>
-                                <Image fill priority style={{ objectFit: 'contain' }} src="/images/advisorTrip.webp" alt="Airport Pickups London Tripadvisor" />
+                                <Image fill priority style={{ objectFit: 'contain' }} sizes="(max-width: 768px) 100vw, " src="/images/advisorTrip.webp" alt="Airport Pickups London Tripadvisor" />
                             </div>
                         </a>
 
                         <a rel="noreferrer" href="https://www.trustpilot.com/review/airport-pickups-london.com" target={"_blank"} >
                             <div className={`${styles.review_trip_advisor} ${width < 768 ? "" : "bottom_to_top_animation2"}`} style={{ animationDelay: '0.75s', animationDuration: '1s' }}>
-                                <Image fill priority style={{ objectFit: 'contain' }} src="/images/Excellent.webp" alt=" Airport Pickups London Trustpilot " />
+                                <Image fill priority style={{ objectFit: 'contain' }} sizes="(max-width: 768px) 100vw, " src="/images/Excellent.webp" alt=" Airport Pickups London Trustpilot " />
                             </div>
                         </a>
 
                         <a rel="noreferrer" href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} >
                             <div className={`${styles.review_trip_advisor} ${width < 768 ? "" : "bottom_to_top_animation2"}`} style={{ animationDelay: '1s', animationDuration: '1s' }}>
-                                <Image fill priority style={{ objectFit: 'contain' }} src="/images/Reviews.webp" alt="Airport Pickups London Review" />
+                                <Image fill priority style={{ objectFit: 'contain' }} sizes="(max-width: 768px) 100vw, " src="/images/Reviews.webp" alt="Airport Pickups London Review" />
                             </div>
                         </a>
                     </div>
@@ -554,7 +544,7 @@ const Hero = (props) => {
             </div>
 
 
-        </div>
+        </div >
     )
 }
 

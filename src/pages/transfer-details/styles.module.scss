@@ -70,7 +70,7 @@ $checkbox-selected: $primary; // Primary colour
                             font-weight: 500;
                             margin-bottom: 5px;
                             font-size: 22px;
-                            font-family: $font-jost;
+                            // font-family: $font-jost;
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
@@ -214,7 +214,7 @@ $checkbox-selected: $primary; // Primary colour
 
                                     p {
                                         font-size: 19px;
-                                        font-family: $font-jost;
+                                        // font-family: $font-jost;
                                         font-weight: 500;
                                         color: #000;
                                     }
@@ -324,7 +324,7 @@ $checkbox-selected: $primary; // Primary colour
                                         // text-transform: capitalize;
                                         color: $label_text_color;
                                         font-weight: 400;
-                                        font-family: $font-jost;
+                                        // font-family: $font-jost;
                                         font-size: 13px;
                                     }
                                 }
@@ -441,7 +441,7 @@ $checkbox-selected: $primary; // Primary colour
                                         outline-offset: -2px;
                                         background-color: rgb(255, 255, 255);
                                         font-weight: 500;
-                                        font-family: $font-jost;
+                                        // font-family: $font-jost;
                                         font-size: 15px;
 
                                         @media (max-width:990px) {
@@ -714,7 +714,7 @@ $checkbox-selected: $primary; // Primary colour
                                 max-width: 163px !important;
                                 width: 163px;
                                 font-size: 15px;
-                                font-family: $font-jost;
+                                // font-family: $font-jost;
                                 letter-spacing: 1px;
                                 text-transform: capitalize;
 
@@ -732,7 +732,7 @@ $checkbox-selected: $primary; // Primary colour
                         }
 
 
-                    }   
+                    }
                 }
 
             }
@@ -781,7 +781,7 @@ $checkbox-selected: $primary; // Primary colour
                             font-weight: 500;
                             margin-bottom: 15px;
                             font-size: 22px;
-                            font-family: $font-jost;
+                            // font-family: $font-jost;
                             padding-top: 30px;
                             display: flex;
                             align-items: center;
@@ -823,7 +823,7 @@ $checkbox-selected: $primary; // Primary colour
                                     font-size: 16px;
                                     color: rgb(105, 116, 136);
                                     font-weight: 500;
-                                    font-family: $font-jost;
+                                    // font-family: $font-jost;
                                     margin-bottom: 10px;
                                 }
 
@@ -859,7 +859,7 @@ $checkbox-selected: $primary; // Primary colour
                             opacity: 0;
                             user-select: none;
                             cursor: pointer;
-                            font-family: $font-jost;
+                            // font-family: $font-jost;
 
                             // Text
                             &+label {
@@ -1062,7 +1062,7 @@ $checkbox-selected: $primary; // Primary colour
                                 max-width: 163px !important;
                                 width: 163px;
                                 font-size: 15px;
-                                font-family: $font-jost;
+                                // font-family: $font-jost;
                                 letter-spacing: 1px;
                                 text-transform: capitalize;
 
@@ -1114,7 +1114,7 @@ $checkbox-selected: $primary; // Primary colour
                 max-width: 163px !important;
                 width: 163px;
                 font-size: 15px;
-                font-family: $font-jost;
+                // font-family: $font-jost;
                 letter-spacing: 1px;
                 text-transform: capitalize;
 
@@ -1187,7 +1187,7 @@ $checkbox-selected: $primary; // Primary colour
                 max-width: 163px !important;
                 width: 163px;
                 font-size: 15px;
-                font-family: $font-jost;
+                // font-family: $font-jost;
                 letter-spacing: 1px;
                 text-transform: capitalize;
 
@@ -1266,7 +1266,7 @@ $checkbox-selected: $primary; // Primary colour
         font-weight: 500;
         margin-bottom: 15px;
         font-size: 22px;
-        font-family: $font-jost;
+        // font-family: $font-jost;
     }
 
     .return_pas_details_header {
@@ -1288,7 +1288,7 @@ $checkbox-selected: $primary; // Primary colour
                 padding-left: 10px;
                 font-size: 14px;
                 font-weight: 500;
-                font-family: $font-jost;
+                // font-family: $font-jost;
             }
 
 

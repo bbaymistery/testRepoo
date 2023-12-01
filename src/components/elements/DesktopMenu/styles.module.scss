@@ -3,9 +3,8 @@
 
          // it is for desktop
          .header_menu_content {
-
              ul {
-                 @media(max-width:1200px) {
+                 @media(max-width:1280px) {
                      display: none;
                  }
 
@@ -39,9 +38,9 @@
                          span {
                              margin-right: 6px;
                              font-weight: 500;
-                             font-family: $font-jost;
                              letter-spacing: 0.5px;
                              cursor: pointer;
+                             font-weight: 500 !important;
                          }
 
                          i {
@@ -76,7 +75,6 @@
                          display: flex;
                          flex-direction: column;
                          width: 275px;
-                         // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
                          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
                          border-radius: 5px;
                          padding: 13px;
@@ -101,6 +99,7 @@
                              padding: 12px 14px 8px 20px !important;
                              text-transform: capitalize;
 
+
                              @media (max-width: 990px) {
                                  &:hover {
                                      pointer-events: none;
@@ -116,7 +115,6 @@
                              a {
                                  color: $dark-1;
                                  padding-left: 0px;
-
 
                                  &:hover {
                                      color: lighten($primary, 15%);

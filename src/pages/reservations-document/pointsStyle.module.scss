@@ -24,7 +24,7 @@
         }
 
         .details_header_div {
-            font-family: $font-jost;
+            // font-family: $font-jost;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -83,10 +83,11 @@
             letter-spacing: 1px;
             font-size: 14px;
             color: $light-1;
-            font-family: $font-jost;
+            // font-family: $font-jost;
             font-weight: 500;
             align-items: center;
             justify-content: flex-end;
+
             span {
                 &:nth-child(2) {
                     text-decoration: underline;

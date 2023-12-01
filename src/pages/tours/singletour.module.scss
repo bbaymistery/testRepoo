@@ -362,8 +362,9 @@
                         display: flex;
                         gap: 2rem;
                         justify-content: space-between;
-border-bottom: 1px solid $border;
-    padding-bottom: 30px;
+                        border-bottom: 1px solid $border;
+                        padding-bottom: 30px;
+
                         @media (max-width: 768px) {
                             display: grid;
                             grid-template-columns: 1fr 1fr;

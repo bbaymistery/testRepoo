@@ -1,8 +1,6 @@
 
 
 export function reservationSchemeValidator(params = {}, options = {}) {
-
-
   if (params.reservations) {
     let { appData } = params
 
@@ -20,8 +18,6 @@ export function reservationSchemeValidator(params = {}, options = {}) {
         selectedDropoffPoints: obj.selectedDropoffPoints.map(obj => ({})), // selectedDropoffPoints
       }))
     };
-
-
     // looping
     for (let index in reservations) {
       let keys = Object.keys(reservations[index]);
@@ -32,8 +28,6 @@ export function reservationSchemeValidator(params = {}, options = {}) {
 
             errorHolder.status = 403
             errorHolder.reservations[index]["selectedPickupPoints"] = appData?.words["seSelectPickupPointAtLeast"]
-
-
             errorHolder.reservations[index]["selectedDropoffPoints"] = appData?.words["seSelectDropoffPointAtLeast"]
           } else {
             // looping inside points
@@ -119,7 +113,7 @@ export function reservationSchemeValidator(params = {}, options = {}) {
                 else if (pcatId === 5) {//postcodes
                   let { postCodeDetails } = point// postCodeDetails.id  , postCodeDetails.postCodeAddress
                   if (typeof postCodeDetails === 'object') {
-          
+
 
                     errorHolder.reservations[index][key][i]['postCodeDetails'] = {}
                     // postCodeDetails.adress mundaty if postcodeDetails.id ===0 (typeof number)

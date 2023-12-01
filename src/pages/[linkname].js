@@ -5,9 +5,7 @@ import CarsSlider from '../components/widgets/CarsSlider';
 import Hero from '../components/widgets/Hero';
 import TaxiDeals from '../components/widgets/TaxiDeals';
 import store from '../store/store';
-import LinkNameDescription from '../components/elements/LinkNameDescription';
 import { useRouter } from 'next/router';
-import Error404 from './404/index'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 

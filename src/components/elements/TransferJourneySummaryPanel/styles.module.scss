@@ -28,7 +28,7 @@
                 margin-bottom: 15px;
                 font-size: 20px;
                 font-weight: 500;
-                font-family: $font-jost;
+                // font-family: $font-jost;
                 text-align: left !important;
             }
 
@@ -63,6 +63,7 @@
                         position: absolute;
                         top: 25px !important;
                         left: 0px;
+
                         @media (max-width:1100px) {
                             display: none;
                         }
@@ -129,6 +130,7 @@
                     .fromto {
                         padding: 5px 10px;
                         width: 100%;
+
                         .stars {
                             i {
                                 color: rgb(255, 179, 0);
@@ -143,7 +145,7 @@
                             font-size: 14px;
                             font-weight: 400;
                             line-height: 1.2;
-                            font-family: $font-jost;
+                            // font-family: $font-jost;
                             color: rgb(5 16 54 / 54%);
                             margin-bottom: 8px;
 
@@ -157,7 +159,7 @@
                         li {
                             font-size: 14px;
                             font-weight: 500;
-                            font-family: $font-jost;
+                            // font-family: $font-jost;
                             // list-style: disc;
                             list-style: none;
                             border-bottom: 1px solid $border;
@@ -180,6 +182,7 @@
                         display: flex;
                         gap: 10px;
                         align-items: center;
+
                         .review_left {
                             background-color: lighten($dark-4, 7%);
                             color: white;
@@ -216,7 +219,7 @@
 
                 .text_1 {
                     font-size: 15px;
-                    font-family: $font-jost;
+                    // font-family: $font-jost;
                     font-weight: 400;
                     color: rgb(5, 16, 54);
                     line-height: 28px;
@@ -230,7 +233,7 @@
                 //and distance
                 .duration {
                     font-size: 16px;
-                    font-family: $font-jost;
+                    // font-family: $font-jost;
                     font-weight: 500;
                     line-height: 30px;
                     color: rgb(5, 16, 54);
@@ -262,7 +265,7 @@
                 .left {
                     .text_1 {
                         font-size: 15px;
-                        font-family: $font-jost;
+                        // font-family: $font-jost;
                         font-weight: 400;
                         color: rgb(5, 16, 54);
                         line-height: 28px;
@@ -271,7 +274,7 @@
                     .car_name {
 
                         font-size: 16px;
-                        font-family: $font-jost;
+                        // font-family: $font-jost;
                         font-weight: 500;
                         line-height: 30px;
                         color: rgb(5, 16, 54);
@@ -280,7 +283,7 @@
                     a {
                         color: rgb(53, 84, 209);
                         font-weight: 400;
-                        font-family: $font-jost;
+                        // font-family: $font-jost;
                         line-height: 28px;
                         text-decoration: underline;
                         font-size: 15px;
@@ -303,7 +306,7 @@
                     span {
                         // text-align: center;
                         font-weight: 400;
-                        font-family: $font-jost;
+                        // font-family: $font-jost;
                         line-height: 28px;
                         font-size: 14px;
                         color: rgb(5, 16, 54);
@@ -353,7 +356,7 @@
 
                             &:nth-child(2) {
                                 font-size: 16px;
-                                font-family: $font-jost;
+                                // font-family: $font-jost;
                                 font-weight: 500;
                                 color: rgb(5, 16, 54);
                                 line-height: 28px;
@@ -371,7 +374,7 @@
 
                             &:nth-child(2) {
                                 font-size: 16px;
-                                font-family: $font-jost;
+                                // font-family: $font-jost;
                                 font-weight: 500;
                                 color: rgb(5, 16, 54);
                                 line-height: 28px;
@@ -389,7 +392,7 @@
                 display: flex;
                 justify-content: space-between;
                 color: #212529;
-                font-family: $font-jost;
+                // font-family: $font-jost;
                 padding: 20px;
                 font-size: 22px;
                 background-color: #E5F0FD;

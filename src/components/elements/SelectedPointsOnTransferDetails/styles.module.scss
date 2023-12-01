@@ -22,7 +22,7 @@ $bg_light: rgb(245, 247, 252);
     animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
     border-radius: 5px;
 
-   margin-top: 1rem !important;
+    margin-top: 1rem !important;
 
     &:hover {
         background-color: darken(#F5F5F5, 3%);
@@ -66,7 +66,7 @@ $bg_light: rgb(245, 247, 252);
                 color: $black3;
                 font-size: 15px;
                 font-weight: 500;
-                font-family: $font-jost;
+                // font-family: $font-jost;
                 flex: 1;
 
                 @media (max-width: 520px) {

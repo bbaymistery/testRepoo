@@ -64,15 +64,15 @@ const GeneralTerms = ({ pageContent }) => {
                         <li><b>2.3</b> Our driver will  be waiting for you in the arrivals hall, with an “Airport Pickups” name board  with your name on it. </li>
                         <li><b>2.4</b> If you cannot locate your  driver and you seek an alternative method of transport without first contacting  APL to try and resolve the situation, you will be charged the tariff rate based  on the service booked.<br /> Our 24/7 contact number is +44 (0)208 688 7744</li>
                     </ul>
-                    <h2 className='text_underline mb_0' style={{ paddingBottom: "5px" }}>Hotel and address Pick-up Rules:</h2>
+                    <h2 style={{ textDecoration: "underline", paddingBottom: "5px", marginBottom: "0px" }} >Hotel and address Pick-up Rules:</h2>
                     <ul>
                         <li><b>2.5</b> We allow a 15  minutes FREE waiting time at hotel and address pick-ups. </li>
                     </ul>
-                    <h2 className='text_underline mb_0' style={{ paddingBottom: "5px" }}>Cruise / Ferry Port Pickup Rules:</h2>
+                    <h2 style={{ textDecoration: "underline", paddingBottom: "5px", marginBottom: "0px" }} >Cruise / Ferry Port Pickup Rules:</h2>
                     <ul>
                         <li><b>2.6</b> We allow 60  minutes free waiting time from the requested pickup time, at the Cruise and  Ferry Ports.</li>
                     </ul>
-                    <h2 className='text_underline mb_0' style={{ paddingBottom: "5px" }}>Eurostar and Station Pickup Rules:</h2>
+                    <h2 style={{ textDecoration: "underline", paddingBottom: "5px", marginBottom: "0px" }} >Eurostar and Station Pickup Rules:</h2>
                     <ul>
                         <li><b>2.7</b> “Eurostar”  arrivals:  driver will hold passenger name board 30 mins after train arrival time, and  there will be extra 30 mins FREE waiting time.</li>
 

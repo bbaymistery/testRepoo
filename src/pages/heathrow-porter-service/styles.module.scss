@@ -43,7 +43,7 @@
                     border: 1px solid #f7f7f7;
                     color: $dark-1;
                     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-                    font-family: $font-jost;
+                    // font-family: $font-jost;
 
                     h1 {
                         @media (max-width: 768px) {
@@ -164,13 +164,13 @@
                                     font-weight: 500;
                                     //!change
                                     font-size: 20px;
-                                    font-family: $font-jost;
+                                    // font-family: $font-jost;
                                     margin-bottom: 0px !important;
 
                                     span {
                                         color: $light-1;
                                         font-size: 14px;
-                                        font-family: $font-jost;
+                                        // font-family: $font-jost;
                                         margin-left: 4px;
                                         text-transform: lowercase;
                                     }
@@ -223,7 +223,7 @@
                                     span {
                                         //!change
                                         font-size: 16px;
-                                        font-family: $font-jost;
+                                        // font-family: $font-jost;
                                         color: rgb(5, 16, 54);
 
                                         @media (max-width: 1200px) {
@@ -273,7 +273,7 @@
                                     display: flex;
                                     align-items: center;
                                     font-size: 15px;
-                                    font-family: $font-jost;
+                                    // font-family: $font-jost;
                                     font-weight: 500;
                                     color: rgb(0, 128, 9);
                                     color: $dark-1;
@@ -337,7 +337,7 @@
                     border: 1px solid #f7f7f7;
                     color: $dark-1;
                     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-                    font-family: $font-jost;
+                    // font-family: $font-jost;
 
                     h1 {
                         @media (max-width: 768px) {
@@ -418,8 +418,7 @@
                             }
 
                             img {
-                                width: 300px
-                                ;
+                                width: 300px;
                                 object-fit: cover;
                                 height: 200px;
                             }

@@ -33,7 +33,7 @@
 
         .succes_message {
             font-size: 30px;
-            font-family: $font-jost;
+            // font-family: $font-jost;
             margin-top: 20px;
             font-weight: 500;
             color: $gray-2;
@@ -43,7 +43,7 @@
 
         .succes_message2 {
             font-size: 28px;
-            font-family: $font-jost;
+            // font-family: $font-jost;
             margin-top: 0px;
             font-weight: 500;
             color: $gray-2;
@@ -52,7 +52,7 @@
         }
 
         .sub_succes_message {
-            font-family: $font-jost;
+            // font-family: $font-jost;
             margin-top: 5px;
             font-size: 15px;
             color: $gray-3;
@@ -73,7 +73,7 @@
             color: $gray-1 ;
             font-weight: 500;
             letter-spacing: 1px;
-            font-family: $font-jost;
+            // font-family: $font-jost;
             text-align: center;
             margin-bottom: 25px;
 
@@ -99,7 +99,7 @@
                 .text1 {
                     font-size: 17px;
                     color: $black-1;
-                    font-family: $font-jost;
+                    // font-family: $font-jost;
                     letter-spacing: 1px;
 
 
@@ -108,7 +108,7 @@
 
                 .text2 {
                     font-size: 18px;
-                    font-family: $font-jost;
+                    // font-family: $font-jost;
                     color: $primary;
                     font-weight: 500;
 
@@ -132,7 +132,7 @@
             color: $gray-1 ;
             font-weight: 500;
             letter-spacing: 1px;
-            font-family: $font-jost;
+            // font-family: $font-jost;
 
             text-align: center;
 
@@ -145,7 +145,7 @@
                 font-size: 20px;
                 color: $gray-1 ;
                 font-weight: 500;
-                font-family: $font-jost;
+                // font-family: $font-jost;
                 letter-spacing: 1px;
             }
         }
@@ -154,7 +154,7 @@
             display: flex;
             justify-content: space-between;
             border-bottom: 1px solid $border;
-            font-family: $font-jost;
+            // font-family: $font-jost;
             padding: 12px 0px;
 
             &:last-child {

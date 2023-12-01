@@ -73,39 +73,11 @@ body {
     }
 }
 
-
-
-
-
 .no_cursor {
     cursor: default !important;
 }
 
-.modal {
-    background-color: rgba(0, 0, 0, 0.6);
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    z-index: 9999;
-    padding: 100px !important;
-    margin: 0px;
-    height: 100%;
-    width: 100%;
-    animation: zoomout;
-    opacity: 1;
-    animation-duration: 1s;
-    animation-fill-mode: both;
-    animation-delay: .18s;
-    animation-iteration-count: 1;
-    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 
-
-}
 
 @keyframes zoomout {
     0% {
@@ -380,83 +352,11 @@ body {
     }
 }
 
-@keyframes ripple {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-
-
-
-.ml_3 {
-    margin-left: 2rem !important;
-}
-
-// mt mb
-.mt_1 {
-    margin-top: 1rem !important;
-}
-
-.mt_2 {
-    margin-top: 1.5rem !important;
-}
-
-.mt_3 {
-    margin-top: 2rem !important;
-}
-
-.mb_1 {
-    margin-bottom: 1rem !important;
-}
-
-.mb_2 {
-    margin-bottom: 1.5rem !important;
-}
-
-.mb_3 {
-    margin-bottom: 2rem !important;
-}
-
 .mb_4 {
     margin-bottom: 3rem !important;
 }
 
-.mb_5 {
-    margin-bottom: 4rem !important;
-}
-
-.mt_0 {
-    margin-top: 0px !important;
-}
-
-.mb_0 {
-    margin-bottom: 0px !important;
-}
 
 .m_0 {
     margin: 0px !important;
 }
-
-.p_2 {
-    padding: 1.5rem !important;
-}
-
-.text_center {
-    text-align: center;
-}
-
-
-
-
-.text_underline {
-    text-decoration: underline;
-}
-
-.w_100 {
-    width: 100%;
-}
-
-
-//font awesome

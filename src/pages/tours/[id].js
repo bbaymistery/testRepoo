@@ -97,7 +97,7 @@ const TourContentDetails = ({ data }) => {
     return (
         <GlobalLayout footerbggray={true}>
             <div className={`page ${styles.page} `}>
-                <div className={`${styles.descriptions} mb_2`}>
+                <div className={`${styles.descriptions} `} style={{ marginBottom: "1.5rem" }}>
                     <div className={`${styles.description_container} page_section`}>
                         <div className={`page_section_container mb-2  ${styles.page_section_container}`} >
                             <div className={styles.links}>

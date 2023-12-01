@@ -76,7 +76,7 @@
                   min-height: 52px;
                   font-size: 14px;
                   font-weight: 500;
-                  font-family: $font-jost;
+                  //   font-family: $font-jost;
                   color: $input_text_color;
                   appearance: none;
                   background-color: white;
@@ -118,7 +118,7 @@
                   min-height: 52px;
                   font-size: 14px;
                   font-weight: 500;
-                  font-family: $font-jost;
+                  //   font-family: $font-jost;
                   color: $input_text_color;
                   appearance: none;
                   background-color: white;
@@ -172,14 +172,14 @@
 
                   p {
                       font-size: 14px;
-                      font-family: $font-jost;
+                      //   font-family: $font-jost;
                       font-weight: 400;
                       margin-bottom: 10px;
 
                       .primary_text {
                           font-weight: 500;
                           color: $primary;
-                          font-family: $font-jost;
+                          //   font-family: $font-jost;
                       }
                   }
 
@@ -214,7 +214,7 @@
                   will-change: transform;
                   font-size: 13px !important;
                   font-weight: normal !important;
-                  font-family: $font-jost;
+                  //   font-family: $font-jost;
                   color: rgba(98, 102, 108, 0.8431372549);
                   display: flex;
                   align-items: center;
@@ -289,7 +289,7 @@
                   min-height: 52px;
                   font-size: 14px;
                   font-weight: 500;
-                  font-family: $font-jost;
+                  //   font-family: $font-jost;
                   color: $input_text_color;
                   appearance: none;
                   background-color: white;
@@ -307,8 +307,7 @@
                   &:valid+.select__label,
                   &:focus:valid+.select__label {
                       transition: 200ms transform ease-out;
-                      color: $label_text_color
-                      ;
+                      color: $label_text_color ;
                   }
 
                   &:focus {
@@ -332,7 +331,7 @@
                   min-height: 52px;
                   font-size: 14px;
                   font-weight: 500;
-                  font-family: $font-jost;
+                  //   font-family: $font-jost;
                   color: $input_text_color;
                   appearance: none;
                   background-color: white;
@@ -387,14 +386,14 @@
 
                   p {
                       font-size: 14px;
-                      font-family: $font-jost;
+                      //   font-family: $font-jost;
                       font-weight: 400;
                       margin-bottom: 10px;
 
                       .primary_text {
                           font-weight: 500;
                           color: $primary;
-                          font-family: $font-jost;
+                          //   font-family: $font-jost;
                       }
                   }
 
@@ -429,8 +428,8 @@
                   will-change: transform;
                   font-size: 13px !important;
                   font-weight: normal !important;
-                  font-family: $font-jost;
-            color: $label_text_color;
+                  //   font-family: $font-jost;
+                  color: $label_text_color;
                   display: flex;
                   align-items: center;
                   z-index: 1000;

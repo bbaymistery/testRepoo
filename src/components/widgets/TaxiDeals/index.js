@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import env from '../../../resources/env'
-import PointsModal from '../../elements/PointsModal'
-
 import styles from "./styles.module.scss"
 import TaxiDealViewContent from './TaxiDealViewContent'
 import useRipple from '../../../hooks/useRipple'
 import { useRef } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic'
+const PointsModal = dynamic(() => import('../../elements/PointsModal'));
 const tabsBttons = [
     {
         name: "Heathrow Taxi Deals",
@@ -43,19 +43,15 @@ const tabsBttons = [
 //showTabs=>they come from here > heathrow-airport-transfer
 //isLinknameComponent comes driom [..linkname]
 const TaxiDeals = (props) => {
-
-
     let { showTabs = true, bggray = false, islinknamecomponent = false } = props
     const dispatch = useDispatch()
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction, language, pointsModalStatus, hasTaxiDeals = "heathrow" } } = state
-
     const [tabs, setTabs] = useState(0)
     const [taxiPoints, setTaxiPoints] = useState([])
     const refs = tabsBttons.map(() => useRef(null));
     const ripples = refs.map((ref) => useRipple(ref));
     const router = useRouter();
-
     const fecthPoints = async (params = {}) => {
         let { language, dealsNameProp = hasTaxiDeals } = params
         let channelId = state.reservations[0].reservationDetails.channelId
@@ -111,8 +107,6 @@ const TaxiDeals = (props) => {
         }
 
     }, [])
-
-
     return (
         <>
             {
@@ -120,7 +114,6 @@ const TaxiDeals = (props) => {
                     {pointsModalStatus && <PointsModal points={taxiPoints} title={`${hasTaxiDeals} Transfer Deals`} />}
                     <div className={`${styles.taxideals_section} page_section`}>
                         <div className={`${styles.taxideals_section_container} page_section_container`}>
-
                             {taxiPoints.length > 1 ?
                                 <div className={styles.title}>
                                     {hasTaxiDeals === 'dover' || hasTaxiDeals === 'southampton' || hasTaxiDeals === 'portsmouth' || hasTaxiDeals === 'harwich' ? <h1>{hasTaxiDeals} Cruise Port</h1> : <h1>{hasTaxiDeals} Taxi Deals</h1>}
@@ -131,7 +124,6 @@ const TaxiDeals = (props) => {
                                     {tabsBttons.map((btn, index) => {
                                         return (<button onClick={() => tabsHandler({ index, dealsNameProp: btn.dealsName })} className={`${tabs === index ? styles.active : ""} btn`} key={index} ref={refs[index]}   >
                                             <div className="ripple-wrapper">{ripples[index]}</div>
-
                                             {btn.name}
                                         </button>)
                                     }

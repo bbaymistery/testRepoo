@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "./styles.module.scss"
-const PrivacyTerms = ({pageContent}) => {
+const PrivacyTerms = ({ pageContent }) => {
     return (
         <div className={styles.right}>
             {
@@ -19,12 +19,12 @@ const PrivacyTerms = ({pageContent}) => {
                             APL may choose to change its privacy policy from time to time, so we advise that our customers check this page regularly.
                         </p>
 
-                        <h2 className='mb_0'>How the law protects you</h2>
+                        <h2 style={{ marginBottom: '0rem' }}>How the law protects you</h2>
                         <ul>
                             Data protection laws state that we are only able to process personal data if we have valid reasons to do so. The reasons we process your personal data include, but are not limited to, your consent, performance of a contract and to contact you.
                         </ul>
 
-                        <h2 className='mb_0'>Information we collect, and how we use it.</h2>
+                        <h2 style={{ marginBottom: '0rem' }}>Information we collect, and how we use it.</h2>
                         <ul>
                             We receive information about you when you use our website, complete forms on
                             our website, if you contact us by phone, email,
@@ -34,20 +34,20 @@ const PrivacyTerms = ({pageContent}) => {
                             obtained the express consent from the third party for the disclosure and use of their personal data.
                             Your personal data may be collected when you use our services, including but not limited to:
                             <br />
-                            <li style={{ listStyle: "inside" }} className='ml_3'>Passenger Name</li>
-                            <li style={{ listStyle: "inside" }} className='ml_3'>Email address</li>
-                            <li style={{ listStyle: "inside" }} className='ml_3'>Telephone number</li>
-                            <li style={{ listStyle: "inside" }} className='ml_3'>Flight no</li>
-                            <li style={{ listStyle: "inside" }} className='ml_3'>Pick up address</li>
-                            <li style={{ listStyle: "inside" }} className='ml_3'>Drop off address</li>
+                            <li style={{ listStyle: "inside", marginLeft: '3rem' }}  >Passenger Name</li>
+                            <li style={{ listStyle: "inside", marginLeft: '3rem' }}  >Email address</li>
+                            <li style={{ listStyle: "inside", marginLeft: '3rem' }}  >Telephone number</li>
+                            <li style={{ listStyle: "inside", marginLeft: '3rem' }}  >Flight no</li>
+                            <li style={{ listStyle: "inside", marginLeft: '3rem' }}  >Pick up address</li>
+                            <li style={{ listStyle: "inside", marginLeft: '3rem' }}  >Drop off address</li>
 
 
                         </ul>
-                        <h2 className='mb_0' >The information we collect:</h2>
+                        <h2 style={{ marginBottom: '0rem' }} >The information we collect:</h2>
                         <ul>
                             All of the above information is required from our customers in order to be able to make a booking, and providing transportation services.
                         </ul>
-                        <h2 className='mb_0' >Third Parties</h2>
+                        <h2 style={{ marginBottom: '0rem' }} >Third Parties</h2>
                         <ul>
                             APL does not and never shall sell your personal data to third parties
                             for marketing or advertising purposes. However we may submit your data
@@ -56,7 +56,7 @@ const PrivacyTerms = ({pageContent}) => {
                             hold about you. Please email your requests to accounts@aplcars.com and we will
                             provide a PDF file with the data.
                         </ul>
-                        <h2 className='mb_0' >Where we store your personal data</h2>
+                        <h2 style={{ marginBottom: '0rem' }} >Where we store your personal data</h2>
                         <ul>
                             All information you provide to us is stored on our secured dedicated servers at
                             address within the EEA. The personal
@@ -64,12 +64,12 @@ const PrivacyTerms = ({pageContent}) => {
                             and is not in reach of other third parties.
                         </ul>
 
-                        <h2 className='mb_0' >Retention periods</h2>
+                        <h2 style={{ marginBottom: '0rem' }} >Retention periods</h2>
                         <ul>
                             We will keep your personal data for the duration of 5 years as you are a customer of APL. We shall
                             retain your data only for as long as necessary in accordance with applicable laws.
                         </ul>
-                        <h2 className='mb_0' >Your rights</h2>
+                        <h2 style={{ marginBottom: '0rem' }} >Your rights</h2>
                         <ul>
                             In preventing the use or processing of your personal data, it may delay or prevent us from fulfilling our contractual obligations to you. It may also mean that we shall be unable to provide our services or process the cancellation of your service.
                             <br />
@@ -82,25 +82,25 @@ const PrivacyTerms = ({pageContent}) => {
                             We will not contact you for marketing purposes unless you have given us your prior consent.
                         </ul>
 
-                        <h2 className='mb_0' >Deleting client profile</h2>
+                        <h2 style={{ marginBottom: '0rem' }} >Deleting client profile</h2>
                         <ul>
                             <br />
                             Using this function will result in:
                             <br />
-                            <li style={{ listStyle: "inside" }} className='ml_3'> Deleting passenger details</li>
-                            <li style={{ listStyle: "inside" }} className='ml_3'> Deleting Transport details</li>
-                            <li style={{ listStyle: "inside" }} className='ml_3'> Terminating all future bookings, (subject to T & C)</li>
-                            <li style={{ listStyle: "inside" }} className='ml_3'> Clearing client changes logs and emails</li>
-                            <li style={{ listStyle: "inside" }} className='ml_3'> Removing ALL non-billing data</li>
+                            <li style={{ listStyle: "inside", marginLeft: '3rem' }}> Deleting passenger details</li>
+                            <li style={{ listStyle: "inside", marginLeft: '3rem' }}> Deleting Transport details</li>
+                            <li style={{ listStyle: "inside", marginLeft: '3rem' }}> Terminating all future bookings, (subject to T & C)</li>
+                            <li style={{ listStyle: "inside", marginLeft: '3rem' }}> Clearing client changes logs and emails</li>
+                            <li style={{ listStyle: "inside", marginLeft: '3rem' }}> Removing ALL non-billing data</li>
 
                         </ul>
-                        <h2 className='mb_0' >Data Breaches</h2>
+                        <h2 style={{ marginBottom: '0rem' }} >Data Breaches</h2>
                         <ul>
                             In the event of a data breach, we shall ensure that our obligations under applicable data protection laws are complied with where necessary.
 
                             If you have any questions about our Privacy Policy, the practices of this company or your dealings with this Site, please contact us at: documents@aplcars.com
                         </ul>
-                        <h2 className='mb_0' >Head Office</h2>
+                        <h2 style={{ marginBottom: '0rem' }} >Head Office</h2>
                         <p>Airport Pickups London</p>
                         <p>APL Office</p>
                         <p>Novotel Heathrow</p>

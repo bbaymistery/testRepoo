@@ -25,7 +25,7 @@ export class Recaptcha extends React.PureComponent {
         window.onloadCallback = this.onRecaptchaLoaded.bind(this)
     }
     onRecaptchaLoaded() {
-        console.log('recaptcha loaded')
+        console.log('recaptcha ')
         if (window.grecaptcha) {
             window.grecaptcha.render(this.state.id, {
                 'sitekey': '6LeyyN0nAAAAAAQXdwzodg-616QyLDHYIBwlHeCI',

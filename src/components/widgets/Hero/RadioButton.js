@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { reservationSchemeValidator } from "../../../helpers/reservationSchemeValidator";
 import styles from "./styles.module.scss";
@@ -7,15 +7,14 @@ const RadioButton = ({ setInternalState, internalState }) => {
   const { params: { journeyType, direction }, reservations, } = useSelector((state) => state.pickUpDropOffActions)
   const { appData } = useSelector(state => state.initialReducer)
 
-  const handleInputRadioChange = (index) => {
-    dispatch({ type: 'SWITCH_JOURNEY', data: { journeyType: index } })
-
+  const handleInputRadioChange = useCallback((index) => {
+    dispatch({ type: 'SWITCH_JOURNEY', data: { journeyType: index } });
     if (internalState.errorHolder.status === 403) {
       let errorHolder = reservationSchemeValidator({ reservations });
-      setInternalState({ errorHolder })
+      setInternalState({ errorHolder });
     }
+  }, [dispatch, internalState.errorHolder, reservations, setInternalState]);
 
-  }
 
   //when we change journey to return then we should check If we have points or not.
   //In this way we arrange addExtra point to false or to true

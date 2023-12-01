@@ -36,15 +36,6 @@
     }
 }
 
-// .btn_darkPrimary {
-//     color: #fff;
-//     background-color: $darkPrimary;
-//     border-color: darken($darkPrimary, 2%);
-
-//     &:hover {
-//         background-color: lighten($darkPrimary, 5%);
-//     }
-// }
 
 .btn_hover_reverse_primary {
     color: $primary;
@@ -54,17 +45,5 @@
     &:hover {
         background-color: lighten($primary, 11%);
         color: white;
-    }
-}
-
-.btn_success {
-    color: #fff;
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-
-    &:hover {
-        color: #fff;
-        background-color: #398439;
-        border-color: #255625;
     }
 }

@@ -8,8 +8,8 @@
             padding: 20px;
             padding-top: 30px;
             padding-bottom: 20px;
-                    border: 5px solid lighten($border, 7%);
-                        border-radius: 4px;
+            border: 5px solid lighten($border, 7%);
+            border-radius: 4px;
             font-size: 15px;
             position: sticky;
             top: 51px;
@@ -36,8 +36,8 @@
                     h5 {
                         font-weight: 500;
                         line-height: 1.2;
-                        font-family: $font-jost;
-                                        color: $input_text_color;
+                        // font-family: $font-jost;
+                        color: $input_text_color;
                         margin-bottom: 2px;
                         display: flex;
                         align-items: center;
@@ -82,6 +82,7 @@
                 .details_div {
                     flex: 1;
                     padding: 5px 10px;
+
                     @media (max-width: 990px) {
                         padding: 5px 0px;
                     }
@@ -91,10 +92,10 @@
                         justify-content: space-between;
                         font-weight: 500;
                         line-height: 1.2;
-                        font-family: $font-jost;
+                        // font-family: $font-jost;
                         // color: rgb(5, 16, 54);
                         // color: rgb(5 16 54 / 54%);
-                        color:$input_text_color;
+                        color: $input_text_color;
                         margin-bottom: 2px;
                         text-transform: uppercase;
                     }

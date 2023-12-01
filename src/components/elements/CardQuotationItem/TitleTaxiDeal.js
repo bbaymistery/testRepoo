@@ -1,9 +1,12 @@
 import React from 'react'
-import styles from "./styles.module.scss"
-const TitleTaxiDeal = ({ headTitle, direction,pageTitle }) => {
+import styles from "./styles.module.scss";
+import { formatPriceInTitle } from '../../../helpers/formatPriceInTitle';
+
+const TitleTaxiDeal = ({ headTitle, direction, pageTitle }) => {
+
     return (
         <>
-            <h1 alt={pageTitle} className={`${styles.title} ${styles.title_center} ${direction}`}>{headTitle}</h1>
+            <h1 alt={pageTitle} className={`${styles.title} ${styles.title_center} ${direction}`}>{formatPriceInTitle(headTitle)}</h1>
             <div direction={String(direction === "rtl")} className={styles.stars}>
                 <a
                     href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com"

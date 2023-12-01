@@ -39,7 +39,7 @@ const Terms = (props) => {
                 <div className={`${styles.terms_section} page_section`}>
                     <div className={`${styles.terms_section_container} page_section_container`}>
                         <div className={styles.left}>
-                            <div className={`${styles.link_content} p_2`}>
+                            <div className={`${styles.link_content}`} style={{ padding: '1.5rem' }}>
                                 {leftLinks.map((link, index) => {
                                     return <div key={index} className={`${styles.link_content_item} ${isActiveId === link.id ? styles.link_content_item_active : ""}`}>
                                         <button onClick={() => handleLinkNames(link)}>

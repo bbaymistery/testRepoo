@@ -31,7 +31,7 @@
         font-size: 13px;
         padding: 0px 15px;
         transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
-        font-family: $font-jost;
+        // font-family: $font-jost;
         color: $label_text_color;
         text-transform: capitalize;
     }
@@ -45,7 +45,7 @@
         transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
         font-size: 14px;
         font-weight: 500;
-        font-family: $font-jost;
+        // font-family: $font-jost;
         color: $input_text_color;
 
         @media (max-width: 520px) {

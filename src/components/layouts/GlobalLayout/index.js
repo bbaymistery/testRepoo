@@ -3,6 +3,7 @@ import Head from 'next/head';
 import TopHeader from '../../widgets/TopHeader';
 import Footer from '../../widgets/Footer';
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router';
 const Alert = dynamic(() => import('../../elements/alert/Alert'));
 const GlobalLayout = (
   { children,
@@ -13,6 +14,7 @@ const GlobalLayout = (
   }
 ) => {
 
+  const router = useRouter()
   return (
     <>
       <Head>
@@ -24,10 +26,14 @@ const GlobalLayout = (
         {/* no follow  */}
         <meta name="googlebot" content="noindex" />
         <meta name="robots" content="noindex" />
-        {/* <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" /> */}
+
+        {/* */}
         <link rel="preload" href="/images/Excellent.webp" as="image" />
         <link rel="preload" href="/images/Reviews.webp" as="image" />
         <link rel="preload" href="/images/advisorTrip.webp" as="image" />
+        {router.pathname === "/" ? <link rel="stylesheet" href="/fontawesome/css/all.min.css" /> : <link rel="stylesheet" href="/fontawesomeHomePage/css/all.min.css" />}
+        {/* {router.pathname === "/" ? <></> : <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" />} */}
+
 
       </Head>
       <Alert />

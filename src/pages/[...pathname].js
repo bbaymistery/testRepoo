@@ -8,8 +8,6 @@ import store from '../store/store';
 import QuotationResults from './quotation-results';
 import Error404 from './404/index'
 import { parse } from 'url'
-
-
 import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttributeOntheUrl';
 
 function Pages(props) {
@@ -110,14 +108,14 @@ export default Pages
 const makestore = () => store;
 const wrapper = createWrapper(makestore);
 const cache = {}
-// function getJsonSizeInKB(jsonObject) {
-//     const jsonString = JSON.stringify(jsonObject);
-//     const bytes = jsonString.length * 2;
-//     const kilobytes = bytes / 1024;
-//     console.log({ kilobytes });
+function getJsonSizeInKB(jsonObject) {
+    const jsonString = JSON.stringify(jsonObject);
+    const bytes = jsonString.length * 2;
+    const kilobytes = bytes / 1024;
+    console.log({ kilobytes });
 
-//     return kilobytes;
-// }
+    return kilobytes;
+}
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
     let pickUps = []
     let dropoffs = []
@@ -137,7 +135,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
     if (status === 205) return { redirect: { destination: data.redirectPathname, permanent: false } }
     // homepagedeki appDatafalanbunu asagisinda idi
     if (status === 200) {
-        // getJsonSizeInKB(data)
+        getJsonSizeInKB(data)
         let { taxiDeal: { pickupPoints, dropoffPoints, pageTitle = "", headTitle = "", description = "", keywords = "", returnPathname = "", pageContent = "", returnHeadTitle = "", returnPageTitle = "" } } = data
         // select first item from all points
         pickUps = pickupPoints?.length >= 1 ? [pickupPoints[0]] : []

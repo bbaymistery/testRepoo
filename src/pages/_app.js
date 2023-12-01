@@ -8,11 +8,8 @@ import "../styles/global.scss";
 import { useRouter } from 'next/router';
 import { extractLanguage } from '../helpers/extractLanguage';
 import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttributeOntheUrl';
-// import * as Font from '@next/font'
-// const jost = Font.load({
-//   url: 'https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap',
-//   preload: true,
-// })
+import localFont from '@next/font/local';
+const myFont = localFont({ src: '../../public/googleFonts/92zatBhPNqw73oTd4g.woff2' })
 export const MyApp = ({ Component, pageProps }) => {
   const router = useRouter()
   const dispatch = useDispatch()
@@ -111,9 +108,11 @@ export const MyApp = ({ Component, pageProps }) => {
     setLanguage({ language: hasLanguage !== 'en' ? hasLanguage : langAtrribute, hydrate: false })
   }, [langAtrribute])
 
-
-
-  return (<Provider store={store}> <Component {...pageProps} /> </Provider>);
+  return (<Provider store={store}>
+    <main style={{ fontFamily: myFont.style.fontFamily }}>
+      <Component {...pageProps} />
+    </main>
+  </Provider>);
 }
 const makestore = () => store;
 const wrapper = createWrapper(makestore);
@@ -122,11 +121,8 @@ const wrapper = createWrapper(makestore);
 
 MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ Component, ctx }) => {
   const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
-
   //language congiguration based on the url
   let lang = checkLanguageAttributeOntheUrl(ctx?.req?.url)
-
-
   let appDataInitial = store.getState().initialReducer?.appData
   let paymentTypesInitial = store.getState().initialReducer?.paymentTypes
 
@@ -149,9 +145,7 @@ MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ Component
     // Dispatch values to Redux store
     store.dispatch({ type: "GET_APP_DATA", data: { appData: appDataInitial, paymentTypes: paymentTypesInitial, }, });
   }
-
-
-  return { pageProps: { ...pageProps, appData: appDataInitial, hasLanguage: lang || "en", } }
+  return { pageProps: { ...pageProps, appData: appDataInitial, hasLanguage: lang || "en", pathNamePage: ctx?.req?.url } }
 
 });
 export default wrapper.withRedux(MyApp);

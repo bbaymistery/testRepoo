@@ -167,7 +167,7 @@ const TransferJourneySummaryPanel = (props) => {
                 </div>
             }
             {isTaxiDeal ?
-                <div className={`${styles.content} ${styles.summarycontent} mt_3`}>
+                <div className={`${styles.content} ${styles.summarycontent}`} style={{ marginTop: "2rem" }}>
                     <div className={`${styles.total_journey}`}>
                         <div className={styles.duration}>
                             <span>{carObject[quotation.carId]?.name} Vehicle</span>
@@ -189,10 +189,10 @@ const TransferJourneySummaryPanel = (props) => {
                 </div>
                 : <></>}
 
-{/* || index === 1 || (index === 0&&+journeyType===0) */}
-            {isTaxiDeal  ?
-                <div className={`${styles.content} ${styles.summarycontent} mt_3`}>
-                    <div className={`${styles.left_info} ${styles.acceptedcards} mt_0`} title="Accepted Cards for Airport Pickups London">
+            {/* || index === 1 || (index === 0&&+journeyType===0) */}
+            {isTaxiDeal ?
+                <div className={`${styles.content} ${styles.summarycontent} `} style={{ marginTop: "2rem" }}>
+                    <div className={`${styles.left_info} ${styles.acceptedcards}`} style={{ marginTop: '0rem' }} title="Accepted Cards for Airport Pickups London">
                         <img className={styles.acceptedcards_img} border="0" alt="Accepted Cards for Airport Pickups London " src="/images/accepted-cards10Final.png" />
                     </div>
                 </div>
@@ -205,36 +205,36 @@ const TransferJourneySummaryPanel = (props) => {
 export default TransferJourneySummaryPanel
 
 
-    // {
-    //     isTaxiDeal ?
-    //         <div className={`${styles.left_info} ${styles.tripad}`} >
-    //             <a
-    //                 target="_blank"
-    //                 href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html"
-    //                 title="Tripadvisor Rating for Airport Pickups London">
-    //                 <img border="0" alt="Tripadvisor Rating for Airport Pickups London" src="/images/advisor3.0.png" />
-    //             </a>
-    //         </div>
-    //         : <></>
-    // }
+// {
+//     isTaxiDeal ?
+//         <div className={`${styles.left_info} ${styles.tripad}`} >
+//             <a
+//                 target="_blank"
+//                 href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html"
+//                 title="Tripadvisor Rating for Airport Pickups London">
+//                 <img border="0" alt="Tripadvisor Rating for Airport Pickups London" src="/images/advisor3.0.png" />
+//             </a>
+//         </div>
+//         : <></>
+// }
 
-    // {isTaxiDeal ?
-    //     <div className={`${styles.left_info} ${styles.acceptedcards}`} title="Accepted Cards for Airport Pickups London">
-    //         <img className={styles.acceptedcards_img} border="0" alt="Accepted Cards for Airport Pickups London " src="/images/payments.png" />
-    //     </div>
-    //     : <></>}
+// {isTaxiDeal ?
+//     <div className={`${styles.left_info} ${styles.acceptedcards}`} title="Accepted Cards for Airport Pickups London">
+//         <img className={styles.acceptedcards_img} border="0" alt="Accepted Cards for Airport Pickups London " src="/images/payments.png" />
+//     </div>
+//     : <></>}
 
-    // {isTaxiDeal ?
-    //     <div className={`${styles.left_info} ${styles.google_review}`} >
-    //         <a
-    //             target="_blank"
-    //             href="https://g.co/kgs/Rg7vb8"
-    //             title="Customer Reviesw for Airport Pickups London"
-    //         >
-    //             <img
-    //                 border="0"
-    //                 alt="Customer Reviesw for Airport Pickups London "
-    //                 src={"/images/review1.png"} />
-    //         </a>
-    //     </div>
-    //     : <></>}
+// {isTaxiDeal ?
+//     <div className={`${styles.left_info} ${styles.google_review}`} >
+//         <a
+//             target="_blank"
+//             href="https://g.co/kgs/Rg7vb8"
+//             title="Customer Reviesw for Airport Pickups London"
+//         >
+//             <img
+//                 border="0"
+//                 alt="Customer Reviesw for Airport Pickups London "
+//                 src={"/images/review1.png"} />
+//         </a>
+//     </div>
+//     : <></>}

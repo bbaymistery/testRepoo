@@ -5,9 +5,11 @@
 .quotation {
     background-color: #f5f7fc;
     padding-bottom: 10px;
+
     @media (max-width: 450px) {
-    margin-top: 30px;
-        }
+        margin-top: 30px;
+    }
+
     .quotation_section {
 
         .quotation_section_container {
@@ -122,7 +124,7 @@
                                 h4 {
                                     font-weight: 500;
                                     line-height: 1.6;
-                                    font-family: $font-jost;
+                                    // font-family: $font-jost;
                                     text-transform: none;
                                     color: lighten($dark-1, 5%);
                                     color: $light-1;
@@ -136,7 +138,7 @@
                                     color: $light-1;
                                     line-height: 1.6;
                                     font-size: 15px;
-                                    font-family: $font-jost;
+                                    // font-family: $font-jost;
                                     position: relative;
 
                                     .loading_div[direction="false"] {
@@ -223,7 +225,7 @@
                                         color: $dark-1;
                                         outline-offset: -2px;
                                         font-weight: 500;
-                                        font-family: $font-jost;
+                                        // font-family: $font-jost;
                                         position: relative;
                                         font-size: 14px;
                                         text-transform: capitalize !important;
@@ -434,7 +436,7 @@
                                         }
 
                                         font-weight: 500;
-                                        font-family: $font-jost;
+                                        // font-family: $font-jost;
                                         font-size: 15px;
 
                                         &:before {
@@ -659,7 +661,7 @@
                                         color: $light-1;
                                         font-weight: 500;
                                         line-height: 1.6;
-                                        font-family: $font-jost;
+                                        // font-family: $font-jost;
                                         margin-bottom: 5px;
                                         font-size: 15px;
                                     }
@@ -673,7 +675,7 @@
                                         color: darken($dark-1, 5%);
                                         margin: 0;
                                         font-weight: 500;
-                                        font-family: $font-jost;
+                                        // font-family: $font-jost;
                                         border-bottom: 1px solid #efefef;
                                         // -webkit-appearance: none;
                                         font-size: 14px;
@@ -794,6 +796,32 @@
 
                         }
 
+                        .modal {
+                            background-color: rgba(0, 0, 0, 0.6);
+                            position: fixed;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            left: 0px;
+                            right: 0px;
+                            top: 0px;
+                            bottom: 0px;
+                            z-index: 9999;
+                            padding: 100px !important;
+                            margin: 0px;
+                            height: 100%;
+                            width: 100%;
+                            animation: zoomout;
+                            opacity: 1;
+                            animation-duration: 1s;
+                            animation-fill-mode: both;
+                            animation-delay: .18s;
+                            animation-iteration-count: 1;
+                            animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+
+
+                        }
+
                         .modal_map {
                             .modal_map_container {
                                 position: relative;
@@ -897,7 +925,7 @@
                                         position: absolute;
                                         user-select: none;
                                         cursor: pointer;
-                                        font-family: $font-jost;
+                                        // font-family: $font-jost;
                                         opacity: 0;
 
                                         // Text
@@ -1179,7 +1207,7 @@
                                     margin-left: 6px;
                                     color: rgb(115, 115, 115);
                                     font-size: 20px;
-                                    font-family: $font-jost;
+                                    // font-family: $font-jost;
                                     text-transform: capitalize;
                                 }
                             }

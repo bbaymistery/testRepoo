@@ -582,7 +582,7 @@ const TransferDetails = (props) => {
                                                 </div>
                                                 <div className={styles.right}>
                                                     <div className={`${styles.content} ${styles.summarycontent} `}>
-                                                        <div className={`${styles.left_info} ${styles.acceptedcards} mt_0`} title="Accepted Cards for Airport Pickups London">
+                                                        <div className={`${styles.left_info} ${styles.acceptedcards}`} style={{ marginTop: "0rem" }} title="Accepted Cards for Airport Pickups London">
                                                             <img className={styles.acceptedcards_img} border="0" alt="Accepted Cards for Airport Pickups London " src="/images/accepted-cards10Final.png" />
                                                         </div>
                                                     </div>

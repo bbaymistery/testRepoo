@@ -58,7 +58,7 @@ const AccountRegisterResults = (props) => {
 
                         <div className={styles.content}>
                             <div className={styles.left_content}>
-                                <h1 className='text_center'>Registration Completed Succesfully</h1>
+                                <h1 >Registration Completed Succesfully</h1>
                                 <div className={styles.info_section}>
                                     {/*//! Applicant for credit */}
 
@@ -85,7 +85,7 @@ const AccountRegisterResults = (props) => {
                                         <div className={styles.right}>{address}</div>
                                     </div>
                                     {/* //!Contact details */}
-                                    <h2 className='mt_2'>{appData.words["strContactDetails"]}</h2>
+                                    <h2 style={{ marginTop: '1.5rem' }}>{appData.words["strContactDetails"]}</h2>
                                     <div className={`${styles.info} ${direction}`}>
                                         <div className={styles.left}>{appData?.words["panelAccountsContactName"]} </div>
                                         <div className={styles.right}>{contactName}</div>
@@ -107,7 +107,7 @@ const AccountRegisterResults = (props) => {
 
 
                                     {/* //!Contact details */}
-                                    <h2 className='mt_2'>Operation Notes</h2>
+                                    <h2 style={{ marginTop: '1.5rem' }}>Operation Notes</h2>
                                     <div className={`${styles.info} ${styles.operationNotes_info} ${direction}`}>
                                         <div className={styles.left} style={{ textTransform: "inherit" }}>Do you have any out-of-hours emergency number for urgent situations?</div>
                                         {urgentSituationStatus === 'Yes' ? <div className={styles.right}>+ {urgentSituationNumber}</div> : <div className={styles.right}>{urgentSituationStatus}</div>}

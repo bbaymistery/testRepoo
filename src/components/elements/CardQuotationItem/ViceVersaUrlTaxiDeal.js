@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from "./styles.module.scss"
-const ViceVersaUrlTaxiDeal = ({ previousUrl, returnPageTitle ,returnHeadTitle ,returnPathname }) => {
+import { formatPriceInTitle } from '../../../helpers/formatPriceInTitle'
+const ViceVersaUrlTaxiDeal = ({ previousUrl, returnPageTitle, returnHeadTitle, returnPathname }) => {
 
     return (
         <>
@@ -13,7 +14,7 @@ const ViceVersaUrlTaxiDeal = ({ previousUrl, returnPageTitle ,returnHeadTitle ,r
             {
                 <p className={styles.viceversa}>
                     <a href={returnPathname} title={returnPageTitle}>
-                        {returnHeadTitle}
+                        {formatPriceInTitle(returnHeadTitle)}
                     </a>
                 </p>}
         </>

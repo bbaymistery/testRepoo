@@ -122,7 +122,6 @@
                     position: absolute;
                     user-select: none;
                     cursor: pointer;
-                    font-family: $font-jost;
                     opacity: 0;
 
                     // Text
@@ -441,7 +440,7 @@
                 margin-left: 6px;
                 color: rgb(115, 115, 115);
                 font-size: 20px;
-                font-family: $font-jost;
+                // font-family: $font-jost;
                 text-transform: capitalize;
             }
         }
