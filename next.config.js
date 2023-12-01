@@ -34,7 +34,7 @@ const nextConfig = {
     mapApiKey: "AIzaSyDulwIwncfuxBve8MKXPIIPmPLRve6ySw8",
     NEXT_PUBLIC_GOOGLE_ANALYTICS: "G-S02J90JMSB",
   },
-  "assetPrefix": "https://https://aplairtest.netlify.app//",
+  // "assetPrefix": "https://https://aplairtest.netlify.app//",
   async rewrites() {
     const rules = await getRoutes();
     return rules;
