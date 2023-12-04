@@ -144,15 +144,26 @@ const HandleSearchResults = (params = {}) => {
     }
 
 
+    if (newOrderedItems[0]?.length === 0) return <ul className={styles.no_results_ul} style={{ border: '1px solid #ddd', borderRadius: '4px' }}>
+        <li style={{ display: 'flex', flexDirection: 'row-reverse', padding: '10px' }}>
+            {/* <i className="fa fa-times-circle" aria-hidden="true" ></i> */}
+            <p style={{ fontSize: '14px', fontWeight: 'normal' }}>
+                No any result matched .
+                if you want a quotation, try to contact
+                with this phone number :{" "}
+                <a href="tel: +44 (0) 208 688 7744" style={{ fontWeight: '500' }}>+44 (0) 208 688 7744</a>
+            </p>
+        </li>
+    </ul>
+
     return (
         <div className={`${styles.search_results} ${isTaxiDeal ? styles.istaxideal_search_results : ""} `} w={String(width <= 990)}  >
             {/* w={String(width <= 990)} =in responsive we use pop up  So we need wrtie css based on that */}
-            {newOrderedItems?.length ? (
+
+            {
                 <ul >
                     {newOrderedItems?.map((arr) => {
                         return arr?.map((item, i) => {
-
-
                             return (
                                 <div key={i}>
                                     {/* this list  for group name  */}
@@ -174,20 +185,7 @@ const HandleSearchResults = (params = {}) => {
                         });
                     })}
                 </ul>
-            ) : <ul>
-                <li className={styles.no_results}>
-                    <i className="fas fa-times-circle" aria-hidden="true"></i>
-                    <p>
-                        No any result matched <br /> if you want a quotation, try to contact
-                        with this phone number :{" "}
-                        {/*
-                            {appData?.words["seNoDestination"]}
-
-                        */}
-                        <a href="tel: +44 (0) 208 683 2330">+44 (0) 208 683 2330</a>
-                    </p>
-                </li>
-            </ul>}
+            }
         </div>
     )
 }
