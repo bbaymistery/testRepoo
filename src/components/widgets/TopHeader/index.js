@@ -203,10 +203,8 @@ const Header = () => {
             </div>
 
             {width > 1200 ? <TopHeaderWhiteLeftButtons language={language} /> : <></>}
-            <div onClick={toggleMenu} className={`${styles.menu} ${openMenu ? styles.menuActive : ""}`} id="menu"   >
-              <span className={styles.line}></span>
-              <span className={styles.line}></span>
-              <span className={styles.line}></span>
+            <div onClick={toggleMenu} className={`${styles.menu}`} id="menu"   >
+              {!openMenu ? <i className="fa-solid fa-bars"></i> : <i className="fa-solid fa-xmark"></i>}
             </div>
           </div>
         </div>

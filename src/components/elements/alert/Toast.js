@@ -9,7 +9,7 @@ const Toast = ({ title, body, bgColor }) => {
     return (
         // style={{ top: '5px', right: '5px', zIndex: 50, minWidth: '200px' }}
         //
-        <div className={`${styles.toast_notification} ${direction} fade_bottom_to_top_hidden  ${bgColor}`} style={{ zIndex: 50, minWidth: '200px' }}>
+        <div className={`${styles.toast_notification} ${direction} ${styles.fade_bottom_to_top_hidden}  ${bgColor}`} style={{ zIndex: 50, minWidth: '200px' }}>
             <div className={` ${styles.toast_nofication_header}  ${bgColor}`}>
                 <strong >{title}</strong>
                 <i onClick={handleClose} className={`fa-solid fa-x ${styles.close_icon}`}></i>

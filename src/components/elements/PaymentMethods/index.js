@@ -295,7 +295,7 @@ const PaymentMethods = () => {
           </div>
 
           {cashPaymentModal ?
-            <div className={`${styles.content_modal} appear`}>
+            <div className={`${styles.content_modal} ${styles.appear}`}>
               <div className={`${styles.confirmation_box} `}>
                 <div className={styles.header}>
                   <p>Confirmation</p>

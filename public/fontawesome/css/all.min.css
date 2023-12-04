@@ -16,6 +16,10 @@
     content: "\f107"
 }
 
+.fa-bars:before {
+    content: "\f0c9"
+}
+
 .fa-magnifying-glass:before {
     content: "\f002"
 }
