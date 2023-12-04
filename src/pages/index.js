@@ -5,10 +5,10 @@ import dynamic from 'next/dynamic'
 import { useEffect, useState } from "react";
 const TaxiDeals = dynamic(() => import('../components/widgets/TaxiDeals'), { loading: () => <div>Loading...</div> });
 const CarsSlider = dynamic(() => import('../components/widgets/CarsSlider'),);
-const SeaportTransfers = dynamic(() => import('../components/widgets/SeaportTransfers'),);
+// const SeaportTransfers = dynamic(() => import('../components/widgets/SeaportTransfers'),);
 const Tours = dynamic(() => import('./tours'),);
-
-export default function Home(props) {
+import SeaportTransfers from '../components/widgets/SeaportTransfers'
+export default function Home() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const handleScroll = () => {
     if (!hasScrolled) {
@@ -25,7 +25,7 @@ export default function Home(props) {
     <GlobalLayout footerbggray={true}>
       <Hero />
       <TaxiDeals />
-      {hasScrolled && <SeaportTransfers bggray={true} />}
+      <SeaportTransfers bggray={true} />
       {hasScrolled && <Tours insideGlobalLayout={false} />}
       {hasScrolled && <CarsSlider bggray={true} />}
       <Testimonials bggray={false} />
