@@ -73,35 +73,6 @@ body {
     }
 }
 
-.no_cursor {
-    cursor: default !important;
-}
-
-
-
-@keyframes zoomout {
-    0% {
-        opacity: 0;
-
-        transform: scale(0);
-
-    }
-
-    10% {
-        opacity: 0;
-        transform: scale(0.5);
-
-
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-
-
-    }
-}
-
 .phone_input {
     width: 100%;
     z-index: 99;

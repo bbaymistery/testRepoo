@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
-import ShowContent from './ShowContent'
 import { useWindowSize } from '../../../hooks/useWindowSize'
+import dynamic from 'next/dynamic';
+const ShowContent = dynamic(() => import('./ShowContent'),);
 
 const Testimonials = (props) => {
     let { bggray } = props

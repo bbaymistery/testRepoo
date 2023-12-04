@@ -9,6 +9,7 @@ import Textarea from '../../components/elements/Textarea'
 import TextInput from '../../components/elements/TextInput'
 import env from '../../resources/env'
 import AdressInformations from '../../components/elements/AdressInformations'
+import Alert from '../../components/elements/alert/Alert'
 const initialFormValue = { email: "", phone: "", subject: "", message: "", fullname: "", }
 const ContactUs = (props) => {
     let { bggray } = props
@@ -77,6 +78,7 @@ const ContactUs = (props) => {
         <GlobalLayout title="Contact Us" keywords="Contact Us" description="Contact Us" footerbggray={true}>
             <div className={`${styles.contact_us} ${direction} page`} bggray={String(bggray === "true")}>
                 <div className={`${styles.contact_us_section} page_section`}>
+                    <Alert />
                     <div className={`${styles.contact_us_section_container} page_section_container`}>
                         <div className={styles.contact_area}>
                             <div className={styles.contact_container}>

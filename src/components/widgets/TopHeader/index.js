@@ -186,7 +186,7 @@ const Header = () => {
 
           <div className={styles.right_items}>
             {/* eliminate cursor  */}
-            <div className={`${router.asPath === "/drivers-wanted" ? "no_cursor" : ""} ${styles.language_dropdown}`}>
+            <div className={`${styles.language_dropdown}`} style={{ cursor: `${router.asPath === "/drivers-wanted" ? " default" : ""}` }}>
               <div className={styles.top} >
                 <div className={styles.img_div} onClick={setOpenLanguageDropdown} data-name="language">
                   <Image src={`/languages/${langFlag}.gif`} width={20} height={11} priority alt={langFlag} data-name="language" />
