@@ -21,6 +21,7 @@
     opacity: 0;
     animation: .6s appear forwards;
 
+    z-index: 9999;
 
     @media (max-width:768px) {
         overflow-x: hidden;
