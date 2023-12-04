@@ -18,7 +18,8 @@
     flex-direction: column;
     top: 44px;
     width: 405px;
-
+    opacity: 0;
+    animation: 1s appear forwards;
 
 
     @media (max-width:768px) {
@@ -208,6 +209,15 @@
 
 }
 
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
 
 .istaxideal_search_results {
     max-width: 100%;
