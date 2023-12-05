@@ -18,7 +18,7 @@ const DesktopMenu = ({ language, gotoHomeFromLogoClick, journeyType }) => {
                                     <span>{innerText}</span>
                                 </a>
                                 :
-                                <a href={`${language === 'en' ? `${path}` : `${language}${path}`}`} title={title} className={`${path.length ? styles.nocursor : ""}`}>
+                                <a href={`${language === 'en' ? `${path}` : `/${language}${path}`}`} title={title} className={`${path.length ? styles.nocursor : ""}`}>
                                     <span>{innerText}</span>
                                     {type === "list" ? <i className="fa-solid fa-angle-down"></i> : ""}
                                 </a>

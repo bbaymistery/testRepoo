@@ -57,8 +57,6 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
                                     <h2>{item?.translatedPageTitle ? item?.translatedPageTitle : item?.title}</h2>
                                     <div className={styles.review}>
                                         <div className={styles.review_left}>{item.point} </div>
-                                        <div className={styles.review_center}>Exceptional </div>
-                                        <div className={styles.review_right}>{item.review} reviews  </div>
                                     </div>
                                     <div className={styles.start_from}>
                                         <div className={styles.start_from_text_left}>{appData.words["strStartFrom"]} </div>
@@ -95,8 +93,6 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
                                     <h2>{item?.translatedPageTitle ? item?.translatedPageTitle : item?.title}</h2>
                                     <div className={styles.review}>
                                         <div className={styles.review_left}>{item.point} </div>
-                                        <div className={styles.review_center}>Exceptional </div>
-                                        <div className={styles.review_right}>{item.review} reviews  </div>
                                     </div>
                                     <div className={styles.start_from}>
                                         <div className={styles.start_from_text_left}>{appData.words["strStartFrom"]} </div>

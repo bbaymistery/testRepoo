@@ -131,7 +131,6 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
     const body = { language, checkRedirect: true, taxiDealPathname: dealUrl, withoutExprectedPoints: true, }
     const url = `${env.apiDomain}/api/v1/taxi-deals/details`
     const { status, data } = await postDataAPI({ url, body })
-    console.log("calisdim");
     if (status === 205) return { redirect: { destination: data.redirectPathname, permanent: false } }
     // homepagedeki appDatafalanbunu asagisinda idi
     if (status === 200) {
