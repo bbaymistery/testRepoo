@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import GlobalLayout from '../../components/layouts/GlobalLayout'
 import styles from "./styles.module.scss"
 import GeneralTerms from './GeneralTerms'
 import PrivacyTerms from './PrivacyTerms'
 import usePageContentHook from '../../hooks/usePageContentHook'
 import { useSelector } from 'react-redux'
+
 const leftLinks = [
     {
         id: 1,
@@ -29,6 +30,7 @@ const Terms = (props) => {
         setIsActiveId(link.id);
         setPagePathname(link.pagePathname);
     };
+
 
     const { metaTitle, keywords, description, pageContent, pageTitle, shortDescription } = usePageContentHook(pagePathname, language);
 

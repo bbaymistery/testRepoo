@@ -34,7 +34,6 @@ const GlobalLayout = (
 
 
       </Head>
-
       <TopHeader />
       <main>
         {children}

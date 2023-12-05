@@ -13,7 +13,8 @@ import useRipple from '../../hooks/useRipple'
 import Recaptcha from '../../components/elements/Recaptcha'
 import Loading from '../../components/elements/alert/Loading'
 import env from '../../resources/env'
-
+import store from '../../store/store'
+import { accountRegisterActions } from '../../store/accountRegisterReducer'
 
 let description = "Airport Pickups London agency registration form"
 let title = "APPLICATION FOR CREDIT ACCOUNT"
@@ -21,63 +22,19 @@ let keywords = ""
 
 const AccountRegister = (props) => {
     let { bggray } = props
+    const btnRef = useRef(null);
+    const ripples = useRipple(btnRef);
     const router = useRouter()
     const dispatch = useDispatch()
     const [recaptchaToken, setRecapthcaToken] = useState(null);
     const [showRecapthaComponent, setshowRecapthaComponent] = useState(false)
     const [loadingFetch, setLoadingFetch] = useState(false)
-
-    const state = useSelector(state => state.pickUpDropOffActions)
-    let { params: { direction, language } } = state
-
-    const { appData } = useSelector(state => state.initialReducer)
-    const { accountRegisterDatas } = useSelector(state => state.accountRegisterActions)
-
-    let { applicantForCreditAccount, contactDetails, operationNotes } = accountRegisterDatas
-    let { contactName, jobTitle, email, telephoneNo } = contactDetails
-    let { companyName, natureOfBusiness, address, registrationNo, } = applicantForCreditAccount
-    let { urgentSituationStatus, accountPassengerStatus, anyOtherOperationComments, urgentSituationNumber } = operationNotes
     let [internalState, setInternalState] = React.useReducer((s, o) => ({ ...s, ...o }), {
         'errorHolder': [],
     })
     let { errorHolder } = internalState;
-
-    //companyTel:creditAccountNumber   =>olarak destrctur et
-    //telephoneNo:contactDetailsTelephone=>
-    const onchangeHandler = (e) => {
-        let { name, value, type, checked } = e.target;
-        if (['contactName', 'jobTitle', "email"].includes(name))
-            dispatch({ type: 'SET_CONTACT_DETAILS', data: { name, value } })
-        if (['companyName', "natureOfBusiness", "address", "registrationNo"].includes(name))
-            dispatch({ type: 'SET_APPLICANT_FOR_CREADIT_DETAILS', data: { name, value } })
-        //in case if it is radio button
-        if (['accountPassengerStatus', "urgentSituationStatus", "anyOtherOperationComments"].includes(name))
-            dispatch({ type: 'SET_OPERATION_NOTES', data: { name, value } })
-
-
-    }
-
-    const handleOnChangeNumberInput = (params = {}) => {
-        let { value, name, } = params
-        if (["telephoneNo"].includes(name)) dispatch({ type: 'SET_CONTACT_DETAILS', data: { name, value } })
-        if (["companyTel"].includes(name)) dispatch({ type: 'SET_APPLICANT_FOR_CREADIT_DETAILS', data: { name, value } })
-        if (["urgentSituationNumber"].includes(name)) dispatch({ type: 'SET_OPERATION_NOTES', data: { name: "urgentSituationNumber", value } })
-    }
-
-
-    const gotoNextPage = () => {
-        let errorHolder = accountRegisterSchemaValidator({ accountRegisterDatas });
-        setInternalState({ errorHolder })
-        if (errorHolder.status === 200) setshowRecapthaComponent(true)
-    }
-
-    // Update the token state when the verification is successful
-    const handleRecaptchaVerify = (newToken) => setRecapthcaToken(newToken)
-
-
-    const btnRef = useRef(null);
-    const ripples = useRipple(btnRef);
-
+    const state = useSelector(state => state.pickUpDropOffActions)
+    let { params: { direction, language } } = state
 
     useEffect(() => {
         if (recaptchaToken) {
@@ -123,6 +80,59 @@ const AccountRegister = (props) => {
             //
         }
     }, [recaptchaToken])
+
+
+    const { appData } = useSelector(state => state.initialReducer)
+    const accountState = useSelector(state => state.accountRegisterActions)
+    const [loadAlert, setLoadAlert] = useState(true)
+    if (!accountState) {
+        // Render a loading spinner or a placeholder
+        store.injectReducer('accountRegisterActions', accountRegisterActions);
+        setTimeout(() => { setLoadAlert(false) }, 150);
+
+    }
+    if (loadAlert) {
+        return <Loading />
+    }
+    let { accountRegisterDatas } = accountState
+    let { applicantForCreditAccount, contactDetails, operationNotes } = accountRegisterDatas
+    let { contactName, jobTitle, email, telephoneNo } = contactDetails
+    let { companyName, natureOfBusiness, address, registrationNo, } = applicantForCreditAccount
+    let { urgentSituationStatus, accountPassengerStatus, anyOtherOperationComments, urgentSituationNumber } = operationNotes
+
+
+    //companyTel:creditAccountNumber   =>olarak destrctur et
+    //telephoneNo:contactDetailsTelephone=>
+    const onchangeHandler = (e) => {
+        let { name, value, type, checked } = e.target;
+        if (['contactName', 'jobTitle', "email"].includes(name))
+            dispatch({ type: 'SET_CONTACT_DETAILS', data: { name, value } })
+        if (['companyName', "natureOfBusiness", "address", "registrationNo"].includes(name))
+            dispatch({ type: 'SET_APPLICANT_FOR_CREADIT_DETAILS', data: { name, value } })
+        //in case if it is radio button
+        if (['accountPassengerStatus', "urgentSituationStatus", "anyOtherOperationComments"].includes(name))
+            dispatch({ type: 'SET_OPERATION_NOTES', data: { name, value } })
+
+
+    }
+
+    const handleOnChangeNumberInput = (params = {}) => {
+        let { value, name, } = params
+        if (["telephoneNo"].includes(name)) dispatch({ type: 'SET_CONTACT_DETAILS', data: { name, value } })
+        if (["companyTel"].includes(name)) dispatch({ type: 'SET_APPLICANT_FOR_CREADIT_DETAILS', data: { name, value } })
+        if (["urgentSituationNumber"].includes(name)) dispatch({ type: 'SET_OPERATION_NOTES', data: { name: "urgentSituationNumber", value } })
+    }
+
+
+    const gotoNextPage = () => {
+        let errorHolder = accountRegisterSchemaValidator({ accountRegisterDatas });
+        setInternalState({ errorHolder })
+        if (errorHolder.status === 200) setshowRecapthaComponent(true)
+    }
+
+    // Update the token state when the verification is successful
+    const handleRecaptchaVerify = (newToken) => setRecapthcaToken(newToken)
+
 
     return (
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>

@@ -283,6 +283,7 @@ For telephone booking please call +44 (0) 20 8688 7744 or
 
 
 //?translated words on ACCountregister page
+//Registration Completed Succesfully
 //Application For Credit Account
 //Company Name
 //Registration No (If Applicable)

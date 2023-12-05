@@ -64,7 +64,7 @@ export const meetAndGreetActions = (state = INITIAL_STATE, action) => {
         case "SET_TERMINAL": {
             return SET_TERMINAL({ state, action })
         }
-     
+
         case "SET_PASSENGERS_FROM": {
             return SET_PASSENGERS_FROM({ state, action })
         }
@@ -86,7 +86,7 @@ export const meetAndGreetActions = (state = INITIAL_STATE, action) => {
         case "SET_BOOKER_DETAILS": {
             return SET_BOOKER_DETAILS({ state, action })
         }
-            
+
         default:
             return state;
     }

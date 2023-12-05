@@ -1,14 +1,17 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
 import LeftSidebarInformation from '../../components/elements/LeftSidebarInformation'
 import ShowcaseRight from './ShowcaseRight'
-import useRipple from '../../hooks/useRipple'
 import DropDown from '../../components/elements/Dropdown/dropdown'
 import DateInput from '../../components/elements/DateInput'
 import { currentDate } from '../../helpers/getDates'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import { meetAndGreetActions } from '../../store/meetAndGreetActions'
+import store from '../../store/store'
+import Loading from '../../components/elements/alert/Loading'
+
 let description = "Heathrow VIP Meet and Assist service includes meet by the plane door and assist the passenger to final detsination."
 let title = "VIP Meet and assist at Heathrow Airport"
 let keywords = "VIP Meet and assist"
@@ -16,21 +19,32 @@ const buttonLabels = ['Arrival', 'Departure', 'Connecting'];
 const dropdownLabels = ["-- Select Terminal --", 'Heathrow Terminal 2 ', 'Heathrow Terminal 3', 'Heathrow Terminal 4', "Heathrow Terminal 5"];
 
 const HeathrowVipMeet = (props) => {
+    const router = useRouter()
+    const dispatch = useDispatch()
+    //buttons
+    // const buttonRefs = [useRef(null), useRef(null), useRef(null)];
     let { bggray = false } = props;
-
     const { appData } = useSelector(state => state.initialReducer)
 
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction } } = state
 
     const meetAndGreetState = useSelector(state => state.meetAndGreetActions)
+    const [loadAlert, setLoadAlert] = useState(true)
+
+    if (!meetAndGreetState && loadAlert) {
+        // Render a loading spinner or a placeholder
+        store.injectReducer('meetAndGreetActions', meetAndGreetActions);
+
+        setTimeout(() => { setLoadAlert(false) }, 550);
+    }
+    if (loadAlert) {
+        return <Loading bgImage={"/images/meetGreet/meetShowCase2.jpg"} />
+    }
     let { seatLists, meetgreetDate, meetgreetActiveBtn, selectedService, terminalName, seatListPrice } = meetAndGreetState
 
-    const router = useRouter()
-    const dispatch = useDispatch()
 
-    //buttons
-    const buttonRefs = [useRef(null), useRef(null), useRef(null)];
+
 
 
     const handleButtons = (index) => dispatch({ type: "SET_MEET_GREET_ACTIVE_BTN", data: { activeBtnValue: index, newSelectedService: `${buttonLabels[index]} Airport` } })
@@ -50,7 +64,9 @@ const HeathrowVipMeet = (props) => {
     return (
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
             <div className={`${styles.vipmeet} ${direction} page`} bggray={String(bggray === "true")}>
+
                 <div className={styles.showcase_column}>
+
                     <div className={styles.showcase_column_container}>
                         <div className={styles.showcase_column_container_content}>
                             <div className={styles.left}>
@@ -59,8 +75,9 @@ const HeathrowVipMeet = (props) => {
                                     <p className={styles.description}>select and book your service</p>
                                     <div className={styles.buttons}>
                                         {buttonLabels.map((label, index) => (
-                                            <button key={index} direction={String(direction === 'rtl')} ref={buttonRefs[index]} isactive={String(meetgreetActiveBtn === index)} onClick={() => handleButtons(index)} className={`btn`}  >
-                                                {useRipple(buttonRefs[index])}
+                                            //ref={buttonRefs[index]}
+                                            <button key={index} direction={String(direction === 'rtl')} isactive={String(meetgreetActiveBtn === index)} onClick={() => handleButtons(index)} className={`btn`}  >
+                                                {/* {useRipple(buttonRefs[index])} */}
                                                 {label}
                                                 {index === 0
                                                     ? (<i direction={String(direction === 'rtl')} className={`fa-solid fa-plane-arrival `}></i>)

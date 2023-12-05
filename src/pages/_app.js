@@ -95,11 +95,15 @@ export const MyApp = ({ Component, pageProps }) => {
       localStorage.removeItem("language"); // remove an item from local storage
       localStorage.removeItem("direction"); // remove an item from local storage
       localStorage.removeItem("path"); // remove an item from local storage
+      // Dynamically inject the termsReducer when this component mounts
+
     };
+
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
+
   }, [])
 
 
@@ -107,6 +111,8 @@ export const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
     setLanguage({ language: hasLanguage !== 'en' ? hasLanguage : langAtrribute, hydrate: false })
   }, [langAtrribute])
+
+
 
   return (<Provider store={store}>
     <main style={{ fontFamily: myFont.style.fontFamily }}>
@@ -145,6 +151,7 @@ MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ Component
     // Dispatch values to Redux store
     store.dispatch({ type: "GET_APP_DATA", data: { appData: appDataInitial, paymentTypes: paymentTypesInitial, }, });
   }
+
   return { pageProps: { ...pageProps, appData: appDataInitial, hasLanguage: lang || "en", pathNamePage: ctx?.req?.url } }
 
 });

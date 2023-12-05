@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
@@ -7,6 +7,7 @@ import CarsSlider from "../../components/widgets/CarsSlider";
 import DestinationsCustomers from '../../components/elements/DestinationsCustomers';
 import Link from 'next/link'
 
+
 const Corporate = (props) => {
   let { bggray } = props
   const state = useSelector(state => state.pickUpDropOffActions)
@@ -14,7 +15,8 @@ const Corporate = (props) => {
   const { appData } = useSelector(state => state.initialReducer)
 
   const { metaTitle, keywords, description, pageContent, pageTitle, shortDescription } = usePageContentHook("open-a-corporate-accounts", language);
-  
+
+
   return (
     <GlobalLayout keywords={keywords} title={metaTitle} description={description}>
       <div className={`${styles.corporate} ${direction} page`} bggray={String(bggray === "true")}>
@@ -31,10 +33,10 @@ const Corporate = (props) => {
                     <Link target='_blank' href="https://www.airport-pickups-london.com/Agency" >
                       <button className='btn btn_primary'>Login</button>
                     </Link>
-              
-                    <a href={language === 'en' ? '/AccountRegister' : `/${language}/AccountRegister`} title="AccountRegister" >
+
+                    <Link href={language === 'en' ? '/AccountRegister' : `/${language}/AccountRegister`} title="AccountRegister" >
                       <button className='btn btn_primary'>Register</button>
-                    </a>
+                    </Link>
                   </div>
 
                   <p>
@@ -101,7 +103,7 @@ const Corporate = (props) => {
                 </div>
               }
               <div className={styles.right}>
-    
+
                 <img src="/images/apl_family.jpg" alt="" />
               </div>
             </div>
