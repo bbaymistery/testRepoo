@@ -26,9 +26,9 @@ const GlobalLayout = (
         <meta name="robots" content="noindex" />
 
         {/* */}
-        <link rel="preload" href="/images/Excellent.webp" as="image" />
+        {/* <link rel="preload" href="/images/Excellent.webp" as="image" />
         <link rel="preload" href="/images/Reviews.webp" as="image" />
-        <link rel="preload" href="/images/advisorTrip.webp" as="image" />
+        <link rel="preload" href="/images/advisorTrip.webp" as="image" /> */}
         {router.pathname === "/" ? <link rel="stylesheet" href="/fontawesome/css/all.min.css" /> : <link rel="stylesheet" href="/fontawesomeHomePage/css/all.min.css" />}
         {/* {router.pathname === "/" ? <></> : <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" />} */}
 
