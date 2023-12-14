@@ -5,7 +5,8 @@ import dynamic from 'next/dynamic'
 import { useEffect, useState } from "react";
 const TaxiDeals = dynamic(() => import('../components/widgets/TaxiDeals'), { loading: () => <div>Loading...</div> });
 const CarsSlider = dynamic(() => import('../components/widgets/CarsSlider'),);
-const SeaportTransfers = dynamic(() => import('../components/widgets/SeaportTransfers'),);
+import SeaportTransfers from "../components/widgets/SeaportTransfers";
+// const SeaportTransfers = dynamic(() => import('../components/widgets/SeaportTransfers'),);
 const Tours = dynamic(() => import('./tours'),);
 
 export default function Home(props) {
@@ -25,7 +26,8 @@ export default function Home(props) {
     <GlobalLayout footerbggray={true}>
       <Hero />
       <TaxiDeals />
-      {hasScrolled && <SeaportTransfers bggray={true} />}
+      {/* {hasScrolled && <SeaportTransfers bggray={true} />} */}
+      <SeaportTransfers bggray={true} />
       {hasScrolled && <Tours insideGlobalLayout={false} />}
       {hasScrolled && <CarsSlider bggray={true} />}
       <Testimonials bggray={false} />
@@ -33,10 +35,7 @@ export default function Home(props) {
   )
 }
 export async function getServerSideProps({ req, res }) {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
+  res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59')
   return {
     props: {},
   }

@@ -11,30 +11,30 @@ import dynamic from 'next/dynamic'
 const PointsModal = dynamic(() => import('../../elements/PointsModal'));
 const tabsBttons = [
     {
-        name: "Heathrow Taxi Deals",
+        name: "strHeathrowTaxiPrices",
         id: 1,
         dealsName: "heathrow"
     },
     {
-        name: "Gatwick Taxi Deals",
+        name: "strGatwickTaxiPrices",
         id: 2,
         dealsName: "gatwick"
 
     },
     {
-        name: "Stansted Taxi Deals",
+        name: "strStanstedTaxiPrices",
         id: 3,
         dealsName: "stansted"
 
     },
     {
-        name: "Luton Taxi Deals",
+        name: "strLutonTaxiPrices",
         id: 4,
         dealsName: "luton"
 
     },
     {
-        name: "City Airport",
+        name: "strLCYTaxiPrices",
         id: 5,
         dealsName: "city"
 
@@ -52,11 +52,17 @@ const TaxiDeals = (props) => {
     const refs = tabsBttons.map(() => useRef(null));
     const ripples = refs.map((ref) => useRipple(ref));
     const router = useRouter();
+
+    const { appData } = useSelector(state => state.initialReducer)
+
     const fecthPoints = async (params = {}) => {
+
         let { language, dealsNameProp = hasTaxiDeals } = params
+
         let channelId = state.reservations[0].reservationDetails.channelId
         let url = `${env.apiDomain}/api/v1/taxi-deals/list?points=${dealsNameProp}&language=${language}&channelId=${channelId}`;
         let response = await fetch(url);
+
         let { data, status } = await response.json();
         if (status === 200) {
             setTaxiPoints(data.destinations)
@@ -116,15 +122,15 @@ const TaxiDeals = (props) => {
                         <div className={`${styles.taxideals_section_container} page_section_container`}>
                             {taxiPoints.length > 1 ?
                                 <div className={styles.title}>
-                                    {hasTaxiDeals === 'dover' || hasTaxiDeals === 'southampton' || hasTaxiDeals === 'portsmouth' || hasTaxiDeals === 'harwich' ? <h1>{hasTaxiDeals} Cruise Port</h1> : <h1>{hasTaxiDeals} Taxi Deals</h1>}
-                                    {islinknamecomponent ? "" : <p>All Inclusive Price !</p>}
+                                    {hasTaxiDeals === 'dover' || hasTaxiDeals === 'southampton' || hasTaxiDeals === 'portsmouth' || hasTaxiDeals === 'harwich' ? <h1>{hasTaxiDeals} Cruise Port</h1> : <h1>{appData.words[tabsBttons[tabs].name]}</h1>}
+                                    {islinknamecomponent ? "" : <p>{appData?.words["strAllinclusiveprices"]}</p>}
                                 </div> : <></>}
                             {showTabs ?
                                 <div className={`${styles.tabs} ${styles.btn_div}`}>
                                     {tabsBttons.map((btn, index) => {
                                         return (<button onClick={() => tabsHandler({ index, dealsNameProp: btn.dealsName })} className={`${tabs === index ? styles.active : ""} btn`} key={index} ref={refs[index]}   >
                                             <div className="ripple-wrapper">{ripples[index]}</div>
-                                            {btn.name}
+                                            {appData.words[btn.name]}
                                         </button>)
                                     }
                                     )}

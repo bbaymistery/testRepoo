@@ -11,7 +11,7 @@
 .car_section {
     padding: 4rem 0px;
     min-height: 700px;
-border-bottom: 1px solid $border;
+    border-bottom: 1px solid $border;
 
     .car_container {
         margin: 0 auto;
@@ -124,9 +124,11 @@ border-bottom: 1px solid $border;
                                     display: block;
                                     overflow: hidden;
                                     position: relative;
-@media (max-width:768px) {
-                                            height: 200px;
-    }
+
+                                    @media (max-width:768px) {
+                                        height: 200px;
+                                    }
+
                                     &:hover {
                                         transform: scale(1.05);
                                         transition: .5s ease;
@@ -195,7 +197,9 @@ border-bottom: 1px solid $border;
                                                 font-size: 15px;
                                             }
 
-                                            .li_desc {}
+                                            .li_desc {
+                                                text-transform: capitalize;
+                                            }
                                         }
                                     }
                                 }

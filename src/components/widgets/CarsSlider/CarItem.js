@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 const CarItem = ({ sliderRef }) => {
   const state = useSelector(state => state.pickUpDropOffActions)
   let { params: { direction } } = state
+  const { appData } = useSelector(state => state.initialReducer)
+
   return (
     <div className={styles.owl_stage} ref={sliderRef}>
       {carsItems.map((car, i) => {
@@ -24,17 +26,19 @@ const CarItem = ({ sliderRef }) => {
 
                 <ul className={styles.card_atr_ul} direction={String(direction === 'rtl')}>
                   <li className={styles.card_atr_li}>
-                    <i className={`fa-solid fa-suitcase ${styles.li_icon}`}></i>
+                    <i className={`fa-solid fa-users ${styles.li_icon}`}></i>
                     <span className={styles.li_desc}>
-                      No of Suitcases {car.suitcase}
+                      {appData.words["strCarFeatureMaxPassengers"].replace("{{}}", car.passenger)}
+
                     </span>
                   </li>
                 </ul>
                 <ul className={styles.card_atr_ul} direction={String(direction === 'rtl')}>
                   <li className={styles.card_atr_li}>
-                    <i className={`fa-solid fa-users ${styles.li_icon}`}></i>
+                    <i className={`fa-solid fa-suitcase ${styles.li_icon}`}></i>
                     <span className={styles.li_desc}>
-                      No of Passengers {car.passenger}
+                      {appData.words["strCarFeatureMaxSuitcases"].replace("{{}}", car.suitcase)}
+
                     </span>
                   </li>
                 </ul>

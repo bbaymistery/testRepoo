@@ -20,7 +20,7 @@ const Tours = (props) => {
                 <div className={`${styles.tours_section} page_section`}>
                     <div className={`${styles.tours_section_container} page_section_container`}>
                         <div className={styles.title}>
-                            <h1>Tours</h1>
+                            <h1>{appData.words["strDailyTours"]}</h1>
                         </div>
 
                         <div className={styles.cards_content}>
@@ -78,7 +78,7 @@ const Tours = (props) => {
             <div className={`${styles.tours_section} page_section`}>
                 <div className={`${styles.tours_section_container} page_section_container`}>
                     <div className={styles.title}>
-                        <h1>Tours</h1>
+                        <h1>{appData.words["strDailyTours"]}</h1>
                     </div>
 
                     <div className={styles.cards_content}>

@@ -20,8 +20,8 @@ export let navbar = {
 
 //?translated words on home page (giris)
 /*
-"Add drop off point"
-"Add pick up point"
+"Add drop off point" //!
+"Add pick up point" //!
 */
 
 
@@ -29,10 +29,12 @@ export let navbar = {
 
 //?TranslatedWords on Heathrow Taxi deals
 /*
-Taxi Deals
+Taxi Deals //todo  Heathrow Taxi Prices
 all inclusive prices
-view all
-Southampton||Heathrow || Gatwick || Harwick ||City ||Luton ||Stansted || ||Portsmouth  ||Dover||  Transfer Quotation
+view all //!
+Southampton||Heathrow || Gatwick || Harwick ||City ||Luton ||Stansted || ||Portsmouth  ||Dover||  Transfer Quotation //!
+Southampton ||Portsmouth  ||Dover  || Harwick   Cruise Port //!
+Heathrow || Gatwick  ||City ||Luton ||Stansted ||  Taxi prices
 */
 
 
@@ -41,8 +43,8 @@ Southampton||Heathrow || Gatwick || Harwick ||City ||Luton ||Stansted || ||Ports
 
 //?TranslatedWords on Cruises transfers
 /*
-Cruises transfers
-See Details
+Cruises transfers //!
+See Details //!
 */
 
 
@@ -103,6 +105,8 @@ Accepted Cards
 Comfortable Cars
 customer reviews
 Free Meet And Greet
+Landing Hour //!
+Landing Minute //!
 */
 
 
@@ -261,6 +265,7 @@ ourselves on offering the very best service and value for money.
 
 //?translated words Travel Agents
 //Travel agents
+
 /*
 Wherever you happen to be in the world, as long as you have access to the internet, you are only a
 few clicks away from booking a car for collection from, or a journey to, any one of London five main

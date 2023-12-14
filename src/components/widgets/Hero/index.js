@@ -354,7 +354,7 @@ const Hero = (props) => {
                                                                 type="text"
                                                                 autoComplete="off"
                                                                 id={`pickup_input_focused_${index}`}//this is for scrolling top when ever we focus on mobile
-                                                                placeholder={"Add pick up point"}
+                                                                placeholder={appData?.words["seLocationPlaceholder"]}
                                                                 value={internalState[`pickup-search-value-${index}`]}
                                                                 autoFocus={internalState[`pickup-search-focus-${index}`]}
                                                                 f={String(internalState[`pickup-search-focus-${index}`])} //giving a style if we focused
@@ -410,7 +410,7 @@ const Hero = (props) => {
                                                                 type="text"
                                                                 autoComplete="off"
                                                                 id={`dropoff_input_focused_${index}`}//this is for scrolling top when ever we focus on mobile
-                                                                placeholder={"Add drop off point"}
+                                                                placeholder={appData?.words["seLocationPlaceholder"]}
                                                                 value={internalState[`dropoff-search-value-${index}`]}
                                                                 autoFocus={internalState[`dropoff-search-focus-${index}`]}
                                                                 f={String(internalState[`dropoff-search-focus-${index}`])} //giving a style if we focused
