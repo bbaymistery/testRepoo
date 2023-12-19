@@ -10,7 +10,8 @@ import { cruisePortimages, taxidealsImages } from '../../../constants/taxideals'
 const taxiDealsValidLocations = (dealsName) => {
     //first letter uppercase
     dealsName = dealsName.charAt(0).toUpperCase() + dealsName.slice(1);
-    if (dealsName === 'City') dealsName = 'City Airport'
+
+    if (dealsName === 'City airport') dealsName = 'City Airport'
     //we r destcructing to taxi trasnfer
     return [
         `${dealsName} to Oxford taxi`,

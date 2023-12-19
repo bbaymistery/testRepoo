@@ -36,7 +36,7 @@ const tabsBttons = [
     {
         name: "strLCYTaxiPrices",
         id: 5,
-        dealsName: "city"
+        dealsName: "city airport"
 
     }
 ]
@@ -56,18 +56,17 @@ const TaxiDeals = (props) => {
     const { appData } = useSelector(state => state.initialReducer)
 
     const fecthPoints = async (params = {}) => {
-
-        let { language, dealsNameProp = hasTaxiDeals } = params
-
-        let channelId = state.reservations[0].reservationDetails.channelId
-        let url = `${env.apiDomain}/api/v1/taxi-deals/list?points=${dealsNameProp}&language=${language}&channelId=${channelId}`;
+        let { language, dealsNameProp = hasTaxiDeals } = params;
+        let channelId = state.reservations[0].reservationDetails.channelId;
+        // Encode the dealsNameProp to handle spaces and special characters
+        let encodedDealsNameProp = encodeURIComponent(dealsNameProp);
+        let url = `${env.apiDomain}/api/v1/taxi-deals/list?points=${encodedDealsNameProp}&language=${language}&channelId=${channelId}`;
         let response = await fetch(url);
-
         let { data, status } = await response.json();
-        if (status === 200) {
-            setTaxiPoints(data.destinations)
-        }
-    }
+        if (status === 200) setTaxiPoints(data.destinations);
+    };
+
+
     const tabsHandler = async (params = {}) => {
         let { index, dealsNameProp } = params
         setTabs(index)
