@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 const TaxiDeals = dynamic(() => import('../components/widgets/TaxiDeals'), { loading: () => <div>Loading...</div> });
 const CarsSlider = dynamic(() => import('../components/widgets/CarsSlider'),);
 import SeaportTransfers from "../components/widgets/SeaportTransfers";
+import Tours from "./tours";
 // const SeaportTransfers = dynamic(() => import('../components/widgets/SeaportTransfers'),);
-const Tours = dynamic(() => import('./tours'),);
+// const Tours = dynamic(() => import('./tours'),);
 
 export default function Home(props) {
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -28,8 +29,10 @@ export default function Home(props) {
       <TaxiDeals />
       {/* {hasScrolled && <SeaportTransfers bggray={true} />} */}
       <SeaportTransfers bggray={true} />
-      {hasScrolled && <Tours insideGlobalLayout={false} />}
+      {/* {hasScrolled && <Tours insideGlobalLayout={false} />} */}
+      <Tours insideGlobalLayout={false} />
       {hasScrolled && <CarsSlider bggray={true} />}
+
       <Testimonials bggray={false} />
     </GlobalLayout>
   )

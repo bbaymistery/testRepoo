@@ -1,13 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/_fonts';
 
-.tours[bggray="true"] {
-    background-color: $light-2;
-}
-
-.tours[bggray="false"] {
-    background-color: white !important;
-}
 
 .tours {
     height: 100%;
@@ -16,37 +9,26 @@
     border: 1px solid $border;
     margin-top: 0px !important;
 
-
     &_section {
-
         &_container {
             .title {
+                margin-bottom: 2rem;
+
                 h1 {
                     text-align: center;
                     font-size: 30px;
                     font-weight: 500;
                 }
-
-                p {
-                    color: $light-1;
-                    margin-top: 10px;
-                }
-
-                margin-bottom: 2rem;
             }
 
             .cards_content {
                 .cards {
-                    display: flex;
-                    gap: 1rem;
-                    justify-content: space-between;
+                    display: grid;
+                    gap: 2rem;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
 
                     .card:hover {
-
-
                         .card_image_div {
-
-
                             img {
                                 transform: scale(1.15);
                             }
@@ -65,44 +47,28 @@
                         }
                     }
 
-                    @media(max-width:990px) {
-                        display: grid;
-                        gap: 2rem;
-                        grid-template-columns: 1fr 1fr;
+                    @media(max-width:1340px) {
+                        grid-template-columns: 1fr 1fr 1fr;
                     }
 
-                    @media(max-width:510px) {
-                        grid-template-columns: 1fr;
+                    @media (max-width: 1050px) {
+                        grid-template-columns: repeat(2, minmax(350px, 380px));
+                        justify-content: center;
+                    }
+
+                    @media (max-width: 767px) {
+                        grid-template-columns: 350px;
                     }
 
                     .card {
-                        max-width: 300px;
                         width: 100%;
-
-                        @media (max-width:1400px) {
-                            max-width: 255px;
-                        }
-
-                        @media(max-width:1200px) {
-                            max-width: 210px;
-                        }
-
-                        @media(max-width:990px) {
-                            max-width: 100%;
-                        }
 
                         .card_image_div {
                             overflow: hidden;
-                            width: 300px;
                             height: 300px;
                             margin-bottom: 10px;
                             border-radius: 4px;
                             position: relative;
-
-                            @media(max-width:1400px) {
-                                width: 100%;
-                            }
-
 
                             .img {
                                 width: 100%;
@@ -114,34 +80,12 @@
                         }
 
                         .card_body {
-                            @media (max-width:1200px) {
-                                height: 75px;
-                                display: flex;
-                                justify-content: space-between;
-                                flex-direction: column;
-                            }
-
                             h2 {
                                 color: $dark-1;
                                 position: relative;
-                                margin-bottom: 16px;
+                                margin-bottom: 0px;
                                 font-size: 17px;
                                 font-weight: 500;
-
-                                @media (max-width:1200px) {
-                                    margin-bottom: 0px;
-                                }
-
-                                &::after {
-                                    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-                                    width: 0%;
-                                    background-color: $dark-2;
-                                    content: '';
-                                    height: 2px;
-                                    position: absolute;
-                                    bottom: -2px;
-                                    left: 0px;
-                                }
                             }
 
 
@@ -162,17 +106,12 @@
                                 .start_from_text_right {
                                     color: #0a58ca;
                                     font-size: 17px;
+                                    font-weight: bold;
                                 }
                             }
                         }
 
                     }
-                }
-
-
-
-                .haveSpace {
-                    margin-top: 50px;
                 }
             }
         }

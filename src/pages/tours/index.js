@@ -16,13 +16,12 @@ const Tours = (props) => {
 
     return (insideGlobalLayout ?
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
-            <div className={`${styles.tours} ${direction} page`} bggray={String(bggray)}>
+            <div className={`${styles.tours} ${direction} page`} bggray={String(bggray)} style={{ backgroundColor: `${String(bggray) === "true" ? "#f5f5f5" : "white"}` }}>
                 <div className={`${styles.tours_section} page_section`}>
                     <div className={`${styles.tours_section_container} page_section_container`}>
                         <div className={styles.title}>
                             <h1>{appData.words["strDailyTours"]}</h1>
                         </div>
-
                         <div className={styles.cards_content}>
                             <div className={styles.cards}>
                                 {
@@ -68,13 +67,11 @@ const Tours = (props) => {
                                 }
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </GlobalLayout> :
-        <div className={`${styles.tours} ${direction} page`} bggray={String(bggray)} style={{ marginTop: `${!insideGlobalLayout ? '0px !important' : ""}` }}>
+        <div className={`${styles.tours} ${direction} page`} bggray={String(bggray)} style={{ backgroundColor: `${String(bggray) === "true" ? "#f5f5f5" : "white"}`, marginTop: `${!insideGlobalLayout ? '0px !important' : ""}` }}>
             <div className={`${styles.tours_section} page_section`}>
                 <div className={`${styles.tours_section_container} page_section_container`}>
                     <div className={styles.title}>
@@ -84,7 +81,7 @@ const Tours = (props) => {
                     <div className={styles.cards_content}>
                         <div className={styles.cards}>
                             {
-                                tourLinks.slice(0, 4).map((item, index) => {
+                                tourLinks.map((item, index) => {
                                     return (
                                         <a href={`tours/${item.id}`} title={item?.pageTitle} className={`${styles.card}`} key={item.id}>
                                             <div className={styles.card_image_div}>
@@ -103,7 +100,7 @@ const Tours = (props) => {
                                 })
                             }
                         </div>
-                        <div className={styles.haveSpace}> </div>
+                        {/* <div className={styles.haveSpace}> </div>
                         <div className={styles.cards}>
                             {
                                 tourLinks.slice(4, 8).map((item, index) => {
@@ -124,7 +121,7 @@ const Tours = (props) => {
                                     )
                                 })
                             }
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
