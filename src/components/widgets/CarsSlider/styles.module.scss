@@ -67,7 +67,6 @@
                     }
 
                     //!sliders
-                    // .owl_stage_outer {
                     .owl_stage {
                         display: flex;
                         justify-content: space-between;
@@ -77,7 +76,6 @@
                             background-color: #fff;
                             position: relative;
                             transition: all .5s;
-                            // box-shadow: 0 0 40px rgb(82 85 90 / 10%);
                             box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
                             border-radius: 5px;
                             width: 370px;
@@ -103,12 +101,10 @@
                             }
 
                             @media (max-width:480px) {
-                                // background-color: red;
                                 width: 400px;
                             }
 
                             @media (max-width:400px) {
-                                // background-color: red;
                                 width: 340px;
                             }
 

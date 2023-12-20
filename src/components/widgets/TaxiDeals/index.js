@@ -115,7 +115,7 @@ const TaxiDeals = (props) => {
     return (
         <>
             {
-                <div className={`${styles.taxideals} ${direction} ${islinknamecomponent ? styles.islinkname : ""} page `} bggray={String(bggray)} >
+                <div className={`${styles.taxideals} ${direction}  page `} bggray={String(bggray)} style={{ backgroundColor: `${String(bggray) === "true" ? "#f5f5f5" : "white"}` }}>
                     {pointsModalStatus && <PointsModal points={taxiPoints} title={`${hasTaxiDeals} Transfer Deals`} />}
                     <div className={`${styles.taxideals_section} page_section`}>
                         <div className={`${styles.taxideals_section_container} page_section_container`}>
@@ -125,7 +125,7 @@ const TaxiDeals = (props) => {
                                     {islinknamecomponent ? "" : <p>{appData?.words["strAllinclusiveprices"]}</p>}
                                 </div> : <></>}
                             {showTabs ?
-                                <div className={`${styles.tabs} ${styles.btn_div}`}>
+                                <div className={`${styles.tabs} `}>
                                     {tabsBttons.map((btn, index) => {
                                         return (<button onClick={() => tabsHandler({ index, dealsNameProp: btn.dealsName })} className={`${tabs === index ? styles.active : ""} btn`} key={index} ref={refs[index]}   >
                                             <div className="ripple-wrapper">{ripples[index]}</div>
@@ -138,7 +138,7 @@ const TaxiDeals = (props) => {
                             {taxiPoints.length > 1 ? <TaxiDealViewContent islinknamecomponent={islinknamecomponent} points={taxiPoints} dealsName={hasTaxiDeals} /> : <></>}
                             {taxiPoints.length > 1 ?
                                 <div className={styles.btn_div}>
-                                    <button className='btn' onClick={() => { setModal() }}>
+                                    <button className='btn_hover_reverse_primary' onClick={() => { setModal() }}>
                                         View All
                                         <i className="fa-solid fa-arrow-right"></i>
                                     </button>

@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from './styles.module.scss';
+import styles from './showcontent.module.scss';
 const ShowContent = () => {
     return (
-        <div>
+        <div className={styles.content}>
             <br />
             <p>
                 Every day, hundreds of international customers trust us for their London
@@ -101,7 +101,7 @@ const ShowContent = () => {
             <p>
                 Interested in a corporate account?
                 Centralize all your London airport transfers on one streamlined platform; generate invoices, get priority bookings, and manage multiple reservations.
-                Setting up a corporate account with <span title='Airport Pickups London' className={styles.bold_span}>Airport Pickups London</span>  is a breeze. <a href="/AccountRegister" target='_blank'> Learn more here.</a>
+                Setting up a corporate account with <span title='Airport Pickups London' className={styles.bold_span}>Airport Pickups London</span>  is a breeze. <a style={{ color: "#223a97", fontWeight: "500", fontSize: "19px", letterSpacing: "0.2px" }} href="/AccountRegister" target='_blank'> Learn more here.</a>
             </p>
         </div>
     )

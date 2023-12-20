@@ -9,7 +9,7 @@ const index = (props) => {
   const { params: { language } } = useSelector(state => state.pickUpDropOffActions)
 
   return (
-    <div className={`${styles.seaport} page`} bggray={String(bggray)}>
+    <div className={`${styles.seaport} page`} bggray={String(bggray)} style={{ backgroundColor: `${String(bggray) === "true" ? "#f5f5f5" : "white"}` }}>
       <div className={`${styles.seaport_section} page_section`}>
         <div className={`${styles.seaport_section_container} page_section_container`}>
           <h1 className={`${styles.transfer_title} seaportTtile`}>Cruises Transfers</h1>

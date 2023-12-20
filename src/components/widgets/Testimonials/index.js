@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import { useWindowSize } from '../../../hooks/useWindowSize'
 import dynamic from 'next/dynamic';
-const ShowContent = dynamic(() => import('./ShowContent'),);
+const ShowContent = dynamic(() => import('../TestimonialContent/ShowContent'),);
 
 const Testimonials = (props) => {
     let { bggray } = props
@@ -14,7 +14,7 @@ const Testimonials = (props) => {
     let { width } = size
     return (
 
-        <div className={`${styles.testimonials} ${direction} page`} bggray={String(bggray)}>
+        <div className={`${styles.testimonials} ${direction} page`} bggray={String(bggray)} style={{ backgroundColor: `${String(bggray) === "true" ? "#f5f5f5" : "white"}` }}>
             <div className={`${styles.testimonials_section} page_section`}>
                 <div className={`${styles.testimonials_section_container} page_section_container`}>
                     <h1>Reliable & Comfortable London Airport Transfers with APL Cars</h1>
@@ -24,7 +24,9 @@ const Testimonials = (props) => {
                         {/* <br />  */}
                         Renowned for our reliability and comfort, we're committed to delivering
                         exceptional service and value for money.
-                        {showText ? <button onClick={() => setshowText(!showText)}>Hide </button> : <button onClick={() => setshowText(!showText)}>Show More</button>}
+                        <button style={{ display: width < 768 ? "inline" : "none" }} onClick={() => setshowText(!showText)}>
+                            {showText ? "Hide" : "Show More"}
+                        </button>
                     </p>
                     {width > 768 ? <ShowContent /> : <></>}
                     {showText && width <= 768 ? <ShowContent /> : <></>}

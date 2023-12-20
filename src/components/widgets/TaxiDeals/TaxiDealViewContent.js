@@ -44,14 +44,14 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
         <>
             <div className={styles.cards}>
                 {points.length > 1 ?
-                    filteredDatas.slice(0, 4).map((item, index) => {
+                    filteredDatas.map((item, index) => {
                         return (
                             <a data-id="a" title={item?.pageTitle} href={item.pathname} className={`${styles.card}`} key={item.id}>
                                 <div className={styles.card_image_div}>
                                     {dealsName === 'dover' || dealsName === 'southampton' || dealsName === 'portsmouth' || dealsName === 'harwich' ?
-                                        <Image src={`${cruisePortimages.slice(0, 4)?.[index]?.image}`} className={styles.img} fill alt={item.pageTitle} sizes="(max-width: 768px) 100vw" />
+                                        <Image src={`${cruisePortimages?.[index]?.image}`} className={styles.img} fill alt={item.pageTitle} sizes="(max-width: 768px) 100vw" />
                                         :
-                                        <Image src={`${taxidealsImages.slice(0, 4)?.[index]?.image}`} className={styles.img} fill alt={item.pageTitle} sizes="(max-width: 768px) 100vw" />
+                                        <Image src={`${taxidealsImages?.[index]?.image}`} className={styles.img} fill alt={item.pageTitle} sizes="(max-width: 768px) 100vw" />
                                     }
                                 </div>
                                 <div className={styles.card_body}>
@@ -73,9 +73,9 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
                     </div>
                 }
             </div>
-            <div className={styles.haveSpace}> </div>
+            {/* <div className={styles.haveSpace}> </div> */}
 
-            <div className={styles.cards}>
+            {/* <div className={styles.cards}>
 
                 {points.length > 1 ?
                     filteredDatas.slice(4, 8).map((item, index) => {
@@ -109,7 +109,7 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
                 }
 
 
-            </div>
+            </div> */}
         </>
     )
 }
