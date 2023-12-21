@@ -212,8 +212,8 @@ const CardQuotationItem = (params = {}) => {
         })}
         {index === 1 &&
           <div className={`${styles.items_buttons}`}>
-            <div> <div onClick={() => router.back()}> <button>{appData?.words["strGoBack"]}</button></div></div>
-            <div> <div onClick={gotoTransferDetailsClick}><button>{appData?.words["strContinue"]}</button></div></div>
+            <div> <div onClick={() => router.back()}> <button className='btn btn_primary'>{appData?.words["strGoBack"]}</button></div></div>
+            <div> <div onClick={gotoTransferDetailsClick}><button className='btn btn_primary'>{appData?.words["strContinue"]}</button></div></div>
           </div>}
       </div>
 
