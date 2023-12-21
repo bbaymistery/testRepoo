@@ -251,16 +251,16 @@ const QuotationResults = (props) => {
     //if quotation token doesnt exist ,it means he /she can go to next page
 
     if (!returnQuotation.token && !transferQuotation.token) {
-      alert("Please select which quotation do you want  for your journey?");
+      alert("Please select your car type   for your journey?");
       return
     }
 
     if (!returnQuotation.token) {
-      alert("Please select which quotation do you want  for your return  journey?");
+      alert("Please select your car type   for your return  journey?");
       return
     }
     if (!transferQuotation.token) {
-      alert("Please select which quotation do you want  for your journey?");
+      alert("Please select your car type   for your journey?");
       return
     }
 
