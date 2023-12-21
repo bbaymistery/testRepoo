@@ -10,16 +10,17 @@
         }
 
         .whitebtn_div {
-            width: 159px;
+            a {
+                button {
+                    width: 100%;
+                    position: relative;
+                    background-color: white;
+                    padding: 0px 20px !important;
 
-            @media(max-width:1400px) {
-                width: 132px;
-            }
-
-            button {
-                width: 100%;
-                position: relative;
-                background-color: white;
+                    @media(max-width:1367px) {
+                        padding: 0px 15px !important;
+                    }
+                }
             }
         }
 
@@ -28,6 +29,11 @@
                 background-color: transparent;
                 color: white;
                 border: 1px solid white;
+                padding: 0px 20px !important;
+
+                @media(max-width:1367px) {
+                    padding: 0px 15px !important;
+                }
             }
         }
 

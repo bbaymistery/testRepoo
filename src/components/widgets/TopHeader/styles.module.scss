@@ -23,7 +23,7 @@
         padding: 0px 30px;
         width: 100%;
 
-        @media(max-width:1340px) {
+        @media(max-width:1367px) {
             padding: 0px 20px;
         }
 
@@ -71,12 +71,8 @@
                                 font-size: 22px;
                             }
 
-                            @media(max-width:1350px) {
-                                font-size: 20px;
-                            }
-
-                            @media(max-width:450px) {
-                                font-size: 21px;
+                            @media(max-width:1367px) {
+                                font-size: 19px;
                             }
                         }
 
