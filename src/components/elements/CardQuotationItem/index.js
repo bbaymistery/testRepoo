@@ -72,7 +72,8 @@ const CardQuotationItem = (params = {}) => {
     pageContent,
     returnPageTitle,
     returnHeadTitle,
-    objectDetailss
+    objectDetailss,
+    gotoTransferDetailsClick = () => { }
   } = params
 
   const router = useRouter();
@@ -209,6 +210,11 @@ const CardQuotationItem = (params = {}) => {
             </div>
           )
         })}
+        {index === 1 &&
+          <div className={`${styles.items_buttons}`}>
+            <div> <div onClick={() => router.back()}> <button>{appData?.words["strGoBack"]}</button></div></div>
+            <div> <div onClick={gotoTransferDetailsClick}><button>{appData?.words["strContinue"]}</button></div></div>
+          </div>}
       </div>
 
       {isTaxiDeal && pageContent?.length > 1 ? <TaxiDealsContents pageContent={pageContent} /> : <></>}

@@ -552,13 +552,14 @@ const QuotationResults = (props) => {
                               selectedQuotation={reservations[index]?.quotation}
                               quotationOptions={quotations[index].quotationOptions}
                               quotationLoading={internalState[`quotation-loading`]}
+                              gotoTransferDetailsClick={gotoTransferDetailsClick}
                             />
                           }
-                          {index === 1 &&
+                          {/* {index === 1 &&
                             <div className={`${styles.items_buttons}`}>
                               <div> <div onClick={() => router.back()}> <button>{appData?.words["strGoBack"]}</button></div></div>
-                              <div> <div onClick={gotoTransferDetailsClick}><button>{appData?.words["strBookingNow"]}</button></div></div>
-                            </div>}
+                              <div> <div onClick={gotoTransferDetailsClick}><button>{appData?.words["strContinue"]}</button></div></div>
+                            </div>} */}
                         </div>
                       </div>
                     </div>
