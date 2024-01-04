@@ -542,9 +542,9 @@ const QuotationResults = (props) => {
                         </div>
                         {/* //*Card item of results */}
 
-                        <div>
+                        <div  >
                           {!internalState[`error-booking-message-${index}`] && selectedPickupPoints.length > 0 && selectedDropoffPoints.length > 0 &&
-                            < CardQuotationItem
+                            <CardQuotationItem
                               index={index}
                               isTaxiDeal={isTaxiDeal}
                               distance={quotations[index].distance}

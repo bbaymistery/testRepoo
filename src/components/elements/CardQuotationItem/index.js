@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { quotationImagesObj } from '../../../constants/quotationImages';
 import env from '../../../resources/env';
@@ -73,7 +73,8 @@ const CardQuotationItem = (params = {}) => {
     returnPageTitle,
     returnHeadTitle,
     objectDetailss,
-    gotoTransferDetailsClick = () => { }
+    gotoTransferDetailsClick = () => { },
+
   } = params
 
   const router = useRouter();
@@ -81,13 +82,26 @@ const CardQuotationItem = (params = {}) => {
   const state = useSelector((state) => state.pickUpDropOffActions)
   let { params: { journeyType, direction, language, quotations } } = state
   const { appData } = useSelector(state => state.initialReducer)
-
+  const quotationIsSelected = selectedQuotation?.carId
   //cartypes object for card item as {1:{image:'sds, name:Economy}}
   const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
+  const [journeyAccrodionStatus, setJourneyAccrodionStatus] = useState(localStorage?.getItem("journeyQuotation") ? true : false)
+  const [returnJourneyAccordionStatus, setReturnJourneyAccordionStatus] = useState((localStorage?.getItem("returnJourneyQuotation") ? true : false))
+
 
   const setQuotationHandleClick = async (params = {}) => {
     let { quotation } = params
     checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
+    if (journeyType === 1) {
+      if (index === 0) {
+        localStorage.setItem("journeyQuotation", JSON.stringify(quotation));
+        setJourneyAccrodionStatus(true)
+      }
+      if (index === 1) {
+        localStorage.setItem("returnJourneyQuotation", JSON.stringify(quotation));
+        setReturnJourneyAccordionStatus(localStorage?.getItem("returnJourneyQuotation") ? true : false)
+      }
+    }
 
 
     if (isTaxiDeal) {
@@ -130,95 +144,337 @@ const CardQuotationItem = (params = {}) => {
       checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
     // }
   };
+  console.log(journeyAccrodionStatus);
+
+  const changeCar = () => {
+    if (journeyType === 1) {
+      if (index === 0) {
+        localStorage.removeItem("journeyQuotation");
+        setJourneyAccrodionStatus(false)
+      }
+      if (index === 1) {
+        localStorage.removeItem("returnJourneyQuotation");
+        setReturnJourneyAccordionStatus(false)
+      }
+    }
+  }
+  console.log({ selectedQuotation });
 
   return (
-    <div className={`${styles.result_container} ${isTaxiDeal ? styles.taxideal_result_container : ""}`}>
-      {/* {isTaxiDeal ? <BreadCrumbTaxiDeal previousUrl={previousUrl} breadCrumbFrom={breadCrumbFrom} breadCrumbTo={breadCrumbTo} direction={direction} /> : <></>} */}
-      {isTaxiDeal && headTitle ? <TitleTaxiDeal headTitle={headTitle} direction={direction} pageTitle={pageTitle} /> : <></>}
-      {isTaxiDeal && returnPathname ? <ViceVersaUrlTaxiDeal previousUrl={previousUrl} returnPathname={returnPathname} returnHeadTitle={returnHeadTitle} returnPageTitle={returnPageTitle} /> : <></>}
-
-      <HeaderOfResults duration={duration} distance={distance} />
-      <div id="main_container">
-        {datas?.map((item, index) => {
-          return (
-            <div
-              dataid={index === 0 ? "first_car" : ""}
-              key={index}
-              className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
-              onClick={(e) => handleClickForMobile({ e, quotation: item })} >
-              <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
-              <div className={styles.column_second}>
-                <div className={styles.column_second_flex_column}>
-                  <div className={styles.name_and_postcode_div}>
-                    <div className={styles.postcode}>
-                      {carObject[item?.carId]?.transferType}
-                      <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
+    <div >
+      <div className={`${styles.result_container} ${isTaxiDeal ? styles.taxideal_result_container : ""}`}>
+        {/* {isTaxiDeal ? <BreadCrumbTaxiDeal previousUrl={previousUrl} breadCrumbFrom={breadCrumbFrom} breadCrumbTo={breadCrumbTo} direction={direction} /> : <></>} */}
+        {isTaxiDeal && headTitle ? <TitleTaxiDeal headTitle={headTitle} direction={direction} pageTitle={pageTitle} /> : <></>}
+        {isTaxiDeal && returnPathname ? <ViceVersaUrlTaxiDeal previousUrl={previousUrl} returnPathname={returnPathname} returnHeadTitle={returnHeadTitle} returnPageTitle={returnPageTitle} /> : <></>}
+        <HeaderOfResults duration={duration} distance={distance} />
+        {/* make visible for selected item */}
+        {journeyType === 1 && index === 0 && <div>
+          {datas.map((item, index) => {
+            const renderSelectedItem = Number(JSON.parse(localStorage?.getItem("journeyQuotation"))?.carId) === Number(quotationImagesObj[item?.carId]?.id)
+            if (renderSelectedItem && journeyAccrodionStatus) {
+              return <div
+                dataid={index === 0 ? "first_car" : ""}
+                key={index}
+                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
+              >
+                <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
+                <div className={styles.column_second}>
+                  <div className={styles.column_second_flex_column}>
+                    <div className={styles.name_and_postcode_div}>
+                      <div className={styles.postcode}>
+                        {carObject[item?.carId]?.transferType}
+                        <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
+                      </div>
+                      <h3 className={styles.name}>
+                        {carObject[item?.carId]?.name}
+                        <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
+                      </h3>
                     </div>
-                    <h3 className={styles.name}>
-                      {carObject[item?.carId]?.name}
+                    <div className={styles.car_features}>
                       <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
-                    </h3>
-                  </div>
-                  <div className={styles.car_features}>
-                    <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
-                    <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
-                    <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
-                      <Image src={meetAndGret} width="18" height="20" alt="" />
-                      <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span>
+                      <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
+                      <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
+                        <Image src={meetAndGret} width="18" height="20" alt="" />
+                        <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span>
+                      </div>
+
                     </div>
-
-                  </div>
-                  <div className={styles.apl_features}>
-                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
-                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
-                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
-                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
-                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{"Comfortable Cars"}</span> </p>
+                    <div className={styles.apl_features}>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{"Comfortable Cars"}</span> </p>
 
 
 
-                    <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                    <p className={`${styles.apl_feature} ${styles.show_less_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
-                    <p className={`${styles.apl_feature} ${styles.show_less_than360} ${styles.show_less_than360_with_price}`}>
-                      <span>
-                        <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
-                        </i>
-                        <span>{"Free Cancellation (24h)"}</span>
-                      </span>
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360} ${styles.show_less_than360_with_price}`}>
+                        <span>
+                          <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
+                          </i>
+                          <span>{"Free Cancellation (24h)"}</span>
+                        </span>
 
-                      <span className={`${styles.price_span}`} >
-                        {quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`}
-                        <span>00</span>
-                      </span>
-                    </p>
+                        <span className={`${styles.price_span}`} >
+                          {quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`}
+                          <span>00</span>
+                        </span>
+                      </p>
 
 
 
 
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
-                <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`} <span>00</span> </div>
-                <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
-                <button onClick={() => setQuotationHandleClick({ quotation: item })} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
-                  {quotationLoading ? <WaveLoading /> : Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? `${appData?.words["quSelectedButton"]}` : `${appData?.words["quSelectButton"]}`}
-                </button>
+                <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
+                  <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`} <span>00</span> </div>
+                  <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
+                  <button onClick={changeCar} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
+                    {!selectedQuotation?.carId ? "See All Cars" : "Change Car"}
+                  </button>
+                </div>
+              </div>
+            }
+          })}
+
+        </div>}
+        {journeyType === 1 && index === 1 && <div>
+          {datas.map((item, index) => {
+            const renderSelectedItem = Number(JSON.parse(localStorage?.getItem("returnJourneyQuotation"))?.carId) === Number(quotationImagesObj[item?.carId]?.id)
+            if (renderSelectedItem && returnJourneyAccordionStatus) {
+              return <div
+                dataid={index === 0 ? "first_car" : ""}
+                key={index}
+                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
+              >
+                <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
+                <div className={styles.column_second}>
+                  <div className={styles.column_second_flex_column}>
+                    <div className={styles.name_and_postcode_div}>
+                      <div className={styles.postcode}>
+                        {carObject[item?.carId]?.transferType}
+                        <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
+                      </div>
+                      <h3 className={styles.name}>
+                        {carObject[item?.carId]?.name}
+                        <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
+                      </h3>
+                    </div>
+                    <div className={styles.car_features}>
+                      <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
+                      <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
+                      <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
+                        <Image src={meetAndGret} width="18" height="20" alt="" />
+                        <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span>
+                      </div>
+
+                    </div>
+                    <div className={styles.apl_features}>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{"Comfortable Cars"}</span> </p>
+
+
+
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360} ${styles.show_less_than360_with_price}`}>
+                        <span>
+                          <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
+                          </i>
+                          <span>{"Free Cancellation (24h)"}</span>
+                        </span>
+
+                        <span className={`${styles.price_span}`} >
+                          {quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`}
+                          <span>00</span>
+                        </span>
+                      </p>
+
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+                <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
+                  <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`} <span>00</span> </div>
+                  <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
+                  <button onClick={changeCar} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
+                    {!selectedQuotation?.carId ? "See All Cars" : "Change Car"}
+                  </button>
+                </div>
+              </div>
+            }
+          })}
+
+        </div>}
+        {(!journeyAccrodionStatus && index === 0 && journeyType === 1 || !returnJourneyAccordionStatus && index === 1 && journeyType === 1) && datas?.map((item, index) => {
+          return (
+            <div id="main_container">
+              <div
+                dataid={index === 0 ? "first_car" : ""}
+                key={index}
+                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
+                onClick={(e) => handleClickForMobile({ e, quotation: item })} >
+                <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
+                <div className={styles.column_second}>
+                  <div className={styles.column_second_flex_column}>
+                    <div className={styles.name_and_postcode_div}>
+                      <div className={styles.postcode}>
+                        {carObject[item?.carId]?.transferType}
+                        <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
+                      </div>
+                      <h3 className={styles.name}>
+                        {carObject[item?.carId]?.name}
+                        <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
+                      </h3>
+                    </div>
+                    <div className={styles.car_features}>
+                      <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
+                      <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
+                      <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
+                        <Image src={meetAndGret} width="18" height="20" alt="" />
+                        <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span>
+                      </div>
+
+                    </div>
+                    <div className={styles.apl_features}>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{"Comfortable Cars"}</span> </p>
+
+
+
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360} ${styles.show_less_than360_with_price}`}>
+                        <span>
+                          <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
+                          </i>
+                          <span>{"Free Cancellation (24h)"}</span>
+                        </span>
+
+                        <span className={`${styles.price_span}`} >
+                          {quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`}
+                          <span>00</span>
+                        </span>
+                      </p>
+
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+                <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
+                  <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`} <span>00</span> </div>
+                  <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
+                  <button onClick={() => setQuotationHandleClick({ quotation: item })} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
+                    {quotationLoading ? <WaveLoading /> : Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? `${appData?.words["quSelectedButton"]}` : `${appData?.words["quSelectButton"]}`}
+                  </button>
+                </div>
               </div>
             </div>
           )
         })}
+
+        {(+journeyType === 0) && datas?.map((item, index) => {
+          return (
+            <div id="main_container">
+              <div
+                dataid={index === 0 ? "first_car" : ""}
+                key={index}
+                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
+                onClick={(e) => handleClickForMobile({ e, quotation: item })} >
+                <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
+                <div className={styles.column_second}>
+                  <div className={styles.column_second_flex_column}>
+                    <div className={styles.name_and_postcode_div}>
+                      <div className={styles.postcode}>
+                        {carObject[item?.carId]?.transferType}
+                        <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
+                      </div>
+                      <h3 className={styles.name}>
+                        {carObject[item?.carId]?.name}
+                        <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
+                      </h3>
+                    </div>
+                    <div className={styles.car_features}>
+                      <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
+                      <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
+                      <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
+                        <Image src={meetAndGret} width="18" height="20" alt="" />
+                        <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span>
+                      </div>
+
+                    </div>
+                    <div className={styles.apl_features}>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{"Comfortable Cars"}</span> </p>
+
+
+
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                      <p className={`${styles.apl_feature} ${styles.show_less_than360} ${styles.show_less_than360_with_price}`}>
+                        <span>
+                          <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
+                          </i>
+                          <span>{"Free Cancellation (24h)"}</span>
+                        </span>
+
+                        <span className={`${styles.price_span}`} >
+                          {quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`}
+                          <span>00</span>
+                        </span>
+                      </p>
+
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+                <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
+                  <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`} <span>00</span> </div>
+                  <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
+                  <button onClick={() => setQuotationHandleClick({ quotation: item })} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
+                    {quotationLoading ? <WaveLoading /> : Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? `${appData?.words["quSelectedButton"]}` : `${appData?.words["quSelectButton"]}`}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+        {isTaxiDeal && pageContent?.length > 1 ? <TaxiDealsContents pageContent={pageContent} /> : <></>}
+
+      </div>
+      <div className={styles.result_container}>
         {index === 1 &&
           <div className={`${styles.items_buttons}`}>
             <div> <div onClick={() => router.back()}> <button className='btn btn_primary'>{appData?.words["strGoBack"]}</button></div></div>
             <div> <div onClick={gotoTransferDetailsClick}><button className='btn btn_primary'>{appData?.words["strContinue"]}</button></div></div>
           </div>}
       </div>
-
-      {isTaxiDeal && pageContent?.length > 1 ? <TaxiDealsContents pageContent={pageContent} /> : <></>}
-
     </div>
   )
 }
