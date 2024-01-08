@@ -9,7 +9,7 @@ import instaIamge from '../../../../public/social/Instigram.gif';
 import styles from "./styles.module.scss"
 import Link from 'next/link';
 import { Airports, CruisePorts } from '../../../constants/navigatior';
-
+let normalText = "is a leading provider of London airport transfers and shuttle services in London. Our standards of reliability and comfort are second to none. What’s more, we pride ourselves on offering the very best service and value for money."
 const Footer = (props) => {
   let { bggray } = props
   const state = useSelector(state => state.pickUpDropOffActions)
@@ -17,6 +17,9 @@ const Footer = (props) => {
   const { appData } = useSelector(state => state.initialReducer)
 
   const dispatch = useDispatch()
+  const companyNameAndDescription = appData?.words["strFooterDescription"].split("),")[0] + ")" || "Airport Pickups London (APL Cars)";
+  const companyText = appData?.words["strFooterDescription"].split("),")[0] ? appData?.words["strFooterDescription"].split("),")[1] : normalText;
+
   return (
 
     <div className={`${styles.footer}  ${direction} page`} bggray={String(bggray)}>
@@ -28,11 +31,8 @@ const Footer = (props) => {
                 <Image src={logoImage} alt="Airport-pickups-london Logo" width={300} height={28} />
               </div>
               <p>
-                <span> Airport Pickups London (APL Cars) </span>is a leading provider of
-                London airport transfers and shuttle services in London.
-                Our standards of reliability and comfort are second to none.
-                What’s more, we pride ourselves on offering the very
-                best service and value for money.
+                <span>{companyNameAndDescription} </span>
+                {companyText}
               </p>
             </div>
 
@@ -41,41 +41,41 @@ const Footer = (props) => {
               <p className={styles.title}>Company</p>
               <ul className={styles.list_items}>
                 <li>
-                  <a href={`${language === 'en' ? `/drivers-wanted` : `${language}/drivers-wanted`}`} title='Drivers' >
-                    Drivers
+                  <a href={`${language === 'en' ? `/drivers-wanted` : `/${language}/drivers-wanted`}`} title={`${appData?.words["strDrivers"] || "Drivers"} `} >
+                    {appData?.words["strDrivers"] || Drivers}
                   </a>
                 </li>
                 <li>
                   <a href="#">Sitemap</a>
                 </li>
                 <li>
-                  <a href={`${language === 'en' ? `/about-us` : `${language}/about-us`}`} title={appData.words["aboutUs"]}>
+                  <a href={`${language === 'en' ? `/about-us` : `/${language}/about-us`}`} title={appData.words["aboutUs"]}>
                     {appData.words["aboutUs"]}
                   </a>
                 </li>
                 <li>
-                  <a href={`${language === 'en' ? `/contact-us` : `${language}/contact-us`}`} title={appData.words["appContactUsHeader"]} >
+                  <a href={`${language === 'en' ? `/contact-us` : `/${language}/contact-us`}`} title={appData.words["appContactUsHeader"]} >
                     {appData.words["appContactUsHeader"]}
                   </a>
                 </li>
                 <li>
-                  <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strTermsOfUse"]}  >
+                  <a href={`${language === 'en' ? `/terms` : `/${language}/terms`}`} title={appData.words["strTermsOfUse"]}  >
                     {appData.words["strTermsOfUse"]}
                   </a>
                 </li>
                 <li>
-                  <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strPrivacyPolicy"]}  >
+                  <a href={`${language === 'en' ? `/terms` : `/${language}/terms`}`} title={appData.words["strPrivacyPolicy"]}  >
                     {appData.words["strPrivacyPolicy"]}
                   </a>
                 </li>
 
                 <li>
-                  <a href={`${language === 'en' ? `/heathrow-porter-service` : `${language}/heathrow-porter-service`}`}  >
+                  <a href={`${language === 'en' ? `/heathrow-porter-service` : `/${language}/heathrow-porter-service`}`}  >
                     Porter Service
                   </a>
                 </li>
                 <li>
-                  <a href={`${language === 'en' ? `/heathrow-vip-meet-and-assist` : `${language}/heathrow-vip-meet-and-assist`}`}  >
+                  <a href={`${language === 'en' ? `/heathrow-vip-meet-and-assist` : `/${language}/heathrow-vip-meet-and-assist`}`}  >
                     Meet and assist
                   </a>
                 </li>
@@ -84,19 +84,19 @@ const Footer = (props) => {
 
             </div>
             <div className={styles.column}>
-              <p className={styles.title}>Cruise Ports</p>
+              <p className={styles.title}> {appData?.words["strCruisePortTaxiTransfers"] || "Cruise Ports"} </p>
               <ul className={styles.list_items}>
 
                 {CruisePorts.map((airport, index) => {
-                  let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals } = airport
+                  let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals, translateTitle } = airport
 
                   return <li key={index}>
                     <Link
 
                       onClick={() => { dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } }); dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } }) }}
-                      href={`${language === 'en' ? `${listPath}` : `${language}${listPath}`}`}
-                      title={listTitle}>
-                      <span>{listInnerText}</span>
+                      href={`${language === 'en' ? `${listPath}` : `/${language}${listPath}`}`}
+                      title={appData?.words[listTitle]}>
+                      <span>{appData?.words[translateTitle]}</span>
                     </Link>
                   </li>
                 })}
@@ -107,15 +107,15 @@ const Footer = (props) => {
               <p className={styles.title}>Airports</p>
               <ul className={styles.list_items}>
                 {Airports.map((airport, index) => {
-                  let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals } = airport
+                  let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals, translateTitle } = airport
 
                   return <li key={index}>
                     <Link
 
                       onClick={() => { dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } }); dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } }) }}
-                      href={`${language === 'en' ? `${listPath}` : `${language}${listPath}`}`}
+                      href={`${language === 'en' ? `${listPath}` : `/${language}${listPath}`}`}
                       title={listTitle}  >
-                      <span>{listInnerText}</span>
+                      <span>{appData?.words[translateTitle]}</span>
                     </Link>
                   </li>
                 })}
@@ -123,10 +123,11 @@ const Footer = (props) => {
 
             </div>
             <div className={`${styles.column} ${styles.last_column}`}>
-              <p className={styles.title}>Contact Us</p>
+              <p className={styles.title}>{appData?.words["appContactUsHeader"]}</p>
 
               <div className={styles.description}>
-                <p>Toll Free Customer Care</p>
+                <p>{appData?.words["strCustomerCare247"]}</p>
+
 
                 {direction === 'rtl' ?
                   <a style={{ flexDirection: "row-reverse", justifyContent: "flex-end", display: 'flex' }} href="tel:+442086887744">
@@ -139,7 +140,7 @@ const Footer = (props) => {
                   </a>}
               </div>
               <div className={styles.description}>
-                <p>Need live support ?</p>
+                <p>{appData?.words["strDedicatedCustomerSupport"]}</p>
                 <a href="mailto:info@aplcars.com" >info@aplcars.com</a>
               </div>
 
@@ -170,12 +171,12 @@ const Footer = (props) => {
               </div>
               <ul className={styles.lists}>
                 <li>
-                  <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strPrivacyPolicy"]} >
+                  <a href={`/${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strPrivacyPolicy"]} >
                     {appData.words["strPrivacyPolicy"]}
                   </a>
                 </li>
                 <li>
-                  <a href={`${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strTermsOfUse"]} >
+                  <a href={`/${language === 'en' ? `/terms` : `${language}/terms`}`} title={appData.words["strTermsOfUse"]} >
                     {appData.words["strTermsOfUse"]}
                   </a>
                 </li>
@@ -197,7 +198,7 @@ const Footer = (props) => {
                 <a href="http://feeds2.feedburner.com/London-Airport-News" target="_blank" title="Airport Pickups London News RSS">
                   <Image src={srImage} alt="Airport Pickups London News RSS" width={25} height={25} priority />
                 </a>
-                <a href="https://www.instagram.com/airport_pickups_london/" target="_blank" title="irport Pickups London Instigram page">
+                <a href="https://www.instagram.com/airport_pickups_london/" target="_blank" title="Airport Pickups London Instigram page">
                   <Image src={instaIamge} alt="Airport Pickups London Instigram page" width={25} height={25} priority />
                 </a>
 

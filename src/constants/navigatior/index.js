@@ -6,6 +6,9 @@ export const Airports = [
         title: "London Heathrow Transfer",
         type: "cell",
         hasTaxiDeals: "heathrow",
+        id: 1,
+        translateTitle: "strHeathrowTaxiPrices",
+
     },
     {
         innerText: "Gatwick Airport Transfer",
@@ -13,7 +16,8 @@ export const Airports = [
         title: "London Gatwick Transfer",
         type: "cell",
         hasTaxiDeals: "gatwick",
-
+        id: 2,
+        translateTitle: "strGatwickTaxiPrices",
     }
     ,
     {
@@ -22,6 +26,8 @@ export const Airports = [
         title: "London City Airport Transfer",
         type: "cell",
         hasTaxiDeals: "city",
+        id: 3,
+        translateTitle: "strLCYTaxiPrices",
 
     }
     ,
@@ -31,7 +37,8 @@ export const Airports = [
         title: "Luton Airport Transfer",
         type: "cell",
         hasTaxiDeals: "luton",
-
+        id: 4,
+        translateTitle: "strLutonTaxiPrices",
     },
     {
         innerText: "Stansted Airport Transfer",
@@ -39,7 +46,8 @@ export const Airports = [
         title: "London Stansted Airport Transfer",
         type: "cell",
         hasTaxiDeals: "stansted",
-
+        id: 5,
+        translateTitle: "strStanstedTaxiPrices",
     }
 ]
 export const CruisePorts = [
@@ -49,24 +57,30 @@ export const CruisePorts = [
         title: "Dover Cruise Terminal Transfer",
         type: "cell",
         hasTaxiDeals: "dover",
-
+        translateTitle: "strDoverCruisePort",
+        imgUrl: "/images/seaport/dover.webp",
+        id: 1,
     },
-
     {
         innerText: "Harwich Cruise Port ",
         path: "/harwich",
         title: "Harwich Cruise Port  Transfer",
         type: "cell",
         hasTaxiDeals: "harwich",
-
+        title: "Harwich Cruise Port",
+        id: 2,
+        imgUrl: "/images/seaport/dover.webp",
+        translateTitle: "strHarwichCruisePort",
     },
     {
         innerText: "Portsmouth Cruise Port",
         path: "/portsmouth",
         title: "Portsmouth Cruise Port Transfer",
+        translateTitle: "strPortsmouthCruisePort",
         type: "cell",
         hasTaxiDeals: "portsmouth",
-
+        imgUrl: "/images/seaport/portsmoth.webp",
+        id: 3,
     },
     {
         innerText: "Southampton Cruise Port",
@@ -74,6 +88,11 @@ export const CruisePorts = [
         title: "Southampton Cruise Port Transfer",
         type: "cell",
         hasTaxiDeals: "southampton",
+        translateTitle: "strSouthamptonCruisePort",
+        imgUrl: "/images/seaport/southmpton.webp",
+        id: 4,
+
+
     },
 ]
 
@@ -118,7 +137,7 @@ export const navigator = [
                 path: "/city-airport",
                 title: "London City Airport Transfer",
                 type: "cell",
-                hasTaxiDeals: "city",
+                hasTaxiDeals: "city airport",
 
             }
             ,

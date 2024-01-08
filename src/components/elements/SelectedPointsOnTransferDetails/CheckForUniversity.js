@@ -19,11 +19,11 @@ const CheckForUniversity = (props) => {
         <div className={styles.insideInputs}>
           <div className={styles.insideInputs_input}>
             {/* check language_words */}
-            <TextInput label="Universities And Colleges" type="text" name="address-description" onChange={(e) => onchangeHandler(e)} value={point["address-description"]} errorMessage={errorMessage} />
+            <TextInput label={appData?.words["strUniversitiesAndColleges"]} type="text" name="address-description" onChange={(e) => onchangeHandler(e)} value={point["address-description"]} errorMessage={errorMessage} />
           </div>
         </div>
-      ):<React.Fragment></React.Fragment>}
- 
+      ) : <React.Fragment></React.Fragment>}
+
     </>
   );
 };

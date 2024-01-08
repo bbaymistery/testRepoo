@@ -28,8 +28,7 @@ const CarItem = ({ sliderRef }) => {
                   <li className={styles.card_atr_li}>
                     <i className={`fa-solid fa-users ${styles.li_icon}`}></i>
                     <span className={styles.li_desc}>
-                      {appData.words["strCarFeatureMaxPassengers"].replace("{{}}", car.passenger)}
-
+                      {`${appData?.words["strNoofPassengers"]} ${car.passenger}`}
                     </span>
                   </li>
                 </ul>
@@ -37,7 +36,8 @@ const CarItem = ({ sliderRef }) => {
                   <li className={styles.card_atr_li}>
                     <i className={`fa-solid fa-suitcase ${styles.li_icon}`}></i>
                     <span className={styles.li_desc}>
-                      {appData.words["strCarFeatureMaxSuitcases"].replace("{{}}", car.suitcase)}
+                      {`${appData?.words["strNoofSuitcases"]} ${car.suitcase}`}
+
 
                     </span>
                   </li>

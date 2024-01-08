@@ -26,7 +26,7 @@ const Corporate = (props) => {
               {!pageContent ?
                 <div className={styles.left}>
                   <h1 className={styles.title}>
-                    Travel Agents
+                    {appData?.words["strTravelNews"]}
                   </h1>
                   <div className={styles.account_div}>
                     {/* https://agency-apl.netlify.app */}
@@ -67,11 +67,11 @@ const Corporate = (props) => {
 
                 <div className={styles.left}>
                   <h1 className={styles.title}>
-                    Travel Agents
+                    {appData?.words["strTravelNews"]}
                   </h1>
                   <div className={styles.account_div}>
                     <Link target='_blank' href="https://www.airport-pickups-london.com/Agency" >
-                      <button className='btn btn_primary'>Login</button>
+                      <button className='btn btn_primary'>{appData?.words["strLogin"]}</button>
                     </Link>
                     <a href={language === 'en' ? '/AccountRegister' : `/${language}/AccountRegister`} title="AccountRegister" >
                       <button className='btn btn_primary'>Register</button>

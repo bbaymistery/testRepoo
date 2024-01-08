@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import pointsStyle from "./pointsStyle.module.scss";
-const DropOffPoints = ({ selectedDropoffPoints ,direction,language}) => {
+const DropOffPoints = ({ selectedDropoffPoints, direction, language }) => {
   const { appData } = useSelector(state => state.initialReducer)
 
   return (
@@ -11,7 +11,7 @@ const DropOffPoints = ({ selectedDropoffPoints ,direction,language}) => {
           <div className={pointsStyle.details_bottom_container} key={i}>
 
             <div className={pointsStyle.details_header_div} direction={String(direction === 'rtl')}>
-              <p className={pointsStyle.left}>To </p>
+              <p className={pointsStyle.left}>{appData?.words["strTo"]} </p>
               <p className={`${pointsStyle.point_adress} ${pointsStyle.right}`}>{language === 'en' ? point.address : point.translatedAddress}</p>
 
             </div>
@@ -47,7 +47,7 @@ const DropOffPoints = ({ selectedDropoffPoints ,direction,language}) => {
             {point?.trainNumber && (
               <div className={pointsStyle.details_bottom_description} direction={String(direction === 'rtl')}>
                 <div className={pointsStyle.bottom_main_desc}>
-                  <span>Train Number:</span> <span>{point?.trainNumber}</span>
+                  <span>{appData?.words["strTrainNumber"]}:</span> <span>{point?.trainNumber}</span>
                 </div>
               </div>
             )}
@@ -65,7 +65,7 @@ const DropOffPoints = ({ selectedDropoffPoints ,direction,language}) => {
             {point?.pcatId === 7 && point?.["address-description"] && (
               <div className={pointsStyle.details_bottom_description} direction={String(direction === 'rtl')}>
                 <div className={pointsStyle.bottom_main_desc}>
-                  <span>Places of Interest:</span>{" "}
+                  <span>{appData?.words["strPlacesofInterest"]}:</span>{" "}
                   <span>{point?.["address-description"]}</span>
                 </div>
               </div>
@@ -75,7 +75,7 @@ const DropOffPoints = ({ selectedDropoffPoints ,direction,language}) => {
             {point?.pcatId === 8 && point?.["address-description"] && (
               <div className={pointsStyle.details_bottom_description} direction={String(direction === 'rtl')}>
                 <div className={pointsStyle.bottom_main_desc}>
-                  <span>Cities:</span>{" "}
+                  <span>{appData?.words["strCities"]}:</span>{" "}
                   <span>{point?.["address-description"]}</span>
                 </div>
               </div>
@@ -84,7 +84,7 @@ const DropOffPoints = ({ selectedDropoffPoints ,direction,language}) => {
             {point?.pcatId === 9 && point?.["address-description"] && (
               <div className={pointsStyle.details_bottom_description} direction={String(direction === 'rtl')}>
                 <div className={pointsStyle.bottom_main_desc}>
-                  <span>Universities And Colleges:</span>{" "}
+                  <span>{appData?.words["strUniversitiesAndColleges"]}:</span>{" "}
                   <span>{point?.["address-description"]}</span>
                 </div>
               </div>
@@ -94,7 +94,7 @@ const DropOffPoints = ({ selectedDropoffPoints ,direction,language}) => {
             {point?.pcatId === 10 && point?.["address-description"] && (
               <div className={styles.details_bottom_description} direction={String(direction === 'rtl')}>
                 <div className={styles.bottom_main_desc}>
-                  <span>Description:</span>{" "}
+                  <span>{appData?.words["strAddress"]}:</span>{" "}
                   <span>{point?.["address-description"]}</span>
                 </div>
               </div>

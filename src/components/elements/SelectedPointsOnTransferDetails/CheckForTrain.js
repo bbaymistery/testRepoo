@@ -18,7 +18,7 @@ const CheckForTrain = (props) => {
       {point.pcatId === 3 ?
         (<div className={styles.insideInputs}>
           <div className={styles.insideInputs_input}>
-            <TextInput label="Train Number" type="text" name="trainNumber" value={point.trainNumber} onChange={(e) => onchangeHandler(e)} errorMessage={errorMessage} />
+            <TextInput label={appData?.words["strTrainNumber"]} type="text" name="trainNumber" value={point.trainNumber} onChange={(e) => onchangeHandler(e)} errorMessage={errorMessage} />
           </div>
         </div>)
         : <React.Fragment></React.Fragment>}

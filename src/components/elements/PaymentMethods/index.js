@@ -280,16 +280,16 @@ const PaymentMethods = () => {
           {/* */}
 
           <div className={`${styles.items_buttons}`}>
-            <div title="Pay with Cash to the Driver" onClick={setCashModal} className={` ${styles.item} ${styles.item_1}`}   >
-              <p>Pay with Cash to the Driver </p>
+            <div title={appData?.words["strPaywithCashtotheDriver"]} onClick={setCashModal} className={` ${styles.item} ${styles.item_1}`}   >
+              <p>{appData?.words["strPaywithCashtotheDriver"]}</p>
               <img src="/images/pp.jpg" alt="" />
             </div>
-            <div title="Pay with PayPal" onClick={() => startPayment(5)} className={` ${styles.item} ${styles.item_2}`}   >
-              <p>Pay with PayPal </p>
+            <div title={appData?.words["Pay with PayPal"]} onClick={() => startPayment(5)} className={` ${styles.item} ${styles.item_2}`}   >
+              <p>{appData?.words["strPaywithPayPal"]} </p>
               <img src="/images/paypal.png" alt="" />
             </div>
-            <div onClick={() => startPayment(7)} title="Pay with Stripe" className={`${styles.item} ${styles.item_4}`}   >
-              <p>Pay by Card </p>
+            <div onClick={() => startPayment(7)} title={appData?.words["strPaybycard"]} className={`${styles.item} ${styles.item_4}`}   >
+              <p>{appData?.words["strPaybycard"]} </p>
               <img src="/images/vsMaster.jpg" alt="" />
             </div>
           </div>
@@ -309,7 +309,6 @@ const PaymentMethods = () => {
                 </div>
               </div>
             </div>
-
             : <></>}
         </div>
       </div>

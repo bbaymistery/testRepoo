@@ -27,6 +27,7 @@
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
+                gap: 1rem;
 
                 @media(max-width:1250px) {
                     display: grid;
@@ -43,7 +44,6 @@
                 @media(max-width:768px) {
                     grid-template-columns: 1fr;
                     align-content: center;
-                    gap: 1rem;
                 }
 
                 .column {
@@ -52,6 +52,7 @@
                         font-size: 22px;
                         color: $dark-1;
                         margin-bottom: 15px;
+                        text-transform: capitalize;
 
                         @media(max-width:1250px) {
                             margin-bottom: 10px;
@@ -105,7 +106,7 @@
                 }
 
                 .first_column {
-                    max-width: 350px;
+                    max-width: 320px;
 
                     .logo {
                         margin-bottom: 15px;

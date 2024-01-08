@@ -10,7 +10,6 @@ import { cruisePortimages, taxidealsImages } from '../../../constants/taxideals'
 const taxiDealsValidLocations = (dealsName) => {
     //first letter uppercase
     dealsName = dealsName.charAt(0).toUpperCase() + dealsName.slice(1);
-
     if (dealsName === 'City airport') dealsName = 'City Airport'
     //we r destcructing to taxi trasnfer
     return [
@@ -27,11 +26,14 @@ const taxiDealsValidLocations = (dealsName) => {
 
 
 const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
+
     const { appData } = useSelector(state => state.initialReducer)
     function filterDatas(datas) {
         if (["portsmouth", "dover", "harwich", "southampton"].includes(dealsName)) {
             //we  do not need any destructing
-            return datas = points
+            //0.8 yaziriq cunki bize 10 tane locations getirir
+            //https://api.london-tech.com//api/v1/taxi-deals/list?points=southampton&language=en&channelId=2
+            return datas = points.slice(0, 8)
         } else {
             return datas
                 .filter(({ pageTitle }) => taxiDealsValidLocations(dealsName).includes(pageTitle))

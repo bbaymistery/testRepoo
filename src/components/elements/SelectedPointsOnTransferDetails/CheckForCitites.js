@@ -20,7 +20,7 @@ const CheckForCitites = (props) => {
         (<div className={styles.insideInputs}>
           <div className={styles.insideInputs_input}>
             {/* check language_words */}
-            <TextInput label="Cities" type="text" name="address-description" onChange={(e) => onchangeHandler(e)} value={point["address-description"]} errorMessage={errorMessage} />
+            <TextInput label={appData?.words["strCities"]} type="text" name="address-description" onChange={(e) => onchangeHandler(e)} value={point["address-description"]} errorMessage={errorMessage} />
           </div>
         </div>)
         : <React.Fragment></React.Fragment>}

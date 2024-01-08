@@ -64,6 +64,7 @@ const Hero = (props) => {
         "error-booking-message-1": ""
 
     })
+
     const collectPoints = useCallback((params = {}, callback = () => { }) => {
 
         let { value = '', reducerSessionToken = "", language = "" } = params;
@@ -450,7 +451,7 @@ const Hero = (props) => {
                                                         onChange={(e) => onChangeSetDateTimeHandler({ value: e.target.value, hourOrMinute: "date", journeyType: index })}
                                                     />
                                                 </div>
-                                                <i className={`fa-solid fa-calendar-days ${styles.date_picker_icon}`}></i>
+                                                <i className={`fa-solid fa-calendar-days ${styles.date_picker_icon} ${islinknamecomponent ? styles.date_picker_icon_on_linkame : ""}`}></i>
                                             </div>
                                             <div className={` ${styles.search_menu} ${styles.hours_minutes} ${styles.fourth_column}`}>
                                                 <p className={direction}>{selectedPickupPoints[0]?.pcatId === 1 ? appData?.words["seLandingTime"] : appData?.words["sePickUpTime"]}</p>

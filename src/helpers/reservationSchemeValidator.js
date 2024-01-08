@@ -53,18 +53,18 @@ export function reservationSchemeValidator(params = {}, options = {}) {
                     if (typeof flightDetails.flightNumber === 'string') {
                       if (type === 'pickup' && parseInt(i) === 0 && flightDetails.flightNumber.length === 0) {
                         errorHolder.status = 403
-                        errorHolder.reservations[index][key][i]['flightDetails']['flightNumber'] = 'required'
+                        errorHolder.reservations[index][key][i]['flightDetails']['flightNumber'] = appData?.words["strRequired"]
                       }
                       // the rest of points have optional flightNumber value
                     }
                     else {
                       errorHolder.status = 403
-                      errorHolder.reservations[index][key][i]['flightDetails']['flightNumber'] = 'required'
+                      errorHolder.reservations[index][key][i]['flightDetails']['flightNumber'] = appData?.words["strRequired"]
                     }
                     // waitingPickupTime is must be have integer valud and it is mandutary for first pickup point
                     if (!Number.isInteger(flightDetails.waitingPickupTime)) {
                       errorHolder.status = 403
-                      errorHolder.reservations[index][key][i]['flightDetails']['waitingPickupTime'] = 'required'
+                      errorHolder.reservations[index][key][i]['flightDetails']['waitingPickupTime'] = appData?.words["strRequired"]
                     }
                   }
                   else {
@@ -83,11 +83,11 @@ export function reservationSchemeValidator(params = {}, options = {}) {
                     if (typeof cruiseNumber === 'string') {
                       if (type === 'pickup' && parseInt(i) === 0 && cruiseNumber.length === 0) {
                         errorHolder.status = 403
-                        errorHolder.reservations[index][key][i]['cruiseNumber'] = 'required'
+                        errorHolder.reservations[index][key][i]['cruiseNumber'] = appData?.words["strRequired"]
                       }
                     } else {
                       errorHolder.status = 403
-                      errorHolder.reservations[index][key][i]['cruiseNumber'] = 'required'
+                      errorHolder.reservations[index][key][i]['cruiseNumber'] = appData?.words["strRequired"]
                     }
                   } else {
                     errorHolder.reservations[index][key][i]['cruiseNumber'] = 'invalid'
@@ -120,12 +120,12 @@ export function reservationSchemeValidator(params = {}, options = {}) {
                     if (typeof postCodeDetails.postCodeAddress === 'string' && Number.isInteger(postCodeDetails.id)) {
                       if (postCodeDetails.id === 0 && postCodeDetails.postCodeAddress.length === 0) {
                         errorHolder.status = 403
-                        errorHolder.reservations[index][key][i]['postCodeDetails']['postCodeAddress'] = 'required'
+                        errorHolder.reservations[index][key][i]['postCodeDetails']['postCodeAddress'] = appData?.words["strRequired"]
                       }
                     } else {
                       errorHolder.status = 403
                       errorHolder.reservations[index][key][i]['postCodeDetails']['id'] = !Number.isInteger(postCodeDetails.id) ? 'invalid' : undefined
-                      errorHolder.reservations[index][key][i]['postCodeDetails']["postCodeAddress"] = typeof postCodeDetails.postCodeAddress !== 'string' ? 'required' : undefined
+                      errorHolder.reservations[index][key][i]['postCodeDetails']["postCodeAddress"] = typeof postCodeDetails.postCodeAddress !== 'string' ? appData?.words["strRequired"] : undefined
                     }
                   } else {
                     errorHolder.reservations[index][key][i]['postCodeDetails'] = 'invalid'
@@ -154,15 +154,15 @@ export function reservationSchemeValidator(params = {}, options = {}) {
               let { token, price, carId } = quotation
               if (typeof (token) !== 'string') {
                 errorHolder.status = 403;
-                errorHolder.reservations[index][key]["token"] = 'invalid data type'
+                errorHolder.reservations[index][key]["token"] = appData?.words["strInvalidDataType"]
               }
               if (typeof (price) !== 'string') {
                 errorHolder.status = 403;
-                errorHolder.reservations[index][key]["price"] = 'invalid data type'
+                errorHolder.reservations[index][key]["price"] = appData?.words["strInvalidDataType"]
               }
               if (!Number.isInteger(carId)) {
                 errorHolder.status = 403;
-                errorHolder.reservations[index][key]["price"] = 'invalid data type'
+                errorHolder.reservations[index][key]["price"] = appData?.words["strInvalidDataType"]
               }
             }
           }
@@ -173,21 +173,21 @@ export function reservationSchemeValidator(params = {}, options = {}) {
 
             if (!Number.isInteger(passengersNumber)) {
               errorHolder.status = 403;
-              errorHolder.reservations[index][key]["passengersNumber"] = 'invalid data type'
+              errorHolder.reservations[index][key]["passengersNumber"] = appData?.words["strInvalidDataType"]
             }
 
             if (!Number.isInteger(pickupCategoryId)) {
               errorHolder.status = 403;
-              errorHolder.reservations[index][key]["pickupCategoryId"] = 'invalid data type'
+              errorHolder.reservations[index][key]["pickupCategoryId"] = appData?.words["strInvalidDataType"]
             }
             //in our hgt "2022-12-01 20:00"     date structure in this way
             if (typeof (transferDateTimeString) !== 'string') {
               errorHolder.status = 403;
-              errorHolder.reservations[index][key]["transferDateTimeString"] = 'invalid data type'
+              errorHolder.reservations[index][key]["transferDateTimeString"] = appData?.words["strInvalidDataType"]
             }
             if (typeof (specialRequests) !== 'string') {
               errorHolder.status = 403;
-              errorHolder.reservations[index][key]["specialRequests"] = 'invalid data type'
+              errorHolder.reservations[index][key]["specialRequests"] = appData?.words["strInvalidDataType"]
             }
           }
           else if (key === 'passengerDetails') {
@@ -199,29 +199,29 @@ export function reservationSchemeValidator(params = {}, options = {}) {
               // firstname , lastname , email , phone , language
               if (typeof passengerDetails['firstname'] !== 'string' || (typeof passengerDetails['firstname'] === 'string' && passengerDetails['firstname'].length === 0)) {
                 errorHolder.status = 403;
-                errorHolder.reservations[index][key]['firstname'] = 'required'
+                errorHolder.reservations[index][key]['firstname'] = appData?.words["strRequired"]
               }
               //!new addition for @ email checking
               if (typeof passengerDetails['email'] !== 'string' || (typeof passengerDetails['email'] === 'string' && passengerDetails['email'].length === 0) || !passengerDetails["email"].includes("@")) {
                 errorHolder.status = 403;
-                errorHolder.reservations[index][key]['email'] = 'required'
+                errorHolder.reservations[index][key]['email'] = appData?.words["strRequired"]
               }
               if (typeof passengerDetails['phone'] !== 'string' || (typeof passengerDetails['phone'] === 'string' && passengerDetails['phone'].length === 0)) {
                 errorHolder.status = 403;
-                errorHolder.reservations[index][key]['phone'] = 'required'
+                errorHolder.reservations[index][key]['phone'] = appData?.words["strRequired"]
               }
 
               if (typeof passengerDetails['lastname'] !== 'string') {
                 errorHolder.status = 403;
-                errorHolder.reservations[index][key]['lastname'] = 'invalid data type'
+                errorHolder.reservations[index][key]['lastname'] = appData?.words["strInvalidDataType"]
               }
               if (typeof passengerDetails['language'] !== 'string') {
                 errorHolder.status = 403;
-                errorHolder.reservations[index][key]['language'] = 'invalid data type'
+                errorHolder.reservations[index][key]['language'] = appData?.words["strInvalidDataType"]
               }
               if (typeof passengerDetails['token'] !== 'string') {
                 errorHolder.status = 403;
-                errorHolder.reservations[index][key]['token'] = 'invalid data type'
+                errorHolder.reservations[index][key]['token'] = appData?.words["strInvalidDataType"]
               }
 
               // check all keys

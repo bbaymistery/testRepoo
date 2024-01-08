@@ -61,15 +61,15 @@ const MeetGreet = (props) => {
         let errors = {};
 
         if (activeStep === 0) {
-            errors = passengerDetailsError(passengersForm);
+            errors = passengerDetailsError(passengersForm, appData);
             setErrorHolderPassengerDetails(errors);
 
         } else if (activeStep === 1) {
-            errors = flightDetailsError(meetAndGreetState.flightDetails);
+            errors = flightDetailsError(meetAndGreetState.flightDetails, appData);
             setErrorHolderFlightDetails(errors);
         }
         else if (activeStep === 2) {
-            errors = bookersDetailsError(meetAndGreetState.bookersDetails);
+            errors = bookersDetailsError(meetAndGreetState.bookersDetails, appData);
             setErrorHolderBookersDetails(errors);
         }
 
@@ -104,6 +104,7 @@ const MeetGreet = (props) => {
     const onchangeBookerDetailsHandler = (params = {}) => dispatch({ type: 'SET_BOOKER_DETAILS', data: { ...params } })
 
 
+
     return (
         <GlobalLayout keywords={keywords} title={title} description={description}>
             <div className={`${styles.meetgreet} ${direction} page`} bggray={String(bggray === "true")}>
@@ -120,13 +121,13 @@ const MeetGreet = (props) => {
                                             {passengersForm.map((guest, idx) => {
                                                 let errors = errorHolderPassengerDetails[idx]
                                                 return <div key={idx} className={styles.passengers_details_div}>
-                                                    <p>Passenger {idx + 1}</p>
+                                                    <p style={{ textTransform: "capitalize" }}>{appData?.words["strPassengerTitle"]} {idx + 1}</p>
                                                     <div className={styles.passengers_details}>
                                                         <div className={styles.input_div}>
-                                                            <TextInput label={"Firstname"} type="text" name="firstname" onChange={e => onchangePassengerHandler(e, idx)} value={guest.firstname} errorMessage={errors?.errorMessage} />
+                                                            <TextInput label={appData?.words["strFirstName"]} type="text" name="firstname" onChange={e => onchangePassengerHandler(e, idx)} value={guest.firstname} errorMessage={errors?.errorMessage} />
                                                         </div>
                                                         <div className={styles.input_div}>
-                                                            <TextInput label="Lastname" type="text" name="lastname" onChange={e => onchangePassengerHandler(e, idx)} value={guest.lastname} errorMessage={errors?.errorMessage} />
+                                                            <TextInput label={appData?.words["strLastName"]} type="text" name="lastname" onChange={e => onchangePassengerHandler(e, idx)} value={guest.lastname} errorMessage={errors?.errorMessage} />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -143,14 +144,14 @@ const MeetGreet = (props) => {
                                                     <Select errorMessage={errorHolderFlightDetails?.airline?.errorMessage} label="Airline" name="Airline" postCodeSelectOption={true} onChange={onchangeAirlineHandler} value={airline} data={dropdownAirlineLabels} />
                                                 </div>
                                                 <div className={styles.input_div}>
-                                                    <TextInput errorMessage={errorHolderFlightDetails.flightNumber?.errorMessage} label={"Flight Nummber"} type="text" name="flightNumber" onChange={e => onchangeNumberLuggageHandler(e)} value={flightNumber} />
+                                                    <TextInput errorMessage={errorHolderFlightDetails.flightNumber?.errorMessage} label={appData?.words["strFlightNumberTitle"]} type="text" name="flightNumber" onChange={e => onchangeNumberLuggageHandler(e)} value={flightNumber} />
                                                 </div>
                                                 <div className={styles.input_div}>
                                                     <Select errorMessage={errorHolderFlightDetails.flightClass?.errorMessage} label="Flight Class" name="Flight Class" postCodeSelectOption={true} onChange={onchangeFlightClassHandler} value={flightClass} data={dropdownFlightClass} />
                                                 </div>
 
                                                 <div className={` ${styles.search_menu} ${styles.hours_minutes} `}>
-                                                    <p className={direction}>{"Flight Time"}</p>
+                                                    <p className={direction}>{appData?.words["seLandingTime"]}</p>
                                                     <div className={`${styles.select_time_div} ${direction}`}>
                                                         {Array.from(new Array(2)).map((_arr, i) => {
                                                             return (
@@ -200,21 +201,22 @@ const MeetGreet = (props) => {
                                         <div className={styles.bookers}>
                                             <p className={styles.bookers_title}> Payment </p>
                                             <div className={styles.bookers_details_div}>
-                                                <p>Booker's Details</p>
+                                                <p>{appData?.words["strYourBookingDetails"]}</p>
                                                 <div className={styles.bookers_details}>
                                                     <div className={styles.input_div}>
-                                                        <TextInput errorMessage={errorHolderBookerDetails?.firstname?.errorMessage} label="First Name" type="text" name="firstname" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={firstname} />
+                                                        <TextInput errorMessage={errorHolderBookerDetails?.firstname?.errorMessage} label={appData?.words["strFirstName"]} type="text" name="firstname" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={firstname} />
                                                     </div>
                                                     <div className={styles.input_div}>
-                                                        <TextInput errorMessage={errorHolderBookerDetails?.lastname?.errorMessage} label="Last Name" type="text" name="lastname" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={lastname} />
+                                                        <TextInput errorMessage={errorHolderBookerDetails?.lastname?.errorMessage} label={appData?.words["strLastName"]} type="text" name="lastname" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={lastname} />
                                                     </div>
                                                     <div className={styles.input_div}>
-                                                        <TextInput errorMessage={errorHolderBookerDetails?.email?.errorMessage} label="E-Mail Address" type="text" name="email" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={email} />
+                                                        <TextInput errorMessage={errorHolderBookerDetails?.email?.errorMessage} label={appData.words["appContactUsEmailAddress"]} type="text" name="email" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={email} />
                                                     </div>
                                                     <div className={styles.input_div}>
-                                                        <TextInput errorMessage={errorHolderBookerDetails?.mobileNumber?.errorMessage} label="Mobile Number" type="text" name="mobileNumber" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={mobileNumber} />
+                                                        <TextInput errorMessage={errorHolderBookerDetails?.mobileNumber?.errorMessage} label={appData?.words["strPhoneNumber"]} type="text" name="mobileNumber" onChange={(e) => onchangeBookerDetailsHandler({ value: e.target.value, name: e.target.name })} value={mobileNumber} />
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                         : <></>}
@@ -223,7 +225,7 @@ const MeetGreet = (props) => {
 
                                             <div className={styles.bookers_details_div}>
                                                 <MeetGreetBookingDetails />
-                                                <MeetGreetPassengerDetails />
+                                                <MeetGreetPassengerDetails appData={appData} />
                                             </div>
                                         </div>
                                         : <></>}
@@ -239,7 +241,7 @@ const MeetGreet = (props) => {
                                     <div className={styles.right_content}>
                                         <p>Order Summary</p>
                                         <div className={styles.border}> </div>
-                                        <li className={styles.arrival}> <span>{buttonLabelsNames[meetgreetActiveBtn]} : </span> Meet & Greet   </li>
+                                        <li className={styles.arrival}> <span>{buttonLabelsNames[meetgreetActiveBtn]} : </span> {appData?.words["strMeetandGreetIncluded"]}   </li>
                                         <li className={styles.terminal}>{terminalName}  </li>
                                         <li className={styles.date}> {formatDate(meetgreetDate)}  </li>
                                         <li className={styles.adults}>  {seatLists[0].minNum} Adults, {seatLists[1].minNum} Children, {seatLists[2].minNum} Infants   </li>
@@ -249,7 +251,7 @@ const MeetGreet = (props) => {
                                             {buggerListTotalPrice > 0 ? <p> <span>Extra(s) </span> <span>£{buggerListTotalPrice}</span> </p> : <></>}  <p>
                                                 <span>VAT</span> <span>£{vat}</span>
                                             </p>
-                                            <p className={styles.total_price}><span>Total</span><span>£{totalPrice}</span>    </p>
+                                            <p className={styles.total_price}><span>{appData?.words["strTotalPrice"]}</span><span>£{totalPrice}</span>    </p>
                                         </div>
                                     </div>
                                     <div className={`${styles.back_next_buttons}`} >

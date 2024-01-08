@@ -92,7 +92,7 @@
                         border-radius: 4px;
                         position: sticky !important;
                         top: 121px;
-                        height: 800px;
+                        min-width: 30%;
 
                         @media (max-width: 1280px) {
                             display: none;
@@ -158,25 +158,7 @@
                                         right: 409px;
                                         left: -27px;
 
-                                        // @media(max-width:1450px) {
-                                        //     right: 299px;
-                                        // }
 
-                                        // @media(max-width:1270px) {
-                                        //     right: 279px;
-                                        // }
-
-                                        // @media(max-width:1220px) {
-                                        //     right: 259px;
-                                        // }
-
-                                        // @media(max-width:1200px) {
-                                        //     right: 229px;
-                                        // }
-
-                                        // @media(max-width:990px) {
-                                        //     right: 80px;
-                                        // }
                                     }
 
                                     .input_delete_field_icon[direction="true"] {
@@ -610,7 +592,6 @@
 
 
                                 .date_picker_icon {
-
                                     top: 74px !important;
                                     transform: translateY(-100%);
                                     right: 13px;
@@ -780,7 +761,7 @@
                     //!taxi deals
                     .quotation_panel_istaxideal {
                         flex-basis: 23%;
-
+                        min-width: 23%;
                         gap: 1rem;
                         display: flex;
                         flex-direction: column;

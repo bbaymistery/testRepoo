@@ -44,7 +44,13 @@ const NavbarLinkName = (props) => {
 
         //normalda bunu appDatadan destructure edicez
         let lists = ["portsmouth", "dovercruise", "southampton", "harwich", "heathrow", "heathrow", "city", "gatwick", "luton", "stansted"]
-        if (lists.includes(linkname)) dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: linkname } })
+        if (lists.includes(linkname)) {
+            if (linkname === "dovercruise") {
+                dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: "dover" } })
+            } else {
+                dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: linkname } })
+            }
+        }
 
     }, [])
     return (

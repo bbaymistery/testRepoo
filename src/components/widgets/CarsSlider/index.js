@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import CarItem from "./CarItem";
+import { connect } from "react-redux";
 const itemsCarWrapperRef = React.createRef(null); //in order to click right or left and change lsider
 const sliderRef = React.createRef(null); //total all sliders length (width)
 const sliderConRef = React.createRef(null);
@@ -167,7 +168,7 @@ class CarsSlider extends React.Component {
       <div className={styles.car_section} bggray={String(bggray)} style={{ border: `${noborder ? "none" : "1px solid transparent"}` }} >
         <div className={styles.car_container} ref={sliderConRef}>
           <div className={styles.header}>
-            <h1 className={styles.header_title}>Our Fleet </h1>
+            <h1 className={styles.header_title}>{this.props.appData.words["strOurFleet"] || 'Our Fleet'}</h1>
           </div>
           <div className={styles.body}>
             <div className={styles.body_content}>
@@ -199,7 +200,14 @@ class CarsSlider extends React.Component {
     );
   }
 }
-export default CarsSlider;
+// This function maps the Redux state to the component's props
+const mapStateToProps = (state) => ({
+  appData: state.initialReducer.appData,
+});
+
+// Connect the CarsSlider component to Redux using the connect function
+export default connect(mapStateToProps)(CarsSlider);
+
 CarsSlider.defaultProps = {
   bggray: false
 };

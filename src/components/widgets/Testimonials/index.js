@@ -9,6 +9,8 @@ const Testimonials = (props) => {
     let { bggray } = props
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction } } = state
+    const { appData } = useSelector(state => state.initialReducer)
+
     const [showText, setshowText] = useState(false)
     let size = useWindowSize()
     let { width } = size
@@ -17,7 +19,7 @@ const Testimonials = (props) => {
         <div className={`${styles.testimonials} ${direction} page`} bggray={String(bggray)} style={{ backgroundColor: `${String(bggray) === "true" ? "#f5f5f5" : "white"}` }}>
             <div className={`${styles.testimonials_section} page_section`}>
                 <div className={`${styles.testimonials_section_container} page_section_container`}>
-                    <h1>Reliable & Comfortable London Airport Transfers with APL Cars</h1>
+                    <h1>{appData.words["strReliableComfortableLondonAirporttaxi"] || "Reliable & Comfortable London Airport Transfers with APL Cars"}</h1>
                     <p>
                         <span title='Airport Pickups London (APL Cars)' className={styles.bold_span}>Airport Pickups London (APL Cars) </span>
                         is a premier provider of London airport transfers and shuttle services.

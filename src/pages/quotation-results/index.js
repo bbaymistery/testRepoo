@@ -256,7 +256,7 @@ const QuotationResults = (props) => {
     }
 
     if (!returnQuotation.token) {
-      alert("Please select your car type   for your return  journey?");
+      alert(appData?.words["strPleaseSelectYourCarTypeForYour"]);
       return
     }
     if (!transferQuotation.token) {
@@ -317,6 +317,8 @@ const QuotationResults = (props) => {
     getQuotations()
 
   }
+  const [showMapOneWay, setShowMapOneWay] = useState(false)
+  const [showMapReturn, setShowMapReturn] = useState(false)
 
 
   //when we go quotation page then go back In that case we should check
@@ -388,10 +390,10 @@ const QuotationResults = (props) => {
 
                   return (
                     <div key={index} style={{ marginBottom: `${index === 0 ? "1rem" : "0"}` }}>
-                      {index === 0 ? <h2 className={`${styles.title} ${direction}`}>{appData?.words["seGoingDetails"]}</h2> : <React.Fragment></React.Fragment>}
-                      {index === 1 ? <h2 className={`${styles.title} ${direction}`}>{appData?.words["seReturnDetails"]}</h2> : <React.Fragment></React.Fragment>}
+                      {+journeyType === 0 && index === 0 ? <h2 className={`${styles.title} ${direction}`}>{appData?.words["seGoingDetails"]}</h2> : <React.Fragment></React.Fragment>}
+                      {/* {index === 1 ? <h2 className={`${styles.title} ${direction}`}>{appData?.words["seReturnDetails"]}</h2> : <React.Fragment></React.Fragment>} */}
                       <div className={`${styles.main_container} ${direction} `}>
-                        <div className={`${styles.quotation_panel} `}>
+                        <div className={`${styles.quotation_panel}`} style={{ height: +journeyType === 0 ? "800px" : "" }}>
                           <div className={styles.form_div} action="">
                             <div className={`${styles.search_menu} ${styles.pickup_div} ${reservationError?.selectedPickupPoints?.length > 0 && !internalState[`pickup-search-value-${index}`] && selectedPickupPoints.length === 0 ? styles.error_input : ""}`}>
 
@@ -534,11 +536,21 @@ const QuotationResults = (props) => {
                               <span>{internalState[`quotation-loading`] ? <WaveLoading /> : `${appData?.words["seUpdateQuotation"]}`}</span>
                             </button>
                           </div>
-                          <div className={styles.map_direction} >
-                            {selectedDropoffPoints.length > 0 && selectedPickupPoints.length > 0 ?
+                          {(selectedDropoffPoints.length > 0 && index === 1) && (showMapReturn) ?
+                            <div className={styles.map_direction} >
                               <Map datas={quotations[index]} selectedPickPoints={selectedPickupPoints} selectedDroppOfPoints={selectedDropoffPoints} />
-                              : ""}
-                          </div>
+                            </div>
+                            : <></>}
+                          {(selectedPickupPoints.length > 0 && index === 0) && (showMapOneWay) ?
+                            <div className={styles.map_direction} >
+                              <Map datas={quotations[index]} selectedPickPoints={selectedPickupPoints} selectedDroppOfPoints={selectedDropoffPoints} />
+                            </div>
+                            : <></>}
+                          {(selectedDropoffPoints.length > 0 && selectedPickupPoints.length > 0) && (+journeyType === 0) ?
+                            <div className={styles.map_direction} >
+                              <Map datas={quotations[index]} selectedPickPoints={selectedPickupPoints} selectedDroppOfPoints={selectedDropoffPoints} />
+                            </div>
+                            : <></>}
                         </div>
                         {/* //*Card item of results */}
 
@@ -553,6 +565,11 @@ const QuotationResults = (props) => {
                               quotationOptions={quotations[index].quotationOptions}
                               quotationLoading={internalState[`quotation-loading`]}
                               gotoTransferDetailsClick={gotoTransferDetailsClick}
+                              journeyType={journeyType}
+                              setShowMapOneWay={setShowMapOneWay}
+                              setShowMapReturn={setShowMapReturn}
+                              showMapOneWay={showMapOneWay}
+                              showMapReturn={showMapReturn}
                             />
                           }
                           {/* {index === 1 &&
@@ -585,7 +602,7 @@ const QuotationResults = (props) => {
                             </div>
                             : <></>}
                           <div className={`${styles.left_info} ${styles.tripad_left_info}`} >
-                            <p className={`${styles.left_info_title} ${direction}`}>Tripadvisor Ratings</p>
+                            <p className={`${styles.left_info_title} ${direction}`}>{appData?.words["strTripAdvisorReviews"]}</p>
                             <ul>
                               <a
                                 className={styles.tripad_a}
@@ -597,7 +614,7 @@ const QuotationResults = (props) => {
                             </ul>
                           </div>
                           <div className={`${styles.left_info} ${styles.left_support}`} >
-                            <p className={`${styles.left_info_title} ${direction}`}>7/24 Support</p>
+                            <p className={`${styles.left_info_title} ${direction}`}>{appData?.words["appContactUsHotLine"]}</p>
 
                             <ul>
                               <li className={styles.phone}>
@@ -619,7 +636,7 @@ const QuotationResults = (props) => {
                             </ul>
                           </div>
                           <div className={`${styles.left_info} ${styles.services}`} direction={String(direction === "rtl")} >
-                            <p className={styles.left_info_title}>ALL Inclusive Prices</p>
+                            <p className={styles.left_info_title}>{appData?.words["strAllInclusivePrices"]}</p>
                             <ul >
                               <li className={`${direction}`}>
                                 <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
@@ -631,31 +648,31 @@ const QuotationResults = (props) => {
                                 <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                                 <label className={styles.primary_text} >
                                 </label>
-                                Flight monitoring
+                                {appData?.words["strFlightMonitoring"]}
                               </li>
                               <li className={`${direction}`}>
                                 <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                                 <label className={styles.primary_text} >
                                 </label>
-                                FREE Baby/Child Seat
+                                {appData?.words["strFreeBabyChildSeat"]}
                               </li>
                               <li className={`${direction}`}>
                                 <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                                 <label className={styles.primary_text} >
                                 </label>
-                                FIXED Prices
+                                {appData?.words["strAllInclusiveFixedPrices"]}
                               </li>
                               <li className={`${direction}`}>
                                 <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                                 <label className={styles.primary_text} >
                                 </label>
-                                NO hidden charges
+                                {appData?.words["strCarFeatureNoCharge4Delay"]}
                               </li>
                               <li className={`${direction}`}>
                                 <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                                 <label className={styles.primary_text} >
                                 </label>
-                                FREE Cancellation (24h)
+                                {appData?.words["strFreeCancellation24h"]}
                               </li>
 
                             </ul>
@@ -663,11 +680,11 @@ const QuotationResults = (props) => {
 
 
                           <div className={styles.map_direction}  >
-                            <button onClick={() => setTaxidealMapStatus(true)} className='btn btn_hover_reverse_primary'><i className="fa-solid fa-map-location-dot"></i> Show on map</button>
+                            <button onClick={() => setTaxidealMapStatus(true)} className='btn btn_hover_reverse_primary'><i className="fa-solid fa-map-location-dot"></i> {appData?.words["strShowOnMap"]}</button>
                           </div>
 
                           <div className={`${styles.left_info} ${styles.acceptedcards}`}>
-                            <p className={`${styles.left_info_title} ${direction}`}> Accepted Cards</p>
+                            <p className={`${styles.left_info_title} ${direction}`}> {appData?.words["strAcceptedCards"]}</p>
                             <img className={styles.acceptedcards_img} border="0" alt="Airport Pickups" src="/images/payments.png" />
                           </div>
                           <div className={`${styles.left_info} ${styles.tfl}`}>

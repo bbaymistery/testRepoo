@@ -193,8 +193,8 @@ const ReservationsDocument = () => {
                                 <div className={styles.document_details_section} >
                                     <div className={styles.first_section}>
                                         <div className={styles.icon_div}><i className="fa-solid fa-check"></i></div>
-                                        <p className={styles.succes_message2}>Your booking is now confirmed!</p>
-                                        <p className={styles.sub_succes_message}> Booking details has been sent to: {reservations[0].passengerDetails.email}</p>
+                                        <p className={styles.succes_message2}>{appData?.words["strYourbookingIsNowConfirmed"]}!</p>
+                                        <p className={styles.sub_succes_message}> {appData?.words["strBookingDetailsHaveBeenSentTo"]}: {reservations[0].passengerDetails.email}</p>
                                     </div>
                                     {reservations.map((obj, index) => {
                                         let { transferDetails, passengerDetails, quotation, selectedPickupPoints, selectedDropoffPoints } = obj
@@ -205,14 +205,14 @@ const ReservationsDocument = () => {
                                         return (
                                             <div key={index}>
                                                 <div className={styles.second_section}>
-                                                    {index === 1 ? <p className={styles.title}>Return Journey Booking Details </p> : <p className={styles.title}> Booking Details </p>}
+                                                    {index === 1 ? <p className={styles.title}>{appData?.words["strReturnJourneyDetails"]} </p> : <p className={styles.title}> {appData?.words["strYourBookingDetails"]} </p>}
                                                     <div className={styles.columns}>
                                                         <div className={styles.column_div}>
-                                                            <div className={`${styles.text1} ${direction}`}> Order Number</div>
+                                                            <div className={`${styles.text1} ${direction}`}> {appData?.words["strOrderIdTitle"]}</div>
                                                             <div className={`${styles.text2} ${direction}`}> {reservId[0][index]}</div>
                                                         </div>
                                                         <div className={styles.column_div}>
-                                                            <div className={`${styles.text1} ${direction}`}> Date</div>
+                                                            <div className={`${styles.text1} ${direction}`}> {appData?.words["strOn"]}</div>
 
                                                             <div className={`${styles.text2} ${direction}`}>
                                                                 {direction === 'rtl'
@@ -222,13 +222,13 @@ const ReservationsDocument = () => {
                                                             </div>
                                                         </div>
                                                         <div className={styles.column_div}>
-                                                            <div className={`${styles.text1} ${direction}`}>Total</div>
+                                                            <div className={`${styles.text1} ${direction}`}>{appData?.words["strTotalPrice"]}</div>
                                                             <div className={`${styles.text2} ${direction}`}>
                                                                 £{parseInt(journeyType) === 0 ? reservations[0].quotation.price : parseInt(reservations[0].quotation.price) + parseInt(reservations[1].quotation.price)}
                                                             </div>
                                                         </div>
                                                         <div className={styles.column_div}>
-                                                            <div className={`${styles.text1} ${direction}`}>Payment Method</div>
+                                                            <div className={`${styles.text1} ${direction}`}>{appData?.words["strPaymentMethod"]}</div>
                                                             <div className={`${styles.text2} ${direction}`}>
                                                                 {
                                                                     paymentTypes
@@ -241,40 +241,40 @@ const ReservationsDocument = () => {
                                                     </div>
                                                 </div>
                                                 <div className={styles.third_section}>
-                                                    {index === 1 ? <p className={styles.title}>Return Journey Details </p> : <p className={styles.title}>Journey Details </p>}
+                                                    {index === 1 ? <p className={styles.title}>{appData?.words["strReturnJourneyDetails"]} </p> : <p className={styles.title}>{appData?.words["strYourBookingDetails"]} </p>}
                                                     <div className={`${styles.passenger_info} ${direction}`}>
-                                                        <div className={styles.left}>Full Name </div>
+                                                        <div className={styles.left}>{appData?.words["strFullName"]} </div>
                                                         <div className={styles.right}>{firstname} </div>
                                                     </div>
                                                     <div className={`${styles.passenger_info} ${direction}`}>
-                                                        <div className={styles.left}>Phone </div>
+                                                        <div className={styles.left}>{appData?.words["strPhoneNumber"]} </div>
                                                         <div className={styles.right}>{phone}</div>
                                                     </div>
                                                     <div className={`${styles.passenger_info} ${direction}`}>
-                                                        <div className={styles.left}>Email</div>
+                                                        <div className={styles.left}>{appData?.words["strEmail"]}</div>
                                                         <div className={styles.right}>{email}</div>
                                                     </div>
                                                     <div className={`${styles.passenger_info} ${direction}`}>
-                                                        <div className={styles.left}>Passengers Number</div>
+                                                        <div className={styles.left}>{appData?.words["strNoofPassengers"]}</div>
                                                         <div className={styles.right}>{passengersNumber}</div>
                                                     </div>
 
                                                     <div className={`${styles.passenger_info} ${direction}`}>
-                                                        <div className={styles.left}>Vehicle Type</div>
+                                                        <div className={styles.left}>{appData?.words["strVehicleTypeTitle"]}</div>
                                                         <div className={styles.right}>{typeof carObject === "object" ? carObject[quotation?.carId]?.name : <React.Fragment></React.Fragment>}</div>
                                                     </div>
                                                     <div className={`${styles.passenger_info} ${direction}`}>
-                                                        <div className={styles.left}>Transfer Type</div>
+                                                        <div className={styles.left}>{appData?.wiords['carsTransferType']}</div>
                                                         <div className={styles.right}>{typeof carObject === "object" ? carObject[quotation?.carId]?.transferType : <React.Fragment></React.Fragment>}</div>
                                                     </div>
                                                     <PickUpPoints language={language} direction={direction} selectedPickupPoints={selectedPickupPoints} />
                                                     <DropOffPoints language={language} direction={direction} selectedDropoffPoints={selectedDropoffPoints} />
                                                     <div className={`${styles.passenger_info} ${direction}`}>
-                                                        <div className={styles.left}>Price</div>
+                                                        <div className={styles.left}>{appData?.words["strPriceTitle"]}</div>
                                                         <div className={styles.right}>£{quotation.price}</div>
                                                     </div>
                                                     <div className={`${styles.passenger_info} ${direction}`}>
-                                                        <div className={styles.left}>Special Requests</div>
+                                                        <div className={styles.left}>{appData?.words["strSpecialRequestsTitle"]}</div>
                                                         <div className={styles.right}>{specialRequests}</div>
                                                     </div>
                                                 </div>
@@ -286,9 +286,9 @@ const ReservationsDocument = () => {
                                         <div className={pdf.document_details_section_pdf} id="pdf_file"  >
                                             <div className={pdf.first_section}>
                                                 <div className={pdf.icon_div}><i className="fa-solid fa-check"></i></div>
-                                                <p className={pdf.succes_message2}>Your booking is now confirmed!</p>
+                                                <p className={pdf.succes_message2}>{appData?.words["strYourbookingIsNowConfirmed"]}!</p>
 
-                                                <p className={pdf.sub_succes_message}> Booking details has been sent to: admin@bookingcore.test</p>
+                                                <p className={pdf.sub_succes_message}> {appData?.words["strBookingDetailsHaveBeenSentTo"]}: admin@bookingcore.test</p>
                                             </div>
                                             {reservations.map((obj, index) => {
                                                 let { transferDetails, passengerDetails, quotation, selectedPickupPoints, selectedDropoffPoints } = obj
@@ -299,24 +299,24 @@ const ReservationsDocument = () => {
                                                 return (
                                                     <div key={index}>
                                                         <div className={pdf.second_section}>
-                                                            {index === 1 ? <p className={pdf.title}>Return Journey Booking Details </p> : <p className={pdf.title}> Booking Details </p>}
+                                                            {index === 1 ? <p className={pdf.title}>{appData?.words["strReturnJourneyDetails"]} </p> : <p className={pdf.title}> {appData?.words["strYourBookingDetails"]} </p>}
                                                             <div className={pdf.columns}>
                                                                 <div className={pdf.column_div}>
-                                                                    <div className={pdf.text1}> Order Number</div>
+                                                                    <div className={pdf.text1}> {appData?.words["strOrderIdTitle"]}</div>
                                                                     <div className={pdf.text2}> {reservId[0][index]}</div>
                                                                 </div>
                                                                 <div className={pdf.column_div}>
-                                                                    <div className={pdf.text1}> Date</div>
+                                                                    <div className={pdf.text1}> {appData?.words["strOn"]}</div>
                                                                     <div className={pdf.text2}> {splitedDate} {splitedHour}:{splitedMinute} </div>
                                                                 </div>
                                                                 <div className={pdf.column_div}>
-                                                                    <div className={pdf.text1}>Total</div>
+                                                                    <div className={pdf.text1}>{appData?.words["strTotalPrice"]}</div>
                                                                     <div className={pdf.text2}>
                                                                         £{parseInt(journeyType) === 0 ? reservations[0].quotation.price : parseInt(reservations[0].quotation.price) + parseInt(reservations[1].quotation.price)}
                                                                     </div>
                                                                 </div>
                                                                 <div className={pdf.column_div}>
-                                                                    <div className={pdf.text1}>Payment Method</div>
+                                                                    <div className={pdf.text1}>{appData?.words["strPaymentMethod"]}</div>
                                                                     <div className={pdf.text2}>{
                                                                         paymentTypes
                                                                             .filter(type => type.id === reservations[0]?.paymentDetails?.paymentType)
@@ -329,38 +329,38 @@ const ReservationsDocument = () => {
                                                         <div className={pdf.third_section}>
                                                             {index === 1 ? <p className={pdf.title}>Return Journey Details </p> : <p className={pdf.title}>Journey Details </p>}
                                                             <div className={pdf.passenger_info}>
-                                                                <div className={pdf.left}>Full Name </div>
+                                                                <div className={pdf.left}>{appData?.words["strFullName"]} </div>
                                                                 <div className={pdf.right}>{firstname} </div>
                                                             </div>
                                                             <div className={pdf.passenger_info}>
-                                                                <div className={pdf.left}>Phone </div>
+                                                                <div className={pdf.left}>{appData?.words["strPhoneNumber"]} </div>
                                                                 <div className={pdf.right}>{phone}</div>
                                                             </div>
                                                             <div className={pdf.passenger_info}>
-                                                                <div className={pdf.left}>Email</div>
+                                                                <div className={pdf.left}>{appData?.words["strEmail"]}</div>
                                                                 <div className={pdf.right}>{email}</div>
                                                             </div>
                                                             <div className={pdf.passenger_info}>
-                                                                <div className={pdf.left}>Passengers Number</div>
+                                                                <div className={pdf.left}>{appData?.words["strNoofPassengers"]}</div>
                                                                 <div className={pdf.right}>{passengersNumber}</div>
                                                             </div>
 
                                                             <div className={pdf.passenger_info}>
-                                                                <div className={pdf.left}>Vehicle Type</div>
+                                                                <div className={pdf.left}>{appData?.words["strVehicleTypeTitle"]}</div>
                                                                 <div className={pdf.right}>{typeof carObject === "object" ? carObject[quotation?.carId]?.name : <React.Fragment></React.Fragment>}</div>
                                                             </div>
                                                             <div className={pdf.passenger_info}>
-                                                                <div className={pdf.left}>Transfer Type</div>
+                                                                <div className={pdf.left}>{appData?.wiords['carsTransferType']}</div>
                                                                 <div className={pdf.right}>{typeof carObject === "object" ? carObject[quotation?.carId]?.transferType : <React.Fragment></React.Fragment>}</div>
                                                             </div>
                                                             <PickUpPoints selectedPickupPoints={selectedPickupPoints} />
                                                             <DropOffPoints selectedDropoffPoints={selectedDropoffPoints} />
                                                             <div className={pdf.passenger_info}>
-                                                                <div className={pdf.left}>Price</div>
+                                                                <div className={pdf.left}>{appData?.words["strPriceTitle"]}</div>
                                                                 <div className={pdf.right}>£{quotation.price}</div>
                                                             </div>
                                                             <div className={pdf.passenger_info}>
-                                                                <div className={pdf.left}>Special Requests</div>
+                                                                <div className={pdf.left}>{appData?.words["strSpecialRequestsTitle"]}</div>
                                                                 <div className={pdf.right}>{specialRequests}</div>
                                                             </div>
                                                         </div>

@@ -47,6 +47,7 @@ const TaxiDeals = (props) => {
     const dispatch = useDispatch()
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction, language, pointsModalStatus, hasTaxiDeals = "heathrow" } } = state
+
     const [tabs, setTabs] = useState(0)
     const [taxiPoints, setTaxiPoints] = useState([])
     const refs = tabsBttons.map(() => useRef(null));
@@ -57,10 +58,12 @@ const TaxiDeals = (props) => {
 
     const fecthPoints = async (params = {}) => {
         let { language, dealsNameProp = hasTaxiDeals } = params;
+
         let channelId = state.reservations[0].reservationDetails.channelId;
         // Encode the dealsNameProp to handle spaces and special characters
         let encodedDealsNameProp = encodeURIComponent(dealsNameProp);
         let url = `${env.apiDomain}/api/v1/taxi-deals/list?points=${encodedDealsNameProp}&language=${language}&channelId=${channelId}`;
+
         let response = await fetch(url);
         let { data, status } = await response.json();
         if (status === 200) setTaxiPoints(data.destinations);
@@ -112,6 +115,28 @@ const TaxiDeals = (props) => {
         }
 
     }, [])
+
+    let titleString = ""
+    if (hasTaxiDeals === "dover") {
+        titleString = "strDoverCruisePort"
+    } else if (hasTaxiDeals === "southampton") {
+        titleString = "strSouthamptonCruisePort"
+    } else if (hasTaxiDeals === "portsmouth") {
+        titleString = "strPortsmouthCruisePort"
+    } else if (hasTaxiDeals === "harwich") {
+        titleString = "strHarwichCruisePort"
+    } else if (hasTaxiDeals === "heathrow") {
+        titleString = "strHeathrowTaxiPrices"
+    } else if (hasTaxiDeals === "gatwick") {
+        titleString = "strGatwickTaxiPrices"
+    } else if (hasTaxiDeals === "luton") {
+        titleString = "strLutonTaxiPrices"
+    } else if (hasTaxiDeals === "stansted") {
+        titleString = "strStanstedTaxiPrices"
+    } else if (hasTaxiDeals === "city airport") {
+        titleString = "strLCYTaxiPrices"
+    }
+
     return (
         <>
             {
@@ -121,7 +146,7 @@ const TaxiDeals = (props) => {
                         <div className={`${styles.taxideals_section_container} page_section_container`}>
                             {taxiPoints.length > 1 ?
                                 <div className={styles.title}>
-                                    {hasTaxiDeals === 'dover' || hasTaxiDeals === 'southampton' || hasTaxiDeals === 'portsmouth' || hasTaxiDeals === 'harwich' ? <h1>{hasTaxiDeals} Cruise Port</h1> : <h1>{appData.words[tabsBttons[tabs].name]}</h1>}
+                                    <h1>{appData?.words[titleString]}</h1>
                                     {islinknamecomponent ? "" : <p>{appData?.words["strAllinclusiveprices"]}</p>}
                                 </div> : <></>}
                             {showTabs ?
@@ -139,7 +164,7 @@ const TaxiDeals = (props) => {
                             {taxiPoints.length > 1 ?
                                 <div className={styles.btn_div}>
                                     <button className='btn_hover_reverse_primary' onClick={() => { setModal() }}>
-                                        View All
+                                        {appData?.words["strViewAll"]}
                                         <i className="fa-solid fa-arrow-right"></i>
                                     </button>
                                 </div> : <></>}

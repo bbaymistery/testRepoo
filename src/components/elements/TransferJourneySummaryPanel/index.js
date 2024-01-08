@@ -19,7 +19,7 @@ const TransferJourneySummaryPanel = (props) => {
         <div className={`${styles.journey_summary_panel} ${isTaxiDeal ? styles.journey_summary_panel_taxi_deal : ""}`}>
             {isTaxiDeal ?
                 <div className={styles.content}>
-                    <h3>Your Booking Details</h3>
+                    <h3>{appData?.words["strYourBookingDetails"]}</h3>
                     <div className={`${styles.journey_card} ${direction === 'rtl' && styles.rtljourney_card}`}>
                         <div className={`${styles.img_div} ${quotation.carId === 6 || quotation.carId === 5 ? styles.cardIdSix : ""} ${quotation.carId === 4 ? styles.carIdFour : ""}`} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[quotation?.carId]?.image})` }}>
 
@@ -43,7 +43,7 @@ const TransferJourneySummaryPanel = (props) => {
                                 <a href={"https://g.co/kgs/Rg7vb8"} target="_blank" className={styles.review}>
                                     <div className={styles.review_left}>4.8 </div>
                                     <div className={styles.review_center} >Exceptional </div>
-                                    <div className={styles.review_right}><span>495</span> reviews  </div>
+                                    <div className={styles.review_right}><span>495</span> {appData?.words["strReviews"]}  </div>
                                 </a>
                             </div>
                         </div>
@@ -63,9 +63,9 @@ const TransferJourneySummaryPanel = (props) => {
                         </div>
                     </div>
                     <div className={styles.total_journey}>
-                        <div className={styles.text_1}>Total Length of journey </div>
+                        <div className={styles.text_1}>{appData?.words["strTotalLengthofJourney"]} </div>
                         <div className={styles.duration}>
-                            <span>Distance</span>
+                            <span>{appData?.words["strDistance"]}</span>
                             <span>{quotations[index].distance}</span>
                         </div>
                         <div className={styles.duration}>
@@ -74,23 +74,27 @@ const TransferJourneySummaryPanel = (props) => {
                         </div>
                     </div>
                     <div style={{ border: 'none' }} className={styles.total_journey}>
-                        <div className={styles.text_1}>Your Vehicle Details</div>
+                        <div className={styles.text_1}>{appData?.words["strYourVehicleDetails"]}</div>
                         <div className={styles.duration}>
                             <span>{carObject[quotation.carId]?.transferType}</span>
                         </div>
                         <div className={styles.duration}>
-                            <span>Max</span>
-                            <span>{carObject[quotation.carId]?.suitcases} Suitcases</span>
+                            <span>{appData?.words["strMax"]}</span>
+                            <span>
+                                {appData.words["strCarFeatureMaxSuitcases"].replace("{{}}", carObject[quotation.carId]?.suitcases)}
+                            </span>
                         </div>
                         <div className={styles.duration}>
-                            <span>Max</span>
-                            <span>{carObject[quotation.carId]?.pax} Passengers</span>
+                            <span>{appData?.words["strMax"]}</span>
+                            <span>
+                                {appData.words["strCarFeatureMaxPassengers"].replace("{{}}", carObject[quotation.carId]?.pax)}
+                            </span>
                         </div>
                     </div>
                 </div>
                 :
                 <div className={styles.content}>
-                    <h3>{index === 0 ? "Booking Details" : "Return Journey Booking Details"}</h3>
+                    <h3>{index === 0 ? appData?.words["strYourBookingDetails"] : appData?.words["strReturnJourneyDetails"]}</h3>
                     <div className={`${styles.journey_card} ${direction === 'rtl' && styles.rtljourney_card}`}>
 
                         <div className={`${styles.img_div} ${quotation.carId === 6 || quotation.carId === 5 ? styles.cardIdSix : ""} ${quotation.carId === 4 ? styles.carIdFour : ""}`} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[quotation?.carId]?.image})` }}>
@@ -108,13 +112,14 @@ const TransferJourneySummaryPanel = (props) => {
 
                             <div id="from to" className={styles.fromto}>
 
-                                <h5>FROM:       {/* <h5>Pickup point:</h5> */}
+                                <h5>
+                                    {appData?.words["strFrom2"]}:
                                 </h5>
                                 {selectedPickupPoints.map((pickup, i) => { return <li key={i}><span>{isTaxiDeal ? "" : `${i + 1}. `}  {pickup.address}</span></li> })}
                                 <div className={styles.space}> </div>
-                                <h5>TO:</h5>
+                                <h5>{appData?.words["strTo"]}:</h5>
                                 {selectedDropoffPoints.map((dropoff, i) => { return <li key={i + 15}><span>{isTaxiDeal ? "" : `${i + 1}. `} {dropoff.address}</span></li> })}
-                                <h5>ON:</h5>
+                                <h5>{appData?.words["strOn"]}:</h5>
                                 <li>
                                     <span>
                                         {direction === 'rtl'
@@ -128,15 +133,15 @@ const TransferJourneySummaryPanel = (props) => {
                                 <a href={"https://g.co/kgs/Rg7vb8"} target="_blank" className={styles.review}>
                                     <div className={styles.review_left}>4.8 </div>
                                     <div className={styles.review_center} >Exceptional </div>
-                                    <div className={styles.review_right}><span>495</span> reviews  </div>
+                                    <div className={styles.review_right}><span>495</span> {appData?.words["strReviews"]}  </div>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div className={styles.total_journey}>
-                        <div className={styles.text_1}>Total Length of journey </div>
+                        <div className={styles.text_1}>{appData?.words["strTotalLengthofJourney"]} </div>
                         <div className={styles.duration}>
-                            <span>Distance</span>
+                            <span>{appData?.words["strDistance"]}</span>
                             <span>{quotations[index].distance}</span>
                         </div>
                         <div className={styles.duration}>
@@ -146,19 +151,23 @@ const TransferJourneySummaryPanel = (props) => {
                     </div>
 
                     <div style={{ border: 'none' }} className={styles.total_journey}>
-                        <div className={styles.text_1}>Your Vehicle Details</div>
+                        <div className={styles.text_1}>{appData?.words["strYourVehicleDetails"]}</div>
                         <div className={styles.duration}>
                             <span>{carObject[quotation.carId]?.transferType}</span>
                         </div>
                         <div className={styles.duration}>
-                            <span>Max</span>
-                            <span>{carObject[quotation.carId]?.suitcases} Suitcases</span>
+                            <span>{appData?.words["strMax"]}</span>
+                            <span>
+                                {appData.words["strCarFeatureMaxSuitcases"].replace("{{}}", carObject[quotation.carId]?.suitcases)}
+                            </span>
                         </div>
                         <div className={styles.duration}>
-                            <span>Max</span>
-                            <span>{carObject[quotation.carId]?.pax} Passengers</span>
+                            <span>{appData?.words["strMax"]}</span>
+                            <span>
+                                {appData.words["strCarFeatureMaxPassengers"].replace("{{}}", carObject[quotation.carId]?.pax)}
+                            </span>
                         </div>
-                        {quotations[0].taxiDeal ? <></> : <Link href="/quotation-results"> Change Car Type </Link>}
+                        {quotations[0].taxiDeal ? <></> : <Link href="/quotation-results" style={{ textTransform: "capitalize" }}> {appData?.words["strChangeCar"]} </Link>}
                     </div>
                     <div className={styles.price_div}>
                         <div className={styles.text_1}>{appData?.words["strPriceTitle"]} </div>
@@ -170,16 +179,16 @@ const TransferJourneySummaryPanel = (props) => {
                 <div className={`${styles.content} ${styles.summarycontent}`} style={{ marginTop: "2rem" }}>
                     <div className={`${styles.total_journey}`}>
                         <div className={styles.duration}>
-                            <span>{carObject[quotation.carId]?.name} Vehicle</span>
+                            <span>{carObject[quotation.carId]?.name} {appData?.words["strVehicleTypeTitle"]}</span>
                             <span>£ {quotation.price}</span>
                         </div>
                         <div className={styles.duration}>
-                            <span>Taxes and Fees	</span>
-                            <span>	Included</span>
+                            <span>{appData?.words["strTaxesAndFees"]}</span>
+                            <span>	{appData?.words["strIncluded"]}</span>
                         </div>
                         <div className={styles.duration}>
-                            <span>Meet & Greet by Arrivals	</span>
-                            <span>	Included</span>
+                            <span>{appData?.words["strMeetandGreetIncluded"]}	</span>
+                            <span>	{appData?.words["strIncluded"]}</span>
                         </div>
                     </div>
                     <div className={styles.price_div}>
@@ -205,36 +214,3 @@ const TransferJourneySummaryPanel = (props) => {
 export default TransferJourneySummaryPanel
 
 
-// {
-//     isTaxiDeal ?
-//         <div className={`${styles.left_info} ${styles.tripad}`} >
-//             <a
-//                 target="_blank"
-//                 href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html"
-//                 title="Tripadvisor Rating for Airport Pickups London">
-//                 <img border="0" alt="Tripadvisor Rating for Airport Pickups London" src="/images/advisor3.0.png" />
-//             </a>
-//         </div>
-//         : <></>
-// }
-
-// {isTaxiDeal ?
-//     <div className={`${styles.left_info} ${styles.acceptedcards}`} title="Accepted Cards for Airport Pickups London">
-//         <img className={styles.acceptedcards_img} border="0" alt="Accepted Cards for Airport Pickups London " src="/images/payments.png" />
-//     </div>
-//     : <></>}
-
-// {isTaxiDeal ?
-//     <div className={`${styles.left_info} ${styles.google_review}`} >
-//         <a
-//             target="_blank"
-//             href="https://g.co/kgs/Rg7vb8"
-//             title="Customer Reviesw for Airport Pickups London"
-//         >
-//             <img
-//                 border="0"
-//                 alt="Customer Reviesw for Airport Pickups London "
-//                 src={"/images/review1.png"} />
-//         </a>
-//     </div>
-//     : <></>}

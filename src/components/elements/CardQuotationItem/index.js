@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { quotationImagesObj } from '../../../constants/quotationImages';
 import env from '../../../resources/env';
@@ -74,6 +74,10 @@ const CardQuotationItem = (params = {}) => {
     returnHeadTitle,
     objectDetailss,
     gotoTransferDetailsClick = () => { },
+    setShowMapOneWay = () => { },
+    setShowMapReturn = () => { },
+    showMapReturn = false,
+    showMapOneWay = false,
 
   } = params
 
@@ -85,10 +89,19 @@ const CardQuotationItem = (params = {}) => {
   const quotationIsSelected = selectedQuotation?.carId
   //cartypes object for card item as {1:{image:'sds, name:Economy}}
   const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
-  const [journeyAccrodionStatus, setJourneyAccrodionStatus] = useState(localStorage?.getItem("journeyQuotation") ? true : false)
-  const [returnJourneyAccordionStatus, setReturnJourneyAccordionStatus] = useState((localStorage?.getItem("returnJourneyQuotation") ? true : false))
+  const [journeyAccrodionStatus, setJourneyAccrodionStatus] = useState(false)
+  const [returnJourneyAccordionStatus, setReturnJourneyAccordionStatus] = useState(false)
 
 
+
+  useEffect(() => {
+    // This code runs only in the browser, as useEffect is a browser-only lifecycle method
+    const journeyStatus = localStorage.getItem("journeyQuotation") ? true : false;
+    setJourneyAccrodionStatus(journeyStatus);
+
+    const returnJourneyStatus = localStorage.getItem("returnJourneyQuotation") ? true : false;
+    setReturnJourneyAccordionStatus(returnJourneyStatus);
+  }, []);
   const setQuotationHandleClick = async (params = {}) => {
     let { quotation } = params
     checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
@@ -144,7 +157,6 @@ const CardQuotationItem = (params = {}) => {
       checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
     // }
   };
-  console.log(journeyAccrodionStatus);
 
   const changeCar = () => {
     if (journeyType === 1) {
@@ -158,23 +170,41 @@ const CardQuotationItem = (params = {}) => {
       }
     }
   }
-  console.log({ selectedQuotation });
+
 
   return (
-    <div >
+    <div style={{ display: 'flex', flexDirection: "column", }}>
+      {journeyType === 1 && index === 0 ? <h2 className={`${styles.title} ${direction}`}>
+        <span onClick={() => setShowMapOneWay(!showMapOneWay)}>
+          {!showMapOneWay ? "Show Map" : "Hide Map"}
+        </span>
+        <span>
+          {appData?.words["seGoingDetails"]}
+        </span>
+      </h2> : <React.Fragment></React.Fragment>}
+      {journeyType === 1 && index === 1 ? <h2 className={`${styles.title} ${direction}`}>
+        <span onClick={() => setShowMapReturn(!showMapReturn)}>
+          {!showMapReturn ? "Show Map" : "Hide Map"}
+
+        </span>
+        <span>
+          {appData?.words["seReturnDetails"]}
+        </span>
+      </h2> : <React.Fragment></React.Fragment>}
       <div className={`${styles.result_container} ${isTaxiDeal ? styles.taxideal_result_container : ""}`}>
         {/* {isTaxiDeal ? <BreadCrumbTaxiDeal previousUrl={previousUrl} breadCrumbFrom={breadCrumbFrom} breadCrumbTo={breadCrumbTo} direction={direction} /> : <></>} */}
-        {isTaxiDeal && headTitle ? <TitleTaxiDeal headTitle={headTitle} direction={direction} pageTitle={pageTitle} /> : <></>}
+        {isTaxiDeal && headTitle ? <TitleTaxiDeal headTitle={headTitle} direction={direction} pageTitle={pageTitle} appData={appData} /> : <></>}
         {isTaxiDeal && returnPathname ? <ViceVersaUrlTaxiDeal previousUrl={previousUrl} returnPathname={returnPathname} returnHeadTitle={returnHeadTitle} returnPageTitle={returnPageTitle} /> : <></>}
         <HeaderOfResults duration={duration} distance={distance} />
         {/* make visible for selected item */}
         {journeyType === 1 && index === 0 && <div>
           {datas.map((item, index) => {
+
             const renderSelectedItem = Number(JSON.parse(localStorage?.getItem("journeyQuotation"))?.carId) === Number(quotationImagesObj[item?.carId]?.id)
             if (renderSelectedItem && journeyAccrodionStatus) {
               return <div
                 dataid={index === 0 ? "first_car" : ""}
-                key={index}
+                key={index + 50}
                 className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
               >
                 <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
@@ -205,7 +235,7 @@ const CardQuotationItem = (params = {}) => {
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{"Comfortable Cars"}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
 
 
 
@@ -235,7 +265,7 @@ const CardQuotationItem = (params = {}) => {
                   <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`} <span>00</span> </div>
                   <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
                   <button onClick={changeCar} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
-                    {!selectedQuotation?.carId ? "See All Cars" : "Change Car"}
+                    {!selectedQuotation?.carId ? "See All Cars" : appData?.words["strYouSelected"]}
                   </button>
                 </div>
               </div>
@@ -249,7 +279,7 @@ const CardQuotationItem = (params = {}) => {
             if (renderSelectedItem && returnJourneyAccordionStatus) {
               return <div
                 dataid={index === 0 ? "first_car" : ""}
-                key={index}
+                key={index + 100}
                 className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
               >
                 <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
@@ -280,7 +310,7 @@ const CardQuotationItem = (params = {}) => {
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{"Comfortable Cars"}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
 
 
 
@@ -310,7 +340,7 @@ const CardQuotationItem = (params = {}) => {
                   <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`} <span>00</span> </div>
                   <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
                   <button onClick={changeCar} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
-                    {!selectedQuotation?.carId ? "See All Cars" : "Change Car"}
+                    {!selectedQuotation?.carId ? "See All Cars" : appData?.words["strYouSelected"]}
                   </button>
                 </div>
               </div>
@@ -354,7 +384,7 @@ const CardQuotationItem = (params = {}) => {
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{"Comfortable Cars"}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
 
 
 
@@ -393,6 +423,7 @@ const CardQuotationItem = (params = {}) => {
         })}
 
         {(+journeyType === 0) && datas?.map((item, index) => {
+
           return (
             <div id="main_container">
               <div
@@ -428,7 +459,7 @@ const CardQuotationItem = (params = {}) => {
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{"Comfortable Cars"}</span> </p>
+                      <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
 
 
 
@@ -468,13 +499,14 @@ const CardQuotationItem = (params = {}) => {
         {isTaxiDeal && pageContent?.length > 1 ? <TaxiDealsContents pageContent={pageContent} /> : <></>}
 
       </div>
-      <div className={styles.result_container}>
-        {index === 1 &&
+      {index === 1 &&
+        <div className={styles.result_container}>
           <div className={`${styles.items_buttons}`}>
             <div> <div onClick={() => router.back()}> <button className='btn btn_primary'>{appData?.words["strGoBack"]}</button></div></div>
             <div> <div onClick={gotoTransferDetailsClick}><button className='btn btn_primary'>{appData?.words["strContinue"]}</button></div></div>
-          </div>}
-      </div>
+          </div>
+        </div>
+      }
     </div>
   )
 }

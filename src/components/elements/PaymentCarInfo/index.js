@@ -15,14 +15,14 @@ const CarInfo = (props) => {
 
     return (
         <div className={styles.car_info} direction={String(direction === 'rtl')}>
-            <h3>{index === 0 ? "Booking Details" : "Return Journey Booking Details"}</h3>
+            <h3>{index === 0 ? appData?.words["strYourBookingDetails"] : appData?.words["strReturnJourneyDetails"]}</h3>
             <div className={styles.sections}>
                 <div className={`${styles.section} ${styles.first_column}`}>
                     <div className={styles.img_div}>
                         <img src={`${env.apiDomain}${quotationImagesObj[quotation?.carId]?.image}`} alt="" />
                     </div>
                     <div className={styles.description}>
-                        <div className={styles.text_1}>You selected</div>
+                        <div className={styles.text_1}>{appData?.words["strYouSelected"]}</div>
                         <div className={styles.text_2} style={{ textTransform: 'capitalize' }}>
                             {carObject[quotation.carId]?.name}
                             {/*  _ {carObject[quotation.carId]?.transferType} */}
@@ -37,17 +37,22 @@ const CarInfo = (props) => {
                 </div>
                 <div className={`${styles.section} ${styles.second_column}`}>
                     <div className={styles.description}>
-                        <p className={styles.text_1}>Max Capacity</p>
+                        <p className={styles.text_1}>{appData?.words["strcVehicleCapacity"]}</p>
                         <p className={styles.text_2}>
-                            <span> {`${carObject[quotation.carId]?.pax} Passenger${carObject[quotation.carId]?.pax === 1 ? "" : "s"}`}</span>
+                            <span>
+                                {appData?.words["strCarFeatureMaxPassengers"].replace("{{}}", carObject[quotation.carId]?.pax)}
+
+                            </span>
                             <br />
-                            <span> {`${carObject[quotation.carId]?.suitcases} Suitcase${carObject[quotation.carId]?.suitcases === 1 ? "" : "s"}`}</span>
+                            <span>
+                                {appData?.words["strCarFeatureMaxPassengers"].replace("{{}}", carObject[quotation.carId]?.suitcases)}
+                            </span>
                         </p>
                     </div>
                 </div>
                 <div className={`${styles.section} ${styles.fourth_column}`}>
                     <div className={styles.description}>
-                        <p className={styles.text_1}>Date</p>
+                        <p className={styles.text_1}>{appData?.words["strOn"]}</p>
                         <p className={styles.text_2}>
                             {<span>
                                 {direction === 'rtl'
@@ -61,7 +66,7 @@ const CarInfo = (props) => {
                 </div>
                 <div className={`${styles.section} ${styles.third_column}`}>
                     <div className={styles.description}>
-                        <p className={styles.text_1}>Time</p>
+                        <p className={styles.text_1}>{appData?.words["strTime"]}</p>
                         <p className={styles.text_2}> {`${splitedHour}:${splitedMinute}`}</p>
                     </div>
                 </div>

@@ -6,7 +6,6 @@ import AdressInformations from '../../components/elements/AdressInformations'
 import useRipple from '../../hooks/useRipple'
 import store from '../../store/store'
 import { createWrapper } from 'next-redux-wrapper'
-import Link from 'next/link'
 import { urlWithLangAtribute } from '../../helpers/urlWithLangAtrribute'
 import { useRouter } from 'next/router'
 import { useConfirm } from '../../hooks/useConfirm'
@@ -133,7 +132,7 @@ const AccountRegisterResults = (props) => {
 
                                         <a href={language === 'en' ? '/' : `/${language}`}>
 
-                                            <button ref={nextRef} className='btn btn_primary'>{prevRipples}Home</button>
+                                            <button ref={nextRef} className='btn btn_primary'>{prevRipples}{appData?.words["strNavHome"]}</button>
                                         </a>
                                         {/* <button ref={nextRef} className='btn btn_primary'>{nextRipples}  Confirm</button> */}
                                     </div>

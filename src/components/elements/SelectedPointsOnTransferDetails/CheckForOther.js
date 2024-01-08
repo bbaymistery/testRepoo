@@ -22,7 +22,7 @@ const CheckForOther = (props) => {
 
             {/* check language_words */}
 
-            <TextInput label="Description" type="text" name="address-description" onChange={(e) => onchangeHandler(e)} value={point["address-description"]} errorMessage={errorMessage} />
+            <TextInput label={appData?.words["strAddress"]} type="text" name="address-description" onChange={(e) => onchangeHandler(e)} value={point["address-description"]} errorMessage={errorMessage} />
           </div>
         </div>
       ) : <React.Fragment></React.Fragment>}

@@ -15,7 +15,7 @@ const AdressInformations = ({ direction, appData }) => {
                             <ul tabIndex="-1">
                                 <li tabIndex="-1">
                                     <i className="fa-solid fa-phone"></i>
-                                    <h5 className="title font-size-16 pb-1">24/7 Contact</h5>
+                                    <h5 className="title font-size-16 pb-1">{appData?.words["appContactUsHotLine"]}</h5>
                                     {direction === 'rtl' ?
                                         <a style={{ flexDirection: "row-reverse", justifyContent: "flex-end", display: 'flex' }} href="tel:+02086887744" >
                                             02086887744

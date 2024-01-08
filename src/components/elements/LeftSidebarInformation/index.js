@@ -6,7 +6,7 @@ const LeftSidebarInformation = ({ direction, appData, showAllInclusive = true, s
         <div className={styles.quotation_panel_istaxideal}>
 
             <div className={`${styles.left_info} ${styles.tripad_left_info}`} >
-                <p className={`${styles.left_info_title} ${direction}`}>Tripadvisor Ratings</p>
+                <p className={`${styles.left_info_title} ${direction}`}>{appData?.words["strTripAdvisorReviews"]}</p>
                 <ul>
                     <a
                         className={styles.tripad_a}
@@ -18,7 +18,7 @@ const LeftSidebarInformation = ({ direction, appData, showAllInclusive = true, s
                 </ul>
             </div>
             <div className={`${styles.left_info} ${styles.left_support}`} >
-                <p className={`${styles.left_info_title} ${direction}`}>7/24 Support</p>
+                <p className={`${styles.left_info_title} ${direction}`}>{appData?.words["appContactUsHotLine"]}</p>
 
                 <ul>
                     <li className={styles.phone}>
@@ -43,7 +43,7 @@ const LeftSidebarInformation = ({ direction, appData, showAllInclusive = true, s
             </div>
             {showAllInclusive ?
                 <div className={`${styles.left_info} ${styles.services}`} direction={String(direction === "rtl")} >
-                    <p className={styles.left_info_title}>ALL Inclusive Prices</p>
+                    <p className={styles.left_info_title}>{appData?.words["strAllInclusivePrices"]}</p>
                     <ul >
                         <li className={`${direction}`}>
                             <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
@@ -55,31 +55,31 @@ const LeftSidebarInformation = ({ direction, appData, showAllInclusive = true, s
                             <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                             <label className={styles.primary_text} >
                             </label>
-                            Flight monitoring
+                            {appData?.words["strFlightMonitoring"]}
                         </li>
                         <li className={`${direction}`}>
                             <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                             <label className={styles.primary_text} >
                             </label>
-                            FREE Baby/Child Seat
+                            {appData?.words["strFreeBabyChildSeat"]}
                         </li>
                         <li className={`${direction}`}>
                             <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                             <label className={styles.primary_text} >
                             </label>
-                            FIXED Prices
+                            {appData?.words["strAllInclusiveFixedPrices"]}
                         </li>
                         <li className={`${direction}`}>
                             <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                             <label className={styles.primary_text} >
                             </label>
-                            NO hidden charges
+                            {appData?.words["strCarFeatureNoCharge4Delay"]}
                         </li>
                         <li className={`${direction}`}>
                             <input readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                             <label className={styles.primary_text} >
                             </label>
-                            FREE Cancellation (24h)
+                            {appData?.words["strFreeCancellation24h"]}
                         </li>
 
                     </ul>
@@ -89,7 +89,7 @@ const LeftSidebarInformation = ({ direction, appData, showAllInclusive = true, s
             }
 
             <div className={`${styles.left_info} ${styles.acceptedcards}`}>
-                <p className={`${styles.left_info_title} ${direction}`}> Accepted Cards</p>
+                <p className={`${styles.left_info_title} ${direction}`}> {appData?.words["strAcceptedCards"]}</p>
                 <img className={styles.acceptedcards_img} border="0" alt="Airport Pickups" src="/images/payments.png" />
             </div>
             <div className={`${styles.left_info} ${styles.tfl}`}>

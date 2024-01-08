@@ -2,7 +2,7 @@ import React from 'react'
 import styles from "./styles.module.scss";
 import { formatPriceInTitle } from '../../../helpers/formatPriceInTitle';
 
-const TitleTaxiDeal = ({ headTitle, direction, pageTitle }) => {
+const TitleTaxiDeal = ({ headTitle, direction, pageTitle, appData }) => {
 
     return (
         <>
@@ -32,7 +32,7 @@ const TitleTaxiDeal = ({ headTitle, direction, pageTitle }) => {
                 >
                     <i className="fa-solid fa-comment"></i>
                     {/* {direction === 'rtl' ? `(486 customer reviews)` :`( customer reviews 486 )`} */}
-                    (  customer reviews  486)
+                    486 {`${appData?.words["strReviews"]}`}
 
                 </a>
             </div>

@@ -10,12 +10,15 @@ const leftLinks = [
     {
         id: 1,
         linkName: "General Terms of Use",
+        translateName: "strTermsOfUse",
         pagePathname: 'Terms'
     },
     {
         id: 2,
         linkName: "Privacy policy",
-        pagePathname: "Privacy_Policy"
+        pagePathname: "Privacy_Policy",
+        translateName: "strPrivacyPolicy",
+
     },
 
 ]
@@ -25,6 +28,7 @@ const Terms = (props) => {
     const { params: { language, direction } } = state;
     const [isActiveId, setIsActiveId] = useState(1);
     const [pagePathname, setPagePathname] = useState("Terms");
+    const { appData } = useSelector(state => state.initialReducer)
 
     const handleLinkNames = (link) => {
         setIsActiveId(link.id);
@@ -45,7 +49,7 @@ const Terms = (props) => {
                                 {leftLinks.map((link, index) => {
                                     return <div key={index} className={`${styles.link_content_item} ${isActiveId === link.id ? styles.link_content_item_active : ""}`}>
                                         <button onClick={() => handleLinkNames(link)}>
-                                            {link.linkName}
+                                            {appData?.words[link.translateName]}
                                         </button>
                                     </div>
                                 })}

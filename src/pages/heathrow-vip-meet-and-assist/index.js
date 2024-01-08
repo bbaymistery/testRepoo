@@ -44,9 +44,6 @@ const HeathrowVipMeet = (props) => {
     let { seatLists, meetgreetDate, meetgreetActiveBtn, selectedService, terminalName, seatListPrice } = meetAndGreetState
 
 
-
-
-
     const handleButtons = (index) => dispatch({ type: "SET_MEET_GREET_ACTIVE_BTN", data: { activeBtnValue: index, newSelectedService: `${buttonLabels[index]} Airport` } })
     const onchangeDate = (e) => dispatch({ type: "SET_MEET_GREET_DATE", data: { dateValue: e.target.value } })
     const handleDecrement = (idx, incordec) => dispatch({ type: 'SET_SEATLISTS', data: { idx, incordec } })
@@ -66,7 +63,6 @@ const HeathrowVipMeet = (props) => {
             <div className={`${styles.vipmeet} ${direction} page`} bggray={String(bggray === "true")}>
 
                 <div className={styles.showcase_column}>
-
                     <div className={styles.showcase_column_container}>
                         <div className={styles.showcase_column_container_content}>
                             <div className={styles.left}>
@@ -139,7 +135,6 @@ const HeathrowVipMeet = (props) => {
                     <div className={`${styles.vipmeet_section_container} page_section_container`}>
                         <div className={styles.information_column}>
                             <div className={styles.left_content}>
-
                                 {/* bura eftsidebar componentin normal div formasi yazilmisdi onu sadece reusable olsun deye tek sekilde yazdm */}
                                 <LeftSidebarInformation direction={direction} appData={appData} />
                             </div>
@@ -244,8 +239,6 @@ const HeathrowVipMeet = (props) => {
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>

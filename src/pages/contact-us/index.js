@@ -95,26 +95,26 @@ const ContactUs = (props) => {
                                                 <form className={styles.form}>
                                                     <div className={styles.input_box}>
                                                         <div className={styles.input}>
-                                                            <TextInput label="Full Name" type="text" name="fullname" onChange={onChangeHandler} value={formValue.fullname} errorMessage={error.fullname} />
+                                                            <TextInput label={appData?.words["appContactUsFormFullname"]} type="text" name="fullname" onChange={onChangeHandler} value={formValue.fullname} errorMessage={error.fullname} />
                                                         </div>
                                                         <div className={styles.input}>
-                                                            <TextInput label="Subject" name="subject" type="text" onChange={onChangeHandler} value={formValue.subject} errorMessage={error.subject} />
+                                                            <TextInput label={appData?.words["appContactUsFormSubject"]} name="subject" type="text" onChange={onChangeHandler} value={formValue.subject} errorMessage={error.subject} />
                                                         </div>
                                                     </div>
                                                     <div className={styles.input_box}>
                                                         <div className={styles.input}>
-                                                            <TextInput label="Email" name="email" type="text" onChange={onChangeHandler} value={formValue.email} errorMessage={error.email} />
+                                                            <TextInput label={appData?.words["appContactUsEmailAddress"]} name="email" type="text" onChange={onChangeHandler} value={formValue.email} errorMessage={error.email} />
                                                         </div>
                                                         <div className={styles.input}>
-                                                            <TextInput label="Phone" name="phone" type="text" onChange={onChangeHandler} value={formValue.phone} errorMessage={error.phone} />
+                                                            <TextInput label={appData?.words["appContactUsFormPhone"]} name="phone" type="text" onChange={onChangeHandler} value={formValue.phone} errorMessage={error.phone} />
                                                         </div>
                                                     </div>
                                                 </form>
                                                 <div className={`${styles.input} ${styles.inp_textarea}`}>
-                                                    <Textarea label="Message" name="message" value={formValue.message} onChange={onChangeHandler} errorMessage={error.message} />
+                                                    <Textarea label={appData?.words["appContactUsFormMessage"]} name="message" value={formValue.message} onChange={onChangeHandler} errorMessage={error.message} />
                                                 </div>
                                                 <div className={styles.lodbtn}>
-                                                    <button onClick={handleSend} className='btn '>Send Message</button>
+                                                    <button onClick={handleSend} className='btn '>{appData?.words["appContactUsFormButton"]}</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -15,10 +15,10 @@ const Features = (props) => {
           <div className={styles.features}>
             <div className={`container ${styles.feature_container}`}>
               <div className={styles.cards}>
-                {features.map((card,index) => {
+                {features.map((card, index) => {
                   return (
                     <div key={index} className={styles.card}>
-                      <h3 className={styles.card_title}  ><span>{card.fontAwesome}</span>{card.title}</h3>
+                      <h3 className={styles.card_title}  ><span>{card.fontAwesome}</span>{appData?.words[card.translateTitle]}</h3>
                     </div>
                   );
                 })}

@@ -282,7 +282,7 @@ const TransferDetails = (props) => {
                                                         <h2>{appData?.words["seGoingDetails"]}</h2>
                                                         <div className={`${styles.search_menu} ${styles.first_column}`}>
                                                             {/* Pick up location text */}
-                                                            {!selectedPickupPoints.length > 0 ? <p className={direction}>{`Full pickup address at ${quotations[0].taxiDeal.pickup}`}</p> : <React.Fragment></React.Fragment>}
+                                                            {!selectedPickupPoints.length > 0 ? <p className={direction}>{`${appData?.words["strPickupAddress"]}: ${quotations[0].taxiDeal.pickup}`}</p> : <React.Fragment></React.Fragment>}
                                                             {/* Pick Points text */}
                                                             {selectedPickupPoints.length > 0 ? <p className={` ${direction}`} >{appData?.words["strPickupPoints"]}</p> : <React.Fragment></React.Fragment>}
                                                             {/* selectedPoints */}
@@ -297,13 +297,12 @@ const TransferDetails = (props) => {
                                                                         <img className={styles.point_image} src={`${env.apiDomain}${imageObjects[pickupIdForImage]}`} alt={selectedPickupPoints[0]?.address} />}
                                                                     <select
                                                                         className={styles.taxideals_select}
-                                                                        defaultValue={`${selectedPickupPoints?.[index]?.address ? `${selectedPickupPoints?.[index]?.address}` : "--- select pickup point ---`"}`}
-
+                                                                        defaultValue={`${selectedPickupPoints?.[index]?.address ? `${selectedPickupPoints?.[index]?.address}` : `--- ${appData?.words["quSelectButton"]} ---`}`}
                                                                         disabled={internalState[`quotation-loading`]}
-                                                                        onChange={(e) => handleSelectTaxiDeals({ e, destination: "pickup", index, items: [{ address: `--- select pickup point ---` }, ...quotations[index]?.taxiDeal?.pickupPoints] })}
+                                                                        onChange={(e) => handleSelectTaxiDeals({ e, destination: "pickup", index, items: [language === "en" ? { address: `--- ${appData?.words["quSelectButton"]} ---` } : { translatedAddress: `--- ${appData?.words["quSelectButton"]} ---` }, ...quotations[index]?.taxiDeal?.pickupPoints] })}
                                                                     >
                                                                         {/* //!  */}
-                                                                        {[{ address: `--- select pickup point ---` }, ...quotations[index]?.taxiDeal?.pickupPoints].map((point, index) => {
+                                                                        {[language === "en" ? { address: `--- ${appData?.words["quSelectButton"]} ---` } : { translatedAddress: `--- ${appData?.words["quSelectButton"]} ---` }, ...quotations[index]?.taxiDeal?.pickupPoints].map((point, index) => {
                                                                             return <option key={index} value={point.adress}> {language === "en" ? point.address : point.translatedAddress}</option>
                                                                         }
                                                                         )}
@@ -349,7 +348,7 @@ const TransferDetails = (props) => {
                                                         </div>
                                                         <div className={`${styles.search_menu} ${styles.second_column}`}>
                                                             {/* Pick up location text */}
-                                                            {!selectedDropoffPoints.length > 0 ? <p className={direction}>{`Full dropoff address at ${quotations[0].taxiDeal.dropoff}`}</p> : <React.Fragment></React.Fragment>}
+                                                            {!selectedDropoffPoints.length > 0 ? <p className={direction}>{`${appData?.words["strDropoffAddress"]}: ${quotations[0].taxiDeal.dropoff}`}</p> : <React.Fragment></React.Fragment>}
                                                             {/* Pick Points text */}
                                                             {selectedDropoffPoints.length > 0 ? <p className={`${styles.point_title} ${direction}`} >{appData?.words["strDropoffPoints"]}</p> : <React.Fragment></React.Fragment>}
                                                             {/* selectedPoints */}
@@ -388,7 +387,7 @@ const TransferDetails = (props) => {
                                                                             type="text"
                                                                             autoComplete="off"
                                                                             id="input_focused"//this is for scrolling top when ever we focus on mobile
-                                                                            placeholder={"Please type the drop off address"}
+                                                                            placeholder={appData?.words["strPleaseTypeInTheDropOffAddress"]}
                                                                             value={internalState[`dropoff-search-value-${index}`]}
                                                                             autoFocus={internalState[`dropoff-search-focus-${index}`]}
                                                                             f={String(internalState[`dropoff-search-focus-${index}`])} //giving a style if we focused
@@ -454,10 +453,10 @@ const TransferDetails = (props) => {
                                                                     <TextInput label={appData?.words["strFullName"]} type="text" name="firstname" onChange={e => onchangeHandler(e, index)} value={firstname} errorMessage={reservationError?.passengerDetails?.firstname} />
                                                                 </div>
                                                                 <div className={styles.input_div}>
-                                                                    <TextInput label="Email" type="text" name="email" onChange={e => onchangeHandler(e, index)} value={email} errorMessage={reservationError?.passengerDetails?.email} />
+                                                                    <TextInput label={appData?.words["strEmail"]} type="text" name="email" onChange={e => onchangeHandler(e, index)} value={email} errorMessage={reservationError?.passengerDetails?.email} />
                                                                 </div>
                                                                 <div className={styles.input_div}>
-                                                                    <Select label="Number of passengers" name="passengersNumber" onChange={e => onchangeHandler(e, index)} value={passengersNumber} data={carObject[quotation.carId]?.pax} />
+                                                                    <Select label={appData?.words["strNoofPassengers"]} name="passengersNumber" onChange={e => onchangeHandler(e, index)} value={passengersNumber} data={carObject[quotation.carId]?.pax} />
                                                                 </div>
                                                                 <div className={`${styles.input_div} ${direction === "rtl" ? "phone_input_direction" : ""}`}>
                                                                     {/* <TextInput label={appData?.words["appContactUsFormPhone"]} type="number" name="phone" onChange={e => onchangeHandler(e, index)} value={phone} errorMessage={reservationError?.passengerDetails?.phone} /> */}
@@ -519,10 +518,10 @@ const TransferDetails = (props) => {
                                                                     <TextInput label={appData?.words["strFullName"]} type="text" name="firstname" onChange={e => onchangeHandler(e, index)} value={firstname} errorMessage={reservationError?.passengerDetails?.firstname} />
                                                                 </div>
                                                                 <div className={styles.input_div}>
-                                                                    <TextInput label="Email" type="text" name="email" onChange={e => onchangeHandler(e, index)} value={email} errorMessage={reservationError?.passengerDetails?.email} />
+                                                                    <TextInput label={appData?.words["strEmail"]} type="text" name="email" onChange={e => onchangeHandler(e, index)} value={email} errorMessage={reservationError?.passengerDetails?.email} />
                                                                 </div>
                                                                 <div className={styles.input_div}>
-                                                                    <Select label="Number of passengers" name="passengersNumber" onChange={e => onchangeHandler(e, index)} value={passengersNumber} data={carObject[quotation.carId]?.pax} />
+                                                                    <Select label={appData?.words["strNoofPassengers"]} name="passengersNumber" onChange={e => onchangeHandler(e, index)} value={passengersNumber} data={carObject[quotation.carId]?.pax} />
                                                                 </div>
                                                                 <div className={styles.input_div}>
                                                                     <PhoneInput
@@ -547,13 +546,13 @@ const TransferDetails = (props) => {
                                                             <h2>   {index === 0 ? appData?.words["seGoingDetails"] : appData?.words["seReturnDetails"]}  </h2>
                                                             <div className={styles.selecteditems} >
                                                                 <div className={`${styles.points} ${styles.selectedlist_points_left}`} >
-                                                                    <h3 className={styles.points_header}>Selected Pick Up points</h3>
+                                                                    <h3 className={styles.points_header}>{appData?.words["strSelectedPickUpPoint"]}</h3>
                                                                     {/* //index =0 it is like destination pickup  */}
                                                                     <SelectedPointsOnTransferDetails pointsError={reservationError['selectedPickupPoints']} selectedPoints={selectedPickupPoints} journeyType={index} type='pickup' language={language} />
                                                                 </div>
                                                                 {/* {  selectedlist_points_left     bunu aldk select komponentde kulandk} */}
                                                                 <div className={`${styles.points} ${styles.selectedlist_points_right}`}>
-                                                                    <h3 className={styles.points_header}>Selected Drop Off points</h3>
+                                                                    <h3 className={styles.points_header}>{appData?.words["strSelectedDropOffPoint"]}</h3>
                                                                     {/* //index =1 it is like destination dropoff */}
                                                                     <SelectedPointsOnTransferDetails pointsError={reservationError['selectedDropoffPoints']} selectedPoints={selectedDropoffPoints} journeyType={index} type='dropoff' language={language} />
                                                                 </div>
@@ -563,7 +562,7 @@ const TransferDetails = (props) => {
                                                     <div className={styles.textarea_div}>
                                                         <Textarea label={appData?.words["strSpecialRequestsTitle"]} name="specialRequests" value={specialRequests} onChange={(e) => onchangeHandler(e, index)} />
                                                     </div>
-                                                    {index === 1 ? <CheckBox direction={direction} textSame={appData?.words["strPassengerDetailsCheckBox"]} textNotSame="" /> : <React.Fragment></React.Fragment>}
+                                                    {index === 1 ? <CheckBox direction={direction} textSame={appData?.words["strPassengerDetailsCheckBox"]} textNotSame={appData?.words["strThePassengerDetailsAreNotSame"]} /> : <React.Fragment></React.Fragment>}
                                                     {index === 1 || (index === 0 && +journeyType === 0) ?
                                                         <div className={` ${direction === 'rtl' ? styles.directionbuttons : styles.buttons}  ${quotations[0]?.taxiDeal ? styles.taxideal_buttons : ""}`} >
                                                             <div className={styles.left}>

@@ -9,7 +9,7 @@ export const dropdownAirlineLabels = [
     { id: "5", value: "5", }
 ];
 export const dropdownFlightClass = [
-    { id: "-- Select Airline --", value: "-- Select Airline --", },
+    { id: "-- Select Flight  Class --", value: "-- Select Flight  Class --", },
     { id: "Economy", value: "Economy", },
     { id: "Business", value: "Business", },
     { id: "First", value: "First", },
@@ -17,62 +17,66 @@ export const dropdownFlightClass = [
 
 
 //FOR STEP _1
-export const passengerDetailsError = (passengersForm) => {
+export const passengerDetailsError = (passengersForm, appData) => {
     const errors = [];
     for (const passenger of passengersForm) {
         const error = { statusCode: 200, errorMessage: "" };
         if (passenger.firstname === "") {
             error.statusCode = 400;
-            error.errorMessage = "required";
+            error.errorMessage = appData?.words["strRequired"];
         } else if (passenger.lastname === "") {
             error.statusCode = 400;
-            error.errorMessage = "required";
+            error.errorMessage = appData?.words["strRequired"];
         }
         errors.push(error);
     }
     return errors;
 };
 //FOR STEP _2
-export const flightDetailsError = (flightDetails) => {
+export const flightDetailsError = (flightDetails, appData) => {
     const errors = {};
+    console.log(flightDetails.flightClass);
 
-    if (flightDetails.airline === "-- Select Airline --") {
-        errors.airline = { statusCode: 400, errorMessage: "required", };
+    if (flightDetails.airline.includes("--")) {
+        errors.airline = { statusCode: 400, errorMessage: appData?.words["strRequired"], };
     }
 
     if (flightDetails.flightNumber.trim() === "") {
-        errors.flightNumber = { statusCode: 400, errorMessage: "required", };
+        errors.flightNumber = { statusCode: 400, errorMessage: appData?.words["strRequired"], };
     }
-
-    if (flightDetails.flightClass === "-- Select Class --") {
-        errors.flightClass = { statusCode: 400, errorMessage: "required", };
+    //select flight class dil seklinde eklenenen sonra
+    //flightDetails.flightClass === appData.words["strflightClass"] seklinde yazaceyik
+    if (flightDetails.flightClass.includes("--")) {
+        errors.flightClass = { statusCode: 400, errorMessage: appData?.words["strRequired"], };
     }
 
     if (flightDetails.noOfLuggageBags.trim() === "") {
-        errors.noOfLuggageBags = { statusCode: 400, errorMessage: "required", };
+        errors.noOfLuggageBags = { statusCode: 400, errorMessage: appData?.words["strRequired"], };
     }
 
     return errors;
 };
 
-export const bookersDetailsError = (bookerDetails) => {
+export const bookersDetailsError = (bookerDetails, appData) => {
     const errors = {};
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     if (bookerDetails.firstname.trim() === "") {
-        errors.firstname = { statusCode: 400, errorMessage: "required", };
+        errors.firstname = { statusCode: 400, errorMessage: appData?.words["strRequired"] };
     }
     if (bookerDetails.lastname.trim() === "") {
-        errors.lastname = { statusCode: 400, errorMessage: "required", };
+        errors.lastname = { statusCode: 400, errorMessage: appData?.words["strRequired"] };
     }
     if (bookerDetails.mobileNumber.trim() === "") {
-        errors.mobileNumber = { statusCode: 400, errorMessage: "required", };
+        errors.mobileNumber = { statusCode: 400, errorMessage: appData?.words["strRequired"] };
     }
-    if (bookerDetails.email.trim() === "") {
-        errors.email = { statusCode: 400, errorMessage: "required", };
+    if (bookerDetails.email.trim() === "" || !emailRegex.test(bookerDetails.email)) {
+        errors.email = { statusCode: 400, errorMessage: appData?.words["strRequired"] };
     }
 
     return errors;
 }
+
 // 2023-07-29=> to => Sat, Jul 29, 2023
 export const formatDate = (dateString) => {
     var date = new Date(dateString);

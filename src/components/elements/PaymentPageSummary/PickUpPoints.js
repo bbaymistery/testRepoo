@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import pointsStyle from "./pointsStyle.module.scss";
-const PickUpPoints = ({ selectedPickupPoints, direction ,language}) => {
+const PickUpPoints = ({ selectedPickupPoints, direction, language }) => {
   const { appData } = useSelector(state => state.initialReducer)
 
   return (
@@ -12,7 +12,7 @@ const PickUpPoints = ({ selectedPickupPoints, direction ,language}) => {
             <p className={pointsStyle.point_adress} direction={String(direction === 'rtl')}>{i + 1}.{language === 'en' ? point.address : point.translatedAddress}</p>
             {/*  //! for flight  */}
             {point?.flightDetails?.flightNumber && (
-              
+
               <div className={pointsStyle.details_bottom_description} direction={String(direction === 'rtl')}>
                 <i className="fa-solid fa-circle-dot"></i>
                 <div className={pointsStyle.bottom_main_desc}>
@@ -27,8 +27,10 @@ const PickUpPoints = ({ selectedPickupPoints, direction ,language}) => {
               <div className={pointsStyle.details_bottom_description} direction={String(direction === 'rtl')}>
                 <i className="fa-solid fa-circle-dot"></i>
                 <div className={pointsStyle.bottom_main_desc}>
-                  <span>Driver Meeting Time:</span>
-                  <span className={pointsStyle.flight_has_landed}>{`${point?.flightDetails?.waitingPickupTime} mins after flight  has landed `}</span>
+                  <span>{appData?.words["strRequestedPickupTime"]}:</span>
+                  <span className={pointsStyle.flight_has_landed}>
+                    {appData?.words["strMinutesAfterFlightHasLanded"].replace("{{}}", point?.flightDetails?.waitingPickupTime)}
+                  </span>
                 </div>
               </div>
             )}
@@ -49,7 +51,7 @@ const PickUpPoints = ({ selectedPickupPoints, direction ,language}) => {
                 <i className="fa-solid fa-circle-dot"></i>
                 <div className={pointsStyle.bottom_main_desc}>
                   <span>{appData?.words["strCruiseNameTitle"]}</span>
-                   <span>{point?.cruiseNumber}</span>
+                  <span>{point?.cruiseNumber}</span>
                 </div>
               </div>
             )}

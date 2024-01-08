@@ -6,7 +6,7 @@ import Textarea from "../Textarea";
 
 import styles from "./styles.module.scss";
 const CheckingForPostcodes = (props) => {
-  let { point, onChange = () => { }, error, isTaxiDeal =false} = props
+  let { point, onChange = () => { }, error, isTaxiDeal = false } = props
   let state = useSelector((state) => state.pickUpDropOffActions)
   const { appData } = useSelector(state => state.initialReducer)
 
@@ -23,7 +23,7 @@ const CheckingForPostcodes = (props) => {
     let newPostcodeDetails = { ...point.postCodeDetails, [name]: name === 'id' ? parseInt(value) : value, ...extraState }
     onChange(newPostcodeDetails)
   };
-  
+
 
   return (
     <>
@@ -38,11 +38,11 @@ const CheckingForPostcodes = (props) => {
               value={point.postCodeDetails.id}
               onChange={(e) => onchangeHandler(e)}
               postCodeSelectOption={true}
-              errorMessage={point.postCodeDetails.id !== 0&&(error?.postCodeDetails?.postCodeAddress || error?.postCodeDetails?.id) ? "required" : ""}
+              errorMessage={point.postCodeDetails.id !== 0 && (error?.postCodeDetails?.postCodeAddress || error?.postCodeDetails?.id) ? "required" : ""}
               data={[{ id: "", value: `--${appData?.words["quSelectButton"]}--` }, { id: 0, value: `${appData?.words["strAddNewAddressIfNotListed"]}` }, ...postCodes?.length > 0 ? postCodes : []]}
             />
             {point.postCodeDetails.id === 0 ?
-              <Textarea name="postCodeAddress" label="Adress Description *" errorMessage={error?.postCodeDetails?.postCodeAddress} onChange={(e) => onchangeHandler(e)} value={point.postCodeDetails.postCodeAddress} />
+              <Textarea name="postCodeAddress" label={appData?.words["strPostCodeAddress"]} errorMessage={error?.postCodeDetails?.postCodeAddress} onChange={(e) => onchangeHandler(e)} value={point.postCodeDetails.postCodeAddress} />
               : <React.Fragment></React.Fragment>}
           </div>
         </div>)
