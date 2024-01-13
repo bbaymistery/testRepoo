@@ -136,14 +136,16 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                     <i className="fa-solid fa-star"></i>
                     <i className="fa-solid fa-star"></i>
                     <i className="fa-solid fa-star"></i>
-                    4.95/5
+                    <span style={{ marginLeft: "10px" }}> 4.95/5</span>
                 </a>
+
                 <a href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} title="Airport Pickups London Reviews  " className={styles.reviews} rel="noreferrer">
                     <i className="fa-solid fa-comment"></i>
                     486 {`${appData?.words["strReviews"]}`}
                 </a>
             </div>
             <p className={styles.viceversa}> <a href={returnPathname} title={returnPageTitle}> {formatPriceInTitle(returnHeadTitle)} </a> </p>
+
             <div className={` ${styles.quotation_header}`}>
                 <ul>
                     {distance ? <li><span><i className={`fa-solid fa-check ${styles.li_icon}`}></i></span>{appData?.words["strDistance"]} : <span>{distance}</span></li> : (<></>)}
@@ -179,10 +181,10 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                                             {carObject[item?.carId]?.transferType}
                                             <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
                                         </div>
-                                        <h3 className={styles.name}>
+                                        <div className={styles.name}>
                                             {carObject[item?.carId]?.name}
                                             <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
-                                        </h3>
+                                        </div>
                                     </div>
                                     <div className={styles.car_features}>
                                         <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
