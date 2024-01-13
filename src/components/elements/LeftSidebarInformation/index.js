@@ -13,7 +13,7 @@ const LeftSidebarInformation = ({ direction, appData, showAllInclusive = true, s
                         target="_blank"
                         href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html"
                         title="Tripadvisor Rating for Airport Pickups London">
-                        <img className={styles.tripad_img} border="0" alt="Airport Pickups" src="/images/TripAdvisor2.png" />
+                        <img className={styles.tripad_img} border="0" alt="Airport Pickups" src="/images/TripAdvisor2.webp" />
                     </a>
                 </ul>
             </div>
@@ -22,19 +22,19 @@ const LeftSidebarInformation = ({ direction, appData, showAllInclusive = true, s
 
                 <ul>
                     <li className={styles.phone}>
-                        <img src="/images/tel.png" alt="Airport Pickups Support" />
+                        <img src="/images/tel.webp" alt="Airport Pickups Support" />
                         <a href="tel:+442088687744">+44 (0) 208 688 7744</a>
 
                     </li>
                     <li className={styles.wp}>
-                        <img src="/images/WhatsApp.svg.png" alt="Airport Pickups Support" />
+                        <img src="/images/WhatsAppp.webp" alt="Airport Pickups Support" />
                         <a target="_blank" href="https://wa.me/447387901028">
                             +44 73 8790 1028
                         </a>
                     </li>
                     <li className={styles.mail}>
                         <span>
-                            <img border="0" alt="Airport Pickups" src="/images/mail.svg" />
+                            <img border="0" alt="Airport Pickups" src="/images/mail.webp" />
                         </span>
                         <a href="mailto:info@aplcars.com" >info@aplcars.com</a>
 
@@ -90,10 +90,10 @@ const LeftSidebarInformation = ({ direction, appData, showAllInclusive = true, s
 
             <div className={`${styles.left_info} ${styles.acceptedcards}`}>
                 <p className={`${styles.left_info_title} ${direction}`}> {appData?.words["strAcceptedCards"]}</p>
-                <img className={styles.acceptedcards_img} border="0" alt="Airport Pickups" src="/images/payments.png" />
+                <img className={styles.acceptedcards_img} border="0" alt="Airport Pickups" src="/images/payments.webp" />
             </div>
             <div className={`${styles.left_info} ${styles.tfl}`}>
-                <img className={styles.tfl_img} border="0" alt="Airport Pickups" src="/images/tfl2.png" />
+                <img className={styles.tfl_img} border="0" alt="Airport Pickups" src="/images/tfl2.webp" />
             </div>
             {showExceptional ?
                 <div className={`${styles.left_info} ${styles.exceptional}`} >

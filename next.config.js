@@ -104,7 +104,9 @@ const nextConfig = {
 
     ]
   },
-
+  images: {
+    domains: ['api.london-tech.com', "www.airport-pickups-london.com"],
+  },
 }
 
 module.exports = nextConfig

@@ -8,9 +8,6 @@ import meetAndGret from '../../../../public/images/icons/blackMeetAndGreet.svg'
 import Image from 'next/image';
 import WaveLoading from '../LoadingWave';
 import HeaderOfResults from './HeaderOfResults';
-import TaxiDealsContents from '../TaxiDealsContents';
-import TitleTaxiDeal from './TitleTaxiDeal';
-import ViceVersaUrlTaxiDeal from './ViceVersaUrlTaxiDeal';
 import { postDataAPI } from '../../../helpers/fetchDatas';
 function mergeDetails(points, objectDetails) {
   return points.map(point => {
@@ -65,13 +62,7 @@ const CardQuotationItem = (params = {}) => {
     duration,
     distance,
     isTaxiDeal = false,
-    headTitle,
     previousUrl,
-    returnPathname,
-    pageTitle,
-    pageContent,
-    returnPageTitle,
-    returnHeadTitle,
     objectDetailss,
     gotoTransferDetailsClick = () => { },
     setShowMapOneWay = () => { },
@@ -86,22 +77,21 @@ const CardQuotationItem = (params = {}) => {
   const state = useSelector((state) => state.pickUpDropOffActions)
   let { params: { journeyType, direction, language, quotations } } = state
   const { appData } = useSelector(state => state.initialReducer)
-  const quotationIsSelected = selectedQuotation?.carId
   //cartypes object for card item as {1:{image:'sds, name:Economy}}
   const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
-  const [journeyAccrodionStatus, setJourneyAccrodionStatus] = useState(false)
-  const [returnJourneyAccordionStatus, setReturnJourneyAccordionStatus] = useState(false)
+  const [journeyAccrodionStatus, setJourneyAccrodionStatus] = useState(true)
+  const [returnJourneyAccordionStatus, setReturnJourneyAccordionStatus] = useState(true)
 
 
 
   useEffect(() => {
     // This code runs only in the browser, as useEffect is a browser-only lifecycle method
-    const journeyStatus = localStorage.getItem("journeyQuotation") ? true : false;
-    setJourneyAccrodionStatus(journeyStatus);
-
-    const returnJourneyStatus = localStorage.getItem("returnJourneyQuotation") ? true : false;
-    setReturnJourneyAccordionStatus(returnJourneyStatus);
+    localStorage.setItem("journeyQuotation", JSON.stringify(datas[0]))
+    localStorage.setItem("returnJourneyQuotation", JSON.stringify(datas[0]))
   }, []);
+
+
+
   const setQuotationHandleClick = async (params = {}) => {
     let { quotation } = params
     checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
@@ -115,32 +105,6 @@ const CardQuotationItem = (params = {}) => {
         setReturnJourneyAccordionStatus(localStorage?.getItem("returnJourneyQuotation") ? true : false)
       }
     }
-
-
-    if (isTaxiDeal) {
-      const body = { language, checkRedirect: true, taxiDealPathname: previousUrl, withoutExprectedPoints: false, }
-      const url = `${env.apiDomain}/api/v1/taxi-deals/details`
-      const { status, data } = await postDataAPI({ url, body })
-      let { taxiDeal: { pickupPoints, dropoffPoints, } } = data
-      pickupPoints = mergeDetails(pickupPoints, objectDetailss)
-      dropoffPoints = mergeDetails(dropoffPoints, objectDetailss)
-      // dispatch({ type: "ADD_NEW_POINT_AT_PATHNAME", data: { pickupPoints, dropoffPoints, index: 0 } })
-      // console.log(status);
-      dispatch({ type: "GET_QUOTATION_AT_PATHNAME", data: { results: data, journeyType } })
-
-
-    }
-
-    // if (isTaxiDeal) {
-    //   let errorHolder = reservationSchemeValidator({ reservations, appData });
-    //   setInternalState({ errorHolder })
-    //   if (errorHolder.status === 200)
-    //     checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch })
-
-    // } else {
-
-    // }
-
   };
 
   const handleClickForMobile = ({ e, quotation }) => {
@@ -191,10 +155,7 @@ const CardQuotationItem = (params = {}) => {
           {appData?.words["seReturnDetails"]}
         </span>
       </h2> : <React.Fragment></React.Fragment>}
-      <div className={`${styles.result_container} ${isTaxiDeal ? styles.taxideal_result_container : ""}`}>
-        {/* {isTaxiDeal ? <BreadCrumbTaxiDeal previousUrl={previousUrl} breadCrumbFrom={breadCrumbFrom} breadCrumbTo={breadCrumbTo} direction={direction} /> : <></>} */}
-        {isTaxiDeal && headTitle ? <TitleTaxiDeal headTitle={headTitle} direction={direction} pageTitle={pageTitle} appData={appData} /> : <></>}
-        {isTaxiDeal && returnPathname ? <ViceVersaUrlTaxiDeal previousUrl={previousUrl} returnPathname={returnPathname} returnHeadTitle={returnHeadTitle} returnPageTitle={returnPageTitle} /> : <></>}
+      <div className={`${styles.result_container}`}>
         <HeaderOfResults duration={duration} distance={distance} />
         {/* make visible for selected item */}
         {journeyType === 1 && index === 0 && <div>
@@ -236,9 +197,6 @@ const CardQuotationItem = (params = {}) => {
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
                       <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
-
-
-
                       <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
                       <p className={`${styles.apl_feature} ${styles.show_less_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
                       <p className={`${styles.apl_feature} ${styles.show_less_than360} ${styles.show_less_than360_with_price}`}>
@@ -253,10 +211,6 @@ const CardQuotationItem = (params = {}) => {
                           <span>00</span>
                         </span>
                       </p>
-
-
-
-
                     </div>
                   </div>
                 </div>
@@ -328,10 +282,6 @@ const CardQuotationItem = (params = {}) => {
                           <span>00</span>
                         </span>
                       </p>
-
-
-
-
                     </div>
                   </div>
                 </div>
@@ -423,7 +373,6 @@ const CardQuotationItem = (params = {}) => {
         })}
 
         {(+journeyType === 0) && datas?.map((item, index) => {
-
           return (
             <div id="main_container">
               <div
@@ -496,7 +445,6 @@ const CardQuotationItem = (params = {}) => {
             </div>
           )
         })}
-        {isTaxiDeal && pageContent?.length > 1 ? <TaxiDealsContents pageContent={pageContent} /> : <></>}
 
       </div>
       {index === 1 &&

@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postDataAPI } from '../helpers/fetchDatas';
 import env from '../resources/env';
 import store from '../store/store';
-import QuotationResults from './quotation-results';
 import Error404 from './404/index'
 import { parse } from 'url'
 import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttributeOntheUrl';
+import QuotationResultsTaxiDeal from '../components/elements/QuotationResultsTaxiDeal';
 
 function Pages(props) {
     let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle, returnPageTitle } = props
@@ -89,7 +89,7 @@ function Pages(props) {
     }, [])
 
 
-    return <QuotationResults
+    return <QuotationResultsTaxiDeal
         isTaxiDeal={true}
         keywords={keywords}
         pageTitle={pageTitle}
@@ -116,7 +116,12 @@ function getJsonSizeInKB(jsonObject) {
 
     return kilobytes;
 }
+
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
+    res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
+    )
     let pickUps = []
     let dropoffs = []
     let dealUrl = `${req.url}`

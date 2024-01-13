@@ -41,6 +41,8 @@ const Map = ({ datas, selectedPickPoints, selectedDroppOfPoints, isTaxiDeal = fa
   let polyOptions = datas?.polylinePath?.map((poly) => { return { lat: poly[0], lng: poly[1] }; });
 
   let pathOptions = datas?.markerPoints?.map((poly) => { return { lat: poly[0], lng: poly[1] }; });
+  console.log({ polyOptions });
+  console.log({ pathOptions });
 
   const options = {
     strokeColor: "red",
@@ -60,16 +62,13 @@ const Map = ({ datas, selectedPickPoints, selectedDroppOfPoints, isTaxiDeal = fa
   };
 
 
-  const googleMapOptions = {
 
-    fullscreenControl: false,
-  }
   const onLoad = (infoWindow) => {
   };
   useEffect(() => {
     if (!isTaxiDeal) {
       setPoints([...selectedPickPoints, ...selectedDroppOfPoints]);
-    }else{
+    } else {
       // setPoints[]
     }
 
@@ -79,7 +78,7 @@ const Map = ({ datas, selectedPickPoints, selectedDroppOfPoints, isTaxiDeal = fa
 
   return (
     //AIzaSyDj4vvK0JOc18G40y4QUrrVcaMJzkV1jH4
-    <div className={styles.google_map}>
+    <div className={styles.google_map} style={{ width: "100%", height: "100%" }}>
       {!isLoaded ?
         <div>...</div>
         :

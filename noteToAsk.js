@@ -1,6 +1,6 @@
 
 //?bu versiyonu yok { "pagePathname":"/About_APL", "language":"tr"}
-
+//cht resource file birdefe degisdik e (https://churchilltransfers.com=>>> https://www.churchilltransfers.com   )   wwww ekledik Eynisin burdadami edeceyikmi?
 //!2.manageMyBooking.tml  > which id i will include 2 or 3
 //!3.should i change language inside passenger details
 //!meetgreet  =>step 2 flight => Select Airlenis ne gelicek ?hangi Airleni?

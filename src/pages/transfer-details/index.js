@@ -68,7 +68,7 @@ const TransferDetails = (props) => {
     //in order having confirmation message
     //go back go forward and when change language we r not gonna have any confirmation
     const { nexturls, previousUrls, currentUrls } = urlWithLangAtribute({ languages: appData.languages, previousUrl: localStorage.getItem("path"), nextUrl: "/payment-details", currentUrl: router.asPath })
-    const confirmationAlert = useConfirm({ previousUrl: previousUrls, nextUrl: nexturls, currentUrls, message: "If you refresh the page, all data will be deleted." })
+    // const confirmationAlert = useConfirm({ previousUrl: previousUrls, nextUrl: nexturls, currentUrls, message: "If you refresh the page, all data will be deleted." })
     //it is gonna be used inside --select when we come from tansfer details
     const [pickupIdForImage, setpickupIdForImage] = useState(null)
     const [dropoffIdFormImage, setdropoffIdFormImage] = useState(null)
