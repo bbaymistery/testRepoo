@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
-import { quotationImagesObj } from '../../constants/quotationImages'
+import { quotationImagesObjWebp } from '../../constants/quotationImages'
 import env from '../../resources/env'
 import Image from 'next/image';
 import meetAndGret from '../../../public/images/icons/blackMeetAndGreet.svg'
@@ -38,10 +38,10 @@ const Fleet = (props) => {
                                     <br />
                                     Take a look at our options below:</p>
                             </div>
-                            {Object?.values(quotationImagesObj)?.map((item, index) => {
+                            {Object?.values(quotationImagesObjWebp)?.map((item, index) => {
                                 return (
                                     <div dataid={index === 0 ? "first_car" : ""} key={index} className={`${styles.card_item}`}    >
-                                        <div data={item?.id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${item?.image})` }}> </div>
+                                        <div data={item?.id} className={styles.column_first} style={{ backgroundImage: `url(${item?.image})` }}> </div>
                                         <div className={styles.column_second}>
                                             <div className={styles.column_second_flex_column}>
                                                 <div className={styles.name_and_postcode_div}>

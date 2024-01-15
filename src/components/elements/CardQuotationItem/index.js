@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { quotationImagesObj } from '../../../constants/quotationImages';
+import { quotationImagesObjWebp } from '../../../constants/quotationImages';
 import env from '../../../resources/env';
 import styles from "./styles.module.scss";
 import meetAndGret from '../../../../public/images/icons/blackMeetAndGreet.svg'
@@ -161,14 +161,14 @@ const CardQuotationItem = (params = {}) => {
         {journeyType === 1 && index === 0 && <div>
           {datas.map((item, index) => {
 
-            const renderSelectedItem = Number(JSON.parse(localStorage?.getItem("journeyQuotation"))?.carId) === Number(quotationImagesObj[item?.carId]?.id)
+            const renderSelectedItem = Number(JSON.parse(localStorage?.getItem("journeyQuotation"))?.carId) === Number(quotationImagesObjWebp[item?.carId]?.id)
             if (renderSelectedItem && journeyAccrodionStatus) {
               return <div
                 dataid={index === 0 ? "first_car" : ""}
                 key={index + 50}
-                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
+                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
               >
-                <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
+                <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
                 <div className={styles.column_second}>
                   <div className={styles.column_second_flex_column}>
                     <div className={styles.name_and_postcode_div}>
@@ -203,7 +203,7 @@ const CardQuotationItem = (params = {}) => {
                         <span>
                           <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
                           </i>
-                          <span>{"Free Cancellation (24h)"}</span>
+                          <span>{appData?.words["strFreeCancellation24h"]}</span>
                         </span>
 
                         <span className={`${styles.price_span}`} >
@@ -229,14 +229,14 @@ const CardQuotationItem = (params = {}) => {
         </div>}
         {journeyType === 1 && index === 1 && <div>
           {datas.map((item, index) => {
-            const renderSelectedItem = Number(JSON.parse(localStorage?.getItem("returnJourneyQuotation"))?.carId) === Number(quotationImagesObj[item?.carId]?.id)
+            const renderSelectedItem = Number(JSON.parse(localStorage?.getItem("returnJourneyQuotation"))?.carId) === Number(quotationImagesObjWebp[item?.carId]?.id)
             if (renderSelectedItem && returnJourneyAccordionStatus) {
               return <div
                 dataid={index === 0 ? "first_car" : ""}
                 key={index + 100}
-                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
+                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
               >
-                <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
+                <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
                 <div className={styles.column_second}>
                   <div className={styles.column_second_flex_column}>
                     <div className={styles.name_and_postcode_div}>
@@ -274,7 +274,7 @@ const CardQuotationItem = (params = {}) => {
                         <span>
                           <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
                           </i>
-                          <span>{"Free Cancellation (24h)"}</span>
+                          <span>{appData?.words["strFreeCancellation24h"]}</span>
                         </span>
 
                         <span className={`${styles.price_span}`} >
@@ -304,9 +304,9 @@ const CardQuotationItem = (params = {}) => {
               <div
                 dataid={index === 0 ? "first_car" : ""}
                 key={index}
-                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
+                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
                 onClick={(e) => handleClickForMobile({ e, quotation: item })} >
-                <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
+                <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
                 <div className={styles.column_second}>
                   <div className={styles.column_second_flex_column}>
                     <div className={styles.name_and_postcode_div}>
@@ -344,7 +344,7 @@ const CardQuotationItem = (params = {}) => {
                         <span>
                           <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
                           </i>
-                          <span>{"Free Cancellation (24h)"}</span>
+                          <span>{appData?.words["strFreeCancellation24h"]}</span>
                         </span>
 
                         <span className={`${styles.price_span}`} >
@@ -378,9 +378,9 @@ const CardQuotationItem = (params = {}) => {
               <div
                 dataid={index === 0 ? "first_car" : ""}
                 key={index}
-                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
+                className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
                 onClick={(e) => handleClickForMobile({ e, quotation: item })} >
-                <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
+                <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
                 <div className={styles.column_second}>
                   <div className={styles.column_second_flex_column}>
                     <div className={styles.name_and_postcode_div}>
@@ -418,7 +418,7 @@ const CardQuotationItem = (params = {}) => {
                         <span>
                           <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
                           </i>
-                          <span>{"Free Cancellation (24h)"}</span>
+                          <span>{appData?.words["strFreeCancellation24h"]}</span>
                         </span>
 
                         <span className={`${styles.price_span}`} >

@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { quotationImagesObj } from '../../../constants/quotationImages'
-import env from '../../../resources/env'
 import styles from "./styles.module.scss"
 import DropOffPoints from './DropOffPoints'
 import PickUpPoints from './PickUpPoints'

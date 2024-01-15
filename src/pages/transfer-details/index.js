@@ -13,7 +13,6 @@ import TextInput from '../../components/elements/TextInput';
 import Textarea from '../../components/elements/Textarea';
 import Select from '../../components/elements/Select';
 import { useDispatch, useSelector } from 'react-redux'
-import { useConfirm } from '../../hooks/useConfirm'
 import styles from "./styles.module.scss"
 import { useRouter } from 'next/router'
 import CheckBox from './CheckBox'

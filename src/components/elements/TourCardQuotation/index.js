@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { quotationImagesObj } from '../../../constants/quotationImages';//imagelerin sekilleri gorundeye kullanirix
+import { quotationImagesObjWebp } from '../../../constants/quotationImages';//imagelerin sekilleri gorundeye kullanirix
 import env from '../../../resources/env';
 import styles from "./styles.module.scss";
 import Image from 'next/image';
@@ -55,7 +55,7 @@ const TourCardQuotation = (params = {}) => {
   };
   // Define the function to return the result based on the condition
   const getClassNameResult = (selectedQuotation, item) => {
-    if (Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId]?.id)) {
+    if (Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId]?.id)) {
       return `${styles.card_item} ${styles.selectedCard}`;
     } else {
       return styles.card_item;
@@ -69,7 +69,7 @@ const TourCardQuotation = (params = {}) => {
           return (
             <div key={index} className={getClassNameResult(selectedQuotation, item)} onClick={(e) => handleClickForMobile({ e, quotation: item })}>
               {item ?
-                <div data={quotationImagesObj[item?.carId]?.id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
+                <div data={quotationImagesObjWebp[item?.carId]?.id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
                 : <></>}
               <div className={styles.column_second}>
 

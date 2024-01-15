@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from "./styles.module.scss"
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { quotationImagesObj } from '../../../constants/quotationImages';
+import { quotationImagesObjWebp } from '../../../constants/quotationImages';
 import env from '../../../resources/env';
 
 import Image from 'next/image';
@@ -96,8 +96,11 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
     };
 
     const handleClickForMobile = ({ e, quotation }) => {
-        if (451 > document.documentElement.clientWidth)
+        if (451 > document.documentElement.clientWidth) {
             checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
+            localStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(quotation));
+        }
+
     };
     const changeCar = () => {
         localStorage.removeItem("journeyQuotationForTaxiDeal");
@@ -105,7 +108,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
     }
     useEffect(() => {
         // This code runs only in the browser, as useEffect is a browser-only lifecycle method
-        if (datas?.length > 0) {
+        if (!JSON.parse(localStorage?.getItem("journeyQuotationForTaxiDeal"))?.carId && datas?.length > 0) {
             localStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(datas[0]))
         }
         // Regular expression to match <img> tags
@@ -156,24 +159,24 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
             </div>
             {index === 0 && <div>
                 {datas?.map((item, index) => {
-
-                    const renderSelectedItem = Number(JSON.parse(localStorage?.getItem("journeyQuotationForTaxiDeal"))?.carId) === Number(quotationImagesObj[item?.carId]?.id)
+                    const renderSelectedItem = Number(JSON.parse(localStorage?.getItem("journeyQuotationForTaxiDeal"))?.carId) === Number(quotationImagesObjWebp[item?.carId]?.id)
                     if (renderSelectedItem && journeyAccrodionStatus) {
                         return <div
                             dataid={index === 0 ? "first_car" : ""}
                             key={index + 50}
-                            className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
+                            className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
                         >
-                            <div style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
                             <div className={styles.column_first} style={{ position: "relative" }} >
-                                <Image
-                                    src={`${env.apiDomain}${quotationImagesObj[item?.carId]?.image}`}
-                                    alt="Car Image"
-                                    fill
-                                    style={{ objectFit: "contain" }}
-                                    data={quotationImagesObj[item?.carId].id}
-                                    priority
-                                />
+                                {
+                                    !quotationImagesObjWebp[item?.carId].id ? <>...</> : <Image
+                                        src={`${quotationImagesObjWebp[item?.carId]?.image}`}
+                                        alt="Car Image"
+                                        fill
+                                        style={{ objectFit: "contain" }}
+                                        data={quotationImagesObjWebp[item?.carId].id}
+                                        priority
+                                    />
+                                }
                             </div>
                             <div className={styles.column_second}>
                                 <div className={styles.column_second_flex_column}>
@@ -237,11 +240,11 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                 return (
                     <div id="main_container">
                         <div
-                            dataid={index === 0 ? "first_car" : ""}
+                            dataid={index === 0 ? "first_car" : (index === 1 ? "second_car" : "")}
                             key={index}
-                            className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObj[item?.carId].id) ? styles.selectedCard : ""}`}
+                            className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
                             onClick={(e) => handleClickForMobile({ e, quotation: item })} >
-                            <div data={quotationImagesObj[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObj[item?.carId]?.image})` }}> </div>
+                            <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
                             <div className={styles.column_second}>
                                 <div className={styles.column_second_flex_column}>
                                     <div className={styles.name_and_postcode_div}>

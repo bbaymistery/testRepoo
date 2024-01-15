@@ -98,28 +98,34 @@
 
 
        .card_item {
-
-           //    padding-bottom: 15px;
-           //    padding-top: 15px;
            margin-bottom: 22px;
            display: flex;
            border-radius: 4px;
            transition: .1s linear;
-           //    border-left: 1px solid transparent;
-           //    border-right: 1px solid transparent;
            border: 1px solid transparent;
            background: #fff;
            box-shadow: 0 3px 6px rgb(25 32 36 / 16%), 0 -1px 4px rgb(25 32 36 / 4%);
 
-           &:not(:first-child) {
-               //    border-top: 1px solid $border;
-           }
 
            @media (max-width: 767px) {
                flex-direction: column;
                border-left: 1px solid transparent;
                border-right: 1px solid transparent;
 
+           }
+
+           .column_first[data="2"] {
+               background-size: 70%;
+
+               @media (max-width: 768px) {
+                   background-size: 35%;
+
+               }
+
+               @media (max-width: 500px) {
+                   background-size: 70%;
+
+               }
            }
 
            .column_first {

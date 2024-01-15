@@ -1,8 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
-import env from '../../../resources/env'
-import { quotationImagesObj } from '../../../constants/quotationImages'
+import { quotationImagesObjWebp } from '../../../constants/quotationImages'
 
 const CarInfo = (props) => {
     let { index, quotation, splitedDate, splitedHour, splitedMinute, } = props
@@ -19,7 +18,7 @@ const CarInfo = (props) => {
             <div className={styles.sections}>
                 <div className={`${styles.section} ${styles.first_column}`}>
                     <div className={styles.img_div}>
-                        <img src={`${env.apiDomain}${quotationImagesObj[quotation?.carId]?.image}`} alt="" />
+                        <img src={`${quotationImagesObjWebp[quotation?.carId]?.image}`} alt="" />
                     </div>
                     <div className={styles.description}>
                         <div className={styles.text_1}>{appData?.words["strYouSelected"]}</div>

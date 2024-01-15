@@ -52,7 +52,6 @@
            display: flex;
            justify-content: center;
            padding: 10px;
-           //    padding: 10px 0px;
            gap: 2rem;
 
            a {
@@ -144,6 +143,21 @@
 
 
                    }
+               }
+           }
+       }
+
+       .card_item[dataid="second_car"] {
+
+           .column_first {
+               background-size: 70%;
+
+               @media (max-width: 767px) {
+                   background-size: 40%;
+               }
+
+               @media (max-width: 500px) {
+                   background-size: 60%;
                }
            }
        }

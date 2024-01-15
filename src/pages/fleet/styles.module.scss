@@ -23,7 +23,7 @@
                     display: none;
                 }
 
-          
+
             }
 
             .right_content {
@@ -68,13 +68,26 @@
                     background: #fff;
                     padding-top: 30px;
 
-                    &:not(:first-child) {}
 
                     @media (max-width: 768px) {
                         flex-direction: column;
                         border-left: 1px solid transparent;
                         border-right: 1px solid transparent;
 
+                    }
+
+                    .column_first[data="2"] {
+                        background-size: 70%;
+
+                        @media (max-width: 768px) {
+                            background-size: 35%;
+
+                        }
+
+                        @media (max-width: 500px) {
+                            background-size: 70%;
+
+                        }
                     }
 
                     .column_first {
