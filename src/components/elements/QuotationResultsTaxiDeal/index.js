@@ -6,7 +6,6 @@ import CardQuotationItemTaxiDeal from '../CardQuotationItemTaxiDeal'
 import dynamic from 'next/dynamic'
 import { useWindowSize } from '../../../hooks/useWindowSize'
 import { useEffect } from 'react'
-import Loading from '../alert/Loading'
 const QuotationResultsTaxiDealLeftPart = dynamic(() => import('../QuotationResultsTaxiDealLeftPart'));
 const QuotationResultsTaxiDeal = (props) => {
     //these props comes from ...pathname
@@ -37,7 +36,7 @@ const QuotationResultsTaxiDeal = (props) => {
             setLoadAlert(false)
         }
     }, [quotations])
-    return (loadAlert ? <Loading /> : <GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true}  >
+    return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true} loadAlert={loadAlert}  >
         <div className={`${styles.quotation} page`}>
             <div className={`${styles.quotation_section} page_section`}>
                 <div className={`${styles.quotation_section_container} page_section_container`}>
@@ -74,10 +73,5 @@ const QuotationResultsTaxiDeal = (props) => {
     </GlobalLayout>
     )
 }
-export async function getServerSideProps({ req, res }) {
-    res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59')
-    return {
-        props: {},
-    }
-}
+
 export default QuotationResultsTaxiDeal
