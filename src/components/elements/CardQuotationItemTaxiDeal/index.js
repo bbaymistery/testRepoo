@@ -172,6 +172,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                                     fill
                                     style={{ objectFit: "contain" }}
                                     data={quotationImagesObj[item?.carId].id}
+                                    priority
                                 />
                             </div>
                             <div className={styles.column_second}>
@@ -257,7 +258,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                                         <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
                                         <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
                                         <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
-                                            <Image src={"/images/icons/blackMeetAndGreet.webp"} width="18" height="20" alt="Meet and Greet icon " />
+                                            <Image src={"/images/icons/blackMeetAndGreet.webp"} width="18" height="20" alt="Meet and Greet icon " priority />
                                             <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span>
                                         </div>
 
