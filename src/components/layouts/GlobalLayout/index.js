@@ -14,7 +14,6 @@ const GlobalLayout = (
 ) => {
 
   const router = useRouter()
-  console.log(router.pathname)
   return (
     <>
       <Head>

@@ -6,6 +6,7 @@ import CardQuotationItemTaxiDeal from '../CardQuotationItemTaxiDeal'
 import dynamic from 'next/dynamic'
 import { useWindowSize } from '../../../hooks/useWindowSize'
 import { useEffect } from 'react'
+import Loading from '../alert/Loading'
 const QuotationResultsTaxiDealLeftPart = dynamic(() => import('../QuotationResultsTaxiDealLeftPart'));
 const QuotationResultsTaxiDeal = (props) => {
     //these props comes from ...pathname
@@ -30,13 +31,11 @@ const QuotationResultsTaxiDeal = (props) => {
     const size = useWindowSize();
     const { width } = size;
     const [loadAlert, setLoadAlert] = useState(true)
-
+    //strFreeCancellation24h
     useEffect(() => {
-        if (quotations[0]?.quotationOptions?.length > 0) {
-            setLoadAlert(false)
-        }
+        if (quotations[0]?.quotationOptions?.length > 0) setLoadAlert(false)
     }, [quotations])
-    return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true} loadAlert={loadAlert}  >
+    return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true} loadAlert={loadAlert}>
         <div className={`${styles.quotation} page`}>
             <div className={`${styles.quotation_section} page_section`}>
                 <div className={`${styles.quotation_section_container} page_section_container`}>

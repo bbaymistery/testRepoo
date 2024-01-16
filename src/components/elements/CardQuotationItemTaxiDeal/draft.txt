@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { quotationImagesObjWebp } from '../../../constants/quotationImages';
 import env from '../../../resources/env';
+
 import Image from 'next/image';
 import { formatPriceInTitle } from '../../../helpers/formatPriceInTitle';
 import TaxiDealsContents from '../TaxiDealsContents';
@@ -78,7 +79,6 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
     const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
     const [journeyAccrodionStatus, setJourneyAccrodionStatus] = useState(true)
     const [uploadedPageContent, setUploadedPageContent] = useState('')
-    const [item, setItem] = useState({ carId: 1, price: "85.00" })
     const setQuotationHandleClick = async (params = {}) => {
         let { quotation } = params
         checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
@@ -93,16 +93,12 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
         }
         localStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(quotation));
         setJourneyAccrodionStatus(true)
-        setItem(quotation)
     };
 
     const handleClickForMobile = ({ e, quotation }) => {
         if (451 > document.documentElement.clientWidth) {
             checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
             localStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(quotation));
-            setItem(quotation)
-            console.log(quotation);
-
         }
 
     };
@@ -114,13 +110,6 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
         // This code runs only in the browser, as useEffect is a browser-only lifecycle method
         if (!JSON.parse(localStorage?.getItem("journeyQuotationForTaxiDeal"))?.carId && datas?.length > 0) {
             localStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(datas[0]))
-        } else {
-            setItem(JSON.parse(localStorage?.getItem("journeyQuotationForTaxiDeal")))
-            console.log("sss");
-            console.log(JSON.parse(localStorage?.getItem("journeyQuotationForTaxiDeal")))
-
-            console.log({ item });
-
         }
         // Regular expression to match <img> tags
         const imgTagRegex = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
@@ -142,8 +131,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
 
     return (
         <div className={`${styles.taxideal_result_container}`}>
-            {/* 111  */}
-            <h1 alt={pageTitle} className={`${styles.title} ${styles.title_center} ${direction}`}>{headTitle ? formatPriceInTitle(headTitle) : "..."}</h1>
+            <h1 alt={pageTitle} className={`${styles.title} ${styles.title_center} ${direction}`}>{formatPriceInTitle(headTitle)}</h1>
             <div direction={String(direction === "rtl")} className={styles.stars}>
                 <a href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} title="Airport Pickups London Reviews" className={styles.reviews} rel="noreferrer"  >
                     <i className="fa-solid fa-star"></i>
@@ -159,8 +147,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                     486 {`${appData?.words["strReviews"]}`}
                 </a>
             </div>
-            {/* 111  */}
-            <p className={styles.viceversa}> <a href={returnPathname} title={returnPageTitle}> {returnHeadTitle ? formatPriceInTitle(returnHeadTitle) : "..."} </a> </p>
+            <p className={styles.viceversa}> <a href={returnPathname} title={returnPageTitle}> {formatPriceInTitle(returnHeadTitle)} </a> </p>
 
             <div className={` ${styles.quotation_header}`}>
                 <ul>
@@ -170,72 +157,85 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                     <li><span><i className={`fa-solid fa-check ${styles.li_icon}`}></i></span> <span className={styles.strong}>{appData?.words["strAllInclusivePrices"]}</span> {appData?.words["strMeetandGreetIncludedForAirport"]} </li>
                 </ul>
             </div>
-            {journeyAccrodionStatus ?
-                <div dataid={index === 0 ? "first_car" : ""} key={index + 50} className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}   >
-                    <div className={styles.column_first} style={{ position: "relative" }}  >
-                        <Image
-                            src={quotationImagesObjWebp[item.carId].image}
-                            alt={quotationImagesObjWebp[item.carId].image}
-                            fill
-                            style={{ objectFit: "contain" }}
-                            priority
-                        />
-                    </div>
+            {index === 0 && <div>
+                {datas?.map((item, index) => {
+                    const renderSelectedItem = Number(JSON.parse(localStorage?.getItem("journeyQuotationForTaxiDeal"))?.carId) === Number(quotationImagesObjWebp[item?.carId]?.id)
+                    if (renderSelectedItem && journeyAccrodionStatus) {
+                        return <div
+                            dataid={index === 0 ? "first_car" : ""}
+                            key={index + 50}
+                            className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
+                        >
+                            <div className={styles.column_first} style={{ position: "relative" }} >
+                                {
+                                    !quotationImagesObjWebp[item?.carId].id ? <>...</> : <Image
+                                        src={`${quotationImagesObjWebp[item?.carId]?.image}`}
+                                        alt="Car Image"
+                                        fill
+                                        style={{ objectFit: "contain" }}
+                                        data={quotationImagesObjWebp[item?.carId].id}
+                                        priority
+                                    />
+                                }
+                            </div>
+                            <div className={styles.column_second}>
+                                <div className={styles.column_second_flex_column}>
+                                    <div className={styles.name_and_postcode_div}>
+                                        <div className={styles.postcode}>
+                                            {carObject[item?.carId]?.transferType}
+                                            <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
+                                        </div>
+                                        <div className={styles.name}>
+                                            {carObject[item?.carId]?.name}
+                                            <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.car_features}>
+                                        <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
+                                        <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
+                                        <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
+                                            <Image src={"/images/icons/blackMeetAndGreet.webp"} width={18} height={20} alt="Meet and Greet icon " />
+                                            <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span>
+                                        </div>
 
-                    <div className={styles.column_second}>
-                        <div className={styles.column_second_flex_column}>
-                            <div className={styles.name_and_postcode_div}>
-                                <div className={styles.postcode}>
-                                    {carObject[item?.carId]?.transferType}
-                                    <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
-                                </div>
-                                <div className={styles.name}>
-                                    {carObject[item?.carId]?.name}
-                                    <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
+                                    </div>
+                                    <div className={styles.apl_features}>
+                                        <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                                        <p className={`${styles.apl_feature} ${styles.show_more_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
+                                        <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
+                                        <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
+                                        <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                                        <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
+                                        <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                                        <p className={`${styles.apl_feature} ${styles.show_less_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                                        <p className={`${styles.apl_feature} ${styles.show_less_than360} ${styles.show_less_than360_with_price}`}>
+                                            <span>
+                                                <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
+                                                </i>
+                                                <span>{"Free Cancellation (24h)"}</span>
+                                            </span>
+
+                                            <span className={`${styles.price_span}`} >
+                                                {`£${item?.price.split(".")[0]}.`}
+                                                <span>00</span>
+                                            </span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className={styles.car_features}>
-                                <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
-                                <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
-                                <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
-                                    <Image src={"/images/icons/blackMeetAndGreet.webp"} width={18} height={20} alt="Meet and Greet icon " />
-                                    <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span>
-                                </div>
 
-                            </div>
-                            <div className={styles.apl_features}>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
-                                <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_less_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_less_than360} ${styles.show_less_than360_with_price}`}>
-                                    <span>
-                                        <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
-                                        </i>
-                                        <span>{"Free Cancellation (24h)"}</span>
-                                    </span>
-
-                                    <span className={`${styles.price_span}`} >
-                                        {`£${item?.price.split(".")[0]}.`}
-                                        <span>00</span>
-                                    </span>
-                                </p>
+                            <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
+                                <div className={styles.price}>{`£${item?.price.split(".")[0]}.`} <span>00</span> </div>
+                                <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
+                                <button onClick={changeCar} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
+                                    {!selectedQuotation?.carId ? "See All Cars" : appData?.words["strYouSelected"]}
+                                </button>
                             </div>
                         </div>
-                    </div>
+                    }
+                })}
 
-                    <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
-                        <div className={styles.price}>{`£${item?.price.split(".")[0]}.`} <span>00</span> </div>
-                        <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
-                        <button onClick={changeCar} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
-                            {!selectedQuotation?.carId ? "See All Cars" : appData?.words["strYouSelected"]}
-                        </button>
-                    </div>
-                </div> : <></>}
+            </div>}
             {(!journeyAccrodionStatus && index === 0) && datas?.map((item, index) => {
                 return (
                     <div id="main_container">
