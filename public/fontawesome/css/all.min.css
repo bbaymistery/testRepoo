@@ -71,3 +71,15 @@
 .fa-check:before {
     content: "\f00c"
 }
+
+.fa-star:before {
+    content: "\f005"
+}
+
+.fa-comment:before {
+    content: "\f075"
+}
+
+.fa-user:before {
+    content: "\f007"
+}

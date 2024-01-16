@@ -14,6 +14,7 @@ const GlobalLayout = (
 ) => {
 
   const router = useRouter()
+  console.log(router.pathname)
   return (
     <>
       <Head>
@@ -29,8 +30,10 @@ const GlobalLayout = (
         {/* */}
         {/* <link rel="preload" href="/images/Excellent.webp" as="image" />
         <link rel="preload" href="/images/Reviews.webp" as="image" />
-        <link rel="preload" href="/images/advisorTrip.webp" as="image" /> */}
-        {router.pathname === "/" ? <link rel="stylesheet" href="/fontawesome/css/all.min.css" /> : <link rel="stylesheet" href="/fontawesomeHomePage/css/all.min.css" />}
+       */}
+        <link rel="preload" href="/images/cars/normal-saloon-v2.webp" as="image" />
+        {/* //for home page and /heathrow/heathrow-to-oxford-taxi we dont show all fontawesome csss */}
+        {(router.pathname === "/") || (router.pathname === '/[...pathname]') ? <link rel="stylesheet" href="/fontawesome/css/all.min.css" /> : <link rel="stylesheet" href="/fontawesomeHomePage/css/all.min.css" />}
         {/* {router.pathname === "/" ? <></> : <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" />} */}
 
 

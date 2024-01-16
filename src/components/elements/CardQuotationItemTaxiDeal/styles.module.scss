@@ -13,30 +13,11 @@
                font-size: 32px !important;
            }
 
-           @media (max-width: 1100px) {
-               font-size: 32px !important;
-
-           }
-
            @media (max-width: 767px) {
-               font-size: 24px !important;
-
-           }
-
-           @media (max-width: 600px) {
                font-size: 20px !important;
                flex-direction: column;
                margin-bottom: 0px;
-           }
 
-           @media (max-width:510px) {
-               font-size: 18px !important;
-           }
-
-           span {
-               color: lighten($primary, 5%);
-               font-weight: bold;
-               margin-left: 9px;
            }
        }
 
