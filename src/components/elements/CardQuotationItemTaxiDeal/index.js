@@ -116,11 +116,6 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
             localStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(datas[0]))
         } else {
             setItem(JSON.parse(localStorage?.getItem("journeyQuotationForTaxiDeal")))
-            console.log("sss");
-            console.log(JSON.parse(localStorage?.getItem("journeyQuotationForTaxiDeal")))
-
-            console.log({ item });
-
         }
         // Regular expression to match <img> tags
         const imgTagRegex = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
@@ -139,6 +134,8 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
             setUploadedPageContent(pageContent)
         }
     }, [datas]);
+    console.log(quotationImagesObjWebp[item?.carId]?.id);
+    console.log(quotationImagesObjWebp[item?.carId]);
 
     return (
         <div className={`${styles.taxideal_result_container}`}>
@@ -170,8 +167,8 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                     <li><span><i className={`fa-solid fa-check ${styles.li_icon}`}></i></span> <span className={styles.strong}>{appData?.words["strAllInclusivePrices"]}</span> {appData?.words["strMeetandGreetIncludedForAirport"]} </li>
                 </ul>
             </div>
-            {journeyAccrodionStatus ?
-                <div dataid={index === 0 ? "first_car" : ""} key={index + 50} className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}   >
+            {journeyAccrodionStatus && quotationImagesObjWebp[item?.carId] ?
+                <div dataid={index === 0 ? "first_car" : ""} key={index + 50} className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId]?.id) ? styles.selectedCard : ""}`}   >
                     <div className={styles.column_first} style={{ position: "relative" }}  >
                         <Image
                             src={quotationImagesObjWebp[item.carId].image}
