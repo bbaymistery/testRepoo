@@ -15,8 +15,16 @@ const CarItem = ({ sliderRef }) => {
         return (
           <div className={styles.car_item} key={car.id}>
             <div className={styles.card_img_div}>
-              <div className={styles.card_image_link}>
-                <Image src={car.carImage} className={styles.img} fill alt={car.carName} sizes="(max-width: 768px) 100vw, 50vw" />
+
+
+              <div className={styles.card_image_link} style={{ position: "relative", width: '300px' }} >
+                <Image
+                  src={car.carImage}
+                  alt="Car Image"
+                  width={300}
+                  height={100}
+                  style={{ objectFit: "contain", }}
+                />
               </div>
             </div>
             <div className={styles.card_body}>
