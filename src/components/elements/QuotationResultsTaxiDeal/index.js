@@ -6,7 +6,6 @@ import CardQuotationItemTaxiDeal from '../CardQuotationItemTaxiDeal'
 import dynamic from 'next/dynamic'
 import { useWindowSize } from '../../../hooks/useWindowSize'
 import { useEffect } from 'react'
-import Loading from '../alert/Loading'
 const QuotationResultsTaxiDealLeftPart = dynamic(() => import('../QuotationResultsTaxiDealLeftPart'));
 const QuotationResultsTaxiDeal = (props) => {
     //these props comes from ...pathname
