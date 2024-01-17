@@ -211,6 +211,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                     </div>
                 )
             })}
+            {isVisible && uploadedPageContent?.length > 1 ? <TaxiDealsContents pageContent={uploadedPageContent} isVisible={isVisible} /> : <></>}
 
         </div>
     )
