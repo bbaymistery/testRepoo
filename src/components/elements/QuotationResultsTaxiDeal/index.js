@@ -43,7 +43,7 @@ const QuotationResultsTaxiDeal = (props) => {
         // Clean up event listener
         return () => { if (width < 768) window.removeEventListener('scroll', handleScroll); };
     }, [width]);
-    //strFreeCancellation24h
+    //
 
     return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true} isVisible={isVisible}>
         <div className={`${styles.quotation} page`}>

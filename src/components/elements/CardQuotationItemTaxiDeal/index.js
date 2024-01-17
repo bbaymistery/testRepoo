@@ -92,7 +92,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
             dropoffPoints = mergeDetails(dropoffPoints, objectDetailss)
             dispatch({ type: "GET_QUOTATION_AT_PATHNAME", data: { results: data, journeyType } })
         }
-        localStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(quotation));
+        sessionStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(quotation));
         setJourneyAccrodionStatus(true)
         setItem(quotation)
     };
@@ -100,23 +100,22 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
     const handleClickForMobile = ({ e, quotation }) => {
         if (451 > document.documentElement.clientWidth) {
             checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
-            localStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(quotation));
+            sessionStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(quotation));
             setItem(quotation)
-            console.log(quotation);
-
         }
 
     };
     const changeCar = () => {
-        localStorage.removeItem("journeyQuotationForTaxiDeal");
+        sessionStorage.removeItem("journeyQuotationForTaxiDeal");
         setJourneyAccrodionStatus(false)
     }
     useEffect(() => {
-        // This code runs only in the browser, as useEffect is a browser-only lifecycle method
-        if (!JSON.parse(localStorage?.getItem("journeyQuotationForTaxiDeal"))?.carId && datas?.length > 0) {
-            localStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(datas[0]))
+        //:when we select and go to transfer then go back we  used ""setItem getItem sessionStorage"" to make sure dont lose selected item
+        if (!JSON.parse(sessionStorage?.getItem("journeyQuotationForTaxiDeal"))?.carId && datas?.length > 0) {
+            sessionStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(datas[0]))
+            setItem(datas[0])
         } else {
-            setItem(JSON.parse(localStorage?.getItem("journeyQuotationForTaxiDeal")))
+            setItem(JSON.parse(sessionStorage?.getItem("journeyQuotationForTaxiDeal")))
         }
         // Regular expression to match <img> tags
         const imgTagRegex = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
@@ -159,7 +158,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
             {/* 111  */}
             <p className={styles.viceversa}> <a href={returnPathname} title={returnPageTitle}> {returnHeadTitle ? formatPriceInTitle(returnHeadTitle) : "..."} </a> </p>
 
-            <div className={` ${styles.quotation_header}`}>
+            <div className={`${styles.quotation_header}`}>
                 <ul>
                     {distance ? <li><span><i className={`fa-solid fa-check ${styles.li_icon}`}></i></span>{appData?.words["strDistance"]} : <span>{distance}</span></li> : (<></>)}
                     {duration ? <li><span><i className={`fa-solid fa-check ${styles.li_icon}`}></i></span><span className={styles.left} >{appData?.words["strJourneyDurationTitle"]}</span>:<span>{duration}</span></li> : (<></>)}
@@ -213,7 +212,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                                     <span>
                                         <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
                                         </i>
-                                        <span>{"Free Cancellation (24h)"}</span>
+                                        <span>{appData?.words["strFreeCancellation24h"]}</span>
                                     </span>
 
                                     <span className={`${styles.price_span}`} >
@@ -276,7 +275,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                                             <span>
                                                 <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
                                                 </i>
-                                                <span>{"Free Cancellation (24h)"}</span>
+                                                <span>{appData?.words["strFreeCancellation24h"]}</span>
                                             </span>
                                             <span className={`${styles.price_span}`} >
                                                 {`£${item?.price.split(".")[0]}.`}
