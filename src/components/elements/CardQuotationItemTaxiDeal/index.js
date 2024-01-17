@@ -154,7 +154,20 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                             dataid={index === 0 ? "first_car" : (index === 1 ? "second_car" : "")}
                             className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
                             onClick={(e) => handleClickForMobile({ e, quotation: item })} >
-                            <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
+
+
+                            <div className={styles.column_first} style={{ position: "relative", width: '300px' }} data={quotationImagesObjWebp[item?.carId].id} >
+                                {
+                                    !quotationImagesObjWebp[item?.carId].id ? <>...</> : <Image
+                                        src={`${quotationImagesObjWebp[item?.carId]?.image}`}
+                                        alt="Car Image"
+                                        width={300}
+                                        height={100}
+                                        style={{ objectFit: "contain", }}
+                                        data={quotationImagesObjWebp[item?.carId].id}
+                                    />
+                                }
+                            </div>
                             <div className={styles.column_second}>
                                 <div className={styles.column_second_flex_column}>
                                     <div className={styles.name_and_postcode_div}>
