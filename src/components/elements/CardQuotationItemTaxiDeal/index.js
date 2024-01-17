@@ -68,7 +68,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
         returnPathname,
         returnHeadTitle,
         returnPageTitle,
-        isVisible = true
+        isVisible = false
     } = params
     const router = useRouter();
     const dispatch = useDispatch();
@@ -77,9 +77,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
     const { appData } = useSelector(state => state.initialReducer)
     //cartypes object for card item as {1:{image:'sds, name:Economy}}
     const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
-    const [journeyAccrodionStatus, setJourneyAccrodionStatus] = useState(true)
     const [uploadedPageContent, setUploadedPageContent] = useState('')
-    const [item, setItem] = useState({ carId: 1, price: "85.00" })
     const setQuotationHandleClick = async (params = {}) => {
         let { quotation } = params
         checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
@@ -92,34 +90,16 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
             dropoffPoints = mergeDetails(dropoffPoints, objectDetailss)
             dispatch({ type: "GET_QUOTATION_AT_PATHNAME", data: { results: data, journeyType } })
         }
-        sessionStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(quotation));
-        setJourneyAccrodionStatus(true)
-        setItem(quotation)
     };
 
     const handleClickForMobile = ({ e, quotation }) => {
         if (451 > document.documentElement.clientWidth) {
             checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
-            sessionStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(quotation));
-            setItem(quotation)
         }
-
     };
-    const changeCar = () => {
-        sessionStorage.removeItem("journeyQuotationForTaxiDeal");
-        setJourneyAccrodionStatus(false)
-    }
-    useEffect(() => {
-        //:when we select and go to transfer then go back we  used ""setItem getItem sessionStorage"" to make sure dont lose selected item
-        if (!JSON.parse(sessionStorage?.getItem("journeyQuotationForTaxiDeal"))?.carId && datas?.length > 0) {
-            sessionStorage.setItem("journeyQuotationForTaxiDeal", JSON.stringify(datas[0]))
-            setItem(datas[0])
-        } else {
-            setItem(JSON.parse(sessionStorage?.getItem("journeyQuotationForTaxiDeal")))
-        }
-        // Regular expression to match <img> tags
-        const imgTagRegex = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
 
+    useEffect(() => {
+        const imgTagRegex = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
         // Check if there are any <img> tags
         if (imgTagRegex.test(pageContent)) {
             // Replace function with <Image
@@ -166,73 +146,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                     <li><span><i className={`fa-solid fa-check ${styles.li_icon}`}></i></span> <span className={styles.strong}>{appData?.words["strAllInclusivePrices"]}</span> {appData?.words["strMeetandGreetIncludedForAirport"]} </li>
                 </ul>
             </div>
-            {journeyAccrodionStatus && quotationImagesObjWebp[item?.carId] ?
-                <div dataid={index === 0 ? "first_car" : ""} key={index + 50} className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId]?.id) ? styles.selectedCard : ""}`}   >
-                    <div className={styles.column_first} style={{ position: "relative" }}  >
-                        <Image
-                            src={quotationImagesObjWebp[item.carId].image}
-                            alt={quotationImagesObjWebp[item.carId].image}
-                            fill
-                            style={{ objectFit: "contain" }}
-                            priority
-                        />
-                    </div>
-
-                    <div className={styles.column_second}>
-                        <div className={styles.column_second_flex_column}>
-                            <div className={styles.name_and_postcode_div}>
-                                <div className={styles.postcode}>
-                                    {carObject[item?.carId]?.transferType}
-                                    <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
-                                </div>
-                                <div className={styles.name}>
-                                    {carObject[item?.carId]?.name}
-                                    <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
-                                </div>
-                            </div>
-                            <div className={styles.car_features}>
-                                <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
-                                <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
-                                <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
-                                    <Image src={"/images/icons/blackMeetAndGreet.webp"} width={18} height={20} alt="Meet and Greet icon " />
-                                    <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span>
-                                </div>
-
-                            </div>
-                            <div className={styles.apl_features}>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
-                                <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_less_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_less_than360} ${styles.show_less_than360_with_price}`}>
-                                    <span>
-                                        <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}>
-                                        </i>
-                                        <span>{appData?.words["strFreeCancellation24h"]}</span>
-                                    </span>
-
-                                    <span className={`${styles.price_span}`} >
-                                        {`£${item?.price.split(".")[0]}.`}
-                                        <span>00</span>
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
-                        <div className={styles.price}>{`£${item?.price.split(".")[0]}.`} <span>00</span> </div>
-                        <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
-                        <button onClick={changeCar} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
-                            {!selectedQuotation?.carId ? "See All Cars" : appData?.words["strYouSelected"]}
-                        </button>
-                    </div>
-                </div> : <></>}
-            {(!journeyAccrodionStatus && index === 0) && datas?.map((item, index) => {
+            {datas?.map((item, index) => {
                 return (
                     <div id="main_container">
                         <div

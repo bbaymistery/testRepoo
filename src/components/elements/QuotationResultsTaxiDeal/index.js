@@ -30,19 +30,16 @@ const QuotationResultsTaxiDeal = (props) => {
     const size = useWindowSize();
     const { width } = size;
     // Set initial visibility based on window width
-    const [isVisible, setIsVisible] = useState(width > 768);
+    const [isVisible, setIsVisible] = useState(false);
     const handleScroll = () => {
-        if (width < 768) setIsVisible(true);
+        if (!isVisible) setIsVisible(true);
     };
     useEffect(() => {
-        // Update visibility based on initial window width
-        setIsVisible(width > 768);
-        // Add scroll event listener only if width is less than 768
-        if (width < 768) window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll);
+
         // Clean up event listener
-        return () => { if (width < 768) window.removeEventListener('scroll', handleScroll); };
-    }, [width]);
-    //
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true} isVisible={isVisible}>
         <div className={`${styles.quotation} page`}>

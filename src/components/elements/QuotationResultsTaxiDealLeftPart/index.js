@@ -67,36 +67,42 @@ const QuotationResultsTaxiDealLeftPart = () => {
                     <li className={`${direction}`}>
                         <input id="freemeet" readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                         <label htmlFor="freemeet" className={styles.primary_text} >
+                            .
                         </label>
                         {appData?.words["strCarFeatureFreeMeetAndGreet"]}
                     </li>
                     <li className={`${direction}`}>
                         <input id="FlightMonitoring" readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                         <label htmlFor="FlightMonitoring" className={styles.primary_text} >
+                            .
                         </label>
                         {appData?.words["strFlightMonitoring"]}
                     </li>
                     <li className={`${direction}`}>
                         <input id="FreeBaby" readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                         <label htmlFor='FreeBaby' className={styles.primary_text} >
+                            .
                         </label>
                         {appData?.words["strFreeBabyChildSeat"]}
                     </li>
                     <li className={`${direction}`}>
                         <input id="AllInclusive" readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                         <label htmlFor='AllInclusive' className={styles.primary_text} >
+                            .
                         </label>
                         {appData?.words["strAllInclusiveFixedPrices"]}
                     </li>
                     <li className={`${direction}`}>
                         <input id="NoCharge4Delay" readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                         <label htmlFor='NoCharge4Delay' className={styles.primary_text} >
+                            .
                         </label>
                         {appData?.words["strCarFeatureNoCharge4Delay"]}
                     </li>
                     <li className={`${direction}`}>
                         <input id="FreeCancellation24h" readOnly={true} className={styles.checkbox} type="checkbox" defaultChecked={true} />
                         <label htmlFor='FreeCancellation24h' className={styles.primary_text} >
+                            .
                         </label>
                         {appData?.words["strFreeCancellation24h"]}
                     </li>
