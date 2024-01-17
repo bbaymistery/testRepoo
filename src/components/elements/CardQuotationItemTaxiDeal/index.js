@@ -68,6 +68,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
         returnPathname,
         returnHeadTitle,
         returnPageTitle,
+        isVisible = true
     } = params
     const router = useRouter();
     const dispatch = useDispatch();
@@ -134,8 +135,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
             setUploadedPageContent(pageContent)
         }
     }, [datas]);
-    console.log(quotationImagesObjWebp[item?.carId]?.id);
-    console.log(quotationImagesObjWebp[item?.carId]);
+
 
     return (
         <div className={`${styles.taxideal_result_container}`}>
@@ -298,7 +298,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                     </div>
                 )
             })}
-            {uploadedPageContent?.length > 1 ? <TaxiDealsContents pageContent={uploadedPageContent} /> : <></>}
+            {uploadedPageContent?.length > 1 ? <TaxiDealsContents pageContent={uploadedPageContent} isVisible={isVisible} /> : <></>}
 
         </div>
     )

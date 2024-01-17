@@ -30,12 +30,22 @@ const QuotationResultsTaxiDeal = (props) => {
     const objectDetailss = appData?.pointTypeCategories?.reduce((obj, item) => ({ ...obj, [item.id]: JSON.parse(item.objectDetails), }), {});
     const size = useWindowSize();
     const { width } = size;
-    const [loadAlert, setLoadAlert] = useState(true)
-    //strFreeCancellation24h
+    // Set initial visibility based on window width
+    const [isVisible, setIsVisible] = useState(width > 768);
+    const handleScroll = () => {
+        if (width < 768) setIsVisible(true);
+    };
     useEffect(() => {
-        if (quotations[0]?.quotationOptions?.length > 0) setLoadAlert(false)
-    }, [quotations])
-    return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true} loadAlert={loadAlert}>
+        // Update visibility based on initial window width
+        setIsVisible(width > 768);
+        // Add scroll event listener only if width is less than 768
+        if (width < 768) window.addEventListener('scroll', handleScroll);
+        // Clean up event listener
+        return () => { if (width < 768) window.removeEventListener('scroll', handleScroll); };
+    }, [width]);
+    //strFreeCancellation24h
+
+    return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true} isVisible={isVisible}>
         <div className={`${styles.quotation} page`}>
             <div className={`${styles.quotation_section} page_section`}>
                 <div className={`${styles.quotation_section_container} page_section_container`}>
@@ -59,6 +69,7 @@ const QuotationResultsTaxiDeal = (props) => {
                                         returnHeadTitle={returnHeadTitle}
                                         returnPageTitle={returnPageTitle}
                                         objectDetailss={objectDetailss}
+                                        isVisible={isVisible}
                                     />
 
                                 </div>
