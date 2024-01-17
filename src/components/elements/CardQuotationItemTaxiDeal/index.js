@@ -115,6 +115,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
         }
     }, [datas]);
 
+    console.log({ isVisible });
 
     return (
         <div className={`${styles.taxideal_result_container}`}>
@@ -148,10 +149,9 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
             </div>
             {datas?.map((item, index) => {
                 return (
-                    <div id="main_container">
+                    <div id="main_container" key={index}>
                         <div
                             dataid={index === 0 ? "first_car" : (index === 1 ? "second_car" : "")}
-                            key={index}
                             className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
                             onClick={(e) => handleClickForMobile({ e, quotation: item })} >
                             <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
@@ -211,7 +211,6 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                     </div>
                 )
             })}
-            {uploadedPageContent?.length > 1 ? <TaxiDealsContents pageContent={uploadedPageContent} isVisible={isVisible} /> : <></>}
 
         </div>
     )

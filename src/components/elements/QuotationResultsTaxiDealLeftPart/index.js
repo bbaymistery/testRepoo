@@ -109,7 +109,10 @@ const QuotationResultsTaxiDealLeftPart = () => {
 
                 </ul>
             </div>
-            <div className={styles.map_direction}  >
+            <div className={styles.map_direction}>
+                <li style={{ position: 'relative', height: "144px", width: "311px" }}>
+                    <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw" fill border="0" alt="Airport Pickups Map" src="/images/mapLondonn.webp" style={{ objectFit: "cover" }} />
+                </li>
                 <button onClick={() => setTaxidealMapStatus(true)} className='btn btn_hover_reverse_primary'><i className="fa-solid fa-map-location-dot"></i> {appData?.words["strShowOnMap"]}</button>
             </div>
 
