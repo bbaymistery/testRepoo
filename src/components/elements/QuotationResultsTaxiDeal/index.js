@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../layouts/GlobalLayout'
 import { useSelector } from 'react-redux'
@@ -29,17 +29,28 @@ const QuotationResultsTaxiDeal = (props) => {
     const objectDetailss = appData?.pointTypeCategories?.reduce((obj, item) => ({ ...obj, [item.id]: JSON.parse(item.objectDetails), }), {});
     const size = useWindowSize();
     const { width } = size;
-    // Set initial visibility based on window width
     const [isVisible, setIsVisible] = useState(false);
+    const lastScrollTop = useRef(0);
+
     const handleScroll = () => {
-        if (!isVisible) setIsVisible(true);
+        const fromTop = window.scrollY;
+        const isScrollDown = fromTop > lastScrollTop.current;
+
+        // Sadece aşağı doğru kaydırma işlemlerini kontrol et.
+        if (isScrollDown && fromTop > 100 && !isVisible) {
+            setIsVisible(true);
+        }
+
+        // Güncel kaydırma pozisyonunu kaydet.
+        lastScrollTop.current = fromTop;
     };
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
 
         // Clean up event listener
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [isVisible]);
 
     return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true} isVisible={isVisible}>
         <div className={`${styles.quotation} page`}>
