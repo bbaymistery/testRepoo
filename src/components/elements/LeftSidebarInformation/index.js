@@ -103,7 +103,7 @@ const LeftSidebarInformation = ({ direction, appData, showAllInclusive = true, s
                         </div>
                         <div className={styles.description_div}>
                             <div className={styles.description_text}>
-                                Exceptional
+                                {appData?.words["strExceptional"]}
                             </div>
                             <div className={styles.description_review_text}>
                                 <a href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} title="Airport Pickups London Reviews" className={styles.reviews} rel="noreferrer"   >

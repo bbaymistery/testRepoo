@@ -74,7 +74,7 @@ const Corporate = (props) => {
                       <button className='btn btn_primary'>{appData?.words["strLogin"]}</button>
                     </Link>
                     <a href={language === 'en' ? '/AccountRegister' : `/${language}/AccountRegister`} title="AccountRegister" >
-                      <button className='btn btn_primary'>Register</button>
+                      <button className='btn btn_primary'>{appData?.words["strRegister"]}</button>
                     </a>
                   </div>
 

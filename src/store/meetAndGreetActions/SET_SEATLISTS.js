@@ -14,7 +14,6 @@ const updatePrice = (newSeatLists) => {
 function SET_SEATLISTS(params = {}) {
     let { state, action } = params;
     let { data: { idx, incordec } } = action;
-    console.log(idx, incordec);
 
     let newState = JSON.parse(JSON.stringify(state))
     let newSeatLists = [...newState.seatLists]

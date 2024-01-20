@@ -43,26 +43,23 @@ const MeetGreetBookingDetails = () => {
                     </div>
 
                 </div>
-
                 <div className={`${styles.section} ${styles.third_column}`}>
                     <div className={styles.description}>
                         <p className={styles.text_1}>
-                            {seatLists[0].name}
+                            {appData?.words[seatLists[0].strName]}
                             <span>
-                                {seatLists[0].desc}
+                                {appData?.words[seatLists[0].strDesc]}
                             </span>
                         </p>
                         <p className={styles.text_2}> {seatLists[0].minNum}</p>
                     </div>
                 </div>
-
-
                 <div className={`${styles.section} ${styles.fourth_column}`}>
                     <div className={styles.description}>
                         <p className={styles.text_1}>
-                            {seatLists[1].name}
+                            {appData?.words[seatLists[1].strName]}
                             <span>
-                                {seatLists[1].desc}
+                                {appData?.words[seatLists[1].strDesc]}
                             </span>
                         </p>
                         <p className={styles.text_2}> {seatLists[1].minNum}</p>
@@ -71,9 +68,9 @@ const MeetGreetBookingDetails = () => {
                 <div className={`${styles.section} ${styles.fifth_column}`}>
                     <div className={styles.description}>
                         <p className={styles.text_1}>
-                            {seatLists[2].name}
+                            {appData?.words[seatLists[2].strName]}
                             <span>
-                                {seatLists[2].desc}
+                                {appData?.words[seatLists[2].strDesc]}
                             </span>
                         </p>
                         <p className={styles.text_2}> {seatLists[2].minNum}</p>

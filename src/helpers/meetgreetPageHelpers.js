@@ -14,7 +14,7 @@ export const dropdownFlightClass = [
     { id: "Business", value: "Business", },
     { id: "First", value: "First", },
 ];
-
+let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 //FOR STEP _1
 export const passengerDetailsError = (passengersForm, appData) => {
@@ -25,6 +25,12 @@ export const passengerDetailsError = (passengersForm, appData) => {
             error.statusCode = 400;
             error.errorMessage = appData?.words["strRequired"];
         } else if (passenger.lastname === "") {
+            error.statusCode = 400;
+            error.errorMessage = appData?.words["strRequired"];
+        } else if (passenger.phone === "") {
+            error.statusCode = 400;
+            error.errorMessage = appData?.words["strRequired"];
+        } else if (passenger.email.trim() === "" || !emailRegex.test(passenger.email)) {
             error.statusCode = 400;
             error.errorMessage = appData?.words["strRequired"];
         }
@@ -59,7 +65,7 @@ export const flightDetailsError = (flightDetails, appData) => {
 
 export const bookersDetailsError = (bookerDetails, appData) => {
     const errors = {};
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 
     if (bookerDetails.firstname.trim() === "") {
         errors.firstname = { statusCode: 400, errorMessage: appData?.words["strRequired"] };
@@ -78,9 +84,9 @@ export const bookersDetailsError = (bookerDetails, appData) => {
 }
 
 // 2023-07-29=> to => Sat, Jul 29, 2023
-export const formatDate = (dateString) => {
+export const formatDate = (dateString, language = "en") => {
     var date = new Date(dateString);
     var options = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
-    var formattedDate = date.toLocaleDateString('en-US', options);
+    var formattedDate = date.toLocaleDateString(`${language}-US`, options);
     return formattedDate;
 }

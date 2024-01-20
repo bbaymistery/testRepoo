@@ -122,7 +122,7 @@ const Header = () => {
 
     // prevent to open dropdown
     if (router.asPath === "/drivers-wanted") return
-    if (router.asPath === "/fleet") return
+
 
     setLanguageStatus(!languageStatus)
 
@@ -193,7 +193,7 @@ const Header = () => {
                 </div>
                 <span data-name="language" onClick={setOpenLanguageDropdown} className={styles.lang_text}>
                   {appData?.languages[langIndex]?.innerText}
-                  {router.asPath === "/drivers-wanted" || router.asPath === "/fleet" ? <></> : <i className="fa-solid fa-angle-down"></i>}
+                  {router.asPath === "/drivers-wanted" ? <></> : <i className="fa-solid fa-angle-down"></i>}
                 </span>
                 {languageStatus ?
                   <OutsideClickAlert onOutsideClick={outsideClickDropDown}>

@@ -238,7 +238,7 @@ const QuotationResults = (props) => {
     //if quotation token doesnt exist ,it means he /she can go to next page
 
     if (!returnQuotation.token && !transferQuotation.token) {
-      alert("Please select your car type   for your journey?");
+      alert(appData?.words["strPleaseSelectaCarTypeFor"]);
       return
     }
 
@@ -247,7 +247,7 @@ const QuotationResults = (props) => {
       return
     }
     if (!transferQuotation.token) {
-      alert("Please select your car type   for your journey?");
+      alert(appData?.words["strPleaseSelectaCarTypeFor"]);
       return
     }
 
@@ -467,8 +467,8 @@ const QuotationResults = (props) => {
                               return (<div key={i} className={styles.booking_form_hour_minute_wrapper}>
                                 <label htmlFor="time-select">
                                   {i === 0
-                                    ? `${selectedPickupPoints[0]?.pcatId === 1 ? "Landing" : "Pick Up"} Hour`
-                                    : `${selectedPickupPoints[0]?.pcatId === 1 ? "Landing" : "Pick Up"} Minute`
+                                    ? `${selectedPickupPoints[0]?.pcatId === 1 ? appData?.words["strLandingHour"] : appData?.words["strPickUpHour"]}`
+                                    : `${selectedPickupPoints[0]?.pcatId === 1 ? appData?.words["strLandingMinute"] : appData?.words["strPickUpMinute"]} `
                                   }
                                 </label>
                                 <select

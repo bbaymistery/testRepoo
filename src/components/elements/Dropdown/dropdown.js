@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from "./styles.module.scss"
 import OutsideClickAlert from '../OutsideClickAlert'
 const DropDown = (props) => {
-  const { label = "", selectedOption, setSelectedOption, options, heading = "", disable = false, headingStyle = {}, dropdownComponentStyle={} } = props
+  const { label = "", selectedOption, setSelectedOption, options, heading = "", disable = false, headingStyle = {}, dropdownComponentStyle = {}, } = props
 
   const [isOptionsVisible, setIsOptionsVisible] = useState(false)
 

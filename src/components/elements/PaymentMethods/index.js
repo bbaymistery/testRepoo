@@ -4,7 +4,6 @@ import Link from "next/link";
 import env from "../../../resources/env";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import Image from "next/image";
 const PaymentMethods = () => {
   const router = useRouter()
   const dispatch = useDispatch()
@@ -298,14 +297,14 @@ const PaymentMethods = () => {
             <div className={`${styles.content_modal} ${styles.appear}`}>
               <div className={`${styles.confirmation_box} `}>
                 <div className={styles.header}>
-                  <p>Confirmation</p>
+                  <p>{appData?.words["strConfirmation"]}</p>
                   <i onClick={() => setCashPaymentModal(false)} className="fa-solid fa-xmark"></i>
                 </div>
                 <div className={styles.body}>
                   <p>You have chosen to pay by cash .</p>
                 </div>
                 <div className={styles.footer}>
-                  <button onClick={() => startPayment(1)} className="btn btn_primary"> Book Now</button>
+                  <button onClick={() => startPayment(1)} className="btn btn_primary"> {appData?.words["strBookNow"]}</button>
                 </div>
               </div>
             </div>

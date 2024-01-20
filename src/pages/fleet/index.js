@@ -33,10 +33,10 @@ const Fleet = (props) => {
                         </div>
                         <div className={styles.right_content}>
                             <div className={`${styles.fleet_header}`}>
-                                <h1>Welcome to our fleet page!</h1>
-                                <p>We offer a range of vehicles to suit your needs, whether you're traveling for business or leisure.
+                                <h1>{appData?.words["strWelcomeToOurFleetPage"]}</h1>
+                                <p>{appData?.words["strWeOfferaRangeOfVehicles"]}
                                     <br />
-                                    Take a look at our options below:</p>
+                                    {appData?.words["strTakeaLookAtOur"]}</p>
                             </div>
                             {Object?.values(quotationImagesObjWebp)?.map((item, index) => {
                                 return (
@@ -49,11 +49,18 @@ const Fleet = (props) => {
                                                     <h3 className={styles.name}>{carObject[item?.id]?.name}   </h3>
                                                 </div>
                                                 <div className={styles.car_features}>
-                                                    <div className={styles.feature_column}> <span>{carObject[item?.id]?.suitcases}</span> <span>Suitcases</span></div>
-                                                    <div className={styles.feature_column}>  <span>{carObject[item?.id]?.pax}</span>  <span>Passengers</span></div>
+                                                    <div className={styles.feature_column}>
+                                                        <span>{appData?.words["strNoofSuitcases"]}</span>
+                                                        <span>{carObject[item?.id]?.suitcases}</span>
+                                                    </div>
+                                                    <div className={styles.feature_column}>
+                                                        <span>{appData?.words["strNoofPassengers"]}</span>
+                                                        <span>{carObject[item?.id]?.pax}</span>
+                                                    </div>
                                                     <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
+                                                        <span style={{ paddingLeft: "5px", fontWeight: 'bold' }}>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span>
                                                         <Image src={meetAndGret} width="18" height="20" alt="" />
-                                                        <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span></div>
+                                                    </div>
                                                 </div>
                                                 <div className={styles.apl_features}>
                                                     <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
@@ -64,11 +71,11 @@ const Fleet = (props) => {
                                                     <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i>
                                                         <span>
                                                             {carObject[item?.id]?.id === 4
-                                                                ? "Mercedes E class or equivalent"
+                                                                ? appData?.words["strMercedesEClassOr"]
                                                                 : carObject[item?.id]?.id === 5
-                                                                    ? "Mercedes V Class / EQV"
+                                                                    ? appData?.words["strMercedesVClass"]
                                                                     : carObject[item?.id]?.id === 6
-                                                                        ? "Mercedes Vito / E Vito"
+                                                                        ? appData?.words["strMercedesVito"]
                                                                         : appData?.words["strComfortableVehicles"]}
                                                         </span>
                                                     </p>
@@ -78,11 +85,11 @@ const Fleet = (props) => {
                                                     <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i>
                                                         <span>
                                                             {carObject[item?.id]?.id === 4
-                                                                ? "Mercedes E class  or equivalent"
+                                                                ? appData?.words["strMercedesEClassOr"]
                                                                 : carObject[item?.id]?.id === 5
-                                                                    ? "Mercedes V Class / EQV"
+                                                                    ? appData?.words["strMercedesVClass"]
                                                                     : carObject[item?.id]?.id === 6
-                                                                        ? "Mercedes Vito / E Vito"
+                                                                        ? appData?.words["strMercedesVito"]
                                                                         : appData?.words["strComfortableVehicles"]}
                                                         </span>
                                                     </p>

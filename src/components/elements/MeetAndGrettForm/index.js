@@ -74,6 +74,8 @@ function formatDate(dateString) {
     return formattedDate;
 }
 const steps = ['Passengers', 'Flight', 'Payment', 'Confirmation'];
+// const steps = [{ name: "Passengers", strName: "" }, { name: "Flight", strName: "" }, { name: "Payment", strName: "" }, { name: 'Confirmation', strName: "'strConfirmation'" }];
+//
 const dropdownAirlineLabels = [
     { id: "-- Select Airline --", value: "-- Select Airline --", },
     { id: "1", value: "1", },

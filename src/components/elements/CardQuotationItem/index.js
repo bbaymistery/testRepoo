@@ -219,7 +219,7 @@ const CardQuotationItem = (params = {}) => {
                   <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`} <span>00</span> </div>
                   <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
                   <button onClick={changeCar} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
-                    {!selectedQuotation?.carId ? "See All Cars" : appData?.words["strYouSelected"]}
+                    {!selectedQuotation?.carId ? appData?.words["strSeeAllCars"] : appData?.words["strYouSelected"]}
                   </button>
                 </div>
               </div>
@@ -290,7 +290,7 @@ const CardQuotationItem = (params = {}) => {
                   <div className={styles.price}>{quotationLoading ? "..." : `£${item?.price.split(".")[0]}.`} <span>00</span> </div>
                   <div className={styles.total}>{appData?.words["strTotalPrice"]}</div>
                   <button onClick={changeCar} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(carObject[item?.carId].id) ? styles.selectedBtn : ""}`}   >
-                    {!selectedQuotation?.carId ? "See All Cars" : appData?.words["strYouSelected"]}
+                    {!selectedQuotation?.carId ? appData?.words["strSeeAllCars"] : appData?.words["strYouSelected"]}
                   </button>
                 </div>
               </div>

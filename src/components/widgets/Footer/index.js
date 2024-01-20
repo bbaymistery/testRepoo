@@ -46,7 +46,7 @@ const Footer = (props) => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">Sitemap</a>
+                  <a href="#">{appData?.words["strSiteMap"]}</a>
                 </li>
                 <li>
                   <a href={`${language === 'en' ? `/about-us` : `/${language}/about-us`}`} title={appData.words["aboutUs"]}>
@@ -76,7 +76,7 @@ const Footer = (props) => {
                 </li>
                 <li>
                   <a href={`${language === 'en' ? `/heathrow-vip-meet-and-assist` : `/${language}/heathrow-vip-meet-and-assist`}`}  >
-                    Meet and assist
+                    {appData?.words["strAirportAssistant"]}
                   </a>
                 </li>
 
@@ -104,7 +104,7 @@ const Footer = (props) => {
 
             </div>
             <div className={styles.column}>
-              <p className={styles.title}>Airports</p>
+              <p className={styles.title}>{appData?.words["airports"]}</p>
               <ul className={styles.list_items}>
                 {Airports.map((airport, index) => {
                   let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals, translateTitle } = airport

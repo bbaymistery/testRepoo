@@ -131,7 +131,9 @@ const TransferJourneySummaryPanel = (props) => {
                                 </li>
                                 <a href={"https://g.co/kgs/Rg7vb8"} target="_blank" className={styles.review}>
                                     <div className={styles.review_left}>4.8 </div>
-                                    <div className={styles.review_center} >Exceptional </div>
+                                    <div className={styles.review_center} >
+                                        {appData?.words["strExceptional"]}
+                                    </div>
                                     <div className={styles.review_right}><span>495</span> {appData?.words["strReviews"]}  </div>
                                 </a>
                             </div>

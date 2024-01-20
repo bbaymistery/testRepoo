@@ -156,7 +156,7 @@ const AccountRegister = (props) => {
                                                 value={companyName}
                                                 name="companyName"
                                                 onChange={e => onchangeHandler(e)}
-                                                label={`${appData?.words["strCompanyName"]}/Sole Trader Name`}
+                                                label={`${appData?.words["strCompanyName"]}`}
                                                 labelStyle={{ color: "#00000094", "fontWeight": 500, letterSpacing: "1px" }}
                                                 inputStyle={{ color: "#0b0b0cd6" }}
                                                 errorMessage={errorHolder?.accountRegisterDatas?.applicantForCreditAccount?.companyName} />
@@ -190,7 +190,7 @@ const AccountRegister = (props) => {
                                                 name="registrationNo"
                                                 value={registrationNo}
                                                 onChange={e => onchangeHandler(e)}
-                                                label={`Registration No (If Applicable)`}
+                                                label={appData?.words["strRegistrationNo"]}
                                                 labelStyle={{ color: "#00000094", "fontWeight": 500, letterSpacing: "1px" }}
                                                 inputStyle={{ color: "#0b0b0cd6" }}
                                             />
@@ -255,7 +255,7 @@ const AccountRegister = (props) => {
                                 </div>
 
                                 <div className={styles.details_div}>
-                                    <h1>Operation Notes</h1>
+                                    <h1>{appData?.words["strOperationNotes"]}</h1>
                                     <div className={`${styles.details} ${styles.operation_details}`}>
                                         <div className={`${styles.input_div} ${styles.the_checkbox_div}`}>
                                             <p>Do you have any out-of-hours emergency number for urgent situations?</p>
@@ -295,7 +295,7 @@ const AccountRegister = (props) => {
                                                 </div>
                                                 <div>
                                                     <input onChange={(e) => onchangeHandler(e)} defaultChecked={accountPassengerStatus === 'Passenger'} type="radio" id="Passenger" name="accountPassengerStatus" value={"Passenger"} />
-                                                    <label htmlFor="Passenger">Passenger</label><br />
+                                                    <label htmlFor="Passenger">{appData?.words["strPassengerTitle"]}</label><br />
                                                 </div>
                                             </div>
                                         </div>

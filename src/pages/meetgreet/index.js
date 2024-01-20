@@ -13,6 +13,7 @@ import store from '../../store/store';
 import { createWrapper } from 'next-redux-wrapper';
 import MeetGreetBookingDetails from '../../components/elements/MeetGreetBookingDetails';
 import MeetGreetPassengerDetails from '../../components/elements/MeetGreetPassengerDetails';
+import Link from 'next/link';
 
 let keywords = "London Airport Meet and Greet, Airport Pickups, Heathrow, Gatwick, Stansted, Luton, City Airport, Corporate Services, Stress-Free Arrivals"
 let title = "Airport Pick Ups London Meet and Greet"
@@ -26,7 +27,7 @@ const MeetGreet = (props) => {
     const { appData } = useSelector(state => state.initialReducer)
 
     const state = useSelector(state => state.pickUpDropOffActions)
-    let { params: { direction } } = state
+    let { params: { direction, language } } = state
 
     const meetAndGreetState = useSelector(state => state.meetAndGreetActions)
     let { seatLists, passengersForm, totalPrice, meetgreetDate, meetgreetActiveBtn, terminalName, buggerLists, vat, buggerListTotalPrice, flightDetails, bookersDetails } = meetAndGreetState
@@ -41,6 +42,13 @@ const MeetGreet = (props) => {
     const [errorHolderBookerDetails, setErrorHolderBookersDetails] = useState([]);//activeStep1
 
 
+
+    const [iframeStripe, setIframeStripe] = useState("");
+    const [dataTokenForWebSocket, setDataTokenForWebSocket] = useState("");
+    const [statusToken, setStatusToken] = useState("");
+    const [popUpWindow, setPopUpWindow] = useState("")//for paypal
+
+    const [cashPaymentModal, setCashPaymentModal] = useState(false)
 
     //for passengers information
     const onchangePassengerHandler = (e, index) => {
@@ -103,8 +111,82 @@ const MeetGreet = (props) => {
     const onChangeSetDateTimeHandler = (params = {}) => dispatch({ type: 'SET_FLIGHT_TIME', data: { ...params } })
     const onchangeBookerDetailsHandler = (params = {}) => dispatch({ type: 'SET_BOOKER_DETAILS', data: { ...params } })
 
+    //*payment methods
+    const cashMethod = (params = {}) => {
+        // let { token, paymentType } = params
+        // // if it is cash payment you have set payment type first of all then send archive
+        // // fetchArchieveToken({ token: "", paymentType: "", stage: "CLICK_OVER_CASH_BUTTON" })
+        // dispatch({ type: "SET_PAYMENT_TYPE_AND_TOKEN", data: { token, paymentType } })
+        // setIframeStripe("")//CLOSE OFRAME INSIDE OF Page (in case of if it was opened )
+        // setStatusToken("");//it will trigger interval and will make request
+        // router.push("/reservations-document")
+    };
+    const stripeMethod = (params = {}) => {
+        // let { id, quotations, passengerEmail, url } = params
+        // if (!iframeStripe) {
+        //     // if it is card payment you have set payment type first of all then send archive then
+        //     // fetchArchieveToken({ token: "", paymentType: 7, stage: "CLICK_OVER_CARD_BUTTON" })
+        //     const method = "POST"
+        //     const body = JSON.stringify({
+        //         quotations,
+        //         type: id,
+        //         language: "en",
+        //         passengerEmail,
+        //         "session-id": sessionToken,
+        //         mode: "sandbox",
+        //     })
+        //     const headers = { "Content-Type": "application/json" }
+        //     const config = { method, headers, body, };
+        //     try {
+        //         fetch(url, config)
+        //             .then((res) => res.json())
+        //             .then((data) => {
+        //                 console.log(data);
+
+        //                 setDataTokenForWebSocket(data); //we use inside interval in order to detect it is which payment
+        //                 setStatusToken(data?.webSocketToken); //it will trigger interval and will make request
+        //                 setIframeStripe(data?.href);
+        //                 openPopUpWindow({ statusOfWindowCloseOrOpen: "close", url: "" })
+        //                 setPopUpWindow("")
+
+        //             })
+        //             .catch((error) => {
+
+        //                 window.handelErrorLogs(error, 'APL PaymentMethods Component - stripeMethod function fetching catch blog  ', { config, url })
+        //             });
+        //     } catch (error) {
+        //         window.handelErrorLogs(error, ' APL PaymentMethods Component - stripeMethod function try catch blog ', { id, quotations, passengerEmail, url })
+        //     }
+        // }
+    };
+    //this function includes all the methods of payments
+    const startPayment = (id) => {
 
 
+        // try {
+        //     //general settings FOR PAYMENTS
+        //     const paymentPagePath = JSON.parse(paymentTypes.filter((payment) => payment.id === id)[0].pagePath).path;
+
+
+        //     const url = `${env.apiDomain}${paymentPagePath}`;
+        //     let quotations = parseInt(journeyType) === 0 ? [reservations[0].quotation] : [reservations[0].quotation, reservations[1].quotation];
+        //     let passengerEmail = reservations[0].passengerDetails.email;
+        //     let passengerPhoneNumber = reservations[0].passengerDetails.phone;
+
+        //     //Payment methods
+        //     if (id === 1) cashMethod({ token: "", paymentType: id })
+        //     if (id === 5) paypalMethod({ id, quotations, passengerEmail, url });
+        //     if (id === 7) stripeMethod({ id, quotations, passengerEmail, url });
+        // } catch (error) {
+        //     window.handelErrorLogs(error, 'APL PaymentMethods Component -startPayment function trys catch blog', { id })
+
+        // }
+    }
+    //this function triggering modal status of cash payment
+    const popupmodalTrigger = (par) => {
+        setCashPaymentModal(true)
+        setIframeStripe("")
+    }
     return (
         <GlobalLayout keywords={keywords} title={title} description={description}>
             <div className={`${styles.meetgreet} ${direction} page`} bggray={String(bggray === "true")}>
@@ -130,6 +212,14 @@ const MeetGreet = (props) => {
                                                             <TextInput label={appData?.words["strLastName"]} type="text" name="lastname" onChange={e => onchangePassengerHandler(e, idx)} value={guest.lastname} errorMessage={errors?.errorMessage} />
                                                         </div>
                                                     </div>
+                                                    <div className={styles.passengers_details}>
+                                                        <div className={styles.input_div}>
+                                                            <TextInput label={appData?.words["appContactUsEmailAddress"]} type="text" name="email" onChange={e => onchangePassengerHandler(e, idx)} value={guest.email} errorMessage={errors?.errorMessage} />
+                                                        </div>
+                                                        <div className={styles.input_div}>
+                                                            <TextInput label={appData?.words["strPhoneNumber"]} type="text" name="phone" onChange={e => onchangePassengerHandler(e, idx)} value={guest.phone} errorMessage={errors?.errorMessage} />
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             })}
                                         </div>
@@ -138,16 +228,21 @@ const MeetGreet = (props) => {
                                     {activeStep === 1 ?
                                         <div className={styles.flight_details}>
                                             <p className={styles.flight_details_title}> Flight Details</p>
-                                            <p className={styles.format_date}> {`${buttonLabelsNames[meetgreetActiveBtn]} Flight ${formatDate(meetgreetDate)}`} </p>
+                                            <p className={styles.format_date}>
+                                                {buttonLabelsNames[meetgreetActiveBtn] === "Arrival" && ` ${appData?.words["strArrival"]} ${formatDate(meetgreetDate, language)}`}
+                                                {buttonLabelsNames[meetgreetActiveBtn] === "Departure" && ` ${appData?.words["strDeparture"]} ${formatDate(meetgreetDate, language)}`}
+                                                {buttonLabelsNames[meetgreetActiveBtn] === "Connecting" && ` ${appData?.words["strConnecting"]} ${formatDate(meetgreetDate, language)}`}
+
+                                            </p>
                                             <div className={styles.flight_details_inputs_div}>
                                                 <div className={styles.dropdown_div}>
-                                                    <Select errorMessage={errorHolderFlightDetails?.airline?.errorMessage} label="Airline" name="Airline" postCodeSelectOption={true} onChange={onchangeAirlineHandler} value={airline} data={dropdownAirlineLabels} />
+                                                    <Select errorMessage={errorHolderFlightDetails?.airline?.errorMessage} label={appData?.words["strAirline"]} name="Airline" postCodeSelectOption={true} onChange={onchangeAirlineHandler} value={airline} data={dropdownAirlineLabels} />
                                                 </div>
                                                 <div className={styles.input_div}>
                                                     <TextInput errorMessage={errorHolderFlightDetails.flightNumber?.errorMessage} label={appData?.words["strFlightNumberTitle"]} type="text" name="flightNumber" onChange={e => onchangeNumberLuggageHandler(e)} value={flightNumber} />
                                                 </div>
                                                 <div className={styles.input_div}>
-                                                    <Select errorMessage={errorHolderFlightDetails.flightClass?.errorMessage} label="Flight Class" name="Flight Class" postCodeSelectOption={true} onChange={onchangeFlightClassHandler} value={flightClass} data={dropdownFlightClass} />
+                                                    <Select errorMessage={errorHolderFlightDetails.flightClass?.errorMessage} label={appData?.words["strFlightClass"]} name="Flight Class" postCodeSelectOption={true} onChange={onchangeFlightClassHandler} value={flightClass} data={dropdownFlightClass} />
                                                 </div>
 
                                                 <div className={` ${styles.search_menu} ${styles.hours_minutes} `}>
@@ -157,7 +252,6 @@ const MeetGreet = (props) => {
                                                             return (
                                                                 <div key={i} className={styles.booking_form_hour_minute_wrapper}>
                                                                     <select onChange={(e) => onChangeSetDateTimeHandler({ value: e.target.value, index: i })}  >
-
                                                                         {i === 0
                                                                             ? hours.map((hour) => (<option key={hour.id} id={hour.id} value={hour.value}> {hour.value} </option>))
                                                                             : minutes.map((minute) => (<option key={minute.id} id={minute.id} value={minute.value}  > {minute.value} </option>))}
@@ -167,17 +261,15 @@ const MeetGreet = (props) => {
                                                     </div>
                                                 </div>
                                                 <div className={styles.input_div}>
-                                                    <TextInput errorMessage={errorHolderFlightDetails.noOfLuggageBags?.errorMessage} label={"No of Luggage Bags"} type="number" name="noOfLuggageBags" onChange={e => onchangeNumberLuggageHandler(e)} value={noOfLuggageBags} />
+                                                    <TextInput errorMessage={errorHolderFlightDetails.noOfLuggageBags?.errorMessage} label={appData?.words["strNoofSuitcases"]} type="number" name="noOfLuggageBags" onChange={e => onchangeNumberLuggageHandler(e)} value={noOfLuggageBags} />
                                                 </div>
                                             </div>
                                             <div className={styles.flight_extras_div}>
-
-                                                <p className={styles.flight_extras_div_title}> Flight Extras </p>
-
+                                                <p className={styles.flight_extras_div_title}> {appData?.words["strAddExtraServices"]} </p>
                                                 <div className={styles.bugger_selection_div}>
                                                     {buggerLists.map((item, index) => {
                                                         return <div key={index} className={styles.bugger_selection_div_column}>
-                                                            <p className={styles.name}> {item.name}</p>
+                                                            <p className={styles.name}> {appData?.words[item.strName]}</p>
                                                             <p className={styles.desc}>  {item.desc}</p>
                                                             <div className={styles.bugger_selection_div_column_numbers_div} direction={String(direction === 'rtl')}>
                                                                 <p className={`${styles.left_arrow} ${item.minNum === 0 ? styles.disabled : ""}`} onClick={() => handleDecrementBugger(index, "dec")}>
@@ -222,7 +314,6 @@ const MeetGreet = (props) => {
                                         : <></>}
                                     {activeStep === 3 ?
                                         <div className={styles.bookers}>
-
                                             <div className={styles.bookers_details_div}>
                                                 <MeetGreetBookingDetails />
                                                 <MeetGreetPassengerDetails appData={appData} />
@@ -232,7 +323,7 @@ const MeetGreet = (props) => {
                                     {/* //here is confirmation part   */}
                                     <div className={`${styles.back_next_buttons}`} >
                                         {<button className='btn' onClick={gotoPreviousPage}>{appData?.words["strBack"]}</button>}
-                                        <button className='btn' onClick={gotoNextPage}>{appData?.words["strNext"]}  </button>
+                                        {activeStep !== 3 ? <button className='btn' onClick={gotoNextPage}>{appData?.words["strNext"]}</button> : <></>}
                                     </div>
 
                                 </div>
@@ -241,10 +332,13 @@ const MeetGreet = (props) => {
                                     <div className={styles.right_content}>
                                         <p>Order Summary</p>
                                         <div className={styles.border}> </div>
-                                        <li className={styles.arrival}> <span>{buttonLabelsNames[meetgreetActiveBtn]} : </span> {appData?.words["strMeetandGreetIncluded"]}   </li>
-                                        <li className={styles.terminal}>{terminalName}  </li>
-                                        <li className={styles.date}> {formatDate(meetgreetDate)}  </li>
-                                        <li className={styles.adults}>  {seatLists[0].minNum} Adults, {seatLists[1].minNum} Children, {seatLists[2].minNum} Infants   </li>
+                                        {buttonLabelsNames[meetgreetActiveBtn] === "Arrival" && <li className={styles.arrival}> <span>{appData?.words["strArrival"]} : </span> {appData?.words["strMeetandGreetIncluded"]}</li>}
+                                        {buttonLabelsNames[meetgreetActiveBtn] === "Departure" && <li className={styles.arrival}> <span>{appData?.words["strDeparture"]} : </span>{appData?.words["strMeetandGreetIncluded"]}</li>}
+                                        {buttonLabelsNames[meetgreetActiveBtn] === "Connecting" && <li className={styles.arrival}>   <span>{appData?.words["strConnecting"]} : </span> {appData?.words["strMeetandGreetIncluded"]}</li>}
+
+                                        <li className={styles.terminal}>{terminalName}</li>
+                                        <li className={styles.date}>{formatDate(meetgreetDate, language)}</li>
+                                        <li className={styles.adults}>  {seatLists[0].minNum} {appData?.words["strAdults"]}, {seatLists[1].minNum} {appData?.words["strChildren"]}, {seatLists[2].minNum} {appData?.words["strInfants"]}</li>
                                         <div className={styles.border}> </div>
                                         <div className={styles.total}>
                                             <p> <span>Total exc. VAT </span> <span>£{totalPrice - vat}</span> </p>
@@ -254,9 +348,54 @@ const MeetGreet = (props) => {
                                             <p className={styles.total_price}><span>{appData?.words["strTotalPrice"]}</span><span>£{totalPrice}</span>    </p>
                                         </div>
                                     </div>
+                                    {activeStep === 3 ?
+
+
+                                        <div className={`${styles.payment_details}`}>
+                                            <div className={styles.header} direction={String(direction === 'rtl')}>
+                                                <div className={styles.header_top}>
+                                                    <h2 className={`${styles.header_top_title} ${direction}`} > {appData?.words["strHowWouldYouLikeToPay"]}</h2>
+                                                    <div className={styles.border}> </div>
+                                                </div>
+                                            </div>
+
+                                            <div className={styles.payment_list}>
+                                                {iframeStripe?.length > 0 ? <iframe src={iframeStripe} className={styles.iframe} allow="payment" ></iframe> : <React.Fragment></React.Fragment>}
+
+                                                <div className={`${styles.items_buttons}`}>
+                                                    <div onClick={popupmodalTrigger} title={appData?.words["strToDriverCashTitle"]} className={` ${styles.item} ${styles.item_1}`}   >
+                                                        <p>{appData?.words["strToDriverCashTitle"]}</p>
+                                                        <img src="/images/pp.jpg" alt="" />
+                                                    </div>
+
+                                                    <div onClick={() => startPayment(7)} title={appData?.words["strPaybycard"]} className={`${styles.item} ${styles.item_4}`}   >
+                                                        <p>{appData?.words["strPaybycard"]} </p>
+                                                        <img src="/images/vsMaster.jpg" alt="" />
+                                                    </div>
+                                                </div>
+
+                                                {cashPaymentModal ?
+                                                    <div className={`${styles.content_modal} ${styles.appear}`}>
+                                                        <div className={`${styles.confirmation_box} `}>
+                                                            <div className={styles.header}>
+                                                                <p>{appData?.words["strConfirmation"]}</p>
+                                                                <i onClick={() => setCashPaymentModal(false)} className="fa-solid fa-xmark"></i>
+                                                            </div>
+                                                            <div className={styles.body}>
+                                                                <p>You have chosen to pay by cash .</p>
+                                                            </div>
+                                                            <div className={styles.footer}>
+                                                                <button onClick={() => startPayment(1)} className="btn btn_primary"> {appData?.words["strBookNow"]}</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    : <></>}
+                                            </div>
+                                        </div>
+                                        : <></>}
                                     <div className={`${styles.back_next_buttons}`} >
                                         <button className='btn' onClick={gotoPreviousPage}>{appData?.words["strBack"]}</button>
-                                        <button className='btn' onClick={gotoNextPage}>{appData?.words["strNext"]}</button>
+                                        {activeStep !== 3 ? <button className='btn' onClick={gotoNextPage}>{appData?.words["strNext"]}</button> : <></>}
                                     </div>
                                 </div>
 

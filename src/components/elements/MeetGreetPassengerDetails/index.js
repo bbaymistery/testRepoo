@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
+import Link from 'next/link'
 
 const MeetGreetPassengerDetails = () => {
     let state = useSelector((state) => state.pickUpDropOffActions)
     let { passengersForm, bookersDetails, flightDetails, buggy, porter, additionalGreeter } = useSelector((state) => state.meetAndGreetActions)
-    let { params: { direction } } = state
+    let { params: { direction, } } = state
     const { appData } = useSelector(state => state.initialReducer)
-
     return (
         <div className={styles.journey_summary_panel} >
             <div className={styles.content}>
@@ -19,14 +19,14 @@ const MeetGreetPassengerDetails = () => {
 
                     <div className={styles.passsenger_details_div}>
                         <div>
-                            <h5 className={`${direction}`}>AIRLINE</h5>
+                            <h5 className={`${direction}`}>{appData?.words["strAirline"]}</h5>
                             <li className={styles.first_child} direction={String(direction === 'rtl')}><span>{"flightDetails.airline"}</span></li>
                             <div className={styles.space}> </div>
 
                         </div>
 
                         <div>
-                            <h5 className={`${direction}`}>BUGGY</h5>
+                            <h5 className={`${direction}`}>{appData?.words["strBuggy"]}</h5>
                             <li className={styles.first_child} direction={String(direction === 'rtl')}><span>{buggy}</span></li>
                             <div className={styles.space}> </div>
 
@@ -34,13 +34,13 @@ const MeetGreetPassengerDetails = () => {
                     </div>
                     <div className={styles.passsenger_details_div}>
                         <div>
-                            <h5 className={`${direction}`}>FLIGHT TIME</h5>
+                            <h5 className={`${direction}`}>{appData?.words["sePickUpTime"]}</h5>
                             <li className={styles.first_child} direction={String(direction === 'rtl')}><span>{flightDetails.flightTime}</span></li>
                             <div className={styles.space}> </div>
 
                         </div>
                         <div>
-                            <h5 className={`${direction}`}>PORTER</h5>
+                            <h5 className={`${direction}`}>{appData?.words["strPorter"]}</h5>
                             <li className={styles.first_child} direction={String(direction === 'rtl')}><span>{porter}</span></li>
                             <div className={styles.space}> </div>
 
@@ -53,7 +53,7 @@ const MeetGreetPassengerDetails = () => {
                             <div className={styles.space}> </div>
                         </div>
                         <div>
-                            <h5 className={`${direction}`}>ADDITIONAL GREETER </h5>
+                            <h5 className={`${direction}`}>{appData?.words["strAdditionalAssistant"]} </h5>
                             <li className={styles.first_child} direction={String(direction === 'rtl')}><span>{additionalGreeter}</span></li>
                             <div className={styles.space}> </div>
 
@@ -62,53 +62,46 @@ const MeetGreetPassengerDetails = () => {
                     </div>
                     <div className={styles.passsenger_details_div}>
                         <div>
-                            <h5 className={`${direction}`}>FLIGHT CLASS</h5>
-                            <li direction={String(direction === 'rtl')}><span>{flightDetails.flightClass}</span></li>
+                            <h5 className={`${direction}`}>{appData?.words["strFlightClass"]}</h5>
+                            <li className={styles.noborder} direction={String(direction === 'rtl')}><span>{flightDetails.flightClass}</span></li>
                             <div className={styles.space}> </div>
-
                         </div>
                         <div>
-                            <h5 className={`${direction}`}>NO OF LUGGAGE BAGS</h5>
+                            <h5 className={`${direction}`}>{appData?.words["strNoofSuitcases"]}</h5>
                             <li direction={String(direction === 'rtl')}><span>{flightDetails.noOfLuggageBags}</span></li>
                             <div className={styles.space}> </div>
-
                         </div>
                     </div>
 
                 </div>
                 <div className={styles.journey_card} direction={String(direction === 'rtl')}>
                     <h3 className={styles.journey_card_title}>
-                        Bookers Details
+                        {appData?.words["strPassengerDetails"]}
                     </h3>
                     <div className={styles.passsenger_details_div}>
                         <div>
                             <h5 className={`${direction}`}>{appData?.words?.["strPassengerName"]}</h5>
                             <li className={styles.first_child} direction={String(direction === 'rtl')}><span>{bookersDetails.firstname}</span></li>
                             <div className={styles.space}> </div>
-
                         </div>
                         <div>
                             <h5 className={`${direction}`}>PASSENGER LASTNAME</h5>
                             <li className={styles.first_child} direction={String(direction === 'rtl')}><span>{bookersDetails.lastname}</span></li>
                             <div className={styles.space}> </div>
-
                         </div>
                     </div>
                     <div className={styles.passsenger_details_div}>
                         <div>
                             <h5 className={`${direction}`}>{appData?.words["strPassengerEmail"]}</h5>
-                            <li direction={String(direction === 'rtl')}><span>{bookersDetails.email}</span></li>
+                            <li className={styles.noborder} direction={String(direction === 'rtl')}><span>{bookersDetails.email}</span></li>
                             <div className={styles.space}> </div>
-
                         </div>
                         <div>
                             <h5 className={`${direction}`}>{appData?.words["strPhoneNumber"]}</h5>
                             <li direction={String(direction === 'rtl')}><span>{bookersDetails.mobileNumber}</span></li>
                             <div className={styles.space}> </div>
-
                         </div>
                     </div>
-
                 </div>
                 {passengersForm.length > 0 ? <div className={styles.journey_card} direction={String(direction === 'rtl')}>
                     <h3 className={styles.journey_card_title}>
@@ -116,7 +109,7 @@ const MeetGreetPassengerDetails = () => {
                     </h3>
                     {passengersForm?.map((item, idx) => {
                         return (
-                            <div key={idx} className={styles.passsenger_details_div}>
+                            <div key={idx} className={`${styles.passsenger_details_div} ${styles.pa}`} >
                                 <div>
                                     <h5 className={`${direction}`}>{`${idx + 1}.`} {appData?.words?.["strPassengerName"]}</h5>
                                     <li className={`${styles.first_child}`} direction={String(direction === 'rtl')}><span>{item.firstname}</span></li>
@@ -127,13 +120,24 @@ const MeetGreetPassengerDetails = () => {
                                     <li className={`${styles.first_child}`} direction={String(direction === 'rtl')}><span>{item.lastname}</span></li>
                                     <div className={styles.space}> </div>
                                 </div>
+                                <div>
+                                    <h5 className={`${direction}`}>{appData?.words?.["strPhoneNumber"]}</h5>
+                                    <li className={`${styles.first_child}`} direction={String(direction === 'rtl')}><span>{item.phone}</span></li>
+                                    <div className={styles.space}> </div>
+                                </div>
+                                <div>
+                                    <h5 className={`${direction}`}>{appData?.words?.["strEmail"]}</h5>
+                                    <li className={`${styles.first_child}`} direction={String(direction === 'rtl')}><span>{item.email}</span></li>
+                                    <div className={styles.space}> </div>
+                                </div>
                             </div>
                         )
                     })}
-
                 </div> : <></>}
 
+
             </div>
+
         </div>
 
 

@@ -13,19 +13,19 @@ import SET_TERMINAL from "./SET_TERMINAL";
 
 const INITIAL_STATE = {
     seatLists: [
-        { name: "Adults", desc: "(above 12y.o.)", minNum: 1, maxNum: 20 },
-        { name: "Children", desc: "(from 2 to  12y.o.)", minNum: 0, maxNum: 20 },
-        { name: "Infants", desc: "(below 12y.o.)", minNum: 0, maxNum: 20 }
+        { name: "Adults", desc: "(above 12y.o.)", minNum: 1, maxNum: 20, strName: "strAdults", strDesc: "strAbove12yearsold" },
+        { name: "Children", desc: "(from 2 to  12y.o.)", minNum: 0, maxNum: 20, strName: "strChildren", strDesc: "strFrom2to12yearsold" },
+        { name: "Infants", desc: "(below 12y.o.)", minNum: 0, maxNum: 20, strName: "strInfants", strDesc: "strBelow2YearsOld" }
     ],
     seatListPrice: 180,
     buggerLists: [
-        { name: "Porter", desc: "(£54.00 inc VAT)", minNum: 0, price: 54 },
-        { name: "Buggy", desc: "(£60.00 inc VAT) ", minNum: 0, price: 60 },
-        { name: "Additional Greeter", desc: "(£75.00 inc VAT)", minNum: 0, price: 75 }
+        { name: "Porter", desc: "(£54.00 inc VAT)", minNum: 0, price: 54, strName: "strPorter" },
+        { name: "Buggy", desc: "(£60.00 inc VAT) ", minNum: 0, price: 60, strName: "strBuggy" },
+        { name: "Additional Greeter", desc: "(£75.00 inc VAT)", minNum: 0, price: 75, strName: "strAdditionalAssistant" }
     ],
     buggerListTotalPrice: 0,
 
-    passengersForm: [{ firstname: "", lastname: "" }],
+    passengersForm: [{ firstname: "", lastname: "", email: "", phone: "" }],
     flightDetails: {
         airline: "-- Select Airline --",
         flightNumber: "",
