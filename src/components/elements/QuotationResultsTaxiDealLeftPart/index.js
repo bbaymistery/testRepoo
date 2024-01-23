@@ -30,7 +30,7 @@ const QuotationResultsTaxiDealLeftPart = () => {
                 <p className={`${styles.left_info_title} ${direction}`}>{appData?.words["strTripAdvisorReviews"]}</p>
                 <ul >
                     <li style={{ position: 'relative', height: "105px", width: "311px" }}>
-                        <a className={styles.tripad_a} target="_blank" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" title="Tripadvisor Rating for Airport Pickups London">
+                        <a style={{ position: 'relative', height: "105px", width: "311px" }} className={styles.tripad_a} target="_blank" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" title="Tripadvisor Rating for Airport Pickups London">
                             <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw" fill className={styles.tripad_img} border="0" alt="Airport Pickups Trip Advisor" src="/images/TripAdvisor2.webp" />
                         </a>
                     </li>
