@@ -30,7 +30,6 @@ const GlobalLayout = (
         {/* <link rel="preload" href="/images/Excellent.webp" as="image" />
         <link rel="preload" href="/images/Reviews.webp" as="image" />
        */}
-        {router.pathname === "/[...pathname]" ? <link rel="preload" href="/images/cars/normal-saloon-v2.webp" as="image" /> : <></>}
         {/* //for home page and /heathrow/heathrow-to-oxford-taxi we dont show all fontawesome csss */}
         {(router.pathname === "/") || (router.pathname === '/[...pathname]') ? <link rel="stylesheet" href="/fontawesome/css/all.min.css" /> : <link rel="stylesheet" href="/fontawesomeHomePage/css/all.min.css" />}
         {/* {router.pathname === "/" ? <></> : <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" />} */}
