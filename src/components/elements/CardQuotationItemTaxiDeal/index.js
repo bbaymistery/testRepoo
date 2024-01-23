@@ -172,6 +172,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                                         height={100}
                                         style={{ objectFit: "contain", }}
                                         data={quotationImagesObjWebp[item?.carId].id}
+                                        priority
                                     />
                                 }
                             </div>
