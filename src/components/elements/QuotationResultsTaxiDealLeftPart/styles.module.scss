@@ -10,6 +10,7 @@
         position: relative !important;
         top: 0px;
         padding-top: 11rem;
+        height: max-content;
 
         @media (max-width: 1280px) {
             display: none;
