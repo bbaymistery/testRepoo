@@ -123,8 +123,6 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
 
     }, [datas, isVisible]);
 
-
-
     return (<div className={`${styles.taxideal_result_container}`}>
         {/* 111  */}
         <h1 alt={pageTitle} className={`${styles.title} ${styles.title_center} ${direction}`}>{headTitle ? formatPriceInTitle(headTitle) : "..."}</h1>
@@ -154,7 +152,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                 <li><span><i className={`fa-solid fa-check ${styles.li_icon}`}></i></span> <span className={styles.strong}>{appData?.words["strAllInclusivePrices"]}</span> {appData?.words["strMeetandGreetIncludedForAirport"]} </li>
             </ul>
         </div>
-        {dispalayDatas?.map((item, index) => {
+        {datas?.map((item, index) => {
             return (
                 <div id="main_container" key={index}>
                     <div
