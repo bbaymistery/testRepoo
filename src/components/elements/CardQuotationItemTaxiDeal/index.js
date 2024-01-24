@@ -78,7 +78,6 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
     //cartypes object for card item as {1:{image:'sds, name:Economy}}
     const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
     const [uploadedPageContent, setUploadedPageContent] = useState('');
-    const [dispalayDatas, setdispalayDatas] = useState(datas)
     // Conditionally slice the array before mapping
 
     const setQuotationHandleClick = async (params = {}) => {
@@ -105,23 +104,15 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
         const imgTagRegex = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
         // Check if there are any <img> tags
         if (imgTagRegex.test(pageContent)) {
-            // Replace function with <Image
-            // const updatedPageContent = pageContent.replace(imgTagRegex, (match, src) => {
-            //     return `<Image src="${src}" width={300} height={400} />`;
-            // });
-
             //Replace function with empty string ""
             const updatedPageContent = pageContent.replace(imgTagRegex, " ");
             setUploadedPageContent(updatedPageContent);
         } else {
             setUploadedPageContent(pageContent)
         }
-        if (datas?.length) {
-            const visibleDatas = isVisible ? datas : datas.slice(0, 2);
-            setdispalayDatas(visibleDatas)
-        }
 
-    }, [datas, isVisible]);
+
+    }, [datas,]);
 
     return (<div className={`${styles.taxideal_result_container}`}>
         {/* 111  */}
@@ -159,9 +150,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                         dataid={index === 0 ? "first_car" : (index === 1 ? "second_car" : "")}
                         className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
                         onClick={(e) => handleClickForMobile({ e, quotation: item })} >
-                        {quotationImagesObjWebp[item?.carId]?.image ?
-                            <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
-                            : <></>}
+                        <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
                         <div className={styles.column_second}>
                             <div className={styles.column_second_flex_column}>
                                 <div className={styles.name_and_postcode_div}>
