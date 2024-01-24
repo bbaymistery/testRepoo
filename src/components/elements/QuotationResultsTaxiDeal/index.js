@@ -68,7 +68,7 @@ const QuotationResultsTaxiDeal = (props) => {
                                 distance={distance}
                                 duration={duration}
                                 selectedQuotation={reservations[0]?.quotation}
-                                quotationOptions={quotationOptions}//
+                                quotationOptions={quotationOptions}
                                 headTitle={headTitle}
                                 previousUrl={previousUrl}
                                 returnPathname={returnPathname}
@@ -82,7 +82,6 @@ const QuotationResultsTaxiDeal = (props) => {
 
                         </div>
                     </div>
-                    )
                 </div>
             </div>
         </div>

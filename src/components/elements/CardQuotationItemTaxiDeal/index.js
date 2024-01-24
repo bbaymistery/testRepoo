@@ -122,11 +122,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
         }
 
     }, [datas, isVisible]);
-    console.log("CARDQUOTATION");
-    console.log({ datas });
-    console.log({ dispalayDatas });
-    console.log({ headTitle });
-    console.log("************************************");
+
 
 
     return (<div className={`${styles.taxideal_result_container}`}>
