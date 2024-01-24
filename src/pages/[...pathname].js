@@ -11,8 +11,7 @@ import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttribut
 import QuotationResultsTaxiDeal from '../components/elements/QuotationResultsTaxiDeal';
 
 function Pages(props) {
-    let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle, returnPageTitle } = props
-
+    let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle, returnPageTitle, duration, distance, quotationOptions } = props
     if (data === "not found") return <Error404 />
 
     const state = useSelector(state => state.pickUpDropOffActions)
@@ -79,7 +78,6 @@ function Pages(props) {
             //for first time
             //   point = { ...point, ...objectDetailss[point.pcatId] }   flightDetails{ flightNumber="",waitingPickupTime=0}
             let pickupPoints = pickUps.length > 0 ? [{ ...pickUps[0], ...objectDetailss[pickUps[0].pcatId] }] : []
-            console.log({ pickupPoints });
 
             let dropoffPoints = dropoffs.length > 0 ? [{ ...dropoffs[0], ...objectDetailss[dropoffs[0].pcatId] }] : []
             dispatch({ type: "ADD_NEW_POINT_AT_PATHNAME", data: { pickupPoints, dropoffPoints, index: 0 } })
@@ -105,6 +103,9 @@ function Pages(props) {
         pageContent={pageContent}
         returnHeadTitle={returnHeadTitle}
         returnPageTitle={returnPageTitle}
+        distance={distance}
+        duration={duration}
+        quotationOptions={quotationOptions}
     />
 }
 
@@ -114,7 +115,14 @@ const makestore = () => store;
 const wrapper = createWrapper(makestore);
 const cache = {}
 
+// function getJsonSizeInKB(jsonObject) {
+//     const jsonString = JSON.stringify(jsonObject);
+//     const bytes = jsonString.length * 2;
+//     const kilobytes = bytes / 1024;
+//     console.log({ kilobytes });
 
+//     return kilobytes;
+// }
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
     res?.setHeader(
         'Cache-Control',
@@ -138,7 +146,11 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
     // homepagedeki appDatafalanbunu asagisinda idi
     if (status === 200) {
         // getJsonSizeInKB(data)
-        let { taxiDeal: { pickupPoints, dropoffPoints, pageTitle = "", headTitle = "", description = "", keywords = "", returnPathname = "", pageContent = "", returnHeadTitle = "", returnPageTitle = "" } } = data
+        let {
+            distance,
+            duration,
+            quotationOptions,
+            taxiDeal: { pickupPoints, dropoffPoints, pageTitle = "", headTitle = "", description = "", keywords = "", returnPathname = "", pageContent = "", returnHeadTitle = "", returnPageTitle = "" } } = data
         // select first item from all points
         pickUps = pickupPoints?.length >= 1 ? [pickupPoints[0]] : []
         dropoffs = dropoffPoints?.length >= 1 ? [dropoffPoints[0]] : []
@@ -163,7 +175,10 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
             schemaOfTaxiDeals,
             pageContent: newPageContent,
             returnHeadTitle,
-            returnPageTitle
+            returnPageTitle,
+            distance,
+            duration,
+            quotationOptions,
         }
 
         return { props: cache[cacheKey] }

@@ -18,12 +18,16 @@ const QuotationResultsTaxiDeal = (props) => {
         returnPathname,
         pageContent,
         returnHeadTitle,
-        returnPageTitle
+        returnPageTitle,
+        distance,
+        duration,
+        quotationOptions
     } = props//those props comes from ...pathname
 
     const state = useSelector(state => state.pickUpDropOffActions)
     let { reservations, params } = state
-    let { direction, quotations, } = params
+    let { direction, } = params
+
 
     const { appData } = useSelector(state => state.initialReducer)
     const objectDetailss = appData?.pointTypeCategories?.reduce((obj, item) => ({ ...obj, [item.id]: JSON.parse(item.objectDetails), }), {});
@@ -47,7 +51,6 @@ const QuotationResultsTaxiDeal = (props) => {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-
         // Clean up event listener
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isVisible]);
@@ -56,34 +59,30 @@ const QuotationResultsTaxiDeal = (props) => {
         <div className={`${styles.quotation} page`}>
             <div className={`${styles.quotation_section} page_section`}>
                 <div className={`${styles.quotation_section_container} page_section_container`}>
-                    {reservations.map((obj, index) => {
-                        return (
-                            <div key={index} style={{ marginBottom: `${index === 0 ? "4rem" : ""}` }}>
-                                <div className={`${direction} ${styles.main_container_taxideal}`}>
-                                    {width > 1280 ? <QuotationResultsTaxiDealLeftPart /> : <></>}
-                                    {/* //*Card item of results */}
-                                    <CardQuotationItemTaxiDeal
-                                        index={index}
-                                        distance={quotations[index].distance}
-                                        duration={quotations[index].duration}
-                                        selectedQuotation={reservations[index]?.quotation}
-                                        quotationOptions={quotations[index].quotationOptions}//
-                                        headTitle={headTitle}
-                                        previousUrl={previousUrl}
-                                        returnPathname={returnPathname}
-                                        pageTitle={pageTitle}
-                                        pageContent={pageContent}
-                                        returnHeadTitle={returnHeadTitle}
-                                        returnPageTitle={returnPageTitle}
-                                        objectDetailss={objectDetailss}
-                                        isVisible={isVisible}
-                                    />
+                    <div >
+                        <div className={`${direction} ${styles.main_container_taxideal}`}>
+                            {width > 1280 ? <QuotationResultsTaxiDealLeftPart /> : <></>}
+                            {/* //*Card item of results */}
+                            {<CardQuotationItemTaxiDeal
+                                index={0}
+                                distance={distance}
+                                duration={duration}
+                                selectedQuotation={reservations[0]?.quotation}
+                                quotationOptions={quotationOptions}//
+                                headTitle={headTitle}
+                                previousUrl={previousUrl}
+                                returnPathname={returnPathname}
+                                pageTitle={pageTitle}
+                                pageContent={pageContent}
+                                returnHeadTitle={returnHeadTitle}
+                                returnPageTitle={returnPageTitle}
+                                objectDetailss={objectDetailss}
+                                isVisible={isVisible}
+                            />}
 
-                                </div>
-                            </div>
-                        )
-                    })
-                    }
+                        </div>
+                    </div>
+                    )
                 </div>
             </div>
         </div>
