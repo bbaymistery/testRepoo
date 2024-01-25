@@ -143,7 +143,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
         </div>
 
 
-        {(isVisible ? datas : datas?.slice(0, 4))?.map((item, index) => {
+        {datas?.map((item, index) => {
             return (
                 <div id="main_container" key={index}>
                     <div

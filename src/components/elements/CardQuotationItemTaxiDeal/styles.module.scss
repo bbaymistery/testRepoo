@@ -2,11 +2,10 @@
    @import '../../../styles/variables';
 
    .taxideal_result_container {
-       flex-basis: 71%;
-       min-width: 71%;
-       min-height: 1383px;
-       height: 100%;
-       //    background-color: #a6bed6;
+       flex-basis: 75%;
+       min-width: 75%;
+
+
 
        .title {
            font-weight: 500;
@@ -176,7 +175,8 @@
                background-color: #f9fafb;
 
                @media (max-width: 1400px) {
-                   flex: 0.28;
+
+                   width: 150px;
                }
 
                @media (max-width: 990px) {
@@ -187,7 +187,7 @@
                    min-height: 150px;
                    margin-bottom: 1rem;
                    background-size: 60%;
-                   flex: 0.32;
+                   width: 100%;
                }
 
                @media (max-width: 700px) {

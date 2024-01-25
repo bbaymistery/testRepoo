@@ -3,6 +3,7 @@ import styles from "./styles.module.scss"
 import GlobalLayout from '../../layouts/GlobalLayout'
 import { useSelector } from 'react-redux'
 import CardQuotationItemTaxiDeal from '../CardQuotationItemTaxiDeal'
+// import QuotationResultsTaxiDealLeftPart from '../QuotationResultsTaxiDealLeftPart'
 import dynamic from 'next/dynamic'
 import { useWindowSize } from '../../../hooks/useWindowSize'
 import { useEffect } from 'react'
@@ -104,7 +105,8 @@ const QuotationResultsTaxiDeal = (props) => {
                                 />
 
                             </div>
-                        </div>}
+                        </div>
+                    }
                 </div>
             </div>
         </div>

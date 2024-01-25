@@ -33,7 +33,7 @@ const QuotationResultsTaxiDealLeftPart = () => {
                 <ul >
                     <li >
                         <a className={styles.tripad_a} target="_blank" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" title="Tripadvisor Rating for Airport Pickups London">
-                            <Image width={300} height={105} className={styles.tripad_img} border="0" alt="Airport Pickups Trip Advisor" src="/images/TripAdvisor2.webp" />
+                            <Image priority width={300} height={105} className={styles.tripad_img} border="0" alt="Airport Pickups Trip Advisor" src="/images/TripAdvisor2.webp" />
                         </a>
                     </li>
                 </ul>

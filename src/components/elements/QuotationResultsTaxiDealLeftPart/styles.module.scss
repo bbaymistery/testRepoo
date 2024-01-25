@@ -2,21 +2,16 @@
     @import '../../../styles/variables';
 
     .quotation_panel_istaxideal {
-        flex-basis: 23%;
-        min-width: 23%;
         gap: 1rem;
         display: flex;
         flex-direction: column;
-        position: relative !important;
+        position: relative;
         top: 0px;
         padding-top: 11rem;
-        max-height: 1385px;
-        height: 100%;
-        // background-color: #ededed;
+        background-color: #ededed;
+        flex: 1;
 
-        @media (max-width: 1280px) {
-            display: none;
-        }
+
 
         .modal {
             background-color: rgba(0, 0, 0, 0.6);
