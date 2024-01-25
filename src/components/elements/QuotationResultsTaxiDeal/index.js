@@ -56,7 +56,7 @@ const QuotationResultsTaxiDeal = (props) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isVisible]);
 
-    return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true} isVisible={isVisible}>
+    return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} isVisible={isVisible}>
         <div className={`${styles.quotation} page`}>
             <div className={`${styles.quotation_section} page_section`}>
                 <div className={`${styles.quotation_section_container} page_section_container`}>
@@ -86,7 +86,6 @@ const QuotationResultsTaxiDeal = (props) => {
                         :
                         <div >
                             <div className={`${direction} ${styles.main_container_taxideal}`}>
-                                {/* //*Card item of results */}
                                 <CardQuotationItemTaxiDeal
                                     index={0}
                                     distance={distance}

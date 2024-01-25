@@ -168,10 +168,10 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                                         {carObject[item?.carId]?.transferType}
                                         <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{carObject[item?.carId]?.suitcases}</span></div>
                                     </div>
-                                    <p className={styles.name}>
+                                    <div className={styles.name}>
                                         {carObject[item?.carId]?.name}
                                         <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
-                                    </p>
+                                    </div>
                                 </div>
                                 <div className={styles.car_features}>
                                     <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{carObject[item?.carId]?.pax}</span>  </div>
