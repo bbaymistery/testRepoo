@@ -110,8 +110,6 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
         } else {
             setUploadedPageContent(pageContent)
         }
-
-
     }, [datas,]);
 
     return (<div className={`${styles.taxideal_result_container}`}>
@@ -143,14 +141,26 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                 <li><span><i className={`fa-solid fa-check ${styles.li_icon}`}></i></span> <span className={styles.strong}>{appData?.words["strAllInclusivePrices"]}</span> {appData?.words["strMeetandGreetIncludedForAirport"]} </li>
             </ul>
         </div>
-        {datas?.map((item, index) => {
+
+
+        {(isVisible ? datas : datas?.slice(0, 4))?.map((item, index) => {
             return (
                 <div id="main_container" key={index}>
                     <div
                         dataid={index === 0 ? "first_car" : (index === 1 ? "second_car" : "")}
                         className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
                         onClick={(e) => handleClickForMobile({ e, quotation: item })} >
-                        <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
+                        {/* style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }} */}
+                        <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} >
+                            <Image
+                                src={quotationImagesObjWebp[item?.carId]?.image}
+                                alt="Car Image"
+                                width={300}
+                                height={100}
+                                style={{ objectFit: "contain", }}
+                                priority
+                            />
+                        </div>
                         <div className={styles.column_second}>
                             <div className={styles.column_second_flex_column}>
                                 <div className={styles.name_and_postcode_div}>
@@ -208,7 +218,6 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
             )
         })}
 
-
         {isVisible && uploadedPageContent?.length > 1 ? <TaxiDealsContents pageContent={uploadedPageContent} isVisible={isVisible} /> : <></>}
 
     </div>
@@ -216,5 +225,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
 }
 
 export default CardQuotationItemTaxiDeal
+
+
 
 

@@ -55,33 +55,56 @@ const QuotationResultsTaxiDeal = (props) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isVisible]);
 
-    return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true} >
+    return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} pathnameProp={true} isVisible={isVisible}>
         <div className={`${styles.quotation} page`}>
             <div className={`${styles.quotation_section} page_section`}>
                 <div className={`${styles.quotation_section_container} page_section_container`}>
-                    <div >
-                        <div className={`${direction} ${styles.main_container_taxideal}`}>
-                            {width > 1280 ? <QuotationResultsTaxiDealLeftPart /> : <></>}
-                            {/* //*Card item of results */}
-                            {<CardQuotationItemTaxiDeal
-                                index={0}
-                                distance={distance}
-                                duration={duration}
-                                selectedQuotation={reservations[0]?.quotation}
-                                quotationOptions={quotationOptions}
-                                headTitle={headTitle}
-                                previousUrl={previousUrl}
-                                returnPathname={returnPathname}
-                                pageTitle={pageTitle}
-                                pageContent={pageContent}
-                                returnHeadTitle={returnHeadTitle}
-                                returnPageTitle={returnPageTitle}
-                                objectDetailss={objectDetailss}
-                                isVisible={isVisible}
-                            />}
+                    {width > 1280 ?
+                        <div >
+                            <div className={`${direction} ${styles.main_container_taxideal}`}>
+                                <QuotationResultsTaxiDealLeftPart />
+                                <CardQuotationItemTaxiDeal
+                                    index={0}
+                                    distance={distance}
+                                    duration={duration}
+                                    selectedQuotation={reservations[0]?.quotation}
+                                    quotationOptions={quotationOptions}
+                                    headTitle={headTitle}
+                                    previousUrl={previousUrl}
+                                    returnPathname={returnPathname}
+                                    pageTitle={pageTitle}
+                                    pageContent={pageContent}
+                                    returnHeadTitle={returnHeadTitle}
+                                    returnPageTitle={returnPageTitle}
+                                    objectDetailss={objectDetailss}
+                                    isVisible={isVisible}
+                                />
 
+                            </div>
                         </div>
-                    </div>
+                        :
+                        <div >
+                            <div className={`${direction} ${styles.main_container_taxideal}`}>
+                                {/* //*Card item of results */}
+                                <CardQuotationItemTaxiDeal
+                                    index={0}
+                                    distance={distance}
+                                    duration={duration}
+                                    selectedQuotation={reservations[0]?.quotation}
+                                    quotationOptions={quotationOptions}
+                                    headTitle={headTitle}
+                                    previousUrl={previousUrl}
+                                    returnPathname={returnPathname}
+                                    pageTitle={pageTitle}
+                                    pageContent={pageContent}
+                                    returnHeadTitle={returnHeadTitle}
+                                    returnPageTitle={returnPageTitle}
+                                    objectDetailss={objectDetailss}
+                                    isVisible={isVisible}
+                                />
+
+                            </div>
+                        </div>}
                 </div>
             </div>
         </div>

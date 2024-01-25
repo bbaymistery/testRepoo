@@ -4,7 +4,9 @@
    .taxideal_result_container {
        flex-basis: 71%;
        min-width: 71%;
-       height: max-content;
+       min-height: 1383px;
+       height: 100%;
+       //    background-color: #a6bed6;
 
        .title {
            font-weight: 500;

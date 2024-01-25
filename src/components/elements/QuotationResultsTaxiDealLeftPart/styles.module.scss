@@ -10,7 +10,9 @@
         position: relative !important;
         top: 0px;
         padding-top: 11rem;
-        height: max-content;
+        max-height: 1385px;
+        height: 100%;
+        // background-color: #ededed;
 
         @media (max-width: 1280px) {
             display: none;
@@ -87,10 +89,6 @@
         }
 
         .map_direction {
-            // margin-top: 0px;
-            // min-height: 144px;
-            // background-image: url('/images/mapLondonn.png');
-            // background-size: cover;
             display: flex;
             align-items: center;
             justify-content: center;
