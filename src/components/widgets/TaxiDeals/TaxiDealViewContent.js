@@ -51,9 +51,9 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
                             <a data-id="a" title={item?.pageTitle} href={item.pathname} className={`${styles.card}`} key={item.id}>
                                 <div className={styles.card_image_div}>
                                     {dealsName === 'dover' || dealsName === 'southampton' || dealsName === 'portsmouth' || dealsName === 'harwich' ?
-                                        <Image src={`${cruisePortimages?.[index]?.image}`} className={styles.img} fill alt={item.pageTitle} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw" />
+                                        <Image src={`${cruisePortimages?.[index]?.image}`} className={styles.img} fill alt={item.pageTitle} sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw" />
                                         :
-                                        <Image src={`${taxidealsImages?.[index]?.image}`} className={styles.img} fill alt={item.pageTitle} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw" />}
+                                        <Image src={`${taxidealsImages?.[index]?.image}`} className={styles.img} fill alt={item.pageTitle} sizes="(max-width: 768px) 30vw, (max-width: 1200px) 50vw" />}
                                 </div>
                                 <div className={styles.card_body}>
                                     <h2>{item?.translatedPageTitle ? item?.translatedPageTitle : item?.title}</h2>

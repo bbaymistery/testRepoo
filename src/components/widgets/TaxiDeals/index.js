@@ -87,34 +87,25 @@ const TaxiDeals = (props) => {
 
     useEffect(() => {
         fecthPoints({ dealsNameProp: hasTaxiDeals, language })
+        console.log(" fecthPoints({ dealsNameProp: hasTaxiDeals, language })");
+        //asagidaki iki kod asagidaki use effecti acanda yox olmalidir
+        localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals));
+        dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
+
     }, [language, hasTaxiDeals,])
 
-    useEffect(() => {
-        // if (hasTaxiDeals === "heathrow") {
-        //     setTabs(0)
-        // }
-        // if (hasTaxiDeals === "gatwick") {
-        //     setTabs(1)
-        // }
-        // if (hasTaxiDeals === "stansted") {
-        //     setTabs(2)
-        // }
+    //evvelce bu da var idi prosta iki defe render olunur deye bunu cixartdim
+    // useEffect(() => {
+    //     const validPaths = ["/", "/es", "/tr", "/zh", "/ru", "/it", "/ar"];
+    //     if (validPaths.includes(router.pathname)) {
+    //         const hasTaxiDeals = "heathrow";
+    //         localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals));
+    //         dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
+    //         fecthPoints({ dealsNameProp: hasTaxiDeals, language });
+    //     }
+    //     console.log(` const validPaths = ["/", "/es", "/tr", "/zh", "/ru", "/it", "/ar"];`);
 
-        // if (hasTaxiDeals === "luton") {
-        //     setTabs(3)
-        // }
-        // if (hasTaxiDeals === "city") {
-        //     setTabs(4)
-        // // }
-        const validPaths = ["/", "/es", "/tr", "/zh", "/ru", "/it", "/ar"];
-        if (validPaths.includes(router.pathname)) {
-            const hasTaxiDeals = "heathrow";
-            localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals));
-            dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
-            fecthPoints({ dealsNameProp: hasTaxiDeals, language });
-        }
-
-    }, [])
+    // }, [])
 
     let titleString = ""
     if (hasTaxiDeals === "dover") {
