@@ -39,6 +39,8 @@ const HeathrowVipMeet = (props) => {
     useEffect(() => {
         // Check if the new label is not undefined or null
         const newSelectLabel = appData?.words["strSelectTerminal"];
+        console.log(newSelectLabel);
+
         if (newSelectLabel) {
             // Update the first element of the dropdownLabels array
             setDropdownLabels(previousLabels => [
@@ -48,10 +50,12 @@ const HeathrowVipMeet = (props) => {
             dispatch({ type: "SET_TERMINAL", data: { newTerminal: `-- ${newSelectLabel} --` } })
 
         }
+        console.log(meetAndGreetState?.terminalName);
+
         //baslangcda terminali secirik book now tikliyrq
         //onnan sonra geri gelende yoxluyrug eger  --  yoxdursa demeli terminal name secilibdir ve oldugu kimi galacag
-        if (!meetAndGreetState.terminalName.includes("--")) {
-            dispatch({ type: "SET_TERMINAL", data: { newTerminal: meetAndGreetState.terminalName } })
+        if (!meetAndGreetState?.terminalName?.includes("--") && meetAndGreetActions?.terminalName?.length) {
+            dispatch({ type: "SET_TERMINAL", data: { newTerminal: meetAndGreetState?.terminalName } })
         }
         if (loadAlert) {
             setTimeout(() => { setLoadAlert(false) }, 550);
@@ -70,7 +74,6 @@ const HeathrowVipMeet = (props) => {
     }
     let { seatLists, meetgreetDate, meetgreetActiveBtn, selectedService, terminalName, seatListPrice } = meetAndGreetState
 
-
     const handleButtons = (params = {}) => {
         let { index, heading, normalName } = params
         setHeadingSelectedService(heading)
@@ -87,7 +90,6 @@ const HeathrowVipMeet = (props) => {
     const IsDropdownTextSelectionValid = () => dropdownLabels.slice(1).includes(terminalName)
     const handleBookNow = () => (IsDropdownTextSelectionValid()) && router.push("/meetgreet")
 
-    console.log({ terminalName });
 
 
     return (
