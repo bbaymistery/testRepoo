@@ -1,22 +1,3 @@
-//*Navbar
-export let navbar = {
-  "strNavHome": "home",
-  "strNavAirports": "airports",
-  "strNavHeathrowAirportTransfer": "heathrow airport transfer",
-  "strNavGatwickAirportTransfer": "gatwick airport transfer",
-  "strNavCityAirportTransfer": "city airport transfer",
-  "strNavLutonAirportTransfer": "luton airport transfer",
-  "strNavStanstedAirportTransfer": "stansted airport transfer",
-  "strNavCruisePorts": "cruise ports",
-  "strNavSouthamptonCruisePort": "southampton cruise port",
-  "strNavDoverCruisePort": "dover cruise port",
-  "strNavPortsmouthCruisePort": "portsmouth cruise port",
-  "strNavHarwichCruisePort": "harwich cruise port",
-  "strNavTerms": "terms",
-  "strNavContactUs": "contact us",
-  "strNavManageMyBooking": "manage my booking",
-  "strNavCorporate": "corporate",
-}
 
 
 
