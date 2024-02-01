@@ -17,18 +17,16 @@ const LinkNameReviews = (props) => {
                 <div className={`${styles.LinkNameReviews_section_container} page_section_container`}>
                     <div className={styles.linkname}>
                         <div className={`${styles.left_info} ${styles.google_review}`} >
-                            {/* <p className={`${styles.left_info_title} ${direction}`}>What are cutomers saying us</p> */}
                             <a target="_blank" href="https://g.co/kgs/Rg7vb8" title="Customer Reviesw for Airport Pickups London"  >
-                                <img className={styles.tripad_img} border="0" alt="Customer Reviesw for Airport Pickups London " src={`${bggray ? "/images/reviewNoBg1.png" : "/images/review1.png"}`} />
+                                <img className={styles.tripad_img} border="0" alt="Customer Reviesw for Airport Pickups London " src={`${bggray ? "/images/others/reviewNoBg1.png" : "/images/others/review1.png"}`} />
                             </a>
                         </div>
                         <div className={`${styles.left_info} ${styles.acceptedcards}`} title="Accepted Cards for Airport Pickups London">
-                            <img className={styles.acceptedcards_img} border="0" alt="Accepted Cards for Airport Pickups London " src="/images/payments.webp" />
+                            <img className={styles.acceptedcards_img} border="0" alt="Accepted Cards for Airport Pickups London " src="/images/others/payments.webp" />
                         </div>
                         <div className={`${styles.left_info} ${styles.tripad}`} >
                             <a target="_blank" href="https://www.tripadvisor.co.uk/Attraction_Review-g186338-d11966434-Reviews-Airport_Pickups_London-London_England.html" title="Tripadvisor Rating for Airport Pickups London">
-                                {/* <img className={styles.tripad_img} border="0" alt="Tripadvisor Rating for Airport Pickups London" src="/images/TripAdvisor2.webp" /> */}
-                                <img className={styles.tripad_img} border="0" alt="Tripadvisor Rating for Airport Pickups London" src="/images/advisor3.0.png" />
+                                <img className={styles.tripad_img} border="0" alt="Tripadvisor Rating for Airport Pickups London" src="/images/others/advisor3.0.png" />
                             </a>
                         </div>
                     </div>

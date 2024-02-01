@@ -69,7 +69,7 @@ export const CruisePorts = [
         hasTaxiDeals: "harwich",
         title: "Harwich Cruise Port",
         id: 2,
-        imgUrl: "/images/seaport/dover.webp",
+        imgUrl: "/images/seaport/hcp.webp",
         translateTitle: "strHarwichCruisePort",
     },
     {

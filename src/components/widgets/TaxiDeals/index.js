@@ -87,7 +87,6 @@ const TaxiDeals = (props) => {
 
     useEffect(() => {
         fecthPoints({ dealsNameProp: hasTaxiDeals, language })
-        console.log(" fecthPoints({ dealsNameProp: hasTaxiDeals, language })");
         //asagidaki iki kod asagidaki use effecti acanda yox olmalidir
         localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals));
         dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });

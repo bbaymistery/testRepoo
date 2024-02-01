@@ -6,7 +6,7 @@ import { quotationImagesObjWebp } from '../../../constants/quotationImages'
 const CarInfo = (props) => {
     let { index, quotation, splitedDate, splitedHour, splitedMinute, } = props
     let state = useSelector((state) => state.pickUpDropOffActions)
-    let { params: { quotations, direction } } = state
+    let { params: { direction } } = state
     const { appData } = useSelector(state => state.initialReducer)
     //cartypes object for card item as {1:{image:'sds, name:Economy}}
     const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
@@ -24,11 +24,6 @@ const CarInfo = (props) => {
                         <div className={styles.text_1}>{appData?.words["strYouSelected"]}</div>
                         <div className={styles.text_2} style={{ textTransform: 'capitalize' }}>
                             {carObject[quotation.carId]?.name}
-                            {/*  _ {carObject[quotation.carId]?.transferType} */}
-                            {/* <div className={styles.car_name_icons}>
-                                <span>{carObject[quotation.carId]?.suitcases} <i className="fa-solid fa-suitcase"></i></span>
-                                <span>{carObject[quotation.carId]?.pax} <i className="fa-solid fa-user"></i></span>
-                            </div> */}
                         </div>
                     </div>
 

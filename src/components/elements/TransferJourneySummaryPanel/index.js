@@ -203,7 +203,7 @@ const TransferJourneySummaryPanel = (props) => {
             {isTaxiDeal ?
                 <div className={`${styles.content} ${styles.summarycontent} `} style={{ marginTop: "2rem" }}>
                     <div className={`${styles.left_info} ${styles.acceptedcards}`} style={{ marginTop: '0rem' }} title="Accepted Cards for Airport Pickups London">
-                        <img className={styles.acceptedcards_img} border="0" alt="Accepted Cards for Airport Pickups London " src="/images/accepted-cards10Final.png" />
+                        <img className={styles.acceptedcards_img} border="0" alt="Accepted Cards for Airport Pickups London " src="/images/others/accepted-cards.png" />
                     </div>
                 </div>
                 : <></>}

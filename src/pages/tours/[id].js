@@ -253,11 +253,10 @@ const TourContentDetails = ({ data }) => {
                                     Site to life with commentary. Plus, all admission tickets are included in the tour price.
                                 </div>
 
-                                < TourCardQuotation index={0} selectedQuotation={""} quotationOptions={mockQuotationOptions} />
+                                <TourCardQuotation index={0} selectedQuotation={""} quotationOptions={mockQuotationOptions} />
                             </div>
                         </div>
                         <div className={styles.right_content}>
-                            <LeftSidebarInformation direction={direction} appData={appData} showAllInclusive={false} showExceptional={true} />
                         </div>
 
 

@@ -19,15 +19,17 @@ const INITIAL_STATE = {
     ],
     seatListPrice: 180,
     buggerLists: [
-        { name: "Porter", desc: "(£54.00 inc VAT)", minNum: 0, price: 54, strName: "strPorter" },
-        { name: "Buggy", desc: "(£60.00 inc VAT) ", minNum: 0, price: 60, strName: "strBuggy" },
-        { name: "Additional Greeter", desc: "(£75.00 inc VAT)", minNum: 0, price: 75, strName: "strAdditionalAssistant" }
+        { name: "Porter", desc: "(£54.00 )", minNum: 0, price: 54, strName: "strPorter" },
+        { name: "Buggy", desc: "(£60.00 ) ", minNum: 0, price: 60, strName: "strBuggy" },
+        { name: "Additional Greeter", desc: "(£75.00 )", minNum: 0, price: 75, strName: "strAdditionalAssistant" }
     ],
     buggerListTotalPrice: 0,
 
     passengersForm: [{ firstname: "", lastname: "", email: "", phone: "" }],
+    passengersFormAdults: [{ firstname: "", lastname: "", email: "", phone: "" }],
+    passengersFormChildren: [],
     flightDetails: {
-        airline: "-- Select Airline --",
+        airline: "",
         flightNumber: "",
         flightClass: "-- Select Class --",
         flightTime: "00:00",
@@ -44,10 +46,7 @@ const INITIAL_STATE = {
     meetgreetActiveBtn: 0,
     selectedService: 'Arrival Airport',
     terminalName: "-- Select Terminal --",
-    porter: 0,
-    buggy: 0,
-    additionalGreeter: 0,
-    vat: 30,
+
 };
 
 export const meetAndGreetActions = (state = INITIAL_STATE, action) => {

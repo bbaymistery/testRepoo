@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import CarItem from "./CarItem";
 const itemsCarWrapperRef = React.createRef(null); //in order to click right or left and change lsider
@@ -214,9 +214,8 @@ const CarsSlider = () => {
                   <div
                     key={i}
                     onClick={() => changeSlideWithNavigationButton(i)}
-                    className={`${styles.dot} ${
-                      state.selectedStep === i + 1 ? styles.dotActive : ""
-                    }`}
+                    className={`${styles.dot} ${state.selectedStep === i + 1 ? styles.dotActive : ""
+                      }`}
                   ></div>
                 );
               })}

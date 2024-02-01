@@ -8,7 +8,6 @@ import DestinationsCustomers from '../../components/elements/DestinationsCustome
 const AboutUs = () => {
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction, language } } = state
-    const { appData } = useSelector(state => state.initialReducer)
 
     const { metaTitle, keywords, description, pageContent, pageTitle, shortDescription } = usePageContentHook("About_APL", language);
 
@@ -28,7 +27,7 @@ const AboutUs = () => {
                                 </p>
                             </div>
                             <div className={styles.right}>
-                                <img src="/images/aboutPage.jpg" alt="APL about us " />
+                                <img src="/images/others/aboutPage.jpg" alt="APL about us " />
                             </div>
                         </div>
                         <DestinationsCustomers />

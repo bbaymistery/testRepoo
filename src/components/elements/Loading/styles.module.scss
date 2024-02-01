@@ -3,8 +3,7 @@
 .lds_ellipsis {
     display: inline-block;
     position: relative;
-    // width: 40px;
-    // height: 40px;
+
     div {
         position: absolute;
         top: 33px;
@@ -22,7 +21,6 @@
         }
 
         &:nth-child(2) {
-            // left: 8px;
             left: 36px;
             animation: lds_ellipsis2 0.9s infinite;
             background-color: $blue-1;
@@ -32,7 +30,6 @@
             left: 30px;
             animation: lds_ellipsis2 0.9s infinite;
             background-color: $dark-4;
-            // display: none;
         }
 
         &:nth-child(4) {

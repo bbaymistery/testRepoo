@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
 import { quotationImagesObjWebp } from '../../constants/quotationImages'
-import env from '../../resources/env'
 import Image from 'next/image';
 import meetAndGret from '../../../public/images/icons/blackMeetAndGreet.svg'
 import LeftSidebarInformation from '../../components/elements/LeftSidebarInformation'

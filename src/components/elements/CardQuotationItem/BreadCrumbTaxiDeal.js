@@ -1,7 +1,7 @@
 import React from 'react'
 import { capitalizeFirstLetter } from '../../../helpers/letters'
 import styles from "./styles.module.scss"
-const BreadCrumbTaxiDeal = ({ previousUrl, breadCrumbFrom, breadCrumbTo ,direction}) => {
+const BreadCrumbTaxiDeal = ({ previousUrl, breadCrumbFrom, breadCrumbTo, direction }) => {
 
     return (
         <>
@@ -9,7 +9,7 @@ const BreadCrumbTaxiDeal = ({ previousUrl, breadCrumbFrom, breadCrumbTo ,directi
             {/* /heathrow/taxi-from-heathrow-to-ascot */}
             {/*/heathrow/taxi-from-ascot-to-heathrow== previousUrl.split("/")[1]  =>  it takes heathrow */}
             {previousUrl?.split("/").length === 3 ?
-                <div className={styles.breadcrumb} direction={String(direction ==='rtl')} id="breadcrumb" >
+                <div className={styles.breadcrumb} direction={String(direction === 'rtl')} id="breadcrumb" >
                     <span> <a href="/" title="Airport Pickups London"> Home  </a> <span><i className="fa-solid fa-arrow-right"></i></span></span>
                     <span>
                         <a href={`/${previousUrl?.split("/")[1]}`} title={`${capitalizeFirstLetter(previousUrl?.split("/")[1])} transfers`}>
@@ -28,7 +28,7 @@ const BreadCrumbTaxiDeal = ({ previousUrl, breadCrumbFrom, breadCrumbTo ,directi
             {/* if url contains 3 (/) slashes */}
             {/* /heathrow/london/taxi-to-bayswater */}
             {previousUrl?.split("/").length === 4 ?
-                <div className={styles.breadcrumb} direction={String(direction ==='rtl')} id="breadcrumb" >
+                <div className={styles.breadcrumb} direction={String(direction === 'rtl')} id="breadcrumb" >
                     <span> <a href="/" title="Airport Pickups London"> Home  </a> <span><i className="fa-solid fa-arrow-right"></i></span></span>
                     <span>
                         <a href={`/${previousUrl?.split("/")[1]}`} title={`${capitalizeFirstLetter(previousUrl?.split("/")[1])} transfers`}>

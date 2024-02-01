@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
@@ -291,7 +291,7 @@ const AccountRegister = (props) => {
                                             <div className={styles.radio_input_content}>
                                                 <div>
                                                     <input onChange={(e) => onchangeHandler(e)} defaultChecked={accountPassengerStatus === 'Account'} type="radio" id="Account" name="accountPassengerStatus" value={"Account"} />
-                                                    <label htmlFor="Account">Account</label><br />
+                                                    <label htmlFor="Account">{appData?.words["strAccountTitle"]}</label><br />
                                                 </div>
                                                 <div>
                                                     <input onChange={(e) => onchangeHandler(e)} defaultChecked={accountPassengerStatus === 'Passenger'} type="radio" id="Passenger" name="accountPassengerStatus" value={"Passenger"} />

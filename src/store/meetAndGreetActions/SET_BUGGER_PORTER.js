@@ -10,19 +10,18 @@ function SET_BUGGER_PORTER(params = {}) {
     let newState = JSON.parse(JSON.stringify(state))
     let newBuggerLists = [...newState.buggerLists]
     let seatlistPrice = newState.seatListPrice
-    let vat=newState.vat
 
     if (incordec === 'inc') newBuggerLists[idx].minNum += 1;
 
 
-    if (incordec === 'dec')  newBuggerLists[idx].minNum -= 1;
-    
+    if (incordec === 'dec') newBuggerLists[idx].minNum -= 1;
+
 
 
     let { newbuggerListsTotalPrice, } = updatePriceBuggerLists(newBuggerLists);
 
     newState.buggerLists = newBuggerLists
-    newState.totalPrice = newbuggerListsTotalPrice + seatlistPrice+vat
+    newState.totalPrice = newbuggerListsTotalPrice + seatlistPrice
     newState.buggerListTotalPrice = newbuggerListsTotalPrice
     return newState;
 }

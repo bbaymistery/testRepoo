@@ -158,7 +158,6 @@ const HandleSearchResults = (params = {}) => {
 
     return (
         <div className={`${styles.search_results} ${isTaxiDeal ? styles.istaxideal_search_results : ""} `} w={String(width <= 990)}  >
-            {/* w={String(width <= 990)} =in responsive we use pop up  So we need wrtie css based on that */}
 
             {
                 <ul >

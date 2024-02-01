@@ -36,7 +36,7 @@ const QuotationResultsTaxiDealLeftPart = () => {
                             <Image width={0}
                                 height={0}
                                 sizes='10vw'
-                                style={{ width: "274px", height: 'auto', objectFit: "cover" }} priority className={styles.tripad_img} border="0" alt="Airport Pickups Trip Advisor" src="/images/TripAdvisor2.webp" />
+                                style={{ width: "274px", height: 'auto', objectFit: "cover" }} priority className={styles.tripad_img} border="0" alt="Airport Pickups Trip Advisor" src="/images/others/TripAdvisor2.webp" />
                         </a>
                     </li>
                 </ul>
@@ -49,7 +49,7 @@ const QuotationResultsTaxiDealLeftPart = () => {
                             <Image width={0}
                                 height={0}
                                 sizes='10vw'
-                                style={{ width: "19px", height: 'auto' }} src="/images/tel.webp" alt="Airport Pickups Support Phone " />
+                                style={{ width: "19px", height: 'auto' }} src="/images/others/tel.webp" alt="Airport Pickups Support Phone " />
                         </span>
                         <a href="tel:+442088687744">+44 (0) 208 688 7744</a>
                     </li>
@@ -58,7 +58,7 @@ const QuotationResultsTaxiDealLeftPart = () => {
                             <Image width={0}
                                 height={0}
                                 sizes='10vw'
-                                style={{ width: "23px", height: 'auto' }} src="/images/WhatsAppp.webp" alt="Airport Pickups Support Whatsapp" />
+                                style={{ width: "23px", height: 'auto' }} src="/images/others/WhatsAppp.webp" alt="Airport Pickups Support Whatsapp" />
                         </span>
                         <a target="_blank" href="https://wa.me/447387901028">
                             +44 73 8790 1028
@@ -69,7 +69,7 @@ const QuotationResultsTaxiDealLeftPart = () => {
                             <Image width={0}
                                 height={0}
                                 sizes='10vw'
-                                style={{ width: "19px", height: 'auto' }} border="0" alt="Airport Pickups Email" src="/images/mail.webp" />
+                                style={{ width: "19px", height: 'auto' }} border="0" alt="Airport Pickups Email" src="/images/others/mail.webp" />
                         </span>
                         <a href="mailto:info@aplcars.com" >info@aplcars.com</a>
                     </li>
@@ -128,7 +128,7 @@ const QuotationResultsTaxiDealLeftPart = () => {
                     <Image width={0}
                         height={0}
                         sizes='100vw'
-                        style={{ width: '100%', height: 'auto', objectFit: "cover" }} border="0" alt="Airport Pickups Map" src="/images/mapLondonn.webp" />
+                        style={{ width: '100%', height: 'auto', objectFit: "cover" }} border="0" alt="Airport Pickups Map" src="/images/others/mapLondonn.webp" />
                 </p>
                 <button onClick={() => setTaxidealMapStatus(true)} className='btn btn_hover_reverse_primary'><i className="fa-solid fa-map-location-dot"></i> {appData?.words["strShowOnMap"]}</button>
             </div>
@@ -138,13 +138,13 @@ const QuotationResultsTaxiDealLeftPart = () => {
                 <Image width={0}
                     height={0}
                     sizes='10vw'
-                    style={{ width: '100%', height: 'auto', objectFit: "cover" }} className={styles.acceptedcards_img} border="0" alt="Airport Pickups Accepted Cards" src="/images/payments.webp" />
+                    style={{ width: '100%', height: 'auto', objectFit: "cover" }} className={styles.acceptedcards_img} border="0" alt="Airport Pickups Accepted Cards" src="/images/others/payments.webp" />
             </div>
             <div className={`${styles.left_info} ${styles.tfl}`} >
                 <Image width={0}
                     height={0}
                     sizes='10vw'
-                    style={{ width: '100%', height: 'auto', objectFit: "cover" }} className={styles.tfl_img} border="0" alt="Airport Pickups " src="/images/tfl2.webp" />
+                    style={{ width: '100%', height: 'auto', objectFit: "cover" }} className={styles.tfl_img} border="0" alt="Airport Pickups " src="/images/others/tfl2.webp" />
             </div>
 
         </div>

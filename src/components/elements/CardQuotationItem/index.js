@@ -2,29 +2,12 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { quotationImagesObjWebp } from '../../../constants/quotationImages';
-import env from '../../../resources/env';
 import styles from "./styles.module.scss";
 import meetAndGret from '../../../../public/images/icons/blackMeetAndGreet.svg'
 import Image from 'next/image';
 import WaveLoading from '../LoadingWave';
 import HeaderOfResults from './HeaderOfResults';
-import { postDataAPI } from '../../../helpers/fetchDatas';
-function mergeDetails(points, objectDetails) {
-  return points.map(point => {
-    // Extract the pcatId from the point
-    const { pcatId } = point;
 
-    // Find the corresponding detail in objectDetails
-    const detail = objectDetails[pcatId];
-
-    // If detail exists, spread its properties into point
-    if (detail) {
-      return { ...point, ...detail };
-    }
-
-    return point;
-  });
-}
 const checkJourneyTypeAndAddQuotationToReducer = (params = {}) => {
   //by this index  we r gonna assure in which journey we should add quotation
   //by journey type we r gonn assure should we directly pass to next page or not
@@ -108,18 +91,9 @@ const CardQuotationItem = (params = {}) => {
   };
 
   const handleClickForMobile = ({ e, quotation }) => {
-
-    //taxideals props passed for cardQuotationItemCompont inside quotation results
-
-    // if (isTaxiDeal) {
-    //   let errorHolder = reservationSchemeValidator({ reservations, appData });
-    //   setInternalState({ errorHolder })
-    //   if (451 > document.documentElement.clientWidth && errorHolder.status === 200)
-    //     checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch })
-    // } else {
     if (451 > document.documentElement.clientWidth)
       checkJourneyTypeAndAddQuotationToReducer({ journeyType, quotation, index, router, dispatch, language, isTaxiDeal, quotations })
-    // }
+
   };
 
   const changeCar = () => {

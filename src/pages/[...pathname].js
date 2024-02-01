@@ -12,6 +12,7 @@ import QuotationResultsTaxiDeal from '../components/elements/QuotationResultsTax
 
 function Pages(props) {
     let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle, returnPageTitle, duration, distance, quotationOptions } = props
+
     if (data === "not found") return <Error404 />
 
     const state = useSelector(state => state.pickUpDropOffActions)
@@ -133,11 +134,13 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
     let dealUrl = `${req.url}`
     const { pathname } = parse(req.url, true)
 
+
     dealUrl = pathname.replace(/^\/_next\/data\/[^/]+\//, '/').replace(/\.[^/.]+$/, '').replace(/\.json$/, '')
     const cacheKey = `page-${req.url}`
     let language = checkLanguageAttributeOntheUrl(dealUrl)
     // Check if the data is cached
     if (cache[cacheKey]) return { props: cache[cacheKey] }
+    console.log({ pathname, language });
 
     const body = { language, checkRedirect: true, taxiDealPathname: dealUrl, withoutExprectedPoints: true, }
     const url = `${env.apiDomain}/api/v1/taxi-deals/details`

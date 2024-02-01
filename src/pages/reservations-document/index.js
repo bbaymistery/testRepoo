@@ -11,7 +11,6 @@ import { useEffect } from 'react'
 import jsPDF from "jspdf";
 import ProgresBar from '../../components/elements/ProgresBar'
 import env from '../../resources/env'
-import { useConfirm } from '../../hooks/useConfirm'
 import store from '../../store/store'
 import { createWrapper } from 'next-redux-wrapper'
 import { urlWithLangAtribute } from '../../helpers/urlWithLangAtrribute'

@@ -10,6 +10,7 @@ async function getRoutes() {
   const singleRoutes = languages.map(lang => ({ source: `/${lang}`, destination: '/', locale: false }));
   let allLangaugesAsString = languages.length > 1 ? languages.join("|") : "en" //en|tr|es|ar|it|zh|ru
   let linknameRoutes = [{ source: `/:lang(${allLangaugesAsString})/:path`, destination: '/:path', locale: false, }]
+  let toursRoutes = [{ source: `/:lang(${allLangaugesAsString})/tours/:id`, destination: '/tours/:id', locale: false, }]
   // generate rewrite rules dynamically
   const rewriteRules = [
     // for each language, create a rewrite rule with the language code in the source path
@@ -21,7 +22,8 @@ async function getRoutes() {
       locale: false,
     },
 
-    ...linknameRoutes
+    ...linknameRoutes,
+    ...toursRoutes
   ];
 
 

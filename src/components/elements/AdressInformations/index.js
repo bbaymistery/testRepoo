@@ -37,7 +37,7 @@ const AdressInformations = ({ direction, appData }) => {
                                 </li>
                                 <li tabIndex="-1">
                                     <i className="fa-brands fa-whatsapp"></i>
-                                    <h5 className="title font-size-16 pb-1">  WhatsApp Us</h5>
+                                    <h5 className="title font-size-16 pb-1">  WhatsApp</h5>
                                     {direction === 'rtl' ?
                                         <a style={{ flexDirection: "row-reverse", justifyContent: "flex-end", display: 'flex' }} target="_blank" href="https://wa.me/447387901028">
                                             <span>  + </span>
@@ -54,7 +54,7 @@ const AdressInformations = ({ direction, appData }) => {
 
                                 <li tabIndex="-1">
                                     <i className="fa-solid fa-envelope"></i>
-                                    <h5 className="title font-size-16 pb-1">Email Us</h5>
+                                    <h5 className="title font-size-16 pb-1">{appData?.words["appContactUsEmailAddress"]}</h5>
                                     <a href="mailto: info@aplcars.com"> info@aplcars.com</a>
                                 </li>
 
@@ -76,8 +76,8 @@ const AdressInformations = ({ direction, appData }) => {
                                 </li>
                                 <li>
                                     <i className="fa-solid fa-users"></i>
-                                    <h5 className="title font-size-16 pb-1">Webmaster Team</h5>
-                                    <a href="mailto: web@aplcars.com"> web@aplcars.com</a>
+                                    <h5 className="title font-size-16 pb-1">{appData?.words["appContactUsWebmasterAddress"]}</h5>
+                                    <a href="mailto: web@aplcars.com"> web@apalcars.com</a>
                                 </li>
 
 

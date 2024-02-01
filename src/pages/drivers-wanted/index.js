@@ -6,7 +6,7 @@ import CarsSlider from "../../components/widgets/CarsSlider";
 import DestinationsCustomers from '../../components/elements/DestinationsCustomers';
 const DriversWanted = () => {
   const state = useSelector(state => state.pickUpDropOffActions)
-  let { params: { direction, language } } = state
+  let { params: { direction } } = state
 
   let keywords = "", metaTitle = "", description = ""
   return (
@@ -45,7 +45,7 @@ const DriversWanted = () => {
                   <p> For Iphone: please click on the link below</p>
                   <a href="https://apps.apple.com/gb/app/apl-drivers/id1661484765">
                     <div>
-                      <img src="images/iosicon.png" alt="Aiport pickups-london ios-icon" />
+                      <img src="images/others/iosicon.png" alt="Aiport pickups-london ios-icon" />
                       <p>APL Drivers<br /></p>
                     </div>
                   </a>
@@ -57,7 +57,7 @@ const DriversWanted = () => {
                   <p> For Android Phones: Please click on the link below or download from Google PLAY Store</p>
                   <a href="https://apps.apple.com/gb/app/apl-drivers/id1661484765">
                     <div>
-                      <img src="images/androidicon.png" alt="Aiport pickups-london ios-icon" />
+                      <img src="images/others/androidicon.png" alt="Aiport pickups-london ios-icon" />
                       <p>APL Drivers<br /></p>
                     </div>
                   </a>
@@ -75,7 +75,7 @@ const DriversWanted = () => {
 
               <div className={styles.right}>
                 <div className={styles.img_div}>
-                  <img src="/images/driversAPP.png" alt="Aiport pickups-london drivers-app" />
+                  <img src="/images/others/driversAPP.png" alt="Aiport pickups-london drivers-app" />
                 </div>
               </div>
             </div>

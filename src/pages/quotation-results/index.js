@@ -18,8 +18,6 @@ import CardQuotationItem from '../../components/elements/CardQuotationItem'
 import Map from "./Map.js";
 import store from '../../store/store'
 import { createWrapper } from 'next-redux-wrapper'
-import dynamic from 'next/dynamic'
-const QuotationResultsTaxiDealLeftPart = dynamic(() => import('../../components/elements/QuotationResultsTaxiDealLeftPart'),);
 let description = "We specialize in airport transfer shuttle service. We can provide you with a chauffeur driven car to and from all major London airports. The airports include Heathrow, Gatwick, Stanstead, Luton and City airport.!"
 let title = "Results Airport Transfers London Airport Pickups"
 let keywords = " London airport transfers, London airport transfer, heathrow airport transfer, Gatwick airport transfer, stansted airport transfer, luton airport transfer, shuttle service, shuttle services, airport shuttle services, airport transfer shuttle service,  airport taxi service, taxi services, cab services, airport taxi service, London airport, airport transport, luton airport transport, London airport transportation, London shuttle services, Gatwick airport shuttle service, Heathrow airport shuttle service, Luton airport shuttle service, Stansted airport shuttle service, London airport taxi transfer, London airport shuttle, airport transfers London, airport transfers, chauffeur driven car, chauffeur driven cars, airport pick up and drop."

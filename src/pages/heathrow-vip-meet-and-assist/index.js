@@ -39,7 +39,6 @@ const HeathrowVipMeet = (props) => {
     useEffect(() => {
         // Check if the new label is not undefined or null
         const newSelectLabel = appData?.words["strSelectTerminal"];
-        console.log(newSelectLabel);
 
         if (newSelectLabel) {
             // Update the first element of the dropdownLabels array
@@ -48,14 +47,14 @@ const HeathrowVipMeet = (props) => {
                 ...previousLabels.slice(1) // This keeps the rest of the array items unchanged
             ]);
             dispatch({ type: "SET_TERMINAL", data: { newTerminal: `-- ${newSelectLabel} --` } })
-
+            console.log(newSelectLabel);
         }
-        console.log(meetAndGreetState?.terminalName);
 
         //baslangcda terminali secirik book now tikliyrq
         //onnan sonra geri gelende yoxluyrug eger  --  yoxdursa demeli terminal name secilibdir ve oldugu kimi galacag
-        if (!meetAndGreetState?.terminalName?.includes("--") && meetAndGreetActions?.terminalName?.length) {
-            dispatch({ type: "SET_TERMINAL", data: { newTerminal: meetAndGreetState?.terminalName } })
+        //check as a string if 2 3 4 5 exist in that name or not
+        if (/(2|3|4|5)/.test(meetAndGreetState?.terminalName) && meetAndGreetState?.terminalName?.length) {
+            dispatch({ type: "SET_TERMINAL", data: { newTerminal: `-- ${meetAndGreetState?.terminalName} --` } })
         }
         if (loadAlert) {
             setTimeout(() => { setLoadAlert(false) }, 550);
@@ -81,14 +80,19 @@ const HeathrowVipMeet = (props) => {
     }
     const onchangeDate = (e) => dispatch({ type: "SET_MEET_GREET_DATE", data: { dateValue: e.target.value } })
     const handleDecrement = (idx, incordec) => dispatch({ type: 'SET_SEATLISTS', data: { idx, incordec } })
+
     const handleIncrement = (idx, incordec) => dispatch({ type: 'SET_SEATLISTS', data: { idx, incordec } })
     const handleTerminalSelection = (option) => {
         dispatch({ type: "SET_TERMINAL", data: { newTerminal: option } })
     }
 
 
-    const IsDropdownTextSelectionValid = () => dropdownLabels.slice(1).includes(terminalName)
-    const handleBookNow = () => (IsDropdownTextSelectionValid()) && router.push("/meetgreet")
+    const IsDropdownTextSelectionValid = () => /(2|3|4|5)/.test(terminalName)
+    const handleBookNow = () => {
+        if (IsDropdownTextSelectionValid()) {
+            router.push(`${language === 'en' ? "/meetgreet" : `${language}/meetgreet`}`)
+        }
+    }
 
 
 
@@ -134,7 +138,7 @@ const HeathrowVipMeet = (props) => {
                                                 <p className={styles.name}> {appData?.words[item.strName]}</p>
                                                 <p className={styles.desc}>  {appData?.words[item.strDesc]}</p>
                                                 <div className={styles.adults_selection_div_column_numbers_div} direction={String(direction === 'rtl')}>
-                                                    <p className={`${styles.left_arrow} ${item.minNum === 0 ? styles.disabled : ""}`} onClick={() => handleDecrement(index, "dec")}>
+                                                    <p className={`${styles.left_arrow} ${(item.minNum === 0 && index !== 0 || item.minNum === 1 && index === 0) ? styles.disabled : ""}`} onClick={() => handleDecrement(index, "dec")}>
                                                         <i className="fa-solid fa-chevron-left"></i>
                                                     </p>
                                                     <p className={styles.number}>  {item.minNum}  </p>
@@ -266,7 +270,7 @@ const HeathrowVipMeet = (props) => {
                                     </ul>
 
                                     <br />
-                                    <h2>Porter Service</h2>
+                                    <h2>{appData?.words["strPorterService"]}</h2>
                                     <ul>
                                         <li>For porter service please visit our  <a style={{ fontWeight: "500" }} href="/heathrow-porter-service">Porter page</a></li>
                                     </ul>

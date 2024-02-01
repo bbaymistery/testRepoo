@@ -281,15 +281,15 @@ const PaymentMethods = () => {
           <div className={`${styles.items_buttons}`}>
             <div title={appData?.words["strPaywithCashtotheDriver"]} onClick={setCashModal} className={` ${styles.item} ${styles.item_1}`}   >
               <p>{appData?.words["strPaywithCashtotheDriver"]}</p>
-              <img src="/images/pp.jpg" alt="" />
+              <img src="/images/others/pp.jpg" alt="" />
             </div>
             <div title={appData?.words["Pay with PayPal"]} onClick={() => startPayment(5)} className={` ${styles.item} ${styles.item_2}`}   >
               <p>{appData?.words["strPaywithPayPal"]} </p>
-              <img src="/images/paypal.png" alt="" />
+              <img src="/images/others/paypal.png" alt="" />
             </div>
             <div onClick={() => startPayment(7)} title={appData?.words["strPaybycard"]} className={`${styles.item} ${styles.item_4}`}   >
               <p>{appData?.words["strPaybycard"]} </p>
-              <img src="/images/vsMaster.jpg" alt="" />
+              <img src="/images/others/vsMaster.jpg" alt="" />
             </div>
           </div>
 
@@ -301,7 +301,7 @@ const PaymentMethods = () => {
                   <i onClick={() => setCashPaymentModal(false)} className="fa-solid fa-xmark"></i>
                 </div>
                 <div className={styles.body}>
-                  <p>You have chosen to pay by cash .</p>
+                  <p>{appData?.words["strYouHaveChosenToPayByCash"]}.</p>
                 </div>
                 <div className={styles.footer}>
                   <button onClick={() => startPayment(1)} className="btn btn_primary"> {appData?.words["strBookNow"]}</button>

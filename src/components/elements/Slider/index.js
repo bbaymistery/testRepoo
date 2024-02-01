@@ -1,6 +1,6 @@
-import Image from "next/image";
+import Image from "next/image.js";
 import styles from "./styles.module.scss";
-//!tour slider 
+//!tour slider
 const Slider = (props) => {
   let { setshouldShowModal, insideModal = false, index = 0, gotoPreviousSlider = () => { }, gotoNextSlider = () => { }, sliderItems } = props
   return (
@@ -13,7 +13,8 @@ const Slider = (props) => {
           if (carIndex === index - 1 || (index === 0 && carIndex === sliderItems.length - 1)) position = `${styles.lastSlide}`;
           return (
             <div className={styles.slide + " " + position} key={image.id}>
-              <Image src={image.img}  layout="fill" objectFit="cover" alt="Logo" />
+              <Image src={image.img} layout="fill" objectFit="cover" alt="Logo" />
+              {/* <img src={image.img} alt="Logo" /> */}
               <div className={styles.container_auto_center}>
                 <div className={styles.intro}>
                   {!insideModal ?
@@ -32,7 +33,7 @@ const Slider = (props) => {
           <span className={styles.next_btn} onClick={gotoNextSlider}>
             <i className="fa-solid fa-chevron-right"></i>
           </span>
-        </div> 
+        </div>
       </div>
     </div>
   );

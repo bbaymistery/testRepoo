@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 const Steps = ({ steps, activeStep }) => {
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction } } = state
+    const { appData } = useSelector(state => state.initialReducer)
+
     return (
         <div className={styles.steps} direction={String(direction === 'rtl')}>
             {steps.map((step, index) => (
@@ -13,7 +15,7 @@ const Steps = ({ steps, activeStep }) => {
                             <i className="fa-solid fa-check"></i>
                         </span>
                     ) : (<span className={styles.stepNumber}>{index + 1}</span>)}
-                    <p className={styles.stepLabel}>{step}</p>
+                    <p className={styles.stepLabel}>{appData?.words[step]}</p>
                     {index !== steps.length - 1 && <span className={styles.stepLine}></span>}
                 </div>
             ))}

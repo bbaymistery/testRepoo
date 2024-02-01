@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
@@ -104,7 +104,7 @@ const Corporate = (props) => {
               }
               <div className={styles.right}>
 
-                <img src="/images/apl_family.jpg" alt="" />
+                <img src="/images/others/apl_family.jpg" alt="" />
               </div>
             </div>
             <DestinationsCustomers />

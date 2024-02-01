@@ -38,7 +38,7 @@ const Footer = (props) => {
 
 
             <div className={styles.column}>
-              <p className={styles.title}>Company</p>
+              <p className={styles.title}>{appData?.words["strCompany"]}</p>
               <ul className={styles.list_items}>
                 <li>
                   <a href={`${language === 'en' ? `/drivers-wanted` : `/${language}/drivers-wanted`}`} title={`${appData?.words["strDrivers"] || "Drivers"} `} >
@@ -71,7 +71,7 @@ const Footer = (props) => {
 
                 <li>
                   <a href={`${language === 'en' ? `/heathrow-porter-service` : `/${language}/heathrow-porter-service`}`}  >
-                    Porter Service
+                    {appData?.words["strPorterService"]}
                   </a>
                 </li>
                 <li>

@@ -6,28 +6,33 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr auto;
     gap: 2rem;
-        @media (max-width: 410px) {
-               gap: 10px;
-            }
+
+    @media (max-width: 410px) {
+        gap: 10px;
+    }
 }
-.steps[direction="true"]{
-   .step{
-    margin-right: 0px;
-    .stepLabel {
-            margin-right: 10px ;
+
+.steps[direction="true"] {
+    .step {
+        margin-right: 0px;
+
+        .stepLabel {
+            margin-right: 10px;
             margin-left: 0px;
             z-index: 0;
-    
+
             @media (max-width: 768px) {
                 display: none;
             }
-    
+
         }
-                   .stepLine {
-                       height: 2px;
-                       margin-right: 1rem;
-                       margin-left: 0rem;}
-   }
+
+        .stepLine {
+            height: 2px;
+            margin-right: 1rem;
+            margin-left: 0rem;
+        }
+    }
 }
 
 .step.completed {
@@ -76,7 +81,9 @@
     .stepLabel {
         margin-left: 10px;
         z-index: 0;
-font-size: 18px;
+        text-transform: capitalize;
+        font-size: 18px;
+
         @media (max-width: 768px) {
             display: none;
         }

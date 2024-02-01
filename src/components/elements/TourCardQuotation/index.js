@@ -69,19 +69,24 @@ const TourCardQuotation = (params = {}) => {
           return (
             <div key={index} className={getClassNameResult(selectedQuotation, item)} onClick={(e) => handleClickForMobile({ e, quotation: item })}>
               {item ?
-                <div data={quotationImagesObjWebp[item?.carId]?.id} className={styles.column_first} style={{ backgroundImage: `url(${env.apiDomain}${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
+                <div data={quotationImagesObjWebp[item?.carId]?.id} className={styles.column_first}>
+                  <Image
+                    src={quotationImagesObjWebp[item?.carId]?.image}
+                    alt="Car Image"
+                    width={300}
+                    height={100}
+                    style={{ objectFit: "contain", }}
+                    priority
+                  />
+                </div>
                 : <></>}
               <div className={styles.column_second}>
 
                 <div className={styles.column_second_flex_column}>
                   <div className={styles.car_features}>
-
-
                     <div className={styles.feature_column}>
                       <span>
                         <i className={`fa-solid fa-gauge-high ${styles.speed_icon}`}></i>
-
-
                       </span>
                     </div>
                     <div className={styles.feature_column}>

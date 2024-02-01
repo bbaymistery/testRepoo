@@ -1,40 +1,41 @@
-const updatePrice = (newSeatLists) => {
-    let newTotalPrice = 180;
+const ADULT_PRICE = 180;
+const ADDITIONAL_GUEST_PRICE = 50;
+
+
+const updatePrice = (newSeatLists, idx) => {
     const adultsNum = newSeatLists[0].minNum;
     const childrenNum = newSeatLists[1].minNum;
-    const totalGuestsSelected = adultsNum + childrenNum;
-    //settng total price for theright side of box
-    if (totalGuestsSelected > 2) newTotalPrice += (totalGuestsSelected - 2) * 50;
     //based on totalGuestSelected i am creating new passengers which is equal to that number
     //if totalGuestSelected=2=>it means =[{name:"",lastname:""},{name:"",lastname:""}]
-    const newPassengersForm = Array.from({ length: totalGuestsSelected }, () => ({ firstname: "", lastname: "" }));
+    const totalGuestsSelected = adultsNum + childrenNum;
+    let newTotalPrice = ADULT_PRICE + Math.max(0, totalGuestsSelected - 2) * ADDITIONAL_GUEST_PRICE;
+    let newPassengersForm = Array.from({ length: idx === 0 ? adultsNum : childrenNum }, () => ({ firstname: "", lastname: "", ...(idx === 0 && { email: "", phone: "" }) }));
 
-    return { newTotalPrice, newPassengersForm }
+    return { newTotalPrice, newPassengersForm };
 };
+
 function SET_SEATLISTS(params = {}) {
     let { state, action } = params;
     let { data: { idx, incordec } } = action;
 
-    let newState = JSON.parse(JSON.stringify(state))
-    let newSeatLists = [...newState.seatLists]
+    let newState = { ...state };
+    let newSeatLists = newState.seatLists.map((item, index) => index === idx ? { ...item, minNum: item.minNum + (incordec === 'inc' ? 1 : -1) } : item);
 
-    if (incordec === 'inc') newSeatLists[idx].minNum += 1;
-    if (incordec === 'dec') newSeatLists[idx].minNum = Math.max(0, newSeatLists[idx].minNum - 1);
+    if (idx === 0 && newSeatLists[0].minNum < 1) newSeatLists[0].minNum = 1;
 
+    let { newTotalPrice, newPassengersForm } = updatePrice(newSeatLists, idx);
 
-    let { newTotalPrice, newPassengersForm } = updatePrice(newSeatLists);
+    newState.seatLists = newSeatLists;
+    newState.totalPrice = newTotalPrice;
+    newState.seatListPrice = newTotalPrice;
+    newState[idx === 0 ? 'passengersFormAdults' : 'passengersFormChildren'] = newPassengersForm;
 
-    newState.seatLists = newSeatLists
-
-    newState.totalPrice = newTotalPrice
-    //by defaults seatlist price is already180
-    //incase if seatlist changes we update price of seatlist
-    newState.seatListPrice = newTotalPrice
-    newState.passengersForm = newPassengersForm
     return newState;
 }
 
-export default SET_SEATLISTS
+export default SET_SEATLISTS;
+
+
 
 /*
 uzun kod yerine  yuxardaki kimi simple yazdk

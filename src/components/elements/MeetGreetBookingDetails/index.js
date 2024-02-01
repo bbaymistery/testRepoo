@@ -11,11 +11,11 @@ const MeetGreetBookingDetails = () => {
 
     return (
         <div className={styles.info} direction={String(direction === 'rtl')}>
-            <h3>Service Details</h3>
+            <h3>{appData?.words["strServiceDetails"]}</h3>
             <div className={styles.sections}>
                 <div className={`${styles.section} ${styles.first_column}  `}>
                     <div className={`${styles.description} `}>
-                        <div className={styles.text_1}>Selected Service</div>
+                        <div className={styles.text_1}>{appData?.words["strSelectedService"]}</div>
                         <div className={styles.text_2} style={{ textTransform: 'capitalize' }}>
                             <span>
                                 {selectedService}
@@ -31,7 +31,7 @@ const MeetGreetBookingDetails = () => {
                 </div>
                 <div className={`${styles.section} ${styles.second_column}`}>
                     <div className={styles.description}>
-                        <p className={styles.text_1}>Date</p>
+                        <p className={styles.text_1}>{appData?.words["strDate"]}</p>
                         <p className={styles.text_2}>
                             {<span>
                                 {direction === 'rtl'
