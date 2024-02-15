@@ -23,8 +23,10 @@ const GlobalLayout = (
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 " />
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         {/* no follow  */}
-        <meta name="googlebot" content="noindex" />
-        <meta name="robots" content="noindex" />
+        {/* <meta name="googlebot" content="noindex" /> */}
+        <meta name="googlebot" content="index" />
+        {/* <meta name="robots" content="noindex" /> */}
+        <meta name="robots" content="index,follow" />
         {router.pathname === "/" ? <link rel="preload" href="/images/others/TripAdvisor2.webp" as="image" /> : <></>}
         {/* //for home page and /heathrow/heathrow-to-oxford-taxi we dont show all fontawesome csss */}
         {(router.pathname === "/") || (router.pathname === '/[...pathname]') ? <link rel="stylesheet" href="/fontawesome/css/all.min.css" /> : <link rel="stylesheet" href="/fontawesomeHomePage/css/all.min.css" />}
