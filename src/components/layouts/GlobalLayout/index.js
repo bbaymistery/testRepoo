@@ -24,8 +24,8 @@ const GlobalLayout = (
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         {/* no follow  */}
         <meta name="googlebot" content="noindex" />
-        {/* <meta name="googlebot" content="index" /> */}
         <meta name="robots" content="noindex" />
+        {/* <meta name="googlebot" content="index" /> */}
         {/* <meta name="robots" content="index,follow" /> */}
         {router.pathname === "/" ? <link rel="preload" href="/images/others/TripAdvisor2.webp" as="image" /> : <></>}
         {/* //for home page and /heathrow/heathrow-to-oxford-taxi we dont show all fontawesome csss */}
