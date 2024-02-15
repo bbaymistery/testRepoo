@@ -26,7 +26,7 @@ const AdressInformations = ({ direction, appData }) => {
                                 </li>
                                 <li tabIndex="-1">
                                     <i className="fa-solid fa-globe"></i>
-                                    <h5 className="title font-size-16 pb-1">From Abroad</h5>
+                                    <h5 className="title font-size-16 pb-1">{appData?.words["strFromAbroad"]}</h5>
                                     {direction === 'rtl' ?
                                         <a style={{ flexDirection: "row-reverse", justifyContent: "flex-end", display: 'flex' }} href="tel:+442086887744" >
                                             <span>  + </span> 4402086830884
@@ -35,9 +35,10 @@ const AdressInformations = ({ direction, appData }) => {
                                         <a href="tel:+442086887744" >+44 208 6887744</a>
                                     }
                                 </li>
+                                
                                 <li tabIndex="-1">
                                     <i className="fa-brands fa-whatsapp"></i>
-                                    <h5 className="title font-size-16 pb-1">  WhatsApp</h5>
+                                    <h5 className="title font-size-16 pb-1">{appData?.words["strWhatsAppUs"]}</h5>
                                     {direction === 'rtl' ?
                                         <a style={{ flexDirection: "row-reverse", justifyContent: "flex-end", display: 'flex' }} target="_blank" href="https://wa.me/447387901028">
                                             <span>  + </span>
@@ -61,13 +62,13 @@ const AdressInformations = ({ direction, appData }) => {
 
                                 <li>
                                     <i className="fa-solid fa-briefcase"></i>
-                                    <h5 className="title font-size-16 pb-1">Account Department</h5>
+                                    <h5 className="title font-size-16 pb-1">{appData?.words["strAccountDepartment"]}</h5>
                                     <a href="mailto: accounts@aplcars.com"> accounts@aplcars.com</a>
                                 </li>
 
                                 <li>
                                     <i className="fa-solid fa-building-user"></i>
-                                    <h5 className="title font-size-16 pb-1"> Corporate Account Manager</h5>
+                                    <h5 className="title font-size-16 pb-1"> {appData?.words["strCorporateAccountManager"]}</h5>
                                     <p>
                                         <span>  Mr. Oliver Derek</span>
                                         <br />

@@ -57,7 +57,7 @@ const AccountRegisterResults = (props) => {
 
                         <div className={styles.content}>
                             <div className={styles.left_content}>
-                                <h1 >Registration Completed Succesfully</h1>
+                                <h1 >{appData?.words["strRegistrationCompletedSuccessfully"]}</h1>
                                 <div className={styles.info_section}>
                                     {/*//! Applicant for credit */}
 

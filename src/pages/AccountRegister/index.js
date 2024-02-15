@@ -15,7 +15,7 @@ import Loading from '../../components/elements/alert/Loading'
 import env from '../../resources/env'
 import store from '../../store/store'
 import { accountRegisterActions } from '../../store/accountRegisterReducer'
-
+import { arTranslation, arTranslation2, enTranslation, enTranslation2, esTranslation, esTranslation2, itTranslation, itTranslation2, ruTranslation, ruTranslation2, trTranslation1, trTranslation2, zhTranslation, zhTranslation2 } from '../../constants/registerTranslations'
 let description = "Airport Pickups London agency registration form"
 let title = "APPLICATION FOR CREDIT ACCOUNT"
 let keywords = ""
@@ -132,6 +132,8 @@ const AccountRegister = (props) => {
 
     // Update the token state when the verification is successful
     const handleRecaptchaVerify = (newToken) => setRecapthcaToken(newToken)
+
+    console.log(language);
 
 
     return (
@@ -258,16 +260,16 @@ const AccountRegister = (props) => {
                                     <h1>{appData?.words["strOperationNotes"]}</h1>
                                     <div className={`${styles.details} ${styles.operation_details}`}>
                                         <div className={`${styles.input_div} ${styles.the_checkbox_div}`}>
-                                            <p>Do you have any out-of-hours emergency number for urgent situations?</p>
+                                            <p>{appData?.words["strDoYouHaveAnyOutOfHours"]}</p>
                                             <div className={styles.radio_input_content}>
                                                 <div>
                                                     <input onChange={(e) => onchangeHandler(e)} defaultChecked={urgentSituationStatus === 'Yes'} type="radio" id="UrgentSituationYes" name="urgentSituationStatus" value={"Yes"} />
-                                                    <label htmlFor="UrgentSituationYes">Yes</label><br />
+                                                    <label htmlFor="UrgentSituationYes">{appData?.words["statusYes"]}</label><br />
                                                 </div>
 
                                                 <div>
                                                     <input onChange={(e) => onchangeHandler(e)} defaultChecked={urgentSituationStatus === 'No'} type="radio" id="UrgentSituationNo" name="urgentSituationStatus" value={"No"} />
-                                                    <label htmlFor="UrgentSituationNo">No</label><br />
+                                                    <label htmlFor="UrgentSituationNo">{"No"}</label><br />
                                                 </div>
                                             </div>
                                             {urgentSituationStatus === 'Yes' ?
@@ -287,7 +289,7 @@ const AccountRegister = (props) => {
                                                 : <></>}
                                         </div>
                                         <div className={`${styles.input_div} ${styles.the_checkbox_div}`}>
-                                            <p>In case of extra payment for airport transfers, who pays for the extras?</p>
+                                            <p>{appData?.words["strInCaseOfExtraPayment"]}</p>
                                             <div className={styles.radio_input_content}>
                                                 <div>
                                                     <input onChange={(e) => onchangeHandler(e)} defaultChecked={accountPassengerStatus === 'Account'} type="radio" id="Account" name="accountPassengerStatus" value={"Account"} />
@@ -303,7 +305,7 @@ const AccountRegister = (props) => {
                                             <Textarea
                                                 name="anyOtherOperationComments"
                                                 value={anyOtherOperationComments}
-                                                label={"Any Other Operation comments"}
+                                                label={appData?.words["strAnyOtherOperationComments"]}
                                                 onChange={(e) => onchangeHandler(e)}
                                                 labelStyle={{ color: "#00000094", "fontWeight": 500, letterSpacing: "1px" }}
                                                 inputStyle={{ color: "#0b0b0cd6" }}
@@ -314,23 +316,65 @@ const AccountRegister = (props) => {
 
                                 {/*//! Decleration */}
                                 <div className={styles.details_div}>
-                                    < p className={styles.amount_credit_title}>Declaration  </p>
-                                    <p className={styles.declaration}>
-                                        I, {`[ ${contactName} ]`}, in my capacity as {`[ ${jobTitle} ]`} of {`[ ${companyName} ]`},
-                                        hereby authorize Airport Pickups London
-                                        (Airport Transportation Limited) to obtain references as
-                                        and when appropriate.
+                                    <p className={styles.amount_credit_title}>{appData?.words["strDeclaration"]}   </p>
 
-                                        I agree to abide by the terms and conditions as
-                                        set out by Airport Pickups London  (Airport Transportation Limited).
-                                        These include the requirement that all invoices are to be paid within
-                                        7 days from the date of invoice and that a purchase order must be issued
-                                        for services rendered.
+                                    {
+                                        language === "tr" ?
+                                            <p className={styles.declaration}>
+                                                {trTranslation1}
+                                                <br />
+                                                {trTranslation2}
+                                            </p> : <></>
+                                    }
+                                    {
+                                        language === "en" ?
+                                            <p className={styles.declaration}>
+                                                {enTranslation}
+                                                <br />
+                                                {enTranslation2}
+                                            </p> : <></>
+                                    }
+                                    {
+                                        language === "es" ?
+                                            <p className={styles.declaration}>
+                                                {esTranslation}
+                                                <br />
+                                                {esTranslation2}
+                                            </p> : <></>
+                                    }
+                                    {
+                                        language === "it" ?
+                                            <p className={styles.declaration}>
+                                                {itTranslation}
+                                                <br />
+                                                {itTranslation2}
+                                            </p> : <></>
+                                    }
 
-                                        I declare that I have the authority to apply to open
-                                        an account on behalf of the aforementioned company.
-                                    </p>
-
+                                    {
+                                        language === "ru" ?
+                                            <p className={styles.declaration}>
+                                                {ruTranslation}
+                                                <br />
+                                                {ruTranslation2}
+                                            </p> : <></>
+                                    }
+                                    {
+                                        language === "zh" ?
+                                            <p className={styles.declaration}>
+                                                {zhTranslation}
+                                                <br />
+                                                {zhTranslation2}
+                                            </p> : <></>
+                                    }
+                                    {
+                                        language === "ar" ?
+                                            <p className={styles.declaration}>
+                                                {arTranslation}
+                                                <br />
+                                                {arTranslation2}
+                                            </p> : <></>
+                                    }
                                     <div className={styles.btn_div} onClick={gotoNextPage}>
                                         {!recaptchaToken && !showRecapthaComponent ? <button className='btn btn_primary ' ref={btnRef}>{ripples} {appData.words["strNext"]}</button> : <></>}
 
