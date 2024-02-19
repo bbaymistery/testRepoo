@@ -12,6 +12,10 @@
 
     &_section {
         &_container {
+            .sub_desc {
+                margin-bottom: 10px;
+            }
+
             p {
                 font-size: 18px;
                 text-align: justify;
@@ -24,7 +28,6 @@
                     border: 1px solid transparent;
                     margin-left: 10px;
                     font-size: 17px;
-                    display: none;
                     font-weight: 500;
                     cursor: pointer;
                 }
@@ -39,6 +42,18 @@
                 font-weight: 500;
                 margin-bottom: 16px;
 
+            }
+
+            .dangerous_div {
+
+                h2 {
+                    margin-top: 16px;
+                    margin-bottom: 10px;
+
+                    strong {
+                        font-weight: 500;
+                    }
+                }
             }
         }
     }

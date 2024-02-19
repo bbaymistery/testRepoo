@@ -22,6 +22,8 @@ export default function Home(props) {
     // Clean up the event listener on component unmount
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hasScrolled]); // Add hasScrolled as a dependency to avoid unnecessary re-registrations
+  
+
 
   return (
     <GlobalLayout footerbggray={true}>

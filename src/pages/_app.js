@@ -95,6 +95,7 @@ export const MyApp = ({ Component, pageProps }) => {
       localStorage.removeItem("language"); // remove an item from local storage
       localStorage.removeItem("direction"); // remove an item from local storage
       localStorage.removeItem("path"); // remove an item from local storage
+      localStorage.removeItem("hasTaxiDeals"); // remove an item from local storage
       // Dynamically inject the termsReducer when this component mounts
 
     };
