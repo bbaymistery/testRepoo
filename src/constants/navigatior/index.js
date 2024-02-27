@@ -2,7 +2,7 @@
 export const Airports = [
     {
         innerText: "Heathrow Airport Transfer",
-        path: "/heathrow-airport-transfer",
+        path: "/heathrow-taxi-prices",
         title: "London Heathrow Transfer",
         type: "cell",
         hasTaxiDeals: "heathrow",
@@ -12,7 +12,7 @@ export const Airports = [
     },
     {
         innerText: "Gatwick Airport Transfer",
-        path: "/gatwick-transfer",
+        path: "/gatwick-taxi-prices",
         title: "London Gatwick Transfer",
         type: "cell",
         hasTaxiDeals: "gatwick",
@@ -22,7 +22,7 @@ export const Airports = [
     ,
     {
         innerText: "City Airport Transfer",
-        path: "/city-airport",
+        path: "/london-city-taxi-prices",
         title: "London City Airport Transfer",
         type: "cell",
         hasTaxiDeals: "city",
@@ -33,7 +33,7 @@ export const Airports = [
     ,
     {
         innerText: "Luton Airport Transfer",
-        path: "/luton-airport",
+        path: "/luton-taxi-prices",
         title: "Luton Airport Transfer",
         type: "cell",
         hasTaxiDeals: "luton",
@@ -42,7 +42,7 @@ export const Airports = [
     },
     {
         innerText: "Stansted Airport Transfer",
-        path: "/stansted-airport",
+        path: "/stansted-taxi-prices",
         title: "London Stansted Airport Transfer",
         type: "cell",
         hasTaxiDeals: "stansted",
@@ -53,7 +53,7 @@ export const Airports = [
 export const CruisePorts = [
     {
         innerText: "Dover Cruise Port",
-        path: "/dovercruise",
+        path: "/dover-cruise-taxi",
         title: "Dover Cruise Terminal Transfer",
         type: "cell",
         hasTaxiDeals: "dover",
@@ -63,7 +63,7 @@ export const CruisePorts = [
     },
     {
         innerText: "Harwich Cruise Port ",
-        path: "/harwich",
+        path: "/harwich-taxi-prices",
         title: "Harwich Cruise Port  Transfer",
         type: "cell",
         hasTaxiDeals: "harwich",
@@ -74,7 +74,7 @@ export const CruisePorts = [
     },
     {
         innerText: "Portsmouth Cruise Port",
-        path: "/portsmouth",
+        path: "/portsmouth-taxi-prices",
         title: "Portsmouth Cruise Port Transfer",
         translateTitle: "strPortsmouthCruisePort",
         type: "cell",
@@ -84,7 +84,7 @@ export const CruisePorts = [
     },
     {
         innerText: "Southampton Cruise Port",
-        path: "/southampton",
+        path: "/southampton-cruise-taxi",
         title: "Southampton Cruise Port Transfer",
         type: "cell",
         hasTaxiDeals: "southampton",
@@ -118,14 +118,14 @@ export const navigator = [
         list: [
             {
                 innerText: "Heathrow Airport Transfer",
-                path: "/heathrow-airport-transfer",
+                path: "/heathrow-taxi-prices",
                 title: "London Heathrow Transfer",
                 type: "cell",
                 hasTaxiDeals: "heathrow",
             },
             {
                 innerText: "Gatwick Airport Transfer",
-                path: "/gatwick-transfer",
+                path: "/gatwick-taxi-prices",
                 title: "London Gatwick Transfer",
                 type: "cell",
                 hasTaxiDeals: "gatwick",
@@ -134,7 +134,7 @@ export const navigator = [
             ,
             {
                 innerText: "City Airport Transfer",
-                path: "/city-airport",
+                path: "/london-city-taxi-prices",
                 title: "London City Airport Transfer",
                 type: "cell",
                 hasTaxiDeals: "city airport",
@@ -143,7 +143,7 @@ export const navigator = [
             ,
             {
                 innerText: "Luton Airport Transfer",
-                path: "/luton-airport",
+                path: "/luton-taxi-prices",
                 title: "Luton Airport Transfer",
                 type: "cell",
                 hasTaxiDeals: "luton",
@@ -151,7 +151,7 @@ export const navigator = [
             },
             {
                 innerText: "Stansted Airport Transfer",
-                path: "/stansted-airport",
+                path: "/stansted-taxi-prices",
                 title: "London Stansted Airport Transfer",
                 type: "cell",
                 hasTaxiDeals: "stansted",
@@ -168,14 +168,14 @@ export const navigator = [
         list: [
             {
                 innerText: "Southampton Cruise Port",
-                path: "/southampton",
+                path: "/southampton-cruise-taxi",
                 title: "Southampton Cruise Port Transfer",
                 type: "cell",
                 hasTaxiDeals: "southampton",
             },
             {
                 innerText: "Dover Cruise Port",
-                path: "/dovercruise",
+                path: "/dover-cruise-taxi",
                 title: "Dover Cruise Terminal Transfer",
                 type: "cell",
                 hasTaxiDeals: "dover",
@@ -183,7 +183,7 @@ export const navigator = [
             },
             {
                 innerText: "Portsmouth Cruise Port",
-                path: "/portsmouth",
+                path: "/portsmouth-taxi-prices",
                 title: "Portsmouth Cruise Port Transfer",
                 type: "cell",
                 hasTaxiDeals: "portsmouth",
@@ -191,7 +191,7 @@ export const navigator = [
             },
             {
                 innerText: "Harwich Cruise Port ",
-                path: "/harwich",
+                path: "/harwich-taxi-prices",
                 title: "Harwich Cruise Port  Transfer",
                 type: "cell",
                 hasTaxiDeals: "harwich",
@@ -248,7 +248,7 @@ export const navigatorMobile = [
         list: [
             {
                 innerText: "Heathrow Airport Transfer",
-                path: "/heathrow-airport-transfer",
+                path: "/heathrow-taxi-prices",
                 title: "London Heathrow Transfer",
                 type: "cell",
 
@@ -257,7 +257,7 @@ export const navigatorMobile = [
             },
             {
                 innerText: "Gatwick Airport Transfer",
-                path: "/gatwick-transfer",
+                path: "/gatwick-taxi-prices",
                 title: "London Gatwick Transfer",
                 type: "cell",
                 hasTaxiDeals: "gatwick",
@@ -267,7 +267,7 @@ export const navigatorMobile = [
             ,
             {
                 innerText: "City Airport Transfer",
-                path: "/city-airport",
+                path: "/london-city-taxi-prices",
                 title: "London City Airport Transfer",
                 type: "cell",
                 hasTaxiDeals: "city",
@@ -277,7 +277,7 @@ export const navigatorMobile = [
             ,
             {
                 innerText: "Luton Airport Transfer",
-                path: "/luton-airport",
+                path: "/luton-taxi-prices",
                 title: "Luton Airport Transfer",
                 type: "cell",
                 hasTaxiDeals: "luton",
@@ -286,7 +286,7 @@ export const navigatorMobile = [
             },
             {
                 innerText: "Stansted Airport Transfer",
-                path: "/stansted-airport",
+                path: "/stansted-taxi-prices",
                 title: "London Stansted Airport Transfer",
                 type: "cell",
                 hasTaxiDeals: "stansted",
@@ -304,14 +304,14 @@ export const navigatorMobile = [
         list: [
             {
                 innerText: "Southampton Cruise Port",
-                path: "/southampton",
+                path: "/southampton-cruise-taxi",
                 title: "Southampton Cruise Port Transfer",
                 type: "cell",
                 hasTaxiDeals: "southampton",
             },
             {
                 innerText: "Dover Cruise Port",
-                path: "/dovercruise",
+                path: "/dover-cruise-taxi",
                 title: "Dover Cruise Terminal Transfer",
                 type: "cell",
 
@@ -320,7 +320,7 @@ export const navigatorMobile = [
             },
             {
                 innerText: "Portsmouth Cruise Port",
-                path: "/portsmouth",
+                path: "/portsmouth-taxi-prices",
                 title: "Portsmouth Cruise Port Transfer",
                 type: "cell",
 
@@ -329,7 +329,7 @@ export const navigatorMobile = [
             },
             {
                 innerText: "Harwich Cruise Port ",
-                path: "/harwich",
+                path: "/harwich-taxi-prices",
                 title: "Harwich Cruise Port  Transfer",
                 type: "cell",
                 hasTaxiDeals: "harwich",
@@ -389,7 +389,18 @@ export const navigatorMobile = [
 ]
 
 
-
+let taxiPricesLinks = [
+    "/gatwick-taxi-prices",
+    "/heathrow-taxi-prices",
+    "/london-city-taxi-prices",
+    "/luton-taxi-prices",
+    "/stansted-taxi-prices",
+    "/dover-cruise-taxi",
+    "/harwich-taxi-prices",
+    "/portsmouth-taxi-prices",
+    "/southampton-cruise-taxi",
+    "/stansted-taxi-prices"
+]
 
 export let lists = {
     "strNavHome": "home",

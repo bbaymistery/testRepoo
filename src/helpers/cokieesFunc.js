@@ -3,7 +3,7 @@ export function setCookie(cname, cvalue, exdays) {
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
   let expires = "expires=" + d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  
+
 }
 
 export function getCookie(cname) {
@@ -40,3 +40,11 @@ export function removeCookie(sKey, sPath, sDomain) {
     (sDomain ? "; domain=" + sDomain : "") +
     (sPath ? "; path=" + sPath : "");
 }
+export const parseCookies = (cookie = '') =>
+  cookie
+    .split(';')
+    .map(v => v.split('='))
+    .reduce((acc, v) => {
+      acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
+      return acc;
+    }, {});

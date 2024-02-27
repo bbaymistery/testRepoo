@@ -3,17 +3,21 @@ import { useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout';
 import CarsSlider from "../../components/widgets/CarsSlider";
-import usePageContentHook from '../../hooks/usePageContentHook';
+import { parse } from 'url';
 import DestinationsCustomers from '../../components/elements/DestinationsCustomers';
-const AboutUs = () => {
+import { fetchContent } from '../../helpers/fetchContent';
+import { checkLanguageAttributeOntheUrl } from '../../helpers/checkLanguageAttributeOntheUrl';
+const AboutUs = (props) => {
     const state = useSelector(state => state.pickUpDropOffActions)
-    let { params: { direction, language } } = state
+    let { params: { direction } } = state
+    let { metaTitle, keywords, metaDescription, shortDescription, pageTitle } = props
+    console.log(props);
 
-    const { metaTitle, keywords, description, pageContent, pageTitle, shortDescription } = usePageContentHook("About_APL", language);
+
 
 
     return (
-        <GlobalLayout keywords={keywords} title={metaTitle} description={description} footerbggray={true}>
+        <GlobalLayout keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={true}>
             <div className={`${styles.about_us} ${direction} page`}>
                 <div className={`${styles.about_us_section} page_section`}>
                     <div className={`${styles.about_us_section_container} page_section_container`}>
@@ -38,5 +42,14 @@ const AboutUs = () => {
         </GlobalLayout >
     )
 }
-
+export async function getServerSideProps({ req, res }) {
+    let firstLoadLangauge = checkLanguageAttributeOntheUrl(req?.url)
+    const { cookie } = req.headers;
+    let { pathname } = parse(req?.url, true)
+    let pathnameUrlWHenChangeByTopbar = pathname
+    let { metaTitle, keywords, pageContent, metaDescription, shortDescription, pageTitle } = await fetchContent("/About_APL", cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
+    return {
+        props: { metaTitle, keywords, pageContent, metaDescription, shortDescription, pageTitle }
+    }
+}
 export default AboutUs

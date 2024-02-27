@@ -13,6 +13,7 @@ import React, { useCallback, useEffect, } from 'react'
 import Image from 'next/image';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import dynamic from 'next/dynamic'
+import { titleStringOfHastaxiDeals } from '../../../helpers/titleStringOfHasTaxiDeals';
 const SelectedPointsOnHomePage = dynamic(() => import('../../elements/SelectedPointsOnHomePage'))
 const HandleSearchResults = dynamic(() => import('../../elements/HandleSearchResults'))
 const WaveLoading = dynamic(() => import('../../elements/LoadingWave'))
@@ -314,7 +315,7 @@ const Hero = (props) => {
                         <div className={styles.main_search}>
                             <div className={`${!islinknamecomponent ? styles.title_div_islinnkname : styles.title_div}`}>
                                 <h1 style={{ textTransform: "capitalize" }} className={`${styles.title} ${direction} `}>
-                                    {islinknamecomponent ? <span>{`${hasTaxiDeals} Transfer Quotation`}</span> : <span>{appData?.words["searchEngineTitle"]}</span>}
+                                    {islinknamecomponent ? <span>{appData?.words[`${titleStringOfHastaxiDeals(hasTaxiDeals)}`]}</span> : <span>{appData?.words["searchEngineTitle"]}</span>}
                                 </h1>
                             </div>
                             <br />
@@ -555,4 +556,3 @@ const Hero = (props) => {
 }
 
 export default Hero
-

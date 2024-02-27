@@ -5,6 +5,7 @@
 //!3.should i change language inside passenger details
 //!meetgreet  =>step 2 flight => Select Airlenis ne gelicek ?hangi Airleni?
 //!485  reviews   = >transfer details >canwe make it dynamic with api
+//!terms structuredsCHEMA2  MESELA DATE PUBLISHED DEGISDIRILICEKMIDIR?
 ///city/cityairport-to-cambridge-taxi => when i make request to https://api.london-tech.com/api/v1/taxi-deals/details  i get status 400
 /*
 Navigationda Cruses icerisnde harwiche tikliyinca

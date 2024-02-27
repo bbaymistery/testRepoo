@@ -8,3 +8,4 @@
 //6231028Fatih!   >PAROL CHAT GPT =>jay@aplcars.com
 
 //!next config.js  https://aplairtest.netlify.app/    adresini genel adres ile degis
+// env file change website domain to real website name such as =>   websiteDomain: isDevelopment? "http://localhost:7000": "https://www.heathrow-gatwick-transfers.com",

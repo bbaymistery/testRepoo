@@ -6,8 +6,8 @@ import styles from "./styles.module.scss"
 import TaxiDealViewContent from './TaxiDealViewContent'
 import useRipple from '../../../hooks/useRipple'
 import { useRef } from 'react'
-import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic'
+import { titleStringOfHastaxiDeals } from '../../../helpers/titleStringOfHasTaxiDeals'
 const PointsModal = dynamic(() => import('../../elements/PointsModal'));
 const tabsBttons = [
     {
@@ -36,7 +36,7 @@ const tabsBttons = [
     {
         name: "strLCYTaxiPrices",
         id: 5,
-        dealsName: "city airport"
+        dealsName: "city"
 
     }
 ]
@@ -52,7 +52,6 @@ const TaxiDeals = (props) => {
     const [taxiPoints, setTaxiPoints] = useState([])
     const refs = tabsBttons.map(() => useRef(null));
     const ripples = refs.map((ref) => useRipple(ref));
-    const router = useRouter();
 
     const { appData } = useSelector(state => state.initialReducer)
 
@@ -106,37 +105,18 @@ const TaxiDeals = (props) => {
 
     // }, [])
 
-    let titleString = ""
-    if (hasTaxiDeals === "dover") {
-        titleString = "strDoverCruisePort"
-    } else if (hasTaxiDeals === "southampton") {
-        titleString = "strSouthamptonCruisePort"
-    } else if (hasTaxiDeals === "portsmouth") {
-        titleString = "strPortsmouthCruisePort"
-    } else if (hasTaxiDeals === "harwich") {
-        titleString = "strHarwichCruisePort"
-    } else if (hasTaxiDeals === "heathrow") {
-        titleString = "strHeathrowTaxiPrices"
-    } else if (hasTaxiDeals === "gatwick") {
-        titleString = "strGatwickTaxiPrices"
-    } else if (hasTaxiDeals === "luton") {
-        titleString = "strLutonTaxiPrices"
-    } else if (hasTaxiDeals === "stansted") {
-        titleString = "strStanstedTaxiPrices"
-    } else if (hasTaxiDeals === "city airport") {
-        titleString = "strLCYTaxiPrices"
-    }
+
 
     return (
         <>
-            {
+            {taxiPoints.length > 1 ?
                 <div className={`${styles.taxideals} ${direction}  page `} bggray={String(bggray)} style={{ backgroundColor: `${String(bggray) === "true" ? "#f5f5f5" : "white"}` }}>
                     {pointsModalStatus && <PointsModal points={taxiPoints} title={`${hasTaxiDeals} Transfer Deals`} />}
                     <div className={`${styles.taxideals_section} page_section`}>
                         <div className={`${styles.taxideals_section_container} page_section_container`}>
                             {taxiPoints.length > 1 ?
                                 <div className={styles.title}>
-                                    <h1>{appData?.words[titleString]}</h1>
+                                    <h1>{appData?.words[`${titleStringOfHastaxiDeals(hasTaxiDeals)}`]}</h1>
                                     {islinknamecomponent ? "" : <p>{appData?.words["strAllinclusiveprices"]}</p>}
                                 </div> : <></>}
                             {showTabs ?
@@ -160,7 +140,8 @@ const TaxiDeals = (props) => {
                                 </div> : <></>}
                         </div>
                     </div>
-                </div >}
+                </div > : <></>
+            }
         </>
     )
 }

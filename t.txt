@@ -1,0 +1,299 @@
+1.>>>Minimal Screen (Hide sidebar & Activity Bar)
+ ctrl + >>zooming
+ ctrl - >>minus zooming
+ ctrl , >>setting page
+ ctrl+b >>sideBAR
+ ctrl shift a >>activity bar
+ *Status Bar(bottom bar)>
+  Settings> status bar check/nor
+ *Sagdaki MiniKod Ekranin galdirilmasi
+    Settings>minimap check/not
+    kucuk sekilde kodlarin gozukdugu bolum
+ *View>Appearance>Show bar / ...
+  seklinde degise biliriz
+*********
+
+JustRead
+2.>>>Line height & Cursor
+ *SatirArasi uzunluk(Line Heigth)
+  Settings> Line Height: 1 ve ya istedigimizi yaza bilerik
+  default:0 di biz 23 eledik
+ *FontSizes
+  Settings>FontSize //12 14 ...
+ *Cursor
+  Settings>cursor yaz ordan bax
+  Blinking(Controls the cursor animation style)
+  Cursor style (stilini belirler)
+  Cursor Wisdth >
+ *Italic /not Italic(Yeni pencere acilimi)
+  Biz kenardan her hansi bir dosya acdigimiz da
+  dosya italic formatinda olar ve save etmeden
+  ve ardindan herhansi bir dosya acsak onun yeri acilan dosya ile degisir
+  Ama save etdigimizde baska dosytaya tikladigimizda yan pencerede acilir
+ *Index.html x ) yanindaki x (close btn)
+  crtl , > Tab close button yaz >ve off ele
+*********
+
+
+3.>>>Master Explorer
+ ctrl k s >> shortcutsKeyboard
+ ctrl w >> acik olan dosyanin kapanmasi
+    (mesela index.js icinde ctrl w) yaparsak index js kapanir
+ ctrl p >> index.js yazib o dosyaya ulasa biliriz
+  *Acilan index.html dosyasinin sol tarafda kapanmasi (Yani index.js )
+  acilirsa dosyanin icindekiler aclmaz
+ ctrl , > Auto reveal > false   yaparsak acilmaz ((anlamadim sonra bakicam))
+ ctrl shift T >> open previos close file
+  *Soldaki her app/index.js e tikladigimizda dosya ekranda direk acilicak
+  yani ctrl s  yapmamiza gerek yok
+ ctrl , > Enable preview(workBench olan) > check /or not
+*********
+
+
+4.>>>Power of Breadcumbs
+ ctrl shit . >> open and close breadcrumbs
+ ctrl shit ; >? focus to breadcrumbs
+ ctrl left/right arrow >> helps us to walk between breadcrumbs
+  Space ayarlamamiz icin
+ *Breadcrumbs(dosyalarin ustde siralama seklinde gorsenmesi)
+  settings>Breadcrumbs>check or not
+*********
+
+
+JustRead
+5.>>>Code Snippets
+ *
+ afun tab//enter >>arrow function acilar
+ log tab >> console.log() yazar
+ fun tab >> normal  function
+ *
+ *Code snippets(log yazinca console.logun cixmasi gibi )Kod Parcaciklari
+  ctrl shift p > snippets > Configure user sinippets > js >e girib kendimiz logun
+   __ altinda yenisini olusdurduk (arrow function)
+********
+
+
+6.>>>Tab Mastery
+ Alt C F >> Collapse Folder (in explorer)
+  butun acik dosyalarin kapanmasi
+  File kle dosya ekle yanindaki mini minimize isareti
+  Bu short cut i  kendimiz ekledik
+ ctrl 1/2/3 (@ isareti olan)> нuxardaki acix dosyalara direk ulasmamizi saglar
+  google chromun kendi sayfasindada calisir
+********
+
+
+7.>>>Select Code With Keyboard
+ shift alt rightArrow>> helps us to select full function
+    (when we do it at the beginning of fun)
+ shift alt upArrow/downArrow >>li uzerine gelende onlari coxaldir
+ alt up/downArrow >> hello worldu yuxari ve ya asagi cixartmaga yarayir
+ ctrl alt upArrow/downArrow >>duz xet olusdurur Toplu
+  alt mousetikla >> istedigimizyerde duz xett olusdurux
+********
+
+Monoscope
+Fira Code
+8.>>>Go to line and code folding with keyboard
+  -- (ben kullanmycam)
+  -- ctrl G > istedigimiz satira gecis yapa biliriz
+     (basa donmek icin  kullana biliriz )
+  ctrl End >> cursor u  en son satira tashir
+  pageUp >> cursor u en ust satira tasir
+  crtl pageUp || breadcombs arasinda geznmek
+  ctrl shift [ >>  satirin yigcamlasdirilmasi(katlama=fold)
+  crtl shit ]  >> unfold
+  settinge gidib Hover yazanda(Controls in millisecods var)
+   onu istesek 3 4 saniye de bilerik hansiki Funksyinanin uzerine
+   gelende acixlama gorsenir a bax odur
+ctrl ]  ve ya ctrl [   >satiri saga sola kaydirma
+********
+
+
+9.>>>MultiCursor With Keyboard
+ alt + mouse sol tikla >istedigimiz yere cursoru  ekliye biliriz
+  cixisda ise  Esc basarsak cikar >> diger metod ise
+  >> ctrl + alt   up || down
+ shft alt + mouse sag tikla btn >>yapb sag yuxari ve ya asgi suruklesek
+  toplu olarak cursor saga ve ya sola tasiriz
+********
+
+
+10.>>>Format On save ,WhiteSpace and Wrap code
++ ctrl alt  s >>> save document without formattings(biz onu deyisdik ctrl s   yapdik)+
+ +ctrl alt s  de normal save filer yapdik+
+ ctrl alt f >>> format the document (seliqeye salar)
+ settings>  Trim Final Newlines yazib( check or false ) et
+  fayli save edende bosluklarin hamsini giderir
+ +settings>Word Wrap Controls how lines should wrap >+
+   yazarsak Ve onu on edersek bir satirdaki kelimelr
+   asagiya gecer (ve horizontal dan kurtulmus oluruz)
+********
+
+
+11.>>>Terminal Mastery
+
+ ctrl shift `  > new terminal
+ ctrl `  > toggling terminal
+ ctrl shift k > kill(delete)
+ crtl shift 5 > split terminal
+ ctrl pageup/pageDown >terminal
+ ctrl k > clearing terminal
+ font terminal yazb > ordan font size
+   , line height degise biliriz
+********
+
+
+12.>>>Firacode Font and Ligature
+ CTRL , > font yazb  ordan font family ni degise biliriz
+  bi google fira code yazb ordan indirerek deyisiklik etdik
+********
+
+
+13.>>>Split Editors
+ ctrl  \  > spliting editor
+ crtl 1 /2 .. > split editor arasinda gezinme
+********
+
+
+---------
+14.>>>Refactoring Vs Code
+ Sol trfda yanan isiqa tikla farkli secimler
+  geler olara bax(bizde isdemedi)
+********
+
+
+---------
+15.>>>Html & Emments
+ ctrl , >html Auto closing tags div yazdigimizda
+  ikinci terefin direk olusmasini saglari(onun icin check yapdik)
+        >end with new line uncheck eledik(cunki)</html> den sonra
+        lin eistesek ozumuz mouse ile elave deceyik
+
+ ul#list>li*5>p.red>span.text   >yaz bax got ne cixir:)
+ ul#list>li*5>p+span>li icinde hem hemde span
+********
+
+
+---------
+16.>>>Css and Bootstrap
+ bootsrap 4 snippet()
+  b4-card falan yazb entere basarsak direk ozu geler
+  isetesenBootsrap 5 snippetsde var ama onda font
+  awesome yoxdu
+********
+:grinning:
+
+---------
+17.>>>Git Support on vs Code
+ biz ilerde downland edib oyrenennen sonra
+ tekrar baxacagig
+********
+
+
++++++++++
+18>>Emoji Sense
+ We downland from extension (emoji sense)
+ ctrl shift i || ctrl i 🟨 :eye: 👁️‍🗨️
+    ile istedigimiz projeye dahil ede biliriz
+********
+
+
+
++++++++++
+19.>>>Share code on twitter
+   Polacode(p & p) olan >> yaz extensiona
+   ctrl shit p >Polacode = => ve ekrandaki yazilani takb et
+********
+
+
+---------
+20.>>>MarkDown Matery(read.me icin)
+ ctrl p > Open preview >yaparak read.md
+  dosyalarini daha okuna bilir hale getire biliyoruz
+ for extension we can use MARK DOWN ALL IN ONE (we installed)
+  .. select edib > ctrl b   = make it bold
+  ..markdown all in one yaz (ctrl p ) yapb bir cox sey cixacag
+  ..extension in docs undan baxb uygulaya bilersen grei kalanlari
+********
+
+
+---------
+21.>>>Intellisense for Javascript
+ ..normalda fonksyon uzerine hover yazanda birseyler gorseder ama biz
+  ..ctrl yapb herhansi bir fonk uzerine gelersek o zmn fonksyonun
+    ..ne yapacagini gosterer ve mouse ile klick edersek
+      ..bizi direk o fonksyona goturer
+********
+
+
+22.>>>Add any cdn from cdnjs
+ go and installl cdnjs extension
+  ctrl p  >   >cdnjs yaz > fontawesome yaz sonra
+   takib et
+********
+
+
+++++++++
+23.>>>Bracket Pair Colorizer
+ we installed this extension
+********
+
+
+(sonra bax debugger)
+24.>>>Javascript with eslint prettier,intellisense & chrome debugger
+ eslint > extension downlanded
+   .>dk 2.57 -3.04  tekrar bax eslint lazmdisa yukle
+ Debugger>extension >dk 3.12 ve 3.16 (3 saat)
+  bak biz yukledik nasil kullanicagini anlatiyor
+ Auto import > downlanded
+********
+
+
+---------
+25.>>>Vs code confirm quit
+ we intstalled quit control extension
+  artiq ctrl q yapb cikis yapmak istedigimizde bize
+  cikis yapmak istiyormusun diye sorar
+********
+
+
+++++++++
+26.>>>Vs code setting sync native
+ >bbaymistery
+ >elgun.ezmemmedov@mail.ru
+ >elgun1995ezmemmedov
+   ..artik github profiline kayit li bir vs code var
+********
+
+
+---------
+27.>>>vs code setting extension
+ 4.10
+ setting sing extension > endirdik  (eger pencere aclmasa)
+  opencere baska cur bu sekilde ulasa bilerik
+   ctrl p > sync:Downland settings
+ setting sync upload and... yapdik ve bize
+  gist id  verdi
+     >>> d30c1f0b42ea762b982ab6929a2054ac >KONUSUNU ID:
+ Githuba girib profileda your giste baxsan orda hamsi cixar
+
+ >>bura girib  > https://gist.github.com/bbaymistery/d30c1f0b42ea762b982ab6929a2054ac
+ baska hesabla bu linki dostuma versem ve o oz hesabynan girmis olsa ORda fork ederek eyni vs codu ozune yuklemis olar(yani gisti)
+********
+
+
+28.>>>Gradient Cursor && vscode Css
+ vs coduzerine kurs verresek eger bir gun o zaman ishimize
+  yaraya biler
+   >developer: Toggle screencast Mode    yaparsak
+     her ctrl p  falan yapdigimizda vs code keraninda belirir
+     ve eyni zmnda tikladigimizdada ekranda belirir
+
+ imlecin rengini degisdirmek >
+ ctrl p >  >setting:Open setting (json) a girib
+  "workbench.colorCustomizations: > bunun altina
+   "editorCursor.foreground":"#ff0000"   gibi yazmak lazm
+
+>en sonda istesen css gradient ekliye bilersen tum font yazina
+onun icin 4.21den sonra tekrar baxman lazim

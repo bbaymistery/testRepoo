@@ -125,23 +125,16 @@ const cache = {}
 //     return kilobytes;
 // }
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
-    res?.setHeader(
-        'Cache-Control',
-        'public, s-maxage=10, stale-while-revalidate=59'
-    )
+    res?.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59')
     let pickUps = []
     let dropoffs = []
     let dealUrl = `${req.url}`
     const { pathname } = parse(req.url, true)
-
-
     dealUrl = pathname.replace(/^\/_next\/data\/[^/]+\//, '/').replace(/\.[^/.]+$/, '').replace(/\.json$/, '')
     const cacheKey = `page-${req.url}`
     let language = checkLanguageAttributeOntheUrl(dealUrl)
     // Check if the data is cached
     if (cache[cacheKey]) return { props: cache[cacheKey] }
-    console.log({ pathname, language });
-
     const body = { language, checkRedirect: true, taxiDealPathname: dealUrl, withoutExprectedPoints: true, }
     const url = `${env.apiDomain}/api/v1/taxi-deals/details`
     const { status, data } = await postDataAPI({ url, body })
@@ -190,6 +183,3 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
         return { props: { data: "not found", } }
     }
 });
-
-
-

@@ -10,6 +10,7 @@ import { extractLanguage } from "../../../helpers/extractLanguage";
 import OutsideClickAlert from "../../elements/OutsideClickAlert";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import dynamic from 'next/dynamic'
+import { setCookie } from "../../../helpers/cokieesFunc";
 const TopHeaderWhiteLeftButtons = dynamic(() => import('../../elements/TopHeaderWhiteLeftButtons'),);
 const DropDownAllLanguages = dynamic(() => import('../../elements/DropDownAllLanguages'),);
 const MobileMenu = dynamic(() => import('../../elements/MobileMenu'),);
@@ -28,7 +29,7 @@ const Header = () => {
 
   const handleLanguage = async (params = {}) => {
     let { e, text, key, direction, index } = params
-
+    setCookie("lang", key, 7);
     setLangFlag(key)
     setLangIndex(index)
     //set language and dicertion  to localstorage
@@ -215,5 +216,3 @@ const Header = () => {
 };
 
 export default Header;
-
-

@@ -8,57 +8,42 @@ import store from '../store/store';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import LinkNameDescription from '../components/elements/LinkNameDescription';
+import { fetchContent } from '../helpers/fetchContent';
+import { parse } from 'url'
+import Error404 from './404/index'
+import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttributeOntheUrl';
+import { Airports, CruisePorts } from '../constants/navigatior';
+import { generateCanonicalAlternates } from '../helpers/canolicalAlternates';
+import env from '../resources/env';
 
 const NavbarLinkName = (props) => {
+    let { metaTitle, keywords, metaDescription, pageContent, data = "", canonicalAlternates, mainCanonical, } = props
 
-    let title = "", description = "", keywords = ""
+    if (data === "not found") return <Error404 />
     const dispatch = useDispatch()
     const router = useRouter();
     const { linkname } = router.query;
-
-    // Check if the linkname is valid
-    // if (linkname !== 'terms' && linkname !== 'about' && linkname !== 'contact') {
-    //     return <Error404 />;
-    // }
-
     useEffect(() => {
-        /*
- !mesela biz gelib navbardan harwich ve ya heathrow-airport-transfer
- !tiklasak garsiliginda heathrow ve ya harwich olarak link name alariq
-
- !simdi manuel olarak elle yazib SET_NAVBNAR_TAXI_dEALS  seklinde linknamenen geleni hastaxidealsa atyrq
- !bunu yazmamin sebebi ise  http://localhost:3500/harwich  "e tikladigimda eger bunnan once http://localhost:3500/southampton" olubsa
- !gedib heathrownu gorsedir
-
- harwich
- [linkname].js:18 portsmouth //portsmouth
- [linkname].js:18 dovercruise //dovercruise
- [linkname].js:18 southampton //southampton
- harwich//harwich
- [linkname].js:18 heathrow-airport-transfer  //heathrow
- [linkname].js:18 gatwick-transfer //gatwick
- [linkname].js:18 luton-airport //luton
- [linkname].js:18 city-airport //city
- [linkname].js:18 stansted-airport //stansted
- */
-
-        //normalda bunu appDatadan destructure edicez
-        let lists = ["portsmouth", "dovercruise", "southampton", "harwich", "heathrow", "heathrow", "city", "gatwick", "luton", "stansted"]
-        if (lists.includes(linkname)) {
-            if (linkname === "dovercruise") {
-                dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: "dover" } })
-            } else {
-                dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: linkname } })
-            }
+        // Combine both Airports and CruisePorts into a single array
+        const lists = [...Airports, ...CruisePorts];
+        // Find the object that matches the current linkname based on the path
+        const matchingItem = lists.find(item => item.path.includes(linkname));
+        // If a matching item is found, dispatch the appropriate action
+        if (matchingItem) {
+            // Use the 'hasTaxiDeals' property of the matching item for dispatch
+            dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: matchingItem.hasTaxiDeals } });
         }
+    }, [linkname, dispatch]); // Add linkname and dispatch to the dependency array
 
-    }, [])
+
+
     return (
-        <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={false}>
+        <GlobalLayout keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={false}>
             <Hero islinknamecomponent={true} bggray={false} />
             <TaxiDeals showTabs={false} bggray={false} islinknamecomponent={true} />
+            {pageContent ? <LinkNameDescription pageContent={pageContent} /> : <></>}
             <CarsSlider bggray={true} />
-            {/* <LinkNameDescription /> */}
         </GlobalLayout>
     )
 }
@@ -67,5 +52,30 @@ export default NavbarLinkName
 
 const makestore = () => store;
 const wrapper = createWrapper(makestore);
+//?biz burada metatile metaDescriptionlari fethcContente gore alib gonderirirk Her sayfa icin ayri bi sekilde gider
+export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
+    //language congiguration based on the url (http://localhost:3500/it/gatwick-taxi-prices  if he pres enter we get lang)
+    let pageStartLanguage = checkLanguageAttributeOntheUrl(req?.url)
+    res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59');
+    const { cookie } = req.headers;
+    let { pathname } = parse(req.url, true)
+    let pathnameUrlWHenChangeByTopbar = pathname
 
-
+    //baslangucda it/gatwic-taxi yazb enter basarsa ona gore yoxluyuruq Eger en ise deymirik yox localhost3500:/it/gatwick-taxi-prices ise split edirik
+    //cunki direk adres yazb enteride basa biler  => http://localhost:3500/it/gatwick-taxi-prices
+    if (pageStartLanguage === 'en') {
+        pathname = pathname.replace(/^\/_next\/data\/[^/]+\//, '/').replace(/\.[^/.]+$/, '').replace(/\.json$/, '')
+    } else {
+        pathname = `/${pathname.split("/")[2]}`
+    }
+    let { metaTitle, keywords, pageContent, metaDescription, status, lang } = await fetchContent(pathname, cookie, pageStartLanguage, pathnameUrlWHenChangeByTopbar)
+    let exceptions = pathname === "/dover-cruise-taxi" || pathname === "/portsmouth-taxi-prices" || pathname === "/harwich-taxi-prices"
+    if (exceptions) status = 200
+    let mainCanonical = lang === 'en' ? `${env.websiteDomain}${pathname}` : `${env.websiteDomain}/${lang}${pathname}`
+    let canonicalAlternates = generateCanonicalAlternates(pathname);
+    if (status === 200) {
+        return { props: { metaTitle, keywords, pageContent, metaDescription, canonicalAlternates, mainCanonical } }
+    } else {
+        return { props: { data: "not found", } }
+    }
+});

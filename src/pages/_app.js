@@ -5,10 +5,12 @@ import React, { useCallback, useEffect } from "react";
 import store from "../store/store";
 import env from '../resources/env';
 import "../styles/global.scss";
+import { parse } from 'url';
 import { useRouter } from 'next/router';
 import { extractLanguage } from '../helpers/extractLanguage';
 import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttributeOntheUrl';
 import localFont from '@next/font/local';
+import { setCookie } from '../helpers/cokieesFunc';
 const myFont = localFont({ src: '../../public/googleFonts/92zatBhPNqw73oTd4g.woff2' })
 export const MyApp = ({ Component, pageProps }) => {
   const router = useRouter()
@@ -85,8 +87,12 @@ export const MyApp = ({ Component, pageProps }) => {
     //set language and bring appDAtas  when user write loaclhost3500/tr
     if (hasLanguage?.length === 2) {
       setLanguage({ language: hasLanguage })
+      setCookie("lang", hasLanguage, 7);
+
     } else {
       setLanguage({ language: "en" })
+      setCookie("lang", "en", 7);
+
     }
     //if user close browser initialize localstorage
     const handleBeforeUnload = () => {
@@ -128,7 +134,7 @@ const wrapper = createWrapper(makestore);
 
 MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ Component, ctx }) => {
   const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
-  //language congiguration based on the url
+  //language congiguration based on the url (http://localhost:3500/it/gatwick-taxi-prices  if he pres enter we get lang)
   let lang = checkLanguageAttributeOntheUrl(ctx?.req?.url)
   let appDataInitial = store.getState().initialReducer?.appData
   let paymentTypesInitial = store.getState().initialReducer?.paymentTypes
@@ -152,12 +158,9 @@ MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ Component
     // Dispatch values to Redux store
     store.dispatch({ type: "GET_APP_DATA", data: { appData: appDataInitial, paymentTypes: paymentTypesInitial, }, });
   }
+  let { pathname } = parse(ctx?.req?.url, true)
 
-  return { pageProps: { ...pageProps, appData: appDataInitial, hasLanguage: lang || "en", pathNamePage: ctx?.req?.url } }
+  return { pageProps: { ...pageProps, appData: appDataInitial, hasLanguage: lang || "en", } }
 
 });
 export default wrapper.withRedux(MyApp);
-
-
-
-
