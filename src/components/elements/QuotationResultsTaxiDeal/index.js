@@ -3,7 +3,6 @@ import styles from "./styles.module.scss"
 import GlobalLayout from '../../layouts/GlobalLayout'
 import { useSelector } from 'react-redux'
 import CardQuotationItemTaxiDeal from '../CardQuotationItemTaxiDeal'
-// import QuotationResultsTaxiDealLeftPart from '../QuotationResultsTaxiDealLeftPart'
 import dynamic from 'next/dynamic'
 import { useWindowSize } from '../../../hooks/useWindowSize'
 import { useEffect } from 'react'
@@ -22,7 +21,9 @@ const QuotationResultsTaxiDeal = (props) => {
         returnPageTitle,
         distance,
         duration,
-        quotationOptions
+        quotationOptions,
+        breadcrumbs,
+        linkurl
     } = props//those props comes from ...pathname
 
     const state = useSelector(state => state.pickUpDropOffActions)
@@ -56,7 +57,7 @@ const QuotationResultsTaxiDeal = (props) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isVisible]);
 
-    return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} isVisible={isVisible}>
+    return (<GlobalLayout keywords={keywordsTaxiDeal} title={headTitle} description={descriptionTaxiDeal} footerbggray={true} isVisible={isVisible} >
         <div className={`${styles.quotation} page`}>
             <div className={`${styles.quotation_section} page_section`}>
                 <div className={`${styles.quotation_section_container} page_section_container`}>
@@ -79,6 +80,8 @@ const QuotationResultsTaxiDeal = (props) => {
                                     returnPageTitle={returnPageTitle}
                                     objectDetailss={objectDetailss}
                                     isVisible={isVisible}
+                                    breadcrumbs={breadcrumbs}
+                                    linkurl={linkurl}
                                 />
 
                             </div>

@@ -133,7 +133,6 @@ const Header = () => {
     let { hasTaxiDeals = 'heathrow' } = params;
     if (hasTaxiDeals) {
       dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
-      localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals));
     }
     // dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } })
     toggleMenu();
@@ -145,12 +144,9 @@ const Header = () => {
       dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: "heathrow" } });
     }
     toggleMenu();
-    localStorage.setItem("hasTaxiDeals", JSON.stringify("heathrow"));
   }, [dispatch, journeyType, toggleMenu]);
 
-  const gotoHomeFromLogoClick = useCallback((par) => {
-    localStorage.setItem("hasTaxiDeals", JSON.stringify("heathrow"));
-  }, []);
+
   let size = useWindowSize();
   let { width } = size
 
@@ -173,11 +169,11 @@ const Header = () => {
         <div className={styles.header_flex_div}>
           <div className={styles.left_items}>
             <div className={styles.left_items_flex_div}>
-              <a onClick={gotoHomeFromLogoClick} href={language === 'en' ? '/' : `/${language}`} className={`${styles.logo_tag}`}  >
+              <a  href={language === 'en' ? '/' : `/${language}`} className={`${styles.logo_tag}`}  >
                 <Image src={logoImage} alt="Airport-pickups-london Logo" width={30} height={30} priority />
                 <span>Airport Pickups London</span>
               </a>
-              {width > 1200 ? <DesktopMenu journeyType={journeyType} gotoHomeFromLogoClick={gotoHomeFromLogoClick} language={language} /> : <></>}
+              {width > 1200 ? <DesktopMenu journeyType={journeyType} language={language} /> : <></>}
               {/* mobile  */}
               {openMenu ?
                 <MobileMenu openMenu={openMenu} handleClickNavLinkMobileMenuNotList={handleClickNavLinkMobileMenuNotList} language={language} handleClickNavLinkMobileMenuList={handleClickNavLinkMobileMenuList} />

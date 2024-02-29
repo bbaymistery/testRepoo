@@ -158,16 +158,16 @@ const Fleet = (props) => {
                                     </li>
                                 </ul>
 
-                                <h3>Additional Services:</h3>
-                                <ul>
-                                    <li>
-                                        <ul>
-                                            <li>Free Meet and Greet: For airport and cruise port pickups, we provide a complimentary Meet and Greet service. Our driver will be waiting for you at the arrival barriers, holding a passenger name board, to ensure a smooth and convenient start to your journey.</li>
-                                            <li>Please note that all our vehicles are well-maintained, comfortable, and equipped with modern amenities to ensure a pleasant journey.</li>
-                                            <li>To inquire about availability or make a reservation, please contact our customer service team. We look forward to serving you!</li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                    {/* <h3>Additional Services:</h3>
+                                    <ul>
+                                        <li>
+                                            <ul>
+                                                <li>Free Meet and Greet: For airport and cruise port pickups, we provide a complimentary Meet and Greet service. Our driver will be waiting for you at the arrival barriers, holding a passenger name board, to ensure a smooth and convenient start to your journey.</li>
+                                                <li>Please note that all our vehicles are well-maintained, comfortable, and equipped with modern amenities to ensure a pleasant journey.</li>
+                                                <li>To inquire about availability or make a reservation, please contact our customer service team. We look forward to serving you!</li>
+                                            </ul>
+                                        </li>
+                                    </ul> */}
 
                             </div>
                         </div>

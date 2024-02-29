@@ -80,7 +80,8 @@ const INITIAL_STATE = {
     pointsModalStatus: false,//we use it on taxi deals component
     //when we click  Heathrow Airport transfer on navbar we set taxidealsName then we cath it with serverSideProps[linkname].js
     // inthatCase WE need to pass a props to the changed router So we use redux for that
-    hasTaxiDeals: typeof window !== 'undefined' && localStorage.getItem("hasTaxiDeals") ? JSON.parse(localStorage.getItem("hasTaxiDeals")) : "heathrow",
+    // hasTaxiDeals: typeof window !== 'undefined' && localStorage.getItem("hasTaxiDeals") ? JSON.parse(localStorage.getItem("hasTaxiDeals")) : "heathrow",
+    hasTaxiDeals: "heathrow",
 
   }
 };

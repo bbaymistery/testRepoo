@@ -3,8 +3,10 @@ import { navigator } from '../../../constants/navigatior'
 import Link from 'next/link'
 import { useDispatch } from 'react-redux'
 import styles from "./styles.module.scss";
-const DesktopMenu = ({ language, gotoHomeFromLogoClick, journeyType }) => {
+import { useRouter } from 'next/router';
+const DesktopMenu = ({ language, journeyType }) => {
     const dispatch = useDispatch()
+    const router = useRouter()
     return (
         <div className={styles.header_menu_content}>
             <ul>
@@ -14,7 +16,7 @@ const DesktopMenu = ({ language, gotoHomeFromLogoClick, journeyType }) => {
                         // as={`${path==='/'?"/":""}`}
                         <li key={innerText} className={`${styles.li_item} ${type === "list" ? styles.has_children : ""}`}>
                             {index === 0 ?
-                                <a onClick={gotoHomeFromLogoClick} href={language === 'en' ? '/' : `/${language}`} title={title} className={`${path.length ? styles.nocursor : ""}`} >
+                                <a href={language === 'en' ? '/' : `/${language}`} title={title} className={`${path.length ? styles.nocursor : ""}`} >
                                     <span>{innerText}</span>
                                 </a>
                                 :
@@ -32,18 +34,17 @@ const DesktopMenu = ({ language, gotoHomeFromLogoClick, journeyType }) => {
                                         //!
 
                                         return (
-                                            <li key={listInnerText} className={`${styles.li_item}`}>
-                                                <Link
-                                                    onClick={
-                                                        () => {
-                                                            dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
-                                                            dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } });
-                                                            localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals));
-                                                        }}
-                                                    href={`${language === 'en' ? `${listPath}` : `${language}${listPath}`}`}
+                                            <li key={listInnerText} className={`${styles.li_item}`} onClick={
+                                                () => {
+                                                    dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
+                                                    // dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } });
+                                                    router.push(`${language === 'en' ? `${listPath}` : `${language}${listPath}`}`)
+                                                }}>
+                                                <p
+
                                                     title={listTitle}>
                                                     <span>{listInnerText}</span>
-                                                </Link>
+                                                </p>
                                             </li>
                                         )
                                     })

@@ -46,7 +46,7 @@ const TaxiDeals = (props) => {
     let { showTabs = true, bggray = false, islinknamecomponent = false } = props
     const dispatch = useDispatch()
     const state = useSelector(state => state.pickUpDropOffActions)
-    let { params: { direction, language, pointsModalStatus, hasTaxiDeals = "heathrow" } } = state
+    let { params: { direction, language, pointsModalStatus, hasTaxiDeals } } = state
 
     const [tabs, setTabs] = useState(0)
     const [taxiPoints, setTaxiPoints] = useState([])
@@ -72,10 +72,9 @@ const TaxiDeals = (props) => {
     const tabsHandler = async (params = {}) => {
         let { index, dealsNameProp } = params
         setTabs(index)
-
         fecthPoints({ dealsNameProp, language })
         dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: dealsNameProp } });
-        localStorage.setItem("hasTaxiDeals", JSON.stringify(dealsNameProp));
+
     }
 
 
@@ -87,61 +86,47 @@ const TaxiDeals = (props) => {
     useEffect(() => {
         fecthPoints({ dealsNameProp: hasTaxiDeals, language })
         //asagidaki iki kod asagidaki use effecti acanda yox olmalidir
-        localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals));
         dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
 
-    }, [language, hasTaxiDeals,])
+    }, [language, hasTaxiDeals])
 
-    //evvelce bu da var idi prosta iki defe render olunur deye bunu cixartdim
-    // useEffect(() => {
-    //     const validPaths = ["/", "/es", "/tr", "/zh", "/ru", "/it", "/ar"];
-    //     if (validPaths.includes(router.pathname)) {
-    //         const hasTaxiDeals = "heathrow";
-    //         localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals));
-    //         dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
-    //         fecthPoints({ dealsNameProp: hasTaxiDeals, language });
-    //     }
-    //     console.log(` const validPaths = ["/", "/es", "/tr", "/zh", "/ru", "/it", "/ar"];`);
-
-    // }, [])
 
 
 
     return (
         <>
-            {taxiPoints.length > 1 ?
-                <div className={`${styles.taxideals} ${direction}  page `} bggray={String(bggray)} style={{ backgroundColor: `${String(bggray) === "true" ? "#f5f5f5" : "white"}` }}>
-                    {pointsModalStatus && <PointsModal points={taxiPoints} title={`${hasTaxiDeals} Transfer Deals`} />}
-                    <div className={`${styles.taxideals_section} page_section`}>
-                        <div className={`${styles.taxideals_section_container} page_section_container`}>
-                            {taxiPoints.length > 1 ?
-                                <div className={styles.title}>
-                                    <h1>{appData?.words[`${titleStringOfHastaxiDeals(hasTaxiDeals)}`]}</h1>
-                                    {islinknamecomponent ? "" : <p>{appData?.words["strAllinclusiveprices"]}</p>}
-                                </div> : <></>}
-                            {showTabs ?
-                                <div className={`${styles.tabs} `}>
-                                    {tabsBttons.map((btn, index) => {
-                                        return (<button onClick={() => tabsHandler({ index, dealsNameProp: btn.dealsName })} className={`${tabs === index ? styles.active : ""} btn`} key={index} ref={refs[index]}   >
-                                            <div className="ripple-wrapper">{ripples[index]}</div>
-                                            {appData.words[btn.name]}
-                                        </button>)
-                                    }
-                                    )}
-                                </div>
-                                : <></>}
-                            {taxiPoints.length > 1 ? <TaxiDealViewContent islinknamecomponent={islinknamecomponent} points={taxiPoints} dealsName={hasTaxiDeals} /> : <></>}
-                            {taxiPoints.length > 1 ?
-                                <div className={styles.btn_div}>
-                                    <button className='btn_hover_reverse_primary' onClick={() => { setModal() }}>
-                                        {appData?.words["strViewAll"]}
-                                        <i className="fa-solid fa-arrow-right"></i>
-                                    </button>
-                                </div> : <></>}
-                        </div>
+            <div className={`${styles.taxideals} ${direction}  page `} bggray={String(bggray)} style={{ backgroundColor: `${String(bggray) === "true" ? "#f5f5f5" : "white"}` }}>
+                {pointsModalStatus && <PointsModal points={taxiPoints} title={appData?.words[`${titleStringOfHastaxiDeals(hasTaxiDeals)}`]} />}
+                <div className={`${styles.taxideals_section} page_section`}>
+                    <div className={`${styles.taxideals_section_container} page_section_container`}>
+                        {taxiPoints.length > 1 ?
+                            <div className={styles.title}>
+                                <h1>{appData?.words[`${titleStringOfHastaxiDeals(hasTaxiDeals)}`]}</h1>
+                                
+                                {islinknamecomponent ? "" : <p>{appData?.words["strAllinclusiveprices"]}</p>}
+                            </div> : <></>}
+                        {showTabs ?
+                            <div className={`${styles.tabs} `}>
+                                {tabsBttons.map((btn, index) => {
+                                    return (<button onClick={() => tabsHandler({ index, dealsNameProp: btn.dealsName })} className={`${tabs === index ? styles.active : ""} btn`} key={index} ref={refs[index]}   >
+                                        <div className="ripple-wrapper">{ripples[index]}</div>
+                                        {appData.words[btn.name]}
+                                    </button>)
+                                }
+                                )}
+                            </div>
+                            : <></>}
+                        {taxiPoints.length > 1 ? <TaxiDealViewContent islinknamecomponent={islinknamecomponent} points={taxiPoints} dealsName={hasTaxiDeals} /> : <div className={styles.no_result}>There is no result on Taxi Deals</div>}
+                        {taxiPoints.length > 1 ?
+                            <div className={styles.btn_div}>
+                                <button className='btn_hover_reverse_primary' onClick={() => { setModal() }}>
+                                    {appData?.words["strViewAll"]}
+                                    <i className="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div> : <></>}
                     </div>
-                </div > : <></>
-            }
+                </div>
+            </div >
         </>
     )
 }

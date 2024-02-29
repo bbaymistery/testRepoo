@@ -16,9 +16,10 @@ import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttribut
 import { Airports, CruisePorts } from '../constants/navigatior';
 import { generateCanonicalAlternates } from '../helpers/canolicalAlternates';
 import env from '../resources/env';
+import { capitalizeFirstLetter, urlToTitle } from '../helpers/letters';
 
 const NavbarLinkName = (props) => {
-    let { metaTitle, keywords, metaDescription, pageContent, data = "", canonicalAlternates, mainCanonical, } = props
+    let { metaTitle, keywords, metaDescription, pageContent, data = "", } = props
 
     if (data === "not found") return <Error404 />
     const dispatch = useDispatch()
@@ -73,8 +74,28 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
     if (exceptions) status = 200
     let mainCanonical = lang === 'en' ? `${env.websiteDomain}${pathname}` : `${env.websiteDomain}/${lang}${pathname}`
     let canonicalAlternates = generateCanonicalAlternates(pathname);
+
+    // /harwich-taxi-prices =>destruct harwich and turn first letter to uppercase
+    let breadcumbName1 = urlToTitle({ url: pathname, linknamePage: true })
+    let breadcumbSchema = {
+        "@context": "http://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": { "@id": "https://www.airport-pickups-london.com/", "name": `Home` }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": { "@id": `https://www.airport-pickups-london.com${pathname}/`, "name": `${breadcumbName1}` }
+            },
+        ]
+    }
+    let schemas = [breadcumbSchema]
     if (status === 200) {
-        return { props: { metaTitle, keywords, pageContent, metaDescription, canonicalAlternates, mainCanonical } }
+        return { props: { metaTitle, keywords, pageContent, metaDescription, canonicalAlternates, mainCanonical, schemas } }
     } else {
         return { props: { data: "not found", } }
     }

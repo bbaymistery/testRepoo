@@ -9,9 +9,10 @@ import Error404 from './404/index'
 import { parse } from 'url'
 import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttributeOntheUrl';
 import QuotationResultsTaxiDeal from '../components/elements/QuotationResultsTaxiDeal';
+import { urlToTitle } from '../helpers/letters';
 
 function Pages(props) {
-    let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle, returnPageTitle, duration, distance, quotationOptions } = props
+    let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle, returnPageTitle, duration, distance, quotationOptions,breadcrumbs,linkurl } = props
 
     if (data === "not found") return <Error404 />
 
@@ -107,6 +108,8 @@ function Pages(props) {
         distance={distance}
         duration={duration}
         quotationOptions={quotationOptions}
+        breadcrumbs={breadcrumbs}
+        linkurl={linkurl}
     />
 }
 
@@ -146,7 +149,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
             distance,
             duration,
             quotationOptions,
-            taxiDeal: { pickupPoints, dropoffPoints, pageTitle = "", headTitle = "", description = "", keywords = "", returnPathname = "", pageContent = "", returnHeadTitle = "", returnPageTitle = "" } } = data
+            taxiDeal: { pickupPoints, dropoffPoints, pageTitle = "", headTitle = "", description = "", keywords = "", returnPathname = "", pageContent = "", returnHeadTitle = "", returnPageTitle = "" ,pathname:linkurl} } = data
         // select first item from all points
         pickUps = pickupPoints?.length >= 1 ? [pickupPoints[0]] : []
         dropoffs = dropoffPoints?.length >= 1 ? [dropoffPoints[0]] : []
@@ -156,6 +159,26 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
         let schemaOfTaxiDeals = data?.taxiDeal?.schema || []
         schemaOfTaxiDeals = Object.keys(schemaOfTaxiDeals).map(key => ({ [key]: schemaOfTaxiDeals[key] }));//array of objects [b:{ab:"1"},c:{ab:"2"},d:{ab:"3"}]
         schemaOfTaxiDeals = schemaOfTaxiDeals.map(obj => Object.values(obj)[0]);//Output: ["1", "2", "3"]
+
+        let { breadcrumbs } = urlToTitle({ url: pathname, pathnamePage: true })
+
+        let breadcumbSchema = {
+            "@context": "http://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": { "@id": "https://www.airport-pickups-london.com/", "name": `Home` }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": { "@id": `https://www.airport-pickups-london.com${pathname}/`, "name": `${breadcrumbs?.[1]}` }
+                },
+            ]
+        }
+        let schemas = [breadcumbSchema]
         // Cache the data
         cache[cacheKey] = {
             data,
@@ -175,6 +198,9 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
             distance,
             duration,
             quotationOptions,
+            schemas,
+            breadcrumbs,
+            linkurl
         }
 
         return { props: cache[cacheKey] }

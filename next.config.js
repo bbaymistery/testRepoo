@@ -44,34 +44,84 @@ const nextConfig = {
   async redirects() {
     return [
 
-      //heathrow to ascot taxi deals secende Ordaki Hethrow breadcrumbina tikliyanda bura yonlenecek ||ve ya London
-      //cunki aiports.com dahomenan sonraki breadcrumba tikliyanda yeni bir sayfaya yonlendirir(/Heathrow/Heathrow-Taxi-Prices.asp<bu sayfaya )
-      //bizdede bu sayfa olmadiginnan asagidada o sayfa linkine yonlenerse direk >>/heathrow-airport-transfer bura yonlendiririk
       {
         source: "/Heathrow",
-        destination: "/heathrow-airport-transfer",
+        destination: "/heathrow-taxi-prices",
+        permanent: true,
+      },
+      {
+        source: "/Heathrow/london/Taxi-Prices.asp",
+        destination: "/heathrow-taxi-prices",
+        permanent: true,
+      },
+      {
+        source: "/Heathrow/Heathrow-Taxi-Prices.asp",
+        destination: "/heathrow-taxi-prices",
         permanent: true,
       },
       {
         source: "/London",
-        destination: "/heathrow-london-transfers",
+        destination: "/london-city-taxi-prices",
         permanent: true,
       },
       {
-        source: "/Heathrow/Heathrow-Taxi-Prices.asp",//bu adres ise Asipropt.com daki    hgt to ascotdaki ikinci breadcrumba tikliyanda yonledndirilen adresdi
-        destination: "/heathrow-airport-transfer",
+        source: "/City-Airport",
+        destination: "/london-city-taxi-prices",
         permanent: true,
       },
       {
-        //https://www.airport-pickups-london.com/Heathrow/taxi-from-bristol-to-heathrow.asp    >london airportsA TIKLAYINCA  yonledndirilen adresdi
-        source: "/Heathrow/london/Taxi-Prices.asp",
-        destination: "/heathrow-london-transfers",//>bu Url header navbarda linklerde yoxdu
+        source: "/City-Airport/London-City-Taxi-Prices.asp",
+        destination: "/london-city-taxi-prices",
         permanent: true,
       },
       {
-        //https://www.airport-pickups-london.com/Heathrow/taxi-from-gatwick-to-heathrow.asp    > Gatwick pickups   TIKLAYINCA  yonledndirilen adresdi
         source: "/Gatwick/Gatwick-Taxi-Prices.asp",
-        destination: "/gatwick-transfer",//>bu Url header navbarda linklerde yoxdu
+        destination: "/gatwick-taxi-prices",
+        permanent: true,
+      },
+      {
+        source: "/Gatwick",
+        destination: "/gatwick-taxi-prices",
+        permanent: true,
+      },
+      {
+        source: "/Luton-Airport",
+        destination: "/luton-taxi-prices",
+        permanent: true,
+      },
+      {
+        source: "/Luton-Airport/Luton-Taxi-Prices.asp",
+        destination: "/luton-taxi-prices",
+        permanent: true,
+      },
+      {
+        source: "/Stansted",
+        destination: "/stansted-taxi-prices",
+        permanent: true,
+      },
+      {
+        source: "/Stansted/Stansted-Taxi-Prices.asp",
+        destination: "/stansted-taxi-prices",
+        permanent: true,
+      },
+      {
+        source: "/Cruise-taxi/Southampton",
+        destination: "/southampton-cruise-taxi",
+        permanent: true,
+      },
+      {
+        source: "/Cruise-taxi/Dover",
+        destination: "/dover-cruise-taxi",
+        permanent: true,
+      },
+      {
+        source: "/Cruise-taxi/Portsmouth",
+        destination: "/portsmouth-taxi-prices",
+        permanent: true,
+      },
+      {
+        source: "/Cruise-taxi/Harwich",
+        destination: "/harwich-taxi-prices",
         permanent: true,
       },
       {

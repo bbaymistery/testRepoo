@@ -18,15 +18,8 @@ const index = (props) => {
             <div className={styles.content} >
               {CruisePorts.map((item, _) => {
                 let { hasTaxiDeals } = item
-
                 return (
-                  <a
-                    onClick={
-                      () => {
-                        dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
-                        localStorage.setItem("hasTaxiDeals", JSON.stringify(hasTaxiDeals));
-                      }}
-
+                  <a onClick={() => { dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } }) }}
                     key={item.id} href={`${language === 'en' ? `${item.path}` : `/${language}${item.path}`}`} style={{ display: "block", width: '100%', }} className="seaportt">
                     <div className={styles.card}>
                       <div className={styles.img_div}>
@@ -45,7 +38,7 @@ const index = (props) => {
                       </div>
                     </div>
                   </a>
-                );
+                )
               })}
             </div>
           </div>

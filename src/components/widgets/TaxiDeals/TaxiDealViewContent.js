@@ -9,6 +9,8 @@ import { cruisePortimages, taxidealsImages } from '../../../constants/taxideals'
 //taking delas name and making it dynamic for gatwixk for heathrow and the others
 const taxiDealsValidLocations = (dealsName) => {
     //first letter uppercase
+
+
     dealsName = dealsName.charAt(0).toUpperCase() + dealsName.slice(1);
     if (dealsName === 'City airport') dealsName = 'City Airport'
     //we r destcructing to taxi trasnfer
@@ -33,6 +35,8 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
             //we  do not need any destructing
             //0.8 yaziriq cunki bize 10 tane locations getirir
             //https://api.london-tech.com//api/v1/taxi-deals/list?points=southampton&language=en&channelId=2
+            console.log({ dealsName, datas });
+
             return datas = points.slice(0, 8)
         } else {
             return datas
@@ -58,6 +62,7 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
                                 <div className={styles.card_body}>
                                     <h2>{item?.translatedPageTitle ? item?.translatedPageTitle : item?.title}</h2>
                                     <div className={styles.review}>
+
                                         <div className={styles.review_left}>{item.point} </div>
                                     </div>
                                     <div className={styles.start_from}>

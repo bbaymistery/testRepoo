@@ -2,8 +2,10 @@ import React from 'react'
 import { navigatorMobile } from '../../../constants/navigatior'
 import Link from 'next/link';
 import styles from "./styles.module.scss";
+import { useRouter } from 'next/router';
 
 const MobileMenu = (({ handleClickNavLinkMobileMenuNotList, language, handleClickNavLinkMobileMenuList, openMenu }) => { // Note that `ref` is the second argument here
+    const router = useRouter()
     return (
         <div className={`${styles.header_content_menu_mobile} ${openMenu ? styles.active_header_content_menu_mobile : ""} `}>
             <ul className={styles.menu_content_ul}>
@@ -21,15 +23,19 @@ const MobileMenu = (({ handleClickNavLinkMobileMenuNotList, language, handleClic
                                     {list.map((item) => {
                                         let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals } = item
                                         return (
-                                            <li key={listInnerText} className={`${styles.li_item} ${!listPath.length ? styles.nocursor : ""}  `}>
-                                                <Link onClick={() => handleClickNavLinkMobileMenuList({ hasTaxiDeals })} href={`${language === 'en' ? `${listPath}` : `${language}${listPath}`}`} title={listTitle} tabIndex="-1">
+                                            <li onClick={() => {
+                                                handleClickNavLinkMobileMenuList({ hasTaxiDeals });
+                                                router.push(`${language === 'en' ? `${listPath}` : `${language}${listPath}`}`)
+                                            }} key={listInnerText} className={`${styles.li_item} ${!listPath.length ? styles.nocursor : ""}  `}>
+                                                <p title={listTitle} tabIndex="-1">
                                                     <span>{listInnerText}</span>
-                                                </Link>
+                                                </p>
                                             </li>
                                         )
                                     })
                                     }
                                 </ul> : <></>}
+
                         </li>)
                 })}
             </ul>

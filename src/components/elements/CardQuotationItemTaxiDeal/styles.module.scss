@@ -23,6 +23,22 @@
            }
        }
 
+       .breadcrumbs {
+           font-size: 16px;
+           font-weight: normal;
+           text-decoration: none !important;
+           text-align: center;
+           color: #042462;
+
+           span {
+               a {
+                   span {
+                       text-decoration: none !important;
+                   }
+               }
+           }
+       }
+
        .title_center {
            display: flex !important;
            align-items: center !important;
@@ -80,6 +96,8 @@
            font-size: 20px;
            text-decoration: underline;
            margin-bottom: 1.5rem;
+
+
        }
 
        .quotation_header {

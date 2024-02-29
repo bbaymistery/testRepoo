@@ -10,6 +10,7 @@ import { parse } from 'url';
 import Tours from "./tours";
 import { fetchContent } from "../helpers/fetchContent";
 import { checkLanguageAttributeOntheUrl } from "../helpers/checkLanguageAttributeOntheUrl";
+import env from "../resources/env";
 const structuredSchema = {
   "@context": "http://schema.org/",
   "@type": "LocalBusiness",
@@ -93,6 +94,22 @@ const breadcumbSchema = {
   }
   ]
 }
+
+let a = {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": { "@id": "https://www.airport-pickups-london.com/", "name": "Home" }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": { "@id": "https://www.airport-pickups-london.com/Terms.asp", "name": " Booking Terms and Conditions" }
+  }]
+}
+
 export default function Home(props) {
   let { metaTitle, keywords, metaDescription, pageContent } = props
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -123,10 +140,12 @@ export async function getServerSideProps({ req, res }) {
   let { pathname } = parse(req?.url, true)
   let pathnameUrlWHenChangeByTopbar = pathname
   const { cookie } = req.headers;
-  let { metaTitle, keywords, pageContent, metaDescription } = await fetchContent("/", cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
-  let schemas = [structuredSchema, breadcumbSchema]
+  let { metaTitle, keywords, pageContent, metaDescription, lang } = await fetchContent("/", cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
+  let schemas = [structuredSchema, breadcumbSchema];
+  let mainCanonical = lang === 'en' ? `${env.websiteDomain}${pathname}` : `${env.websiteDomain}/${lang}${pathname}`
+
   return {
-    props: { metaTitle, keywords, pageContent, metaDescription, schemas },
+    props: { metaTitle, keywords, pageContent, metaDescription, schemas, mainCanonical },
   }
 }
 // const makestore = () => store;

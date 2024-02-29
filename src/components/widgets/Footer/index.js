@@ -91,13 +91,13 @@ const Footer = (props) => {
                   let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals, translateTitle } = airport
 
                   return <li key={index}>
-                    <Link
+                    <a
 
                       onClick={() => { dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } }); dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } }) }}
                       href={`${language === 'en' ? `${listPath}` : `/${language}${listPath}`}`}
                       title={appData?.words[listTitle]}>
                       <span>{appData?.words[translateTitle]}</span>
-                    </Link>
+                    </a>
                   </li>
                 })}
               </ul>
@@ -110,13 +110,13 @@ const Footer = (props) => {
                   let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals, translateTitle } = airport
 
                   return <li key={index}>
-                    <Link
+                    <a
 
                       onClick={() => { dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } }); dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } }) }}
                       href={`${language === 'en' ? `${listPath}` : `/${language}${listPath}`}`}
                       title={listTitle}  >
                       <span>{appData?.words[translateTitle]}</span>
-                    </Link>
+                    </a>
                   </li>
                 })}
               </ul>
