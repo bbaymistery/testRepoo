@@ -6,6 +6,7 @@ import store from "../store/store";
 import env from '../resources/env';
 import "../styles/global.scss";
 import { parse } from 'url';
+import Error404 from './404/index'
 import { useRouter } from 'next/router';
 import { extractLanguage } from '../helpers/extractLanguage';
 import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttributeOntheUrl';
@@ -105,8 +106,17 @@ export const MyApp = ({ Component, pageProps }) => {
       // Dynamically inject the termsReducer when this component mounts
 
     };
-    console.log(router);
 
+
+    //localhost:3500//test
+    // Regular expression to match two or more consecutive slashes
+    const doubleSlashRegex = /\/{2,}/;
+    // Check if 'asPath' contains two or more consecutive slashes
+    if (doubleSlashRegex.test(router.asPath)) {
+      // If it does, return an error or handle it as needed
+      return <Error404 />
+      // Here you can return an error or handle it accordingly
+    }
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
