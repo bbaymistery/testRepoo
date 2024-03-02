@@ -11,6 +11,7 @@ import Tours from "./tours";
 import { fetchContent } from "../helpers/fetchContent";
 import { checkLanguageAttributeOntheUrl } from "../helpers/checkLanguageAttributeOntheUrl";
 import env from "../resources/env";
+import { useRouter } from "next/router";
 const structuredSchema = {
   "@context": "http://schema.org/",
   "@type": "LocalBusiness",

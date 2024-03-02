@@ -26,7 +26,8 @@ export const MyApp = ({ Component, pageProps }) => {
   if (hasLanguageCode) langAtrribute = extractLanguage(router.asPath)//if it is tr then we assingg langAtribute to tr
 
   const setLanguage = useCallback(async (params = {}) => {
-    let { language, hydrate = true } = params
+    let { language, hydrate = true } = params;
+
     if (language) {
       let index
       let direction = language === 'ar' ? "rtl" : "ltr"
@@ -104,6 +105,7 @@ export const MyApp = ({ Component, pageProps }) => {
       // Dynamically inject the termsReducer when this component mounts
 
     };
+    console.log(router);
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {

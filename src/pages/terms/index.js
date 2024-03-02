@@ -99,13 +99,6 @@ const Terms = (props) => {
     const [isActiveId, setIsActiveId] = useState(1);
     const { appData } = useSelector(state => state.initialReducer)
     const handleLinkNames = (link) => setIsActiveId(link.id);
-    const router = useRouter()
-    useEffect(() => {
-        console.log(isActiveId);
-        // usePageContentHook("/")
-        console.log(router);
-
-    }, [isActiveId])
 
     return (
         <GlobalLayout keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={true}>
