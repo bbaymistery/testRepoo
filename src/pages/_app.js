@@ -15,6 +15,13 @@ import { setCookie } from '../helpers/cokieesFunc';
 const myFont = localFont({ src: '../../public/googleFonts/92zatBhPNqw73oTd4g.woff2' })
 export const MyApp = ({ Component, pageProps }) => {
   const router = useRouter()
+  //localhost:3500//test
+  // Check if 'asPath' contains two or more consecutive slashes
+  console.log(router);
+  console.log(/\/{2,}/.test(router.asPath));
+  // If it does, return an error or handle it as needed
+  if (doubleSlashRegex.test(router.asPath)) return <Error404 />
+
   const dispatch = useDispatch()
   //it comes from index js serVerSide props
   const { store, props } = wrapper.useWrappedStore(pageProps);
@@ -108,20 +115,7 @@ export const MyApp = ({ Component, pageProps }) => {
     };
 
 
-    //localhost:3500//test
-    // Regular expression to match two or more consecutive slashes
-    const doubleSlashRegex = /\/{2,}/;
-    // Check if 'asPath' contains two or more consecutive slashes
-    console.log(router);
-    console.log(doubleSlashRegex.test(router.asPath));
-    
-    
-    if (doubleSlashRegex.test(router.asPath)) {
-      // If it does, return an error or handle it as needed
-      
-      return <Error404 />
-      // Here you can return an error or handle it accordingly
-    }
+
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
