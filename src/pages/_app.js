@@ -20,7 +20,7 @@ export const MyApp = ({ Component, pageProps }) => {
   console.log(router);
   console.log(/\/{2,}/.test(router.asPath));
   // If it does, return an error or handle it as needed
-  if (doubleSlashRegex.test(router.asPath)) return <Error404 />
+  if (/\/{2,}/.test(router.asPath)) return <Error404 />
 
   const dispatch = useDispatch()
   //it comes from index js serVerSide props
