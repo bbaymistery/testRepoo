@@ -134,7 +134,6 @@ export async function getServerSideProps({ req, res }) {
     let firstLoadLangauge = checkLanguageAttributeOntheUrl(req?.url)
     const { cookie } = req.headers;
     let { pathname } = parse(req?.url, true)
-    console.log(req?.url);
 
     let pathnameUrlWHenChangeByTopbar = pathname
     let { metaTitle, keywords, pageContent, metaDescription } = await fetchContent("/terms", cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
