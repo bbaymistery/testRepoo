@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { fetchContent } from '../../helpers/fetchContent'
 import { checkLanguageAttributeOntheUrl } from '../../helpers/checkLanguageAttributeOntheUrl'
 import { parse } from 'url';
+import { useRouter } from 'next/router';
 
 const leftLinks = [
     {
@@ -98,10 +99,11 @@ const Terms = (props) => {
     const [isActiveId, setIsActiveId] = useState(1);
     const { appData } = useSelector(state => state.initialReducer)
     const handleLinkNames = (link) => setIsActiveId(link.id);
-
+    const router = useRouter()
     useEffect(() => {
         console.log(isActiveId);
         // usePageContentHook("/")
+        console.log(router);
 
     }, [isActiveId])
 
