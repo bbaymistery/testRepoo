@@ -10,12 +10,9 @@
 ///city/cityairport-to-cambridge-taxi => when i make request to https://api.london-tech.com/api/v1/taxi-deals/details  i get status 400
 /*
 Navigationda Cruses icerisnde harwiche tikliyinca
-https://api.london-tech.com//api/v1/taxi-deals/list?points=harwich&language=en&channelId=2    =>neden hic bir sey gelmyor   harwich yerine luton yaz pointsler geliyor
+https://api.london-tech.com//api/v1/taxi-deals/list?points=harwich&language=en&channelId=2y    =>neden hic bir sey gelmyor   harwich yerine luton yaz pointsler geliyor
 
 Taxi deals pickDrop
 
 
 */
-
-
-

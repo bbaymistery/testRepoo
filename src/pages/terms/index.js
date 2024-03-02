@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import GlobalLayout from '../../components/layouts/GlobalLayout'
 import styles from "./styles.module.scss"
-import GeneralTerms from './GeneralTerms'
+import GeneralTerms from './GeneralTerms';
 import PrivacyTerms from './PrivacyTerms'
 import { useSelector } from 'react-redux'
 import { fetchContent } from '../../helpers/fetchContent'
@@ -98,6 +98,13 @@ const Terms = (props) => {
     const [isActiveId, setIsActiveId] = useState(1);
     const { appData } = useSelector(state => state.initialReducer)
     const handleLinkNames = (link) => setIsActiveId(link.id);
+
+    useEffect(() => {
+        console.log(isActiveId);
+        // usePageContentHook("/")
+
+    }, [isActiveId])
+
     return (
         <GlobalLayout keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={true}>
             <div className={`${styles.terms} ${direction} page`} bggray={String(bggray === "true")}>
@@ -127,6 +134,8 @@ export async function getServerSideProps({ req, res }) {
     let firstLoadLangauge = checkLanguageAttributeOntheUrl(req?.url)
     const { cookie } = req.headers;
     let { pathname } = parse(req?.url, true)
+    console.log(req?.url);
+
     let pathnameUrlWHenChangeByTopbar = pathname
     let { metaTitle, keywords, pageContent, metaDescription } = await fetchContent("/terms", cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
     let schemas = [structuredSchema, structedSchema2]
