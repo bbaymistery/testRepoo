@@ -18,6 +18,7 @@ const Fleet = (props) => {
     let { params: { direction } } = state
     const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
 
+    console.log(carObject);
 
 
     return (
@@ -39,7 +40,7 @@ const Fleet = (props) => {
                             </div>
                             {Object?.values(quotationImagesObjWebp)?.map((item, index) => {
                                 return (
-                                    <div dataid={index === 0 ? "first_car" : ""} key={index} className={`${styles.card_item}`}    >
+                                    <div dataid={`${item.id}_car`} key={index} className={`${styles.card_item}`}    >
                                         <div data={item?.id} className={styles.column_first} style={{ backgroundImage: `url(${item?.image})` }}> </div>
                                         <div className={styles.column_second}>
                                             <div className={styles.column_second_flex_column}>
@@ -122,6 +123,13 @@ const Fleet = (props) => {
                                         </ul>
                                     </li>
                                     <li>
+                                        <b>Large People Carrier</b>
+                                        <ul>
+                                            <li>Capacity: 7 Passengers</li>
+                                            <li>Luggage Capacity: 7 Suitcases</li>
+                                        </ul>
+                                    </li>
+                                    <li>
                                         <b>8 Seater</b>
                                         <ul>
                                             <li>Capacity: 8 Passengers</li>
@@ -132,6 +140,14 @@ const Fleet = (props) => {
 
                                 <h2>Business Class</h2>
                                 <ul>
+                                    <li>
+                                        <b>Executive Saloon (Mercedes S Class/ BMW 7 Series)</b>
+                                        <ul>
+                                            <li>Capacity: 3 Passengers</li>
+                                            <li>Luggage Capacity: 3 Suitcases</li>
+                                            <li>Complimentary Refreshments: Experience a variety of beverages and snacks as you travel in the comfort and elegance of our Business class executive saloon vehicles.</li>
+                                        </ul>
+                                    </li>
                                     <li>
                                         <b>Executive Saloon (Mercedes E-Class or equivalent)</b>
                                         <ul>
@@ -158,7 +174,7 @@ const Fleet = (props) => {
                                     </li>
                                 </ul>
 
-                                    {/* <h3>Additional Services:</h3>
+                                {/* <h3>Additional Services:</h3>
                                     <ul>
                                         <li>
                                             <ul>

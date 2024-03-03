@@ -15,10 +15,10 @@ import { setCookie } from '../helpers/cokieesFunc';
 const myFont = localFont({ src: '../../public/googleFonts/92zatBhPNqw73oTd4g.woff2' })
 export const MyApp = ({ Component, pageProps }) => {
   const router = useRouter()
+
+
   //localhost:3500//test
   // Check if 'asPath' contains two or more consecutive slashes
-  console.log(router);
-  console.log(/\/{2,}/.test(router.asPath));
   // If it does, return an error or handle it as needed
   if (/\/{2,}/.test(router.asPath)) return <Error404 />
 

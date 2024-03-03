@@ -128,6 +128,20 @@
                }
            }
 
+           .column_first[data="3"] {
+               background-size: 70%;
+
+               @media (max-width: 768px) {
+                   background-size: 35%;
+
+               }
+
+               @media (max-width: 500px) {
+                   background-size: 70%;
+
+               }
+           }
+
            .column_first {
                flex: 0.32;
 

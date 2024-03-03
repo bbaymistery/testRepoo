@@ -12,7 +12,7 @@ export const quotationImagesObjWebp = {
     },
     3: {
         name: "8 Seater",
-        image: "/images/cars/normal-8-seaters-v2.webp",
+        image: "/images/cars/8-Seater-Minibus.webp",
         id: 3,
     },
     4: {
@@ -29,5 +29,15 @@ export const quotationImagesObjWebp = {
         name: "Executive 8 Seater",
         image: "/images/cars/vip-mpv-v2.webp",
         id: 6,
-    }
+    },
+    // 7: {
+    //     name: "Large-people-Carrier-7.webp",
+    //     image: "/images/cars/Large-people-Carrier-7.webp",
+    //     id: 7,
+    // },
+    // 7: {
+    //     name: "Mercedes S Class/ BMW 7 Series",
+    //     image: "/images/cars/Mercedes-S-Class.webp",
+    //     id: 7,
+    // }
 }

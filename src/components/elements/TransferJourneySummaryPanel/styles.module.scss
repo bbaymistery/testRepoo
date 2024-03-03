@@ -32,9 +32,7 @@
                 text-align: left !important;
             }
 
-            .rtljourney_card {
-                // flex-direction: row-reverse;
-            }
+
 
             .journey_card {
                 display: flex;
@@ -125,6 +123,12 @@
 
                 .cardIdSix {
                     background-size: 145% !important;
+                }
+
+                .cardIdThree {
+                    background-size: 100% !important;
+
+
                 }
 
                 .details_div {
