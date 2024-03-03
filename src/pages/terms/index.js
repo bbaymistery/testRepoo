@@ -54,8 +54,7 @@ const structuredSchema = {
         "https://www.facebook.com/AirportPickupsLondon",
         "https://twitter.com/Airport_Pickups",
         "https://plus.google.com/+Airport-pickups-london"
-    ],
-
+    ]
 }
 const structedSchema2 = {
     "@context": "http://schema.org",
@@ -98,8 +97,21 @@ const Terms = (props) => {
     const { params: { direction } } = state;
     const [isActiveId, setIsActiveId] = useState(1);
     const { appData } = useSelector(state => state.initialReducer)
-    const handleLinkNames = (link) => setIsActiveId(link.id);
+    // ...inside your component:
+    useEffect(() => {
+        // Check if there's an active link ID stored in sessionStorage
+        const storedActiveId = sessionStorage.getItem('activeLinkId');
+        if (storedActiveId) {
+            setIsActiveId(Number(storedActiveId));
+        }
+    }, []);
 
+    const handleLinkNames = (link) => {
+        const section = link.id === 2 ? 'privacy-policy' : 'terms';
+        setIsActiveId(link.id);
+        sessionStorage.setItem('activeLinkId', link.id); // Store the active link ID in sessionStorage
+        window.location.href = `/terms?section=${section}`;
+    };
     return (
         <GlobalLayout keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={true}>
             <div className={`${styles.terms} ${direction} page`} bggray={String(bggray === "true")}>
@@ -125,15 +137,18 @@ const Terms = (props) => {
         </GlobalLayout>
     )
 }
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({ req, query }) {
     let firstLoadLangauge = checkLanguageAttributeOntheUrl(req?.url)
     const { cookie } = req.headers;
     let { pathname } = parse(req?.url, true)
-
+    // Determine the section based on the query parameter
+    const section = query?.section; // "general" or "privacy-policy"
     let pathnameUrlWHenChangeByTopbar = pathname
-    let { metaTitle, keywords, pageContent, metaDescription } = await fetchContent("/terms", cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
-    let schemas = [structuredSchema, structedSchema2]
+    let contentPath = section === 'privacy-policy' ? '/Privacy_Policy' : '/Terms';
+    let { metaTitle, keywords, pageContent, metaDescription } = await fetchContent(contentPath, cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
+    console.log(metaTitle);
 
+    let schemas = [structuredSchema, structedSchema2]
     return {
         props: { metaTitle, keywords, pageContent, metaDescription, schemas }
     }
