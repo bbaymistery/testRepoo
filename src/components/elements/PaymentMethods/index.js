@@ -8,7 +8,7 @@ const PaymentMethods = () => {
   const router = useRouter()
   const dispatch = useDispatch()
   let state = useSelector((state) => state.pickUpDropOffActions)
-  let { params: { journeyType, tokenForArchieve, sessionToken, direction }, reservations } = state
+  let { params: { journeyType, tokenForArchieve, sessionToken, direction,language }, reservations } = state
   const { appData, paymentTypes } = useSelector(state => state.initialReducer)
 
 
@@ -80,7 +80,8 @@ const PaymentMethods = () => {
     dispatch({ type: "SET_PAYMENT_TYPE_AND_TOKEN", data: { token, paymentType } })
     setIframeStripe("")//CLOSE OFRAME INSIDE OF Page (in case of if it was opened )
     setStatusToken("");//it will trigger interval and will make request
-    router.push("/reservations-document")
+    router.push(`${language === 'en' ? "/reservations-document" : `${language}/reservations-document`}`)
+
   };
   const stripeMethod = (params = {}) => {
     let { id, quotations, passengerEmail, url } = params
@@ -215,7 +216,8 @@ const PaymentMethods = () => {
               dispatch({ type: "SET_PAYMENT_TYPE_AND_TOKEN", data: { token: resp.data.token, paymentType: 7 } })
               setIframeStripe("");
               setStatusToken("");
-              router.push("/reservations-document")
+              router.push(`${language === 'en' ? "/reservations-document" : `${language}/reservations-document`}`)
+
             }
 
             if (dataTokenForWebSocket?.href?.includes("paypal")) {
@@ -223,8 +225,7 @@ const PaymentMethods = () => {
               dispatch({ type: "SET_PAYMENT_TYPE_AND_TOKEN", data: { token: resp.data.token, paymentType: 5 } })
               openPopUpWindow({ statusOfWindowCloseOrOpen: "close", url: "" })
               setStatusToken("");
-              router.push("/reservations-document")
-
+              router.push(`${language === 'en' ? "/reservations-document" : `${language}/reservations-document`}`)
             }
             clearInterval(interVal);
           }
@@ -279,8 +280,8 @@ const PaymentMethods = () => {
           {/* */}
 
           <div className={`${styles.items_buttons}`}>
-            <div title={appData?.words["strPaywithCashtotheDriver"]} onClick={setCashModal} className={` ${styles.item} ${styles.item_1}`}   >
-              <p>{appData?.words["strPaywithCashtotheDriver"]}</p>
+            <div title={appData?.words["strToDriverCashTitle"]} onClick={setCashModal} className={` ${styles.item} ${styles.item_1}`}   >
+              <p>{appData?.words["strToDriverCashTitle"]}</p>
               <img src="/images/others/pp.jpg" alt="" />
             </div>
             <div title={appData?.words["Pay with PayPal"]} onClick={() => startPayment(5)} className={` ${styles.item} ${styles.item_2}`}   >
@@ -291,6 +292,8 @@ const PaymentMethods = () => {
               <p>{appData?.words["strPaybycard"]} </p>
               <img src="/images/others/vsMaster.jpg" alt="" />
             </div>
+
+            
           </div>
 
           {cashPaymentModal ?

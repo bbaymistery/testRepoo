@@ -263,7 +263,7 @@ const ReservationsDocument = () => {
                                                         <div className={styles.right}>{typeof carObject === "object" ? carObject[quotation?.carId]?.name : <React.Fragment></React.Fragment>}</div>
                                                     </div>
                                                     <div className={`${styles.passenger_info} ${direction}`}>
-                                                        <div className={styles.left}>{appData?.wiords['carsTransferType']}</div>
+                                                        <div className={styles.left}>{appData?.words['carsTransferType']}</div>
                                                         <div className={styles.right}>{typeof carObject === "object" ? carObject[quotation?.carId]?.transferType : <React.Fragment></React.Fragment>}</div>
                                                     </div>
                                                     <PickUpPoints language={language} direction={direction} selectedPickupPoints={selectedPickupPoints} />
@@ -349,7 +349,7 @@ const ReservationsDocument = () => {
                                                                 <div className={pdf.right}>{typeof carObject === "object" ? carObject[quotation?.carId]?.name : <React.Fragment></React.Fragment>}</div>
                                                             </div>
                                                             <div className={pdf.passenger_info}>
-                                                                <div className={pdf.left}>{appData?.wiords['carsTransferType']}</div>
+                                                                <div className={pdf.left}>{appData?.words['carsTransferType']}</div>
                                                                 <div className={pdf.right}>{typeof carObject === "object" ? carObject[quotation?.carId]?.transferType : <React.Fragment></React.Fragment>}</div>
                                                             </div>
                                                             <PickUpPoints selectedPickupPoints={selectedPickupPoints} />

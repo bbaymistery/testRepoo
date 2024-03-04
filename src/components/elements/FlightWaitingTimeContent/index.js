@@ -14,6 +14,8 @@ const FlightWaitingTimeContent = () => {
         if (localStorage?.getItem("language")) {
             let langKey = JSON.parse(localStorage.getItem("language"));
             let foundMatch = false;
+console.log({langKey});
+console.log(JSON.parse(appData?.words["seBookingNotes"]));
 
             JSON.parse(appData?.words["seBookingNotes"]).forEach((item, index) => {
                 let { value, language } = item;

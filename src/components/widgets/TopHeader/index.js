@@ -173,7 +173,7 @@ const Header = () => {
                 <Image src={logoImage} alt="Airport-pickups-london Logo" width={30} height={30} priority />
                 <span>Airport Pickups London</span>
               </a>
-              {width > 1200 ? <DesktopMenu journeyType={journeyType} language={language} /> : <></>}
+              {width > 1200 ? <DesktopMenu appData={appData} journeyType={journeyType} language={language} /> : <></>}
               {/* mobile  */}
               {openMenu ?
                 <MobileMenu openMenu={openMenu} handleClickNavLinkMobileMenuNotList={handleClickNavLinkMobileMenuNotList} language={language} handleClickNavLinkMobileMenuList={handleClickNavLinkMobileMenuList} />
@@ -199,7 +199,7 @@ const Header = () => {
               </div>
             </div>
 
-            {width > 1200 ? <TopHeaderWhiteLeftButtons language={language} /> : <></>}
+            {width > 1200 ? <TopHeaderWhiteLeftButtons language={language} appData={appData} /> : <></>}
             <div onClick={toggleMenu} className={`${styles.menu}`} id="menu"   >
               {!openMenu ? <i className="fa-solid fa-bars"></i> : <i className="fa-solid fa-xmark"></i>}
             </div>

@@ -15,8 +15,8 @@ export let navbar = {
     "strNavHarwichCruisePort": "harwich cruise port",
     "strNavTerms": "terms",
     "strNavContactUs": "contact us",
-    "strNavManageMyBooking": "manage my booking",
-    "strNavCorporate": "corporate",
+    "strNavManageMyBooking": "manage my booking", // or Manage Booking ? 
+    "strNavTravel Agents": "Travel Agents",
 }
 
 //!payment-details

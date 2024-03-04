@@ -104,58 +104,57 @@ export const navigator = [
     {
         innerText: "home",
         path: "/",
-        title: "Home",
+        title: "strNavHome",
         type: "cell",
         hasTaxiDeals: "",
-
+        strInnerText: "strNavHome",
     },
     {
         innerText: "airports",
         path: "/",
         type: "list",
         hasTaxiDeals: "",
-
+        strInnerText: "strAirports",
         list: [
             {
                 innerText: "Heathrow Airport Transfer",
                 path: "/heathrow-taxi-prices",
-                title: "London Heathrow Transfer",
+                title: "strHeathrowTaxiPrices",
                 type: "cell",
                 hasTaxiDeals: "heathrow",
+                strInnerText: "strHeathrowTaxiPrices",
             },
             {
                 innerText: "Gatwick Airport Transfer",
                 path: "/gatwick-taxi-prices",
-                title: "London Gatwick Transfer",
+                title: "strGatwickTaxiPrices",
                 type: "cell",
                 hasTaxiDeals: "gatwick",
-
-            }
-            ,
+                strInnerText: "strGatwickTaxiPrices",
+            },
             {
                 innerText: "City Airport Transfer",
                 path: "/london-city-taxi-prices",
-                title: "London City Airport Transfer",
+                title: "strLCYTaxiPrices",
                 type: "cell",
                 hasTaxiDeals: "city airport",
-
-            }
-            ,
+                strInnerText: "strLCYTaxiPrices"
+            },
             {
                 innerText: "Luton Airport Transfer",
                 path: "/luton-taxi-prices",
-                title: "Luton Airport Transfer",
+                title: "strLutonTaxiPrices",
                 type: "cell",
                 hasTaxiDeals: "luton",
-
+                strInnerText: "strLutonTaxiPrices"
             },
             {
                 innerText: "Stansted Airport Transfer",
                 path: "/stansted-taxi-prices",
-                title: "London Stansted Airport Transfer",
+                title: "strStanstedTaxiPrices",
                 type: "cell",
                 hasTaxiDeals: "stansted",
-
+                strInnerText: "strStanstedTaxiPrices"
             }
         ]
     },
@@ -164,38 +163,40 @@ export const navigator = [
         path: "/",
         type: "list",
         hasTaxiDeals: "",
-
+        strInnerText: "strCruiseTaxi",
         list: [
             {
                 innerText: "Southampton Cruise Port",
                 path: "/southampton-cruise-taxi",
-                title: "Southampton Cruise Port Transfer",
+                title: "strSouthamptonCruisePort",
                 type: "cell",
                 hasTaxiDeals: "southampton",
+                strInnerText: "strSouthamptonCruisePort"
             },
             {
                 innerText: "Dover Cruise Port",
                 path: "/dover-cruise-taxi",
-                title: "Dover Cruise Terminal Transfer",
+                title: "strDoverCruisePort",
                 type: "cell",
                 hasTaxiDeals: "dover",
+                strInnerText: "strDoverCruisePort"
 
             },
             {
                 innerText: "Portsmouth Cruise Port",
                 path: "/portsmouth-taxi-prices",
-                title: "Portsmouth Cruise Port Transfer",
+                title: "strPortsmouthCruisePort",
                 type: "cell",
                 hasTaxiDeals: "portsmouth",
-
+                strInnerText: "strPortsmouthCruisePort"
             },
             {
                 innerText: "Harwich Cruise Port ",
                 path: "/harwich-taxi-prices",
-                title: "Harwich Cruise Port  Transfer",
+                title: "strHarwichCruisePort",
                 type: "cell",
                 hasTaxiDeals: "harwich",
-
+                strInnerText: "strHarwichCruisePort"
             },
         ]
     },
@@ -204,25 +205,25 @@ export const navigator = [
         path: "/terms",
         type: "cell",
         hasTaxiDeals: "",
-
-        title: "Terms And Conditions",
-
+        title: "strTerms",
+        strInnerText: "strTerms"
     },
     {
         innerText: "Our Fleet",
         path: "/fleet",
         type: "cell",
         hasTaxiDeals: "",
-
-        title: "Our fleet",
+        title: "strOurFleet",
+        strInnerText: "strOurFleet"
     },
     {
         innerText: "Contact Us ",
         path: "/contact-us",
-        title: "Airport Pikcups London 24/7 telephone numbers",
+        title: "appContactUsHeader",
         type: "cell",
-
         hasTaxiDeals: "",
+        strInnerText: "appContactUsHeader"
+
     },
 
 ]
@@ -231,66 +232,56 @@ export const navigatorMobile = [
     {
         innerText: "home",
         path: "/",
-        title: "Home",
+        title: "strNavHome",
         type: "cell",
         hasTaxiDeals: "",
-
+        strInnerText: "strNavHome",
         firstChild: false,
-
     },
     {
         innerText: "airports",
         path: "/",
         type: "list",
         hasTaxiDeals: "",
-
+        strInnerText: "strAirports",
         firstChild: true,
         list: [
             {
                 innerText: "Heathrow Airport Transfer",
                 path: "/heathrow-taxi-prices",
-                title: "London Heathrow Transfer",
+                title: "strHeathrowTaxiPrices",
                 type: "cell",
-
+                strInnerText: "strHeathrowTaxiPrices",
                 hasTaxiDeals: "heathrow",
-
-            },
-            {
+            }, {
                 innerText: "Gatwick Airport Transfer",
                 path: "/gatwick-taxi-prices",
-                title: "London Gatwick Transfer",
+                title: "strGatwickTaxiPrices",
                 type: "cell",
                 hasTaxiDeals: "gatwick",
-
-
-            }
-            ,
-            {
+                strInnerText: "strGatwickTaxiPrices",
+            }, {
                 innerText: "City Airport Transfer",
                 path: "/london-city-taxi-prices",
-                title: "London City Airport Transfer",
+                title: "strLCYTaxiPrices",
                 type: "cell",
                 hasTaxiDeals: "city",
-
-
-            }
-            ,
-            {
+                strInnerText: "strLCYTaxiPrices"
+            }, {
                 innerText: "Luton Airport Transfer",
                 path: "/luton-taxi-prices",
-                title: "Luton Airport Transfer",
+                title: "strLutonTaxiPrices",
                 type: "cell",
                 hasTaxiDeals: "luton",
-
-
+                strInnerText: "strLutonTaxiPrices"
             },
             {
                 innerText: "Stansted Airport Transfer",
                 path: "/stansted-taxi-prices",
-                title: "London Stansted Airport Transfer",
+                title: "strStanstedTaxiPrices",
                 type: "cell",
                 hasTaxiDeals: "stansted",
-
+                strInnerText: "strStanstedTaxiPrices"
             }
         ]
     },
@@ -300,41 +291,39 @@ export const navigatorMobile = [
         firstChild: true,
         type: "list",
         hasTaxiDeals: "",
-
+        strInnerText: "strCruiseTaxi",
         list: [
             {
                 innerText: "Southampton Cruise Port",
                 path: "/southampton-cruise-taxi",
-                title: "Southampton Cruise Port Transfer",
+                title: "strSouthamptonCruisePort",
                 type: "cell",
                 hasTaxiDeals: "southampton",
+                strInnerText: "strSouthamptonCruisePort"
             },
             {
                 innerText: "Dover Cruise Port",
                 path: "/dover-cruise-taxi",
-                title: "Dover Cruise Terminal Transfer",
+                title: "strDoverCruisePort",
                 type: "cell",
-
+                strInnerText: "strDoverCruisePort",
                 hasTaxiDeals: "dover",
-
             },
             {
                 innerText: "Portsmouth Cruise Port",
                 path: "/portsmouth-taxi-prices",
-                title: "Portsmouth Cruise Port Transfer",
+                title: "strPortsmouthCruisePort",
                 type: "cell",
-
+                strInnerText: "strPortsmouthCruisePort",
                 hasTaxiDeals: "portsmouth",
-
             },
             {
                 innerText: "Harwich Cruise Port ",
                 path: "/harwich-taxi-prices",
-                title: "Harwich Cruise Port  Transfer",
+                title: "strHarwichCruisePort",
                 type: "cell",
                 hasTaxiDeals: "harwich",
-
-
+                strInnerText: "strHarwichCruisePort"
             },
         ]
     },
@@ -343,38 +332,35 @@ export const navigatorMobile = [
         path: "/terms",
         type: "cell",
         hasTaxiDeals: "",
-
-        title: "Terms And Conditions",
+        strInnerText: "strTerms",
+        title: "strTerms",
         firstChild: false
 
     },
     {
         innerText: "Contact Us ",
         path: "/contact-us",
-        title: "Airport Pikcups London 24/7 telephone numbers",
+        title: "appContactUsHeader",
+        strInnerText: "appContactUsHeader",
         type: "cell",
         hasTaxiDeals: "",
-
         firstChild: false
-    },
-
-    {
+    },{
         innerText: "Travel Agents",
         path: "/travelAgents",
         type: "cell",
         hasTaxiDeals: "",
-
-        title: "Travel Agents",
+        strInnerText: "strTravelAgents",
+        title: "strTravelAgents",
         firstChild: false
-
     },
     {
         innerText: "Our Fleet",
         path: "/fleet",
         type: "cell",
         hasTaxiDeals: "",
-
-        title: "Our fleet",
+        title: "strOurFleet",
+        strInnerText: "strOurFleet"
     },
     {
         innerText: "managebooking",
@@ -382,7 +368,8 @@ export const navigatorMobile = [
         type: "cell",
         hasTaxiDeals: "",
 
-        title: "Manage My Booking",
+        title: "strManageBooking",
+        strInnerText: "strManageBooking",
         firstChild: false
 
     }

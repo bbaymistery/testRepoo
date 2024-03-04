@@ -49,8 +49,8 @@ const Footer = (props) => {
                   <a href="#">{appData?.words["strSiteMap"]}</a>
                 </li>
                 <li>
-                  <a href={`${language === 'en' ? `/about-us` : `/${language}/about-us`}`} title={appData.words["aboutUs"]}>
-                    {appData.words["aboutUs"]}
+                  <a href={`${language === 'en' ? `/about-us` : `/${language}/about-us`}`} title={appData.words["strAboutUs"]}>
+                    {appData.words["strAboutUs"]}
                   </a>
                 </li>
                 <li>
@@ -84,7 +84,7 @@ const Footer = (props) => {
 
             </div>
             <div className={styles.column}>
-              <p className={styles.title}> {appData?.words["strCruisePortTaxiTransfers"] || "Cruise Ports"} </p>
+              <p className={styles.title}> {appData?.words["strCruiseTaxi"] || "Cruise Ports"} </p>
               <ul className={styles.list_items}>
 
                 {CruisePorts.map((airport, index) => {
@@ -104,7 +104,7 @@ const Footer = (props) => {
 
             </div>
             <div className={styles.column}>
-              <p className={styles.title}>{appData?.words["airports"]}</p>
+              <p className={styles.title}>{appData?.words["strAirports"]}</p>
               <ul className={styles.list_items}>
                 {Airports.map((airport, index) => {
                   let { path: listPath, innerText: listInnerText, title: listTitle, hasTaxiDeals, translateTitle } = airport
