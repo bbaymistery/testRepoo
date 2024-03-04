@@ -145,15 +145,12 @@ export async function getServerSideProps({ req, query }) {
     const section = query?.section; // "general" or "privacy-policy"
     let pathnameUrlWHenChangeByTopbar = pathname
     let contentPath = section === 'privacy-policy' ? '/Privacy_Policy' : '/Terms';
-    // let { metaTitle, keywords, pageContent, metaDescription } = await fetchContent(contentPath, cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
-    // console.log(metaTitle);
+    let { metaTitle, keywords, pageContent, metaDescription } = await fetchContent(contentPath, cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
+    console.log(metaTitle);
 
-    // return {
-    //     props: { metaTitle, keywords, pageContent, metaDescription, schemas }
-    // }
     let schemas = [structuredSchema, structedSchema2]
     return {
-        props: { metaTitle: "", keywords: "", pageContent: "", metaDescription: "", schemas: [] }
+        props: { metaTitle, keywords, pageContent, metaDescription, schemas }
     }
 }
 export default Terms
