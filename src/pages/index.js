@@ -144,10 +144,12 @@ export async function getServerSideProps({ req, res }) {
   let { metaTitle, keywords, pageContent, metaDescription, lang } = await fetchContent("/", cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
   let schemas = [structuredSchema, breadcumbSchema];
   let mainCanonical = lang === 'en' ? `${env.websiteDomain}${pathname}` : `${env.websiteDomain}/${lang}${pathname}`
-
   return {
-    props: { metaTitle, keywords, pageContent, metaDescription, schemas, mainCanonical },
+      props: { metaTitle: "", keywords: "", pageContent: "", metaDescription: "", schemas: [],mainCanonical:"" }
   }
+  // return {
+  //   props: { metaTitle, keywords, pageContent, metaDescription, schemas, mainCanonical },
+  // }
 }
 // const makestore = () => store;
 // const wrapper = createWrapper(makestore);
