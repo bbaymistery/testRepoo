@@ -22,9 +22,9 @@ let description = ""
 const ReservationsDocument = () => {
     let state = useSelector((state) => state.pickUpDropOffActions)
     let { reservations, params: { journeyType, tokenForArchieve, direction, language } } = state
-    let {paymentDetails:{paymentType}}=reservations[0]
-  
-    
+    let { paymentDetails: { paymentType } } = reservations[0]
+
+
     const router = useRouter()
     const { appData, paymentTypes } = useSelector(state => state.initialReducer)
     const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
@@ -232,12 +232,14 @@ const ReservationsDocument = () => {
                                                         <div className={styles.column_div}>
                                                             <div className={`${styles.text1} ${direction}`}>{appData?.words["strPaymentMethod"]}</div>
                                                             <div className={`${styles.text2} ${direction}`}>
-                                                                {
-                                                                    paymentTypes
-                                                                        .filter(type => type.id === reservations[0]?.paymentDetails?.paymentType)
-                                                                        .map(type => type.paymentTitle)
-                                                                        .join("")
-                                                                }
+                                                                {(() => {
+                                                                    switch (paymentType) {
+                                                                        case 1: return appData?.words["strCash"];
+                                                                        case 5: return appData?.words["strPayWithPayPal"];
+                                                                        case 7: return appData?.words["strPayByCard"];
+                                                                        default: return "Pay by Cash";
+                                                                    }
+                                                                })()}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -320,8 +322,8 @@ const ReservationsDocument = () => {
                                                                 <div className={pdf.column_div}>
                                                                     <div className={pdf.text1}>{appData?.words["strPaymentMethod"]}</div>
                                                                     <div className={pdf.text2}>{
-                                                                    language==="en"?appData?.words["strToDriverCashTitle"]:"" 
-                                                                     }</div>
+                                                                        language === "en" ? appData?.words["strToDriverCashTitle"] : ""
+                                                                    }</div>
                                                                 </div>
                                                             </div>
                                                         </div>

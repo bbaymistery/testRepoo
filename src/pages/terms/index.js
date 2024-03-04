@@ -146,7 +146,6 @@ export async function getServerSideProps({ req, query }) {
     let pathnameUrlWHenChangeByTopbar = pathname
     let contentPath = section === 'privacy-policy' ? '/Privacy_Policy' : '/Terms';
     let { metaTitle, keywords, pageContent, metaDescription } = await fetchContent(contentPath, cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
-    console.log(metaTitle);
 
     let schemas = [structuredSchema, structedSchema2]
     return {

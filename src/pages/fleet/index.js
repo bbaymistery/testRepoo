@@ -18,7 +18,6 @@ const Fleet = (props) => {
     let { params: { direction } } = state
     const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
 
-    console.log(carObject);
 
 
     return (
