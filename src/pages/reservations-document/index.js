@@ -22,6 +22,9 @@ let description = ""
 const ReservationsDocument = () => {
     let state = useSelector((state) => state.pickUpDropOffActions)
     let { reservations, params: { journeyType, tokenForArchieve, direction, language } } = state
+    let {paymentDetails:{paymentType}}=reservations[0]
+  
+    
     const router = useRouter()
     const { appData, paymentTypes } = useSelector(state => state.initialReducer)
     const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
@@ -317,11 +320,8 @@ const ReservationsDocument = () => {
                                                                 <div className={pdf.column_div}>
                                                                     <div className={pdf.text1}>{appData?.words["strPaymentMethod"]}</div>
                                                                     <div className={pdf.text2}>{
-                                                                        paymentTypes
-                                                                            .filter(type => type.id === reservations[0]?.paymentDetails?.paymentType)
-                                                                            .map(type => type.paymentTitle)
-                                                                            .join("")
-                                                                    }</div>
+                                                                    language==="en"?appData?.words["strToDriverCashTitle"]:"" 
+                                                                     }</div>
                                                                 </div>
                                                             </div>
                                                         </div>

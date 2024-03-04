@@ -114,7 +114,7 @@ export const navigator = [
         path: "/",
         type: "list",
         hasTaxiDeals: "",
-        strInnerText: "strAirports",
+        strInnerText: "strAirportTaxi",
         list: [
             {
                 innerText: "Heathrow Airport Transfer",
@@ -243,7 +243,7 @@ export const navigatorMobile = [
         path: "/",
         type: "list",
         hasTaxiDeals: "",
-        strInnerText: "strAirports",
+        strInnerText: "strAirportTaxi",
         firstChild: true,
         list: [
             {

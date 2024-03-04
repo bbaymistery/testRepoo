@@ -57,6 +57,7 @@ const TransferDetails = (props) => {
     const dispatch = useDispatch()
     let state = useSelector((state) => state.pickUpDropOffActions)
     let { reservations, params: { passengerDetailsStatus, modalInfo, direction, quotations, sessionToken: reducerSessionToken, language, journeyType } } = state
+    
     const { appData } = useSelector(state => state.initialReducer)
     //we use it to render paxs inside select component
     const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});

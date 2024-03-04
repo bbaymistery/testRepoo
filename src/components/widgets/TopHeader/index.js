@@ -140,7 +140,7 @@ const Header = () => {
 
   const handleClickNavLinkMobileMenuNotList = useCallback(({ index }) => {
     if (index === 0) {
-      // dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } });
+      dispatch({ type: "RESET_SELECTED_POINTS", data: { journeyType } });
       dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: "heathrow" } });
     }
     toggleMenu();
