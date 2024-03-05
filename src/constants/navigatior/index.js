@@ -58,7 +58,7 @@ export const CruisePorts = [
         type: "cell",
         hasTaxiDeals: "dover",
         translateTitle: "strDoverCruisePort",
-        imgUrl: "/images/seaport/dover.webp",
+        imgUrl: "/images/cruiseto/cruise1__.webp",
         id: 1,
     },
     {
@@ -69,7 +69,7 @@ export const CruisePorts = [
         hasTaxiDeals: "harwich",
         title: "Harwich Cruise Port",
         id: 2,
-        imgUrl: "/images/seaport/hcp.webp",
+        imgUrl: "/images/cruiseto/cruise2__.webp",
         translateTitle: "strHarwichCruisePort",
     },
     {
@@ -79,7 +79,8 @@ export const CruisePorts = [
         translateTitle: "strPortsmouthCruisePort",
         type: "cell",
         hasTaxiDeals: "portsmouth",
-        imgUrl: "/images/seaport/portsmoth.webp",
+        imgUrl: "/images/cruiseto/cruise3__.webp",
+
         id: 3,
     },
     {
@@ -89,7 +90,8 @@ export const CruisePorts = [
         type: "cell",
         hasTaxiDeals: "southampton",
         translateTitle: "strSouthamptonCruisePort",
-        imgUrl: "/images/seaport/southmpton.webp",
+        imgUrl: "/images/cruiseto/cruise4__.webp",
+
         id: 4,
 
 

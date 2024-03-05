@@ -9,18 +9,18 @@ export const carsItems = [
     id: 1,
   },
   {
-    carImage: "/images/cars/normal-8-seaters-v2.webp",
-    carName: "8 Seater",
-    passenger: 8,
-    suitcase: 8,
-    id: 2,
-  },
-  {
     carImage: "/images/cars/normalMpv.webp",
     carName: "MPV",
     passenger: 5,
     suitcase: 5,
     id: 3,
+  },
+  {
+    carImage: "/images/cars/8-Seater-Minibus.webp",
+    carName: "8 Seater",
+    passenger: 8,
+    suitcase: 8,
+    id: 2,
   },
   {
     carImage: "/images/cars/vip-saloon-v2.webp",

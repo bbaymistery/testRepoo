@@ -57,12 +57,10 @@ const TaxiDeals = (props) => {
 
     const fecthPoints = async (params = {}) => {
         let { language, dealsNameProp = hasTaxiDeals } = params;
-
         let channelId = state.reservations[0].reservationDetails.channelId;
         // Encode the dealsNameProp to handle spaces and special characters
         let encodedDealsNameProp = encodeURIComponent(dealsNameProp);
         let url = `${env.apiDomain}/api/v1/taxi-deals/list?points=${encodedDealsNameProp}&language=${language}&channelId=${channelId}`;
-
         let response = await fetch(url);
         let { data, status } = await response.json();
         if (status === 200) setTaxiPoints(data.destinations);
@@ -74,7 +72,6 @@ const TaxiDeals = (props) => {
         setTabs(index)
         fecthPoints({ dealsNameProp, language })
         dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals: dealsNameProp } });
-
     }
 
 
@@ -87,7 +84,6 @@ const TaxiDeals = (props) => {
         fecthPoints({ dealsNameProp: hasTaxiDeals, language })
         //asagidaki iki kod asagidaki use effecti acanda yox olmalidir
         dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
-
     }, [language, hasTaxiDeals])
 
 

@@ -37,6 +37,7 @@ const NavbarLinkName = (props) => {
         }
     }, [linkname, dispatch]); // Add linkname and dispatch to the dependency array
 
+    console.log({ pageContent });
 
 
     return (
