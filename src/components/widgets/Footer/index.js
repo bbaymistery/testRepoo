@@ -155,7 +155,9 @@ const Footer = (props) => {
 
 
                 {direction === 'rtl' ?
-                  <a target="_blank" href="https://wa.me/447387901028" style={{ flexDirection: "row-reverse", justifyContent: "flex-end", display: 'flex' }} tabIndex="-1">
+                  // <a target="_blank" href="https://wa.me/447387901028" style={{ flexDirection: "row-reverse", justifyContent: "flex-end", display: 'flex' }} tabIndex="-1">
+                  <a target="_blank" href="https://wa.me/7387901028" style={{ flexDirection: "row-reverse", justifyContent: "flex-end", display: 'flex' }} tabIndex="-1">
+                    
                     <span>  + </span>
                     447387901028
                   </a>

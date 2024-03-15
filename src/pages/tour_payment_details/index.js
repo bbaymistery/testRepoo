@@ -25,17 +25,8 @@ const TourPaymentDetails = () => {
             <div className={`${styles.payment_details} page`}>
                 <div className={`${styles.payment_details_section} page_section`}>
                     <div className={`${styles.payment_details_section_container} page_section_container`}>
-                        {/* strTotalPrice */}
                         <div className={styles.payment_details_section} >
-
-                            {/* {reservations.map((obj, index) => {
-                        let { transferDetails, quotation, selectedPickupPoints, selectedDropoffPoints, passengerDetails } = obj
-                        let { transferDateTimeString, passengersNumber, specialRequests } = transferDetails
-                        const [splitedHour, splitedMinute] = splitDateTimeStringIntoHourAndMinute(transferDateTimeString) || []
-                        const [splitedDate] = splitDateTimeStringIntoDate(transferDateTimeString) || []
-
-                        return ( */}
-                            <div >
+                            <div>
                                 <div className={`${styles.main_container}`} >
                                     <CarInfo index={0} quotation={quotation} splitedHour={splitedHour} splitedDate={splitedDate} splitedMinute={splitedMinute} selectedTour={selectedTour} tourDetailsStatus={true} />
                                     <PaymentPageSummary
@@ -52,9 +43,8 @@ const TourPaymentDetails = () => {
                                     />
                                 </div>
                             </div>
-                            {/* )
-                    })} */}
-                            {/* <PaymentMethods selectedTour={selectedTour} tourDetailsStatus={true} /> */}
+
+                            <PaymentMethods selectedTour={selectedTour} tourDetailsStatus={true} />
                         </div>
                     </div>
                 </div>

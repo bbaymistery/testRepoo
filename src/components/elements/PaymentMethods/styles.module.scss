@@ -293,13 +293,11 @@
             width: 100% !important;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content:center;
             padding-top: 8px;
+            gap: 1rem;
 
-            @media (max-width:990px) {
-                gap: 1rem;
-            }
-
+ 
             @media (max-width:870px) {
                 flex-direction: column;
             }

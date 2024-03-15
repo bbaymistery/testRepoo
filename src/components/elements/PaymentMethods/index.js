@@ -75,13 +75,15 @@ const PaymentMethods = (props) => {
   };
   //*payment methods
   const cashMethod = (params = {}) => {
-    let { token, paymentType } = params
-    // if it is cash payment you have set payment type first of all then send archive
-    // fetchArchieveToken({ token: "", paymentType: "", stage: "CLICK_OVER_CASH_BUTTON" })
-    dispatch({ type: "SET_PAYMENT_TYPE_AND_TOKEN", data: { token, paymentType } })
-    setIframeStripe("")//CLOSE OFRAME INSIDE OF Page (in case of if it was opened )
-    setStatusToken("");//it will trigger interval and will make request
-    router.push(`${language === 'en' ? "/reservations-document" : `${language}/reservations-document`}`)
+    if (!tourDetailsStatus) {
+      let { token, paymentType } = params
+      // if it is cash payment you have set payment type first of all then send archive
+      // fetchArchieveToken({ token: "", paymentType: "", stage: "CLICK_OVER_CASH_BUTTON" })
+      dispatch({ type: "SET_PAYMENT_TYPE_AND_TOKEN", data: { token, paymentType } })
+      setIframeStripe("")//CLOSE OFRAME INSIDE OF Page (in case of if it was opened )
+      setStatusToken("");//it will trigger interval and will make request
+      router.push(`${language === 'en' ? "/reservations-document" : `${language}/reservations-document`}`)
+    }
 
   };
   const stripeMethod = (params = {}) => {
@@ -285,16 +287,15 @@ const PaymentMethods = (props) => {
               <p>{appData?.words["strToDriverCashTitle"]}</p>
               <img src="/images/others/pp.jpg" alt="" />
             </div>
-            <div title={appData?.words["Pay with PayPal"]} onClick={() => startPayment(5)} className={` ${styles.item} ${styles.item_2}`}   >
+            {tourDetailsStatus ? <></> : <div title={appData?.words["Pay with PayPal"]} onClick={() => startPayment(5)} className={` ${styles.item} ${styles.item_2}`}   >
               <p>{appData?.words["strPaywithPayPal"]} </p>
               <img src="/images/others/paypal.png" alt="" />
             </div>
-            <div onClick={() => startPayment(7)} title={appData?.words["strPaybycard"]} className={`${styles.item} ${styles.item_4}`}   >
+            }
+            {tourDetailsStatus ? <></> : <div onClick={() => startPayment(7)} title={appData?.words["strPaybycard"]} className={`${styles.item} ${styles.item_4}`}   >
               <p>{appData?.words["strPaybycard"]} </p>
               <img src="/images/others/vsMaster.jpg" alt="" />
-            </div>
-
-
+            </div>}
           </div>
 
           {cashPaymentModal ?

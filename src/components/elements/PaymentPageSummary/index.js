@@ -5,7 +5,7 @@ import styles from "./styles.module.scss"
 import DropOffPoints from './DropOffPoints'
 import PickUpPoints from './PickUpPoints'
 const PaymentPageSummary = (props) => {
-  let { index, selectedPickupPoints, selectedDropoffPoints, firstname, email, phone, passengersNumber, specialRequests, tourDetailsStatus = false, tourPickupPointAddress } = props
+  let { index, selectedPickupPoints, selectedDropoffPoints, firstname, email, phone, passengersNumber, specialRequests, tourDetailsStatus = false, tourPickupPointAddress, selectedTour } = props
   let state = useSelector((state) => state.pickUpDropOffActions)
   let { params: { direction, language } } = state
 
@@ -36,13 +36,12 @@ const PaymentPageSummary = (props) => {
           <div className={styles.details_div}>
             <h5 className={`${direction}`}>{appData?.words["strFrom2"]}</h5>
             {tourDetailsStatus ? <p>{tourPickupPointAddress.address}:</p> : <PickUpPoints selectedPickupPoints={selectedPickupPoints} direction={direction} language={language} />}
+            {tourDetailsStatus ? <p className={styles.tour_pickup_adres}>{tourPickupPointAddress.pickupadress}</p> : <></>}
+
+
             {tourDetailsStatus ? <></> : <div className={styles.space}> </div>}
-            {tourDetailsStatus ? <p style={{ fontWeight: "500", fontSize: "18px", borderBottom: "1px solid #dddd" }}>{tourPickupPointAddress.pickupadress}</p> : <PickUpPoints selectedPickupPoints={selectedPickupPoints} direction={direction} language={language} />}
             {tourDetailsStatus ? <></> : <h5 className={`${direction}`}>{appData?.words["strTo"]}</h5>}
-            {/* 
-
-            {tourDetailsStatus ? <></> : <DropOffPoints selectedDropoffPoints={selectedDropoffPoints} direction={direction} language={language} />} */}
-
+            {tourDetailsStatus ? <></> : <DropOffPoints selectedDropoffPoints={selectedDropoffPoints} direction={direction} language={language} />}
             <div className={styles.space}> </div>
             <h5 className={`${direction}`}>{appData?.words["strNotes"]}:</h5>
             <li direction={String(direction === 'rtl')}><span>{specialRequests} </span></li>
