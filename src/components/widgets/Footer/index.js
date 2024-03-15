@@ -31,8 +31,7 @@ const Footer = (props) => {
                 <Image src={logoImage} alt="Airport-pickups-london Logo" width={300} height={28} />
               </div>
               <p>
-                <span>{companyNameAndDescription} </span>
-                {companyText}
+                <span>{appData?.words["strCompanyFooter"]} </span>
               </p>
             </div>
 
@@ -59,6 +58,11 @@ const Footer = (props) => {
                   </a>
                 </li>
                 <li>
+                  <a href={`${language === 'en' ? `/tours` : `/${language}/tours`}`}  >
+                    {appData?.words["strDailyTours"]}
+                  </a>
+                </li>
+                <li>
                   <a href={`${language === 'en' ? `/terms` : `/${language}/terms`}`} title={appData.words["strTermsOfUse"]}  >
                     {appData.words["strTermsOfUse"]}
                   </a>
@@ -74,6 +78,7 @@ const Footer = (props) => {
                     {appData?.words["strPorterService"]}
                   </a>
                 </li>
+               
                 <li>
                   <a href={`${language === 'en' ? `/heathrow-vip-meet-and-assist` : `/${language}/heathrow-vip-meet-and-assist`}`}  >
                     {appData?.words["strAirportAssistant"]}

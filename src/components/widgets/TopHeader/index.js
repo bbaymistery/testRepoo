@@ -62,8 +62,10 @@ const Header = () => {
     if (checkTheUrlIfLangExist && hasEn) {
       //if length is 3 it means we r in the taxi deaals
       let replacedString = `${key === "en" ? "" : key}${router.asPath.length === 3 ? "" : "/"}`
+
       let url = router.asPath.replace(/^\/([a-z]{2})\/?/i, replacedString)
       //tr|it|sp/transfer-details...  replacing withh
+      url = `/${url}`
       router.push(url);
     }
     else {
@@ -71,7 +73,6 @@ const Header = () => {
       //if it is english then  we dont need lang atrribute=>>>>>     /transfer-details...
       let url = `/${key === "en" ? "" : key}${router.asPath}`
       router.push(url);
-
     }
     //make hidden language dropdown in mobile menu After clicking
     setLanguageStatus(!languageStatus)
@@ -169,7 +170,7 @@ const Header = () => {
         <div className={styles.header_flex_div}>
           <div className={styles.left_items}>
             <div className={styles.left_items_flex_div}>
-              <a  href={language === 'en' ? '/' : `/${language}`} className={`${styles.logo_tag}`}  >
+              <a href={language === 'en' ? '/' : `/${language}`} className={`${styles.logo_tag}`}  >
                 <Image src={logoImage} alt="Airport-pickups-london Logo" width={30} height={30} priority />
                 <span>Airport Pickups London</span>
               </a>

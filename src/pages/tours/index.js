@@ -8,7 +8,7 @@ import Image from 'next/image'
 const Tours = (props) => {
     let { bggray = false, insideGlobalLayout = true } = props
     const state = useSelector(state => state.pickUpDropOffActions)
-    let { params: { direction } } = state
+    let { params: { direction, language } } = state
     const { appData } = useSelector(state => state.initialReducer)
     let description = "Daily Tours and excursions for London. London to Bath-Stonehenge-Cambridge-Oxford daily tours."
     let title = "Tour-Airport Pickups London"
@@ -25,14 +25,14 @@ const Tours = (props) => {
                         <div className={styles.cards_content}>
                             <div className={styles.cards}>
                                 {
-                                    tourLinks.slice(0, 4).map((item, index) => {
+                                    tourLinks.map((item, index) => {
                                         return (
-                                            <a href={`tours/${item.id}`} title={item?.pageTitle} className={`${styles.card}`} key={item.id}>
+                                            <a href={`${language === "en" ? "" : `${language}/`}tours/${item.link}`} title={item?.pageTitle} className={`${styles.card}`} key={item.id}>
                                                 <div className={styles.card_image_div}>
                                                     <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
                                                 </div>
                                                 <div className={styles.card_body}>
-                                                    <h2>{item?.title}</h2>
+                                                    <h2>{appData?.words[item?.translate]}</h2>
                                                     <div className={styles.start_from}>
                                                         <div className={styles.start_from_text_left}>{appData.words["strStartFrom"]} </div>
                                                         <div className={styles.start_from_text_right}> £ {item?.price} </div>
@@ -44,28 +44,8 @@ const Tours = (props) => {
                                     })
                                 }
                             </div>
-                            <div className={styles.haveSpace}> </div>
-                            <div className={styles.cards}>
-                                {
-                                    tourLinks.slice(4, 8).map((item, index) => {
-                                        return (
-                                            <a href={`tours/${item.id}`} title={item?.pageTitle} className={`${styles.card}`} key={item.id}>
-                                                <div className={styles.card_image_div}>
-                                                    <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
-                                                </div>
-                                                <div className={styles.card_body}>
-                                                    <h2>{item?.title}</h2>
-                                                    <div className={styles.start_from}>
-                                                        <div className={styles.start_from_text_left}>{appData.words["strStartFrom"]} </div>
-                                                        <div className={styles.start_from_text_right}> £ {item?.price} </div>
-                                                    </div>
 
-                                                </div>
-                                            </a>
-                                        )
-                                    })
-                                }
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -83,12 +63,12 @@ const Tours = (props) => {
                             {
                                 tourLinks.map((item, index) => {
                                     return (
-                                        <a href={`tours/${item.id}`} title={item?.pageTitle} className={`${styles.card}`} key={item.id}>
+                                        <a href={`${language === "en" ? "" : `${language}/`}tours/${item.link}`} title={item?.pageTitle} className={`${styles.card}`} key={item.id}>
                                             <div className={styles.card_image_div}>
                                                 <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
                                             </div>
                                             <div className={styles.card_body}>
-                                                <h2>{item?.title}</h2>
+                                                <h2>{appData?.words[item?.translate]}</h2>
                                                 <div className={styles.start_from}>
                                                     <div className={styles.start_from_text_left}>{appData.words["strStartFrom"]} </div>
                                                     <div className={styles.start_from_text_right}> £ {item?.price} </div>
@@ -100,28 +80,7 @@ const Tours = (props) => {
                                 })
                             }
                         </div>
-                        {/* <div className={styles.haveSpace}> </div>
-                        <div className={styles.cards}>
-                            {
-                                tourLinks.slice(4, 8).map((item, index) => {
-                                    return (
-                                        <a href={`tours/${item.id}`} title={item?.pageTitle} className={`${styles.card}`} key={item.id}>
-                                            <div className={styles.card_image_div}>
-                                                <Image src={`${item.urlImage}`} className={styles.img} fill alt={item.title} sizes="(max-width: 768px) 100vw, 50vw" />
-                                            </div>
-                                            <div className={styles.card_body}>
-                                                <h2>{item?.title}</h2>
-                                                <div className={styles.start_from}>
-                                                    <div className={styles.start_from_text_left}>{appData.words["strStartFrom"]} </div>
-                                                    <div className={styles.start_from_text_right}> £ {item?.price} </div>
-                                                </div>
 
-                                            </div>
-                                        </a>
-                                    )
-                                })
-                            }
-                        </div> */}
                     </div>
                 </div>
             </div>

@@ -125,15 +125,14 @@
 
                     p {
                         color: $black-1;
-                        font-size: 16px;
+                        font-size: 15px;
                         font-weight: 500;
-                        word-break: break-word;
+                        text-align: justify;
                         line-height: 30px;
 
                         span {
                             color: $primary;
                             font-weight: 500;
-                            font-size: 18px;
                         }
                     }
                 }

@@ -4,11 +4,12 @@ import Link from "next/link";
 import env from "../../../resources/env";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-const PaymentMethods = () => {
+const PaymentMethods = (props) => {
+  let { tourDetailsStatus = false, selectedTour } = props
   const router = useRouter()
   const dispatch = useDispatch()
   let state = useSelector((state) => state.pickUpDropOffActions)
-  let { params: { journeyType, tokenForArchieve, sessionToken, direction,language }, reservations } = state
+  let { params: { journeyType, tokenForArchieve, sessionToken, direction, language }, reservations } = state
   const { appData, paymentTypes } = useSelector(state => state.initialReducer)
 
 
@@ -270,7 +271,7 @@ const PaymentMethods = () => {
           <div className={styles.header_tot_price} direction={String(direction === 'rtl')}>
             <p className={styles.header_tot_price_text}>{appData?.words["strTotalPrice"]}</p>
             <span className={styles.header_tot_price_price}>
-              £ {parseInt(journeyType) === 0 ? reservations[0].quotation.price : parseInt(reservations[0].quotation.price) + parseInt(reservations[1].quotation.price)}
+              £ {tourDetailsStatus ? selectedTour.price : parseInt(journeyType) === 0 ? reservations[0].quotation.price : parseInt(reservations[0].quotation.price) + parseInt(reservations[1].quotation.price)}
             </span>
           </div>
         </div>
@@ -293,7 +294,7 @@ const PaymentMethods = () => {
               <img src="/images/others/vsMaster.jpg" alt="" />
             </div>
 
-            
+
           </div>
 
           {cashPaymentModal ?

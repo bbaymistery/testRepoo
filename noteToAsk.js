@@ -17,3 +17,4 @@ Taxi deals pickDrop
 
 
 */
+// tours/1 =>ordaki review nu apiden nece getire bilerem

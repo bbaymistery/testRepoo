@@ -321,9 +321,16 @@ const ReservationsDocument = () => {
                                                                 </div>
                                                                 <div className={pdf.column_div}>
                                                                     <div className={pdf.text1}>{appData?.words["strPaymentMethod"]}</div>
-                                                                    <div className={pdf.text2}>{
-                                                                        language === "en" ? appData?.words["strToDriverCashTitle"] : ""
-                                                                    }</div>
+                                                                    <div className={pdf.text2}>
+                                                                        {(() => {
+                                                                            switch (paymentType) {
+                                                                                case 1: return appData?.words["strCash"];
+                                                                                case 5: return appData?.words["strPayWithPayPal"];
+                                                                                case 7: return appData?.words["strPayByCard"];
+                                                                                default: return "Pay by Cash";
+                                                                            }
+                                                                        })()}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>

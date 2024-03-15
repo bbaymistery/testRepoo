@@ -4,7 +4,7 @@ import styles from "./styles.module.scss"
 import { quotationImagesObjWebp } from '../../../constants/quotationImages'
 
 const CarInfo = (props) => {
-    let { index, quotation, splitedDate, splitedHour, splitedMinute, } = props
+    let { index, quotation, splitedDate, splitedHour, splitedMinute, selectedTour = {}, tourDetailsStatus = false, } = props
     let state = useSelector((state) => state.pickUpDropOffActions)
     let { params: { direction } } = state
     const { appData } = useSelector(state => state.initialReducer)
@@ -14,7 +14,7 @@ const CarInfo = (props) => {
 
     return (
         <div className={styles.car_info} direction={String(direction === 'rtl')}>
-            <h3>{index === 0 ? appData?.words["strYourBookingDetails"] : appData?.words["strReturnJourneyDetails"]}</h3>
+            <h3>{tourDetailsStatus ? selectedTour.title : index === 0 ? appData?.words["strYourBookingDetails"] : appData?.words["strReturnJourneyDetails"]}</h3>
             <div className={styles.sections}>
                 <div className={`${styles.section} ${styles.first_column}`}>
                     <div className={styles.img_div}>

@@ -12,7 +12,7 @@ import QuotationResultsTaxiDeal from '../components/elements/QuotationResultsTax
 import { urlToTitle } from '../helpers/letters';
 
 function Pages(props) {
-    let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle, returnPageTitle, duration, distance, quotationOptions,breadcrumbs,linkurl } = props
+    let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle, returnPageTitle, duration, distance, quotationOptions, breadcrumbs, linkurl } = props
 
     if (data === "not found") return <Error404 />
 
@@ -149,7 +149,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
             distance,
             duration,
             quotationOptions,
-            taxiDeal: { pickupPoints, dropoffPoints, pageTitle = "", headTitle = "", description = "", keywords = "", returnPathname = "", pageContent = "", returnHeadTitle = "", returnPageTitle = "" ,pathname:linkurl} } = data
+            taxiDeal: { pickupPoints, dropoffPoints, pageTitle = "", headTitle = "", description = "", keywords = "", returnPathname = "", pageContent = "", returnHeadTitle = "", returnPageTitle = "", pathname: linkurl } } = data
         // select first item from all points
         pickUps = pickupPoints?.length >= 1 ? [pickupPoints[0]] : []
         dropoffs = dropoffPoints?.length >= 1 ? [dropoffPoints[0]] : []

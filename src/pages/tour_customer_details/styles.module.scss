@@ -1,0 +1,551 @@
+@import '../../styles/variables';
+@import '../../styles/fonts';
+$checkbox-size: 20px;
+$checkbox-border: #cecece;
+$checkbox-selected: $primary; // Primary colour
+
+
+.tr_details_section {
+    padding-top: 0px;
+    padding-bottom: 50px;
+    position: relative;
+
+    .tr_details_section_container {
+        @media only screen and (max-width:1200px) {
+            max-width: 1150px !important;
+        }
+
+        .transferdetails_subcontainer {
+
+            //!thise styles belongs to passenger details and right part
+            .transferdetails_subcontainer_content.rtl {
+                flex-direction: row-reverse;
+            }
+
+            .transferdetails_subcontainer_content {
+                max-width: 1450px;
+                width: 100%;
+                display: flex;
+                background-color: transparent;
+                position: relative;
+                gap: 1rem;
+                margin: 0 auto;
+                justify-content: space-between;
+                z-index: 1;
+
+                .transferdetails_subcontainer_content_points_and_passengerdetails {
+                    flex-basis: 60%;
+                    margin-top: 25px;
+                    position: relative;
+                    min-height: 500px;
+                    display: flex;
+                    flex-direction: column;
+
+                    @media (max-width:1100px) {
+                        flex-basis: 65%;
+                    }
+
+                    @media (max-width:990px) {
+                        flex-basis: 100% !important;
+                    }
+
+
+
+                    .selected_points_details {
+                        h2 {
+                            color: $dark-1;
+                            font-weight: 500;
+                            margin-bottom: 15px;
+                            font-size: 22px;
+                            // font-family: $font-jost;
+                            padding-top: 30px;
+                            display: flex;
+                            align-items: center;
+
+                            i {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: $primary;
+                                font-size: 16px;
+                                cursor: pointer;
+                                margin-left: 10px;
+                                margin-top: 3px;
+                                display: none;
+
+                                @media(max-width:990px) {
+                                    display: block;
+                                }
+                            }
+                        }
+
+                        .selectedlist_points {
+                            z-index: 99999 !important;
+                            position: relative;
+                            padding: 10px 16px;
+                            transition: 0.5s ease-in-out;
+                            background-color: #ededed;
+                            animation: animate;
+                            opacity: 1;
+                            animation-duration: 2s;
+                            animation-fill-mode: both;
+                            animation-iteration-count: 1;
+                            animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+                            border-radius: 5px;
+                            margin-top: 1rem !important;
+
+
+                            .list {
+                                .list_description {
+                                    color: #5D646D;
+                                    font-size: 15px;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                    }
+
+                    .textarea_div {
+                        margin-top: 1rem;
+                    }
+
+                    .form_checkbox {
+                        position: relative;
+                        display: block;
+                        margin: 0 0 15px;
+                        user-select: none;
+                        margin-top: 10px;
+
+                        .checkbox {
+                            position: absolute;
+                            opacity: 0;
+                            user-select: none;
+                            cursor: pointer;
+                            // font-family: $font-jost;
+
+                            // Text
+                            &+label {
+                                display: inline-block;
+                                position: relative;
+                                cursor: pointer;
+                                line-height: $checkbox-size;
+                                padding-left: $checkbox-size + 10;
+                                font-size: 14px;
+                                font-family: sans-serif;
+                                color: #666; // Label colour
+                                user-select: none;
+
+                                @media (max-width: 460px) {
+                                    font-size: 12px;
+                                    padding-left: $checkbox-size + 5;
+                                }
+
+                                // Checkbox
+                                &:before {
+                                    position: absolute;
+                                    display: block;
+                                    left: 0;
+                                    top: 0;
+                                    content: "";
+                                    background: transparent;
+                                    width: $checkbox-size;
+                                    height: $checkbox-size;
+
+                                    box-shadow: inset 0 0 0 1px $checkbox-border;
+                                    border-radius: 4px;
+                                    transition: 200ms ease-in-out all;
+
+                                    @media (max-width: 460px) {
+                                        width: 17px;
+                                        height: 17px;
+                                    }
+                                }
+
+                                // Tick
+                                &:after {
+                                    position: absolute;
+                                    display: block;
+                                    top: 5px;
+                                    left: 5px;
+                                    content: "";
+                                    width: 9px;
+                                    height: 7px;
+                                    border-right: 2px solid transparent;
+                                    border-bottom: 2px solid transparent;
+                                    transform: rotate(45deg);
+
+                                    transition: 200ms ease-in-out all;
+
+                                    @media (max-width: 460px) {
+                                        width: 6px;
+                                        height: 5px;
+                                    }
+                                }
+                            }
+
+                            // Hover
+                            &+label:hover {
+                                color: #333;
+                            }
+
+                            // Focus
+                            &+label:focus {
+                                outline: none;
+                            }
+
+                            // Checked
+                            &:checked {
+                                &+label {
+                                    &:before {
+                                        background: $checkbox-selected;
+                                        box-shadow: none;
+                                    }
+
+                                    &:after {
+                                        border-color: white;
+                                    }
+                                }
+                            }
+
+                        }
+
+                        .primary_text {
+                            color: $primary !important;
+
+                        }
+
+                        .red_text {
+                            color: red !important;
+                        }
+                    }
+
+                    .form_checkbox[direction="true"] {
+                        display: flex;
+
+                        .checkbox {
+
+
+                            // Text
+                            &+label {
+                                display: flex;
+                                flex-direction: column-re;
+                                padding-right: 29px;
+
+                                // Checkbox
+                                &:before {
+                                    position: absolute;
+                                    display: block;
+                                    right: 0;
+                                    top: 0;
+                                    content: "";
+                                    background: transparent;
+                                    width: $checkbox-size;
+                                    height: $checkbox-size;
+
+                                    box-shadow: inset 0 0 0 1px $checkbox-border;
+                                    border-radius: 4px;
+                                    transition: 200ms ease-in-out all;
+
+                                    @media (max-width: 460px) {
+                                        width: 17px;
+                                        height: 17px;
+                                    }
+                                }
+
+                                // Tick
+                                &:after {
+                                    position: absolute;
+                                    display: block;
+                                    top: 5px;
+                                    right: 6px;
+                                    content: "";
+                                    width: 6px;
+                                    height: 8px;
+                                    border-right: 2px solid transparent;
+                                    border-bottom: 2px solid transparent;
+                                    transform: rotate(45deg);
+
+                                    transition: 200ms ease-in-out all;
+
+                                    @media (max-width: 460px) {
+                                        width: 6px;
+                                        height: 5px;
+                                    }
+                                }
+                            }
+
+                            // Hover
+                            &+label:hover {
+                                color: #333;
+                            }
+
+                            // Focus
+                            &+label:focus {
+                                outline: none;
+                            }
+
+                            // Checked
+                            &:checked {
+                                &+label {
+                                    &:before {
+                                        background: $checkbox-selected;
+                                        box-shadow: none;
+                                    }
+
+                                    &:after {
+                                        border-color: white;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+
+                    .buttons {
+                        display: flex;
+                        gap: 1rem;
+                        align-items: flex-start;
+                        margin-top: 5rem;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-end;
+
+                        .left {
+                            display: flex;
+                            justify-content: space-between;
+
+                            flex-basis: 100%;
+
+
+                            button {
+                                border-radius: 4px !important;
+                                padding: 15px 20px;
+                                max-width: 163px !important;
+                                width: 163px;
+                                font-size: 15px;
+                                // font-family: $font-jost;
+                                letter-spacing: 1px;
+                                text-transform: capitalize;
+
+                                @media (max-width:678px) {
+                                    width: 143px;
+                                    padding: 13px 18px;
+                                }
+
+                                @media (max-width:420px) {
+                                    width: 113px;
+                                    padding: 12px 17px;
+                                    font-size: 13px;
+                                }
+                            }
+                        }
+
+
+                    }
+
+
+                }
+
+
+
+            }
+
+        }
+    }
+
+    .buttons_for_gap {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-top: 3rem;
+
+        .left {
+            flex-basis: 60%;
+            display: flex;
+            justify-content: space-between;
+
+            @media (max-width:990px) {
+                flex-basis: 100%;
+            }
+
+
+            button {
+                border-radius: 4px !important;
+                padding: 15px 20px;
+                max-width: 163px !important;
+                width: 163px;
+                font-size: 15px;
+                // font-family: $font-jost;
+                letter-spacing: 1px;
+                text-transform: capitalize;
+
+                @media (max-width:678px) {
+                    width: 143px;
+                    padding: 13px 18px;
+                }
+
+                @media (max-width:420px) {
+                    width: 113px;
+                    padding: 12px 17px;
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .right {
+            flex-basis: 40%;
+
+            @media (max-width:990px) {
+                display: none;
+            }
+
+            .content {
+                border: 1px solid rgb(49, 11, 11);
+                padding: 20px;
+                padding-top: 30px;
+                padding-bottom: 20px;
+                border: 1px solid $border;
+                border-radius: 4px;
+                font-size: 15px;
+                position: relative;
+
+                .acceptedcards {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+
+    .directionbuttons_for_gap {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-top: 3rem;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+
+        .left {
+            flex-basis: 59.2%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+
+            @media (max-width:990px) {
+                flex-basis: 100%;
+            }
+
+
+            button {
+                border-radius: 4px !important;
+                padding: 15px 20px;
+                max-width: 163px !important;
+                width: 163px;
+                font-size: 15px;
+                // font-family: $font-jost;
+                letter-spacing: 1px;
+                text-transform: capitalize;
+
+                @media (max-width:678px) {
+                    width: 143px;
+                    padding: 13px 18px;
+                }
+
+                @media (max-width:420px) {
+                    width: 113px;
+                    padding: 12px 17px;
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .right {
+            flex-basis: 40%;
+
+            @media (max-width:990px) {
+                display: none;
+            }
+
+            .content {
+                border: 1px solid rgb(49, 11, 11);
+                padding: 20px;
+                padding-top: 30px;
+                padding-bottom: 20px;
+                border: 1px solid $border;
+                border-radius: 4px;
+                font-size: 15px;
+                position: relative;
+
+                .acceptedcards {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        top: 30px;
+
+
+    }
+
+    10% {
+        opacity: 0;
+        top: 30px;
+
+    }
+
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+.passenger_details_div {
+    h2 {
+        color: $dark-1;
+        font-weight: 500;
+        margin-bottom: 15px;
+        font-size: 22px;
+    }
+
+    .return_pas_details_header {
+        margin-bottom: 40px;
+    }
+
+    .passenger_details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+
+        @media (max-width:768px) {
+            grid-template-columns: 1fr;
+        }
+
+        .input_div {
+            p {
+                color: $primary;
+                padding-left: 10px;
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+    }
+}
