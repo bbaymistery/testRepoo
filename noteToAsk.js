@@ -18,3 +18,5 @@ Taxi deals pickDrop
 
 */
 // tours/1 =>ordaki review nu apiden nece getire bilerem
+
+//https://api.london-tech.com/api/v1/pages/details => "pagePathname":"/tours/cambridge-private-tour"   //doesnt bring page content 

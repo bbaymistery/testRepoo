@@ -4,10 +4,7 @@ import GlobalLayout from "../../components/layouts/GlobalLayout";
 import styles from "./singletour.module.scss"
 import { parse } from 'url';
 
-// this are mock images
-import Imagee1 from "../../../public/images/tourSlider/t1.png";
-import Imagee2 from "../../../public/images/tourSlider/t2.png";
-import Imagee3 from "../../../public/images/tourSlider/t3.png";
+
 import ReusableModal from "../../components/elements/ReusableModal";
 import TourCardQuotation from "../../components/elements/TourCardQuotation";
 import Slider from "../../components/elements/Slider";
@@ -21,60 +18,12 @@ import { tourActions } from '../../store/tourActions'
 
 import { Skeleton } from "../../components/elements/Skeleton";
 
-let mockQuotationOptions = [
-    {
-        "token": "c0fd07942af31c55cf15255e2a757400a46a95b7979905b4e04527df59725f5f1744d0329c58a09f62bf597b2c3431f4eebb977d8196586ad2384d6e5abed356de1852de976de703d5fd195631c3f7cb31b9815c5cec44b26511751e3c49d417a0e88f7b85653efe11e5482e1400a8810cc11d784b3e248686adf0d411cc96ff361a51388d6435fe4ca6b986f5ea34a4e979ec1be6026df013a7252be6b8d80275eda823cd2e821fa6d21ba61c75aa232133e41a2cb5fecc7e9bf8852522294e",
-        "price": "199.00",
-        "carId": 1
-    },
-    {
-        "token": "c0fd07942af31c55cf15255e2a757400a46a95b7979905b4e04527df59725f5f1744d0329c58a09f62bf597b2c3431f4eebb977d8196586ad2384d6e5abed356de1852de976de703d5fd195631c3f7cb31b9815c5cec44b26511751e3c49d417a0e88f7b85653efe11e5482e1400a8810cc11d784b3e248686adf0d411cc96ff361a51388d6435fe4ca6b986f5ea34a4e979ec1be6026df013a7252be6b8d80275eda823cd2e821fa6d21ba61c75aa232133e41a2cb5fecc7e9bf8852522294e",
-        "price": "19.00",
-        "carId": 2
-    },
-    {
-        "token": "c0fd07942af31c55cf15255e2a757400a46a95b7979905b4e04527df59725f5f1744d0329c58a09f62bf597b2c3431f4eebb977d8196586ad2384d6e5abed356de1852de976de703d5fd195631c3f7cb31b9815c5cec44b26511751e3c49d417a0e88f7b85653efe11e5482e1400a8810cc11d784b3e248686adf0d411cc96ff361a51388d6435fe4ca6b986f5ea34a4e979ec1be6026df013a7252be6b8d80275eda823cd2e821fa6d21ba61c75aa232133e41a2cb5fecc7e9bf8852522294e",
-        "price": "34.00",
-        "carId": 3
-    }
-    ,
-    {
-        "token": "c0fd07942af31c55cf15255e2a757400a46a95b7979905b4e04527df59725f5f1744d0329c58a09f62bf597b2c3431f4eebb977d8196586ad2384d6e5abed356de1852de976de703d5fd195631c3f7cb31b9815c5cec44b26511751e3c49d417a0e88f7b85653efe11e5482e1400a8810cc11d784b3e248686adf0d411cc96ff361a51388d6435fe4ca6b986f5ea34a4e979ec1be6026df013a7252be6b8d80275eda823cd2e821fa6d21ba61c75aa232133e41a2cb5fecc7e9bf8852522294e",
-        "price": "299.00",
-        "carId": 4
-    },
-    {
-        "token": "c0fd07942af31c55cf15255e2a757400a46a95b7979905b4e04527df59725f5f1744d0329c58a09f62bf597b2c3431f4eebb977d8196586ad2384d6e5abed356de1852de976de703d5fd195631c3f7cb31b9815c5cec44b26511751e3c49d417a0e88f7b85653efe11e5482e1400a8810cc11d784b3e248686adf0d411cc96ff361a51388d6435fe4ca6b986f5ea34a4e979ec1be6026df013a7252be6b8d80275eda823cd2e821fa6d21ba61c75aa232133e41a2cb5fecc7e9bf8852522294e",
-        "price": "319.00",
-        "carId": 5
-    },
-    {
-        "token": "c0fd07942af31c55cf15255e2a757400a46a95b7979905b4e04527df59725f5f1744d0329c58a09f62bf597b2c3431f4eebb977d8196586ad2384d6e5abed356de1852de976de703d5fd195631c3f7cb31b9815c5cec44b26511751e3c49d417a0e88f7b85653efe11e5482e1400a8810cc11d784b3e248686adf0d411cc96ff361a51388d6435fe4ca6b986f5ea34a4e979ec1be6026df013a7252be6b8d80275eda823cd2e821fa6d21ba61c75aa232133e41a2cb5fecc7e9bf8852522294e",
-        "price": "384.00",
-        "carId": 6
-    }
-]
+
 // Function to get the title based on the link
 function getTour(link) {
     return tourLinks.find(tour => tour.link === link);
 }
-export const slideImages = [
 
-    {
-        id: 1,
-        img: Imagee1,
-    },
-
-    {
-        id: 2,
-        img: Imagee3,
-    },
-
-    {
-        id: 3,
-        img: Imagee2,
-    },
-];
 const TourContentDetails = (props) => {
     let { metaTitle, keywords, metaDescription, pageContent } = props
 
@@ -84,7 +33,7 @@ const TourContentDetails = (props) => {
     const [shouldShowModal, setshouldShowModal] = useState(false)
     const [selectedTour, setSelectedTour] = useState("")
     const [index, setIndex] = React.useState(0);
-    const [sliderItems, setsliderItems] = useState(slideImages)
+    const [sliderItems, setsliderItems] = useState([])
 
     const [loadAlert, setLoadAlert] = useState(true)
     const tourActionState = useSelector(state => state.tourActions)
@@ -100,7 +49,11 @@ const TourContentDetails = (props) => {
     // Scroll to the information div when the button is clicked
     const handleButtonClick = () => informationDivRef.current.scrollIntoView({ behavior: 'smooth' });
 
-    useEffect(() => { setSelectedTour(getTour(tourname)) }, [])
+    useEffect(() => {
+        let tour = getTour(tourname)
+        setSelectedTour(tour)
+        setsliderItems(tour.images)
+    }, [])
     useEffect(() => {
         if (loadAlert) {
             setTimeout(() => { setLoadAlert(false) }, 550);
@@ -118,7 +71,7 @@ const TourContentDetails = (props) => {
         setTimeout(() => { setLoadAlert(false) }, 550);
     }
 
-    console.log();
+
 
     return (
         <GlobalLayout footerbggray={true} keywords={keywords} title={metaTitle} description={metaDescription}>
@@ -131,10 +84,10 @@ const TourContentDetails = (props) => {
                                 <p >{appData?.words["strNavHome"]} </p>
                                 <p > {`>`} </p>
                                 <p >{appData?.words["strDailyTours"]} </p>
+                                {loadAlert ? <></> : <p > {`>`} </p>}
                                 {loadAlert ?
                                     "..."
                                     : <p >{appData?.words[selectedTour.translate]} </p>}
-                                {loadAlert ? <></> : <p > {`>`} </p>}
                             </div>
 
                         </div>
@@ -163,12 +116,12 @@ const TourContentDetails = (props) => {
                                     <div className={styles.gallery_grid}>
                                         {loadAlert ? <div style={{ width: "100%", height: "100%", background: "#eae6e6" }}>
                                             <Skeleton width={"100%"} height="100%" />
-                                        </div> : <img src="https://creativelayers.net/themes/gotrip-html/img/gallery/1/1.png" alt="" />}
+                                        </div> : <img src={sliderItems[0].img} alt={sliderItems[0].title} />}
                                     </div>
                                     <div className={styles.gallery_grid}>
                                         {loadAlert ? <div style={{ height: "200px", background: "#eae6e6" }}>
                                             <Skeleton width={"100%"} height="100%" />
-                                        </div> : <img src="https://creativelayers.net/themes/gotrip-html/img/gallery/1/2.png" alt="" />}
+                                        </div> : <img src={sliderItems[2].img} alt={sliderItems[2].title} />}
 
 
                                     </div>
@@ -176,13 +129,13 @@ const TourContentDetails = (props) => {
 
                                         {loadAlert ? <div style={{ height: "200px", background: "#eae6e6" }}>
                                             <Skeleton width={"100%"} height="100%" />
-                                        </div> : <img src="https://creativelayers.net/themes/gotrip-html/img/gallery/1/3.png" alt="" />}
+                                        </div> : <img src={sliderItems[3].img} alt={sliderItems[3].title} />}
 
                                     </div>
                                     <div className={styles.gallery_grid}>
                                         {loadAlert ? <div style={{ height: "200px", background: "#eae6e6" }}>
                                             <Skeleton width={"100%"} height="100%" />
-                                        </div> : <img src="https://creativelayers.net/themes/gotrip-html/img/gallery/1/4.png" alt="" />}
+                                        </div> : <img src={sliderItems[1].img} alt={sliderItems[1].title} />}
 
                                         <div className={styles.container_auto_center}>
                                             <div className={styles.intro}>
