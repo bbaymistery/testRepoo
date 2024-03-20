@@ -40,14 +40,11 @@ const TourJourneySummaryPanel = (props) => {
                     <div className={styles.details_div}>
                         <div id="from to" className={styles.fromto}>
                             <h5>
-                                {appData?.words["strFrom2"]}:
+                                {/* {appData?.words["strFrom2"]}: */}
+                                Pickup address:
                             </h5>
                             {/* {selectedPickupPoints.map((pickup, i) => { return <li key={i}><span>{isTaxiDeal ? "" : `${i + 1}. `}  {pickup.address}</span></li> })} */}
                             <li >
-                                <span>
-                                    Any London address:
-                                </span>
-                                <br />
                                 <span style={{ fontSize: "17px" }}>
                                     {pickupPointAddress}
                                 </span>

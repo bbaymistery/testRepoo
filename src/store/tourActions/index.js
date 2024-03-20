@@ -9,7 +9,7 @@ const INITIAL_STATE = {
     quotation: {},
     selectedTour: {},
     pickupPoint: {
-        address: "Any London Address",
+        address: "Any London Address (Full address will be requested on the following page)",
         pickupadress: ""
     },
 

@@ -26,7 +26,7 @@ const TourCustomerDetails = () => {
 
     const { appData } = useSelector(state => state.initialReducer)
     const tourActionState = useSelector(state => state.tourActions)
-    let { quotation, passengerDetails: { firstname, phone,  email }, selectedTour, transferDetails: { transferDateTimeString, specialRequests ,passengersNumber,}, pickupPoint } = tourActionState
+    let { quotation, passengerDetails: { firstname, phone, email }, selectedTour, transferDetails: { transferDateTimeString, specialRequests, passengersNumber, }, pickupPoint } = tourActionState
     //we use it to render paxs inside select component
     const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
 
@@ -51,7 +51,7 @@ const TourCustomerDetails = () => {
     }
 
     const checkValidation = (e) => {
-        let passengerDetails = { firstname, phone,  email }
+        let passengerDetails = { firstname, phone, email }
         let errorHolder = tourSchemaValidator({ passengerDetails, pickupPoint });
         console.log(errorHolder);
 
@@ -108,7 +108,7 @@ const TourCustomerDetails = () => {
                                                     {/* //index =0 it is like destination pickup  */}
                                                     <div className={styles.list}>
                                                         <p className={styles.list_Description}>
-                                                            Any London Address
+                                                            Pickup address
                                                         </p>
                                                     </div>
                                                     <TextInput label={"Description"} type="text" name="pickupadress" onChange={e => handlePickUpPointAddress(e)} value={pickupPointAddress} errorMessage={errorHolder.pickupPoint?.pickupadress} />

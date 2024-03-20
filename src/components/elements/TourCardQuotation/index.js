@@ -119,13 +119,13 @@ const TourCardQuotation = (params = {}) => {
                   <p>
                     <span>Pick-up From :</span>
                     <span className={styles.desc}>
-                      Any London address
+                      Any London Address (Full address will be requested on the following page)
                     </span>
                   </p>
                   <p>
                     <span>Tour Duration :</span>
                     <span className={styles.desc}>
-                      Approximately {selectedTour.duration} hours, starts after your selected pickup time
+                      Approximately {selectedTour.duration} hours, starting after your selected pickup time.
                     </span>
                   </p>
                 </div>

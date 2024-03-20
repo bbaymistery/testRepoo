@@ -9,7 +9,7 @@ export function tourSchemaValidator(params = {}, options = {}) {
             phone: "",
         },
         pickupPoint: {
-            address: "Any London Address",
+            address: "Any London Address (Full address will be requested on the following page)",
             pickupadress: "",
         },
     };
