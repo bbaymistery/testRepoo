@@ -108,7 +108,7 @@ const TourCustomerDetails = () => {
                                                     {/* //index =0 it is like destination pickup  */}
                                                     <div className={styles.list}>
                                                         <p className={styles.list_Description}>
-                                                            Pickup address
+                                                            {appData?.words["strPickupAddress"]}
                                                         </p>
                                                     </div>
                                                     <TextInput label={"Description"} type="text" name="pickupadress" onChange={e => handlePickUpPointAddress(e)} value={pickupPointAddress} errorMessage={errorHolder.pickupPoint?.pickupadress} />

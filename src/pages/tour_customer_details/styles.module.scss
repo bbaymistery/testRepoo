@@ -96,6 +96,8 @@ $checkbox-selected: $primary; // Primary colour
 
 
                             .list {
+                                text-transform: capitalize;
+
                                 .list_description {
                                     color: #5D646D;
                                     font-size: 15px;
