@@ -80,10 +80,10 @@ export const flightDetailsError = (flightDetails, appData) => {
     const errors = {};
 
 
-    if (flightDetails.airline.trim() === "") {
+    if (flightDetails.airline?.trim() === "") {
         errors.airline = { statusCode: 400, errorMessage: appData?.words["strRequired"], };
     }
-    if (flightDetails.flightNumber.trim() === "") {
+    if (flightDetails.flightNumber?.trim() === "") {
         errors.flightNumber = { statusCode: 400, errorMessage: appData?.words["strRequired"], };
     }
     //select flight class dil seklinde eklenenen sonra
@@ -92,7 +92,7 @@ export const flightDetailsError = (flightDetails, appData) => {
         errors.flightClass = { statusCode: 400, errorMessage: appData?.words["strRequired"], };
     }
 
-    if (flightDetails.noOfLuggageBags.trim() === "") {
+    if (flightDetails.noOfLuggageBags?.trim() === "") {
         errors.noOfLuggageBags = { statusCode: 400, errorMessage: appData?.words["strRequired"], };
     }
 
@@ -103,16 +103,16 @@ export const bookersDetailsError = (bookerDetails, appData) => {
     const errors = {};
 
 
-    if (bookerDetails.firstname.trim() === "") {
+    if (bookerDetails.firstname?.trim() === "") {
         errors.firstname = { statusCode: 400, errorMessage: appData?.words["strRequired"] };
     }
-    if (bookerDetails.lastname.trim() === "") {
+    if (bookerDetails.lastname?.trim() === "") {
         errors.lastname = { statusCode: 400, errorMessage: appData?.words["strRequired"] };
     }
-    if (bookerDetails.mobileNumber.trim() === "") {
+    if (bookerDetails.mobileNumber?.trim() === "") {
         errors.mobileNumber = { statusCode: 400, errorMessage: appData?.words["strRequired"] };
     }
-    if (bookerDetails.email.trim() === "" || !emailRegex.test(bookerDetails.email)) {
+    if (bookerDetails.email?.trim() === "" || !emailRegex.test(bookerDetails.email)) {
         errors.email = { statusCode: 400, errorMessage: appData?.words["strRequired"] };
     }
 

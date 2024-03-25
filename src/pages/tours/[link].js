@@ -36,13 +36,14 @@ const TourContentDetails = (props) => {
     const [sliderItems, setsliderItems] = useState([])
 
     const [loadAlert, setLoadAlert] = useState(true)
+
     const tourActionState = useSelector(state => state.tourActions)
 
     const { appData } = useSelector(state => state.initialReducer)
 
-    const state = useSelector(state => state.pickUpDropOffActions)
-    let { params: { direction, language } } = state
 
+    let stateReservation = useSelector((state) => state.pickUpDropOffActions)
+    let { reservations, params: { direction,  language,  } } = stateReservation
 
     const gotoPreviousSlider = () => setIndex(index - 1)
     const gotoNextSlider = () => setIndex(index + 1)
@@ -234,7 +235,7 @@ const TourContentDetails = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                {loadAlert ? <></> : <TourCardQuotation transferDateTime={tourActionState?.transferDateTimeString} language={language} index={0} selectedQuotation={tourActionState?.quotation} quotationOptions={selectedTour.quotationOptions} direction={direction} selectedTour={selectedTour} />}
+                                {loadAlert ? <></> : <TourCardQuotation transferDateTime={reservations[0]?.transferDetails?.transferDateTimeString} language={language} index={0} selectedQuotation={reservations[0]?.quotation} quotationOptions={selectedTour.quotationOptions} direction={direction} selectedTour={selectedTour} />}
                             </div>
                             <div className={`${styles.page_content} `} dangerouslySetInnerHTML={{ __html: pageContent }} />
                         </div>

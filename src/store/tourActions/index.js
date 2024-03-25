@@ -6,31 +6,32 @@ import SET_TOUR_TRANSFER_DETAILS from "./SET_TOUR_TRANSFER_DETAILS";
 import SET_TOUR_PICKUP_ADRESS from "./SET_TOUR_PICKUP_ADRESS";
 
 const INITIAL_STATE = {
-    quotation: {},
+    // quotation: {},
     selectedTour: {},
-    pickupPoint: {
-        address: "Any London Address (Full address will be requested on the following page)",
-        pickupadress: ""
-    },
-
-    transferDetails: {
-      transferDateTimeString: currentDateForJourney(),
-      pickupCategoryId: "",
-      passengersNumber: 1,
-      passengerSuitcase: 1,
-      specialRequests: "",
-    },
-    passengerDetails: {
-      lastname: "",
-      firstname: "",
-      email: "",
-      phone: "",
-    },
-    paymentDetails: {
-      token: "",
-      paymentType: "",
-      account: 1,
-    },
+    // pickupPoint: {
+    //     address: "Any London Address (Full address will be requested on the following page)",
+    //     pickupadress: ""
+    // },
+    // selectedPickupPoints: [],
+    // selectedDropoffPoints: [],
+    // transferDetails: {
+    //   transferDateTimeString: currentDateForJourney(),
+    //   pickupCategoryId: "",
+    //   passengersNumber: 1,
+    //   passengerSuitcase: 1,
+    //   specialRequests: "",
+    // },
+    // passengerDetails: {
+    //   lastname: "",
+    //   firstname: "",
+    //   email: "",
+    //   phone: "",
+    // },
+    // paymentDetails: {
+    //   token: "",
+    //   paymentType: "",
+    //   account: 1,
+    // },
 }
 
 export const tourActions = (state = INITIAL_STATE, action) => {

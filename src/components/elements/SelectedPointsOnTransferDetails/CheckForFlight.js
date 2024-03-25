@@ -16,7 +16,7 @@ const CheckForFlight = (props) => {
     //150 minutes after flight has landed     = >150
     let splitedNumberOfWaitingTime = ""
     if (name === "waitingPickupTime") {
-      splitedNumberOfWaitingTime = e?.target?.options[e?.target?.selectedIndex].innerText.trim().split(" ")[0]
+      splitedNumberOfWaitingTime = e?.target?.options[e?.target?.selectedIndex].innerText?.trim().split(" ")[0]
 
       if (parseInt(splitedNumberOfWaitingTime) >= 0) {
         splitedNumberOfWaitingTime = parseInt(splitedNumberOfWaitingTime)

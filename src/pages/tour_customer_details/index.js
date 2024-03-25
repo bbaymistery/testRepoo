@@ -14,57 +14,167 @@ import TourJourneySummaryPanel from '../../components/elements/TourJourneySummar
 import { splitDateTimeStringIntoDate, splitDateTimeStringIntoHourAndMinute } from '../../helpers/splitHelper';
 import Textarea from '../../components/elements/Textarea';
 import { tourSchemaValidator } from '../../helpers/tourSchemaValidator';
+import SelectedPointsOnHomePage from '../../components/elements/SelectedPointsOnHomePage';
+import OutsideClickAlert from '../../components/elements/OutsideClickAlert';
 let description = ""
 let title = ""
 let keywords = ""
+import Loading from '../../components/elements/Loading'
+import HandleSearchResults from '../../components/elements/HandleSearchResults';
+import SelectedPointsOnTransferDetails from '../../components/elements/SelectedPointsOnTransferDetails'
+import env from '../../resources/env';
+import { reservationSchemeValidator } from '../../helpers/reservationSchemeValidator';
+const collectPoints = (params = {}, callback = () => { }) => {
 
+    let { value = '', reducerSessionToken = "", language = "" } = params;
+    const url = `${env.apiDomain}/api/v1/suggestions`;
+    const method = "POST"
+    const headers = { "Content-Type": "application/json" }
+    const body = JSON.stringify({ value, "session-token": reducerSessionToken, language })
+    const config = { method, headers, body }
+
+    fetch(url, config)
+        .then((res) => res.json())
+        .then((res) => { callback(res) })
+        .catch((error) => {
+            let message = "APL   Hero component _collectPoints()  function catch blog "
+            window.handelErrorLogs(error, message, { config })
+        });
+}
+const collectPointsAsync = params => new Promise((resolve, reject) => collectPoints(params, log => resolve(log)))
 const TourCustomerDetails = () => {
     const router = useRouter()
     const dispatch = useDispatch()
     let state = useSelector((state) => state.pickUpDropOffActions)
-    let { params: { direction, language, } } = state
+    let { reservations, params: { direction, language, passengerDetailsStatus, sessionToken: reducerSessionToken, } } = state
+    let { quotation, passengerDetails: { firstname, phone, email }, transferDetails: { transferDateTimeString, specialRequests, passengersNumber, }, selectedPickupPoints, selectedDropoffPoints, } = reservations[0]
+
 
     const { appData } = useSelector(state => state.initialReducer)
     const tourActionState = useSelector(state => state.tourActions)
-    let { quotation, passengerDetails: { firstname, phone, email }, selectedTour, transferDetails: { transferDateTimeString, specialRequests, passengersNumber, }, pickupPoint } = tourActionState
+    let { selectedTour, } = tourActionState
     //we use it to render paxs inside select component
+
+
     const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
 
     const [splitedHour, splitedMinute] = splitDateTimeStringIntoHourAndMinute(transferDateTimeString) || []
     const [splitedDate] = splitDateTimeStringIntoDate(transferDateTimeString) || []
     const [pickupPointAddress, setPickupPointAddress] = useState("")
+    let [internalState, setInternalState] = React.useReducer((s, o) => ({ ...s, ...o }), {
+        'errorHolder': [],
+        'pickup-search-value-0': '',
+        'dropoff-search-value-0': '',
+        'collecting-pickup-points-0': [],
+        'collecting-dropoff-points-0': [],
+        //focus
+        'pickup-search-focus-0': false,//it is for modal
+        'dropoff-search-focus-0': false,//it is for modal
 
+        'pickup-search-loading-0': false,
+        'dropoff-search-loading-0': false,
 
-    let [internalState, setInternalState] = React.useReducer((s, o) => ({ ...s, ...o }), { 'errorHolder': [], })
+        //quotation loading
+        "quotation-loading": false,
+    })
     let { errorHolder } = internalState;
-    const handleOnChangeNumberInput = (value, _country, name) => dispatch({ type: 'SET_TOUR_PASSEGER_DETAILS', data: { name, value } })
 
-    const handlePickUpPointAddress = (e) => {
-        setPickupPointAddress(e.target.value)
-        dispatch({ type: 'SET_TOUR_PICKUP_ADRESS', data: { pickupadress: e.target.value } })
+
+    const handleOnChangeNumberInput = (value, _country, name) => {
+        dispatch({ type: 'SET_PASSEGER_DETAILS', data: { name, value, index: 0, updateBothJourneyCheckBox: passengerDetailsStatus } })
     }
+
+    // console.log(internalState);
+
     const onchangeHandler = (e) => {
         let { name, value } = e.target;
         if (ifHasUnwantedCharacters(value)) return
-        if (['firstname', 'email',].includes(name)) dispatch({ type: 'SET_TOUR_PASSEGER_DETAILS', data: { name, value } })
-        if (['passengersNumber', "specialRequests"].includes(name)) dispatch({ type: 'SET_TOUR_TRANSFER_DETAILS', data: { name, value } })
+        if (['firstname', 'email',].includes(name))
+            dispatch({ type: 'SET_PASSEGER_DETAILS', data: { name, value, index: 0, updateBothJourneyCheckBox: passengerDetailsStatus } })
+        if (['passengersNumber', "specialRequests"].includes(name))
+            dispatch({ type: 'SET_TRANSFER_DETAILS', data: { name, value, index: 0, updateBothJourneyCheckBox: passengerDetailsStatus } })
     }
 
-    const checkValidation = (e) => {
-        let passengerDetails = { firstname, phone, email }
-        let errorHolder = tourSchemaValidator({ passengerDetails, pickupPoint });
-        console.log(errorHolder);
+    // let passengerDetails = { firstname, phone, email }
+    // let errorHolder = tourSchemaValidator({ passengerDetails, pickupPoint });
+    // console.log(errorHolder);
 
+    // setInternalState({ errorHolder })
+    // if (errorHolder.status === 200) {
+    //     router.push(`${language === 'en' ? "/tour_payment_details" : `/${language}/tour_payment_details`}`)
+
+    // }
+    const checkValidation = (e) => {
+
+        let newReservations = reservations.map(reservation => {
+            // Copy selectedPickupPoints to selectedDropoffPoints
+            let updatedReservation = { ...reservation }; // Create a shallow copy to avoid mutating the original object
+            updatedReservation.selectedDropoffPoints = [...reservation.selectedPickupPoints];
+            return updatedReservation;
+        });
+
+        let errorHolder = reservationSchemeValidator({ reservations: newReservations, appData }, { checkTransferDetails: true });
         setInternalState({ errorHolder })
         if (errorHolder.status === 200) {
             router.push(`${language === 'en' ? "/tour_payment_details" : `/${language}/tour_payment_details`}`)
+        }
+    }
+    const outsideClick = ({ destination, index }) => {
+        //it means if we have seggested points then it will work otherwise it is nt
+        if (!Array.isArray(internalState[`collecting-${destination}-points-${index}`]))
+            setInternalState({ [`collecting-${destination}-points-${index}`]: [], [`${destination}-search-focus-${index}`]: false })
 
+    }
+    const setFocusToInput = (params = {}) => {
+        let { e, destination, index } = params
+
+        e.target.style.opacity = 0
+        setInternalState({ [`${destination}-search-focus-${index}`]: window.innerWidth > 990 ? false : true })
+        setTimeout(() => e.target.style.opacity = 1);
+    }
+    const inputOnChangeHandler = (params = {}) => {
+        let { index, value, destination } = params
+        let { passengerDetails: { token: passengerDetailsToken } } = reservations[0]
+
+        //hinder user  to add some Characters
+        if (ifHasUnwantedCharacters(value)) return
+
+        setInternalState({ [`${destination}-search-value-${index}`]: value })
+
+        if (value.length > 2) {
+            (async () => {
+                //set input loading to true
+                setInternalState({ [`${destination}-search-loading-${index}`]: true })
+
+                let log = await collectPointsAsync({ value, reducerSessionToken, language })
+                let { status, result, "session-token": sessionToken = "", token } = log
+
+                if (status == 200) {
+                    setInternalState({ [`${destination}-search-loading-${index}`]: false })
+
+                    //if we dont have passengerDetailsToken then save token on reservation objects;s passenger details
+                    if (!passengerDetailsToken) dispatch({ type: 'SET_TOKEN_TO_PASSENGERDETAILS', data: { token } })
+
+                    //check if session doesnt exist then  set session token to the reducer
+                    if (!reducerSessionToken) dispatch({ type: 'SET_SESSION_TOKEN', data: { sessionToken } });
+
+                    setInternalState({ [`collecting-${destination}-points-${index}`]: result })
+                } else {
+                    setInternalState({ [`collecting-${destination}-points-${index}`]: {} })
+                    setInternalState({ [`${destination}-search-loading-${index}`]: false })
+                }
+            })()
+        } else {
+            //reset collecting points
+            setInternalState({ [`collecting-${destination}-points-${index}`]: [] })
         }
     }
     const goBack = (e) => {
         e.preventDefault();
         router.back();
     };
+
+    let reservationError = (errorHolder.status === 403 && Array.isArray(errorHolder.reservations)) ? errorHolder.reservations[0] : {};
     return (
         <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
             <div className={`${styles.tr_details} page`}>
@@ -78,10 +188,10 @@ const TourCustomerDetails = () => {
                                             {<h2> {appData?.words['strPassengerDetails']}</h2>}
                                             <div className={styles.passenger_details}>
                                                 <div className={styles.input_div}>
-                                                    <TextInput label={appData?.words["strFullName"]} type="text" name="firstname" onChange={e => onchangeHandler(e)} value={firstname} errorMessage={errorHolder?.passengerDetails?.firstname} />
+                                                    <TextInput label={appData?.words["strFullName"]} type="text" name="firstname" onChange={e => onchangeHandler(e)} value={firstname} errorMessage={reservationError?.passengerDetails?.firstname} />
                                                 </div>
                                                 <div className={styles.input_div}>
-                                                    <TextInput label={appData?.words["strEmail"]} type="text" name="email" onChange={e => onchangeHandler(e)} value={email} errorMessage={errorHolder?.passengerDetails?.email} />
+                                                    <TextInput label={appData?.words["strEmail"]} type="text" name="email" onChange={e => onchangeHandler(e)} value={email} errorMessage={reservationError?.passengerDetails?.email} />
                                                 </div>
                                                 <div className={styles.input_div}>
                                                     <Select label={appData?.words["strNoofPassengers"]} name="passengersNumber" onChange={e => onchangeHandler(e)} value={passengersNumber} data={carObject[quotation.carId]?.pax} />
@@ -95,29 +205,55 @@ const TourCustomerDetails = () => {
                                                         inputProps={{
                                                             name: 'phone',
                                                             required: true,
-                                                            style: { border: errorHolder.passengerDetails?.phone ? '1px solid red' : ' 1px solid #ced4da' }
+                                                            style: { border: reservationError.passengerDetails?.phone ? '1px solid red' : ' 1px solid #ced4da' }
                                                         }}
                                                     />
-                                                </div>
-                                            </div>
-
-
-                                            <div className={styles.selected_points_details}>
-                                                <h2>  {appData?.words["seGoingDetails"]}  </h2>
-                                                <div className={`${styles.selectedlist_points}`} >
-                                                    {/* //index =0 it is like destination pickup  */}
-                                                    <div className={styles.list}>
-                                                        <p className={styles.list_Description}>
-                                                            {appData?.words["strPickupAddress"]}
-                                                        </p>
-                                                    </div>
-                                                    <TextInput label={"Description"} type="text" name="pickupadress" onChange={e => handlePickUpPointAddress(e)} value={pickupPointAddress} errorMessage={errorHolder.pickupPoint?.pickupadress} />
-
                                                 </div>
                                             </div>
                                             <div className={styles.textarea_div}>
                                                 <Textarea label={appData?.words["strSpecialRequestsTitle"]} name="specialRequests" value={specialRequests} onChange={(e) => onchangeHandler(e)} />
                                             </div>
+                                            <div className={styles.points}>
+                                                <div className={`${styles.search_menu} ${styles.second_column}`}>
+                                                    {/* Pick up location text */}
+                                                    {!selectedPickupPoints?.length > 0 ? <p className={`${styles.point_title1} ${direction}`}>{`${appData?.words["strPickupAddress"]}:`}</p> : <React.Fragment></React.Fragment>}
+                                                    {/* Pick Points text */}
+                                                    {selectedPickupPoints?.length > 0 ? <p className={`${styles.point_title} ${direction}`} >{appData?.words["strPickupPoints"]}</p> : <React.Fragment></React.Fragment>}
+                                                    {/* selectedPoints */}
+                                                    {/* //!case 1 => if quotations.points has only one item  =>show selected point*/}
+                                                    {selectedPickupPoints?.length === 1 && <SelectedPointsOnHomePage hasOneItem={false} isTaxiDeal={true} index={0} destination="pickup" points={selectedPickupPoints} />}
+
+                                                    <SelectedPointsOnTransferDetails isTaxiDeal={false} pointsError={reservationError['selectedPickupPoints']} selectedPoints={selectedPickupPoints} journeyType={0} type='pickup' language={language} />
+                                                    <OutsideClickAlert onOutsideClick={(e) => outsideClick({ destination: "pickup", index: 0 })}>
+                                                        <div className={`${styles.input_div} ${styles['search-input-container']}`} f={String(internalState[`pickup-search-focus-${0}`])} >
+                                                            <div className={`${styles.popup_header} ${direction}`} f={String(internalState[`pickup-search-focus-${0}`])}>
+                                                                <i className={`fa-solid fa-xmark ${styles.close_icon}`} onClick={(e) => closeModal({ index: 0, destination: "pickup" })}></i>
+                                                                <p className={direction}>{appData?.words["strWhereWithQuestionMark"]} </p>
+                                                            </div>
+                                                            {/* //!case 3 => if quotations.points has not has   item  =>show input field */}
+                                                            {selectedPickupPoints?.length === 0 ?
+                                                                <input
+                                                                    type="text"
+                                                                    autoComplete="off"
+                                                                    id="input_focused"//this is for scrolling top when ever we focus on mobile
+                                                                    placeholder={appData?.words["strPleaseTypePickupAddress"]}
+                                                                    value={internalState[`pickup-search-value-${0}`]}
+                                                                    autoFocus={internalState[`pickup-search-focus-${0}`]}
+                                                                    f={String(internalState[`pickup-search-focus-${0}`])} //giving a style if we focused
+                                                                    onFocus={e => setFocusToInput({ e, destination: "pickup", index: 0 })}
+                                                                    onChange={(e) => inputOnChangeHandler({ index: 0, destination: 'pickup', value: e.target.value })}
+                                                                    className={`${direction} ${reservationError?.selectedPickupPoints?.length > 0 && !internalState[`pickup-search-value-${0}`] && selectedPickupPoints?.length === 0 ? styles.error_input : ""}`}
+                                                                /> : <React.Fragment></React.Fragment>}
+                                                            {/* loading icon inside input */}
+                                                            {internalState[`pickup-search-loading-${0}`] ? <div className={styles.loading_div} popupp={String(internalState[`pickup-search-focus-${0}`])} direction={String(direction === "rtl")}><Loading /></div> : <React.Fragment></React.Fragment>}
+                                                            {/* results when we get points */}
+                                                            {!Array.isArray(internalState[`collecting-pickup-points-${0}`]) ?
+                                                                <HandleSearchResults isTaxiDeal={true} language={language} index={0} destination="pickup" setInternalState={setInternalState} collectingPoints={internalState[`collecting-pickup-points-${0}`]} /> : <React.Fragment></React.Fragment>}
+                                                        </div>
+                                                    </OutsideClickAlert>
+                                                </div>
+                                            </div>
+
                                             <div className={` ${direction === 'rtl' ? styles.directionbuttons : styles.buttons} `} >
                                                 <div className={styles.left}>
                                                     <button onClick={goBack} className='btn btn_primary'>{appData?.words["strGoBack"]}</button>

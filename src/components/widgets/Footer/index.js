@@ -174,7 +174,7 @@ const Footer = (props) => {
 
             <div className={styles.subcontent_left}>
               <div className={styles.copyright}>
-                Copyrights  © 2022  Airport Pickups London
+                Copyrights  © {`${ new Date().getFullYear()}`}  Airport Pickups London
               </div>
               <ul className={styles.lists}>
                 <li>

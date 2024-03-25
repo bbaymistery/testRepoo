@@ -14,8 +14,12 @@ let keywords = ""
 let description = ""
 const TourPaymentDetails = () => {
     const tourActionState = useSelector(state => state.tourActions)
-    let { quotation, passengerDetails: { firstname, phone, email }, selectedTour, transferDetails: { transferDateTimeString, specialRequests, passengersNumber, }, pickupPoint } = tourActionState
-    // //we use it to render paxs inside select component
+    let {  selectedTour, pickupPoint } = tourActionState
+    let state = useSelector((state) => state.pickUpDropOffActions)
+    let { reservations,  } = state
+    let { quotation, passengerDetails: { firstname, phone, email }, transferDetails: { transferDateTimeString, specialRequests, passengersNumber, }, selectedPickupPoints, selectedDropoffPoints, } = reservations[0]
+
+    //we use it to render paxs inside select component
     // const carObject = appData?.carsTypes?.reduce((obj, item) => ({ ...obj, [item.id]: item, }), {});
 
     const [splitedHour, splitedMinute] = splitDateTimeStringIntoHourAndMinute(transferDateTimeString) || []
@@ -35,8 +39,8 @@ const TourPaymentDetails = () => {
                                         specialRequests={specialRequests}
                                         passengersNumber={passengersNumber}
                                         firstname={firstname}
-                                        selectedPickupPoints={[]}
-                                        selectedDropoffPoints={[]}
+                                        selectedPickupPoints={selectedPickupPoints}
+                                        selectedDropoffPoints={selectedDropoffPoints}
                                         tourPickupPointAddress={pickupPoint}
                                         selectedTour={selectedTour}
                                         tourDetailsStatus={true}

@@ -12,7 +12,7 @@ import { splitDateTimeStringIntoDate, splitDateTimeStringIntoHourAndMinute } fro
 const TourCardQuotation = (params = {}) => {
 
   //by this index  we r gonna assure in which journey we should add quotation
-  let { quotationOptions: datas, selectedQuotation, index, quotationLoading = false, direction, selectedTour, language, transferDateTime } = params
+  let { quotationOptions: datas, selectedQuotation, quotationLoading = false, direction, selectedTour, language, transferDateTime } = params
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -26,7 +26,9 @@ const TourCardQuotation = (params = {}) => {
   const [splitedDate, setSplitedDate] = useState(currentDate())
   const setQuotationHandleClick = (params = {}) => {
     let { quotation, selectedTour } = params
-    dispatch({ type: "SET_TOUR_QUOTATION", data: { quotation, selectedTour } })
+    dispatch({ type: "SET_TOUR_QUOTATION", data: { selectedTour } })
+    dispatch({ type: "SET_QUOTATION", data: { quotation, journeyType: 0 } })
+
     router.push(`${language === 'en' ? "/tour_customer_details" : `/${language}/tour_customer_details`}`)
   };
 
@@ -48,7 +50,9 @@ const TourCardQuotation = (params = {}) => {
 
   const onChangeSetDateTimeHandler = (params = {}) => {
     let { value, hourOrMinute, } = params
-    dispatch({ type: 'SET_TOUR_DATETIME', data: { hourOrMinute, value } })
+    // dispatch({ type: 'SET_TOUR_DATETIME', data: { hourOrMinute, value } })
+    dispatch({ type: 'SET_JOURNEY_DATETIME', data: { journeyType:0, hourOrMinute, value } })
+
   }
   useEffect(() => {
     setHeightEl(`${refHeight?.current?.scrollHeight}px`);

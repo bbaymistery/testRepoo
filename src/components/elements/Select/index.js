@@ -11,7 +11,6 @@ const Select = (props) => {
   let state = useSelector((state) => state.pickUpDropOffActions)
   let { params: { direction } } = state
   const setModalInfo = (par) => dispatch({ type: "SET_MODAL_INFO", data: { trueOrFalse: true } })
-
   return (
     <div className={styles.select_wrapper}>
       <label className={`${styles.select} `} direction={String(direction === 'rtl')} err={String(typeof errorMessage === 'string' && errorMessage.length > 0)} >
