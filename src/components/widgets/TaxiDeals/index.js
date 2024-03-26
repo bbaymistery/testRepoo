@@ -54,6 +54,32 @@ const TaxiDeals = (props) => {
     const ripples = refs.map((ref) => useRipple(ref));
 
     const { appData } = useSelector(state => state.initialReducer)
+    function sortDestinationsAlphabetically(destinations) {
+        return destinations.sort((a, b) => {
+            // Simply compare the full pageTitle strings
+            return a?.pageTitle?.localeCompare(b.pageTitle);
+        });
+    }
+    // function sortDestinationsBySecondPart(destinations) {
+    //     // Assuming 'destinations' is your array of destination objects
+    //     return destinations.sort((a, b) => {
+    //         // Split the pageTitle by "to" and get the part after "to"
+    //         const destinationA = a.pageTitle.split(" to ")[1].trim();
+    //         const destinationB = b.pageTitle.split(" to ")[1].trim();
+
+    //         // Use localeCompare for a case-insensitive comparison
+    //         return destinationA.localeCompare(destinationB);
+    //     });
+    // }
+    // function getUniquePickups(destinations) {
+    //     const pickups = new Set(); // Create a new Set to hold unique pickup locations
+
+    //     destinations.forEach(destination => {
+    //         pickups.add(destination.pickup); // Add each pickup location to the Set
+    //     });
+
+    //     return pickups; // The Set will automatically remove any duplicates
+    // }
 
     const fecthPoints = async (params = {}) => {
         let { language, dealsNameProp = hasTaxiDeals } = params;
@@ -61,9 +87,19 @@ const TaxiDeals = (props) => {
         // Encode the dealsNameProp to handle spaces and special characters
         let encodedDealsNameProp = encodeURIComponent(dealsNameProp);
         let url = `${env.apiDomain}/api/v1/taxi-deals/list?points=${encodedDealsNameProp}&language=${language}&channelId=${channelId}`;
+        console.log(url);
+
         let response = await fetch(url);
         let { data, status } = await response.json();
-        if (status === 200) setTaxiPoints(data.destinations);
+        if (status === 200) {
+            setTaxiPoints(sortDestinationsAlphabetically(data?.destinations));
+
+            // Usage
+            // const sortedDestinations = sortDestinationsAlphabetically(data.destinations); // 'destinations' should be the array from your provided JSON
+            // console.log(sortedDestinations);
+            // console.log(getUniquePickups(data.destinations));
+
+        }
     };
 
 
@@ -98,7 +134,7 @@ const TaxiDeals = (props) => {
                         {taxiPoints.length > 1 ?
                             <div className={styles.title}>
                                 <h1>{appData?.words[`${titleStringOfHastaxiDeals(hasTaxiDeals)}`]}</h1>
-                                
+
                                 {islinknamecomponent ? "" : <p>{appData?.words["strAllinclusiveprices"]}</p>}
                             </div> : <></>}
                         {showTabs ?

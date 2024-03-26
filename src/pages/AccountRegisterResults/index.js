@@ -108,18 +108,18 @@ const AccountRegisterResults = (props) => {
                                     {/* //!Contact details */}
                                     <h2 style={{ marginTop: '1.5rem' }}>Operation Notes</h2>
                                     <div className={`${styles.info} ${styles.operationNotes_info} ${direction}`}>
-                                        <div className={styles.left} style={{ textTransform: "inherit" }}>Do you have any out-of-hours emergency number for urgent situations?</div>
+                                        <div className={styles.left} style={{ textTransform: "inherit" }}>{appData?.words["strDoYouHaveAnyOutOfHours"]}</div>
                                         {urgentSituationStatus === 'Yes' ? <div className={styles.right}>+ {urgentSituationNumber}</div> : <div className={styles.right}>{urgentSituationStatus}</div>}
                                     </div>
 
                                     <div className={`${styles.info} ${styles.operationNotes_info} ${direction}`}>
-                                        <div className={styles.left} style={{ textTransform: "inherit" }}>In case of extra payment for airport transfers, who pays for the extras?</div>
+                                        <div className={styles.left} style={{ textTransform: "inherit" }}>{appData?.words["strInCaseOfExtraPayment"]}</div>
                                         <div className={styles.right}>{accountPassengerStatus}</div>
 
                                     </div>
 
                                     <div className={`${styles.info} ${styles.operationNotes_info} ${direction}`}>
-                                        <div className={styles.left} style={{ textTransform: "inherit" }}>Any Other Operation comments</div>
+                                        <div className={styles.left} style={{ textTransform: "inherit" }}>{appData?.words["strAnyOtherOperationComments"]}</div>
                                         <div className={styles.right}>{anyOtherOperationComments ? anyOtherOperationComments : '--'}</div>
 
                                     </div>

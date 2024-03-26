@@ -7,7 +7,6 @@ import twImage from '../../../../public/social/tw.gif';
 import srImage from '../../../../public/social/rss.png';
 import instaIamge from '../../../../public/social/Instigram.gif';
 import styles from "./styles.module.scss"
-import Link from 'next/link';
 import { Airports, CruisePorts } from '../../../constants/navigatior';
 let normalText = "is a leading provider of London airport transfers and shuttle services in London. Our standards of reliability and comfort are second to none. What’s more, we pride ourselves on offering the very best service and value for money."
 const Footer = (props) => {
