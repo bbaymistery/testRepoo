@@ -177,7 +177,7 @@ const Header = () => {
               {width > 1200 ? <DesktopMenu appData={appData} journeyType={journeyType} language={language} /> : <></>}
               {/* mobile  */}
               {openMenu ?
-                <MobileMenu openMenu={openMenu} handleClickNavLinkMobileMenuNotList={handleClickNavLinkMobileMenuNotList} language={language} handleClickNavLinkMobileMenuList={handleClickNavLinkMobileMenuList} />
+                <MobileMenu openMenu={openMenu} handleClickNavLinkMobileMenuNotList={handleClickNavLinkMobileMenuNotList} language={language} handleClickNavLinkMobileMenuList={handleClickNavLinkMobileMenuList} appData={appData} />
                 : <></>}
             </div>
           </div>

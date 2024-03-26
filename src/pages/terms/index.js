@@ -94,7 +94,7 @@ const Terms = (props) => {
     let { bggray = false } = props;
     let { metaTitle, keywords, metaDescription, pageContent } = props
     const state = useSelector(state => state.pickUpDropOffActions);
-    const { params: { direction } } = state;
+    const { params: { direction, language } } = state;
     const [isActiveId, setIsActiveId] = useState(1);
     const { appData } = useSelector(state => state.initialReducer)
     // ...inside your component:
@@ -110,7 +110,9 @@ const Terms = (props) => {
         const section = link.id === 2 ? 'privacy-policy' : 'terms';
         setIsActiveId(link.id);
         sessionStorage.setItem('activeLinkId', link.id); // Store the active link ID in sessionStorage
-        window.location.href = `/terms?section=${section}`;
+        //${language === 'en' ? "/tour_customer_details" : `/${language}/tour_customer_details`}
+        window.location.href=(`${language === 'en' ? `/terms?section=${section}` : `/${language}/terms?section=${section}`}`)
+
     };
     return (
         <GlobalLayout keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={true}>
