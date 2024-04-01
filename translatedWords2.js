@@ -13,11 +13,10 @@
 //Tour Duration
 //Private tour
 //  approximately 8 hours, starts after your selected pickup time
-//sElect Car
 //Suitcases
-//dEscription
+//
+//Beetween Airports
 //todo  =>meet service=>  payment etapina  ekleyiver PAYBAY CARD PAY BAY CASH Sonrasi ise confirmation gelecek
-//todo => meet service stepleri hamsin gecib en basa back edende loading gelir onu coz
 
 
 

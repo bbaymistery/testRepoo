@@ -56,30 +56,10 @@ const TaxiDeals = (props) => {
     const { appData } = useSelector(state => state.initialReducer)
     function sortDestinationsAlphabetically(destinations) {
         return destinations.sort((a, b) => {
-            // Simply compare the full pageTitle strings
             return a?.pageTitle?.localeCompare(b.pageTitle);
         });
     }
-    // function sortDestinationsBySecondPart(destinations) {
-    //     // Assuming 'destinations' is your array of destination objects
-    //     return destinations.sort((a, b) => {
-    //         // Split the pageTitle by "to" and get the part after "to"
-    //         const destinationA = a.pageTitle.split(" to ")[1].trim();
-    //         const destinationB = b.pageTitle.split(" to ")[1].trim();
 
-    //         // Use localeCompare for a case-insensitive comparison
-    //         return destinationA.localeCompare(destinationB);
-    //     });
-    // }
-    // function getUniquePickups(destinations) {
-    //     const pickups = new Set(); // Create a new Set to hold unique pickup locations
-
-    //     destinations.forEach(destination => {
-    //         pickups.add(destination.pickup); // Add each pickup location to the Set
-    //     });
-
-    //     return pickups; // The Set will automatically remove any duplicates
-    // }
 
     const fecthPoints = async (params = {}) => {
         let { language, dealsNameProp = hasTaxiDeals } = params;

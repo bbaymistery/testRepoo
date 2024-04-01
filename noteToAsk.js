@@ -19,3 +19,10 @@ Taxi deals pickDrop
 // tours/1 =>ordaki review nu apiden nece getire bilerem
 
 //https://api.london-tech.com/api/v1/pages/details => "pagePathname":"/tours/cambridge-private-tour"   //doesnt bring page content 
+
+
+
+//http://localhost:3500/london-city-taxi-prices     >LCY AIRPORT TAXI PRICES       >TAXI DEALS GOSTERMIR 
+
+
+///heathrow/heathrow-to-strand-taxi   => https://api.london-tech.com/api/v1/taxi-deals/details  BU APIDE REQUEST ET GORECEYSEN HECNE CXMR 
