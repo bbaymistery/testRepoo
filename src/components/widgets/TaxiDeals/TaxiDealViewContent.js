@@ -5,9 +5,45 @@ import styles from "./styles.module.scss"
 import { useSelector } from 'react-redux'
 import Image from 'next/image'
 import { cruisePortimages, taxidealsImages } from '../../../constants/taxideals'
+/**
+ 
+//!Southpmap
+Heathrow to Southampton taxi
+Gatwick to Southampton taxi
+Stansted to Southampton taxi
+Luton to Southampton taxi
+Southampton to Heathrow taxi
+Southampton to Gatwick taxi
+Southampton to Luton taxi
+Southampton to Stansted taxi
+ */
+
+/*
+!Dover
+"Heathrow to Dover taxi"
+"Gatwick to Dover taxi"
+"Stansted to Dover taxi"
+"Luton to Dover taxi"
+Dover to Heathrow taxi
+Dover to Gatwick taxi
+Dover to Stansted taxi
+Dover to Luton taxi
+*/
+
+/*
+!portsmouth
+ "Heathrow to Portsmouth taxi"
+ "Gatwick to Portsmouth taxi"
+ "Luton to Portsmouth taxi"
+ "Stansted to Portsmouth taxi"
+"Portsmouth to Heathrow taxi"
+"Portsmouth to Luton taxi"
+"Portsmouth to Gatwick taxi"
+ "Portsmouth to Stansted taxi"
+*/
 
 //taking delas name and making it dynamic for gatwixk for heathrow and the others
-const taxiDealsValidLocations = (dealsName) => {
+const airportTaxiDealsValidLocations = (dealsName) => {
     //first letter uppercase
 
 
@@ -26,22 +62,42 @@ const taxiDealsValidLocations = (dealsName) => {
     ]
 }
 
+const cruiseTaxiDealsValidLocations = (dealsName) => {
+    dealsName = dealsName.charAt(0).toUpperCase() + dealsName.slice(1);
+
+    return [
+        `Heathrow to ${dealsName} taxi`,
+        `Gatwick to ${dealsName} taxi`,
+        `Luton to ${dealsName} taxi`,
+        `Stansted to ${dealsName} taxi`,
+        `${dealsName} to Heathrow taxi`,
+        `${dealsName} to Gatwick taxi`,
+        `${dealsName} to Luton taxi`,
+        `${dealsName} to Stansted taxi`
+    ]
+}
 
 const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
 
     const { appData } = useSelector(state => state.initialReducer)
     function filterDatas(datas) {
+        console.log({ dealsName, datas });
         if (["portsmouth", "dover", "harwich", "southampton"].includes(dealsName)) {
             //we  do not need any destructing
             //0.8 yaziriq cunki bize 10 tane locations getirir
             //https://api.london-tech.com//api/v1/taxi-deals/list?points=southampton&language=en&channelId=2
-            console.log({ dealsName, datas });
-
-            return datas = points.slice(0, 8)
+            const orderedTitles = cruiseTaxiDealsValidLocations(dealsName); // Get the ordered list of titles
+            const filteredData = [];
+            orderedTitles.forEach(title => {
+                // Find all items in datas that match the current title and add them to filteredData
+                const matchingData = datas.filter(data => data.pageTitle === title);
+                filteredData.push(...matchingData); // Using spread operator to flatten the array
+            });
+            return filteredData
         } else {
             return datas
-                .filter(({ pageTitle }) => taxiDealsValidLocations(dealsName).includes(pageTitle))
-                .sort((a, b) => taxiDealsValidLocations(dealsName).indexOf(a.pageTitle) - taxiDealsValidLocations(dealsName).indexOf(b.pageTitle));
+                .filter(({ pageTitle }) => airportTaxiDealsValidLocations(dealsName).includes(pageTitle))
+                .sort((a, b) => airportTaxiDealsValidLocations(dealsName).indexOf(a.pageTitle) - airportTaxiDealsValidLocations(dealsName).indexOf(b.pageTitle));
         }
     }
     //dealsName === 'dover' || dealsName === 'southampton' || dealsName === 'portsmouth' || dealsName === 'harwich'
