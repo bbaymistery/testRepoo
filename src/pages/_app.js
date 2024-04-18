@@ -5,7 +5,6 @@ import React, { useCallback, useEffect } from "react";
 import store from "../store/store";
 import env from '../resources/env';
 import "../styles/global.scss";
-import { parse } from 'url';
 import Error404 from './404/index'
 import { useRouter } from 'next/router';
 import { extractLanguage } from '../helpers/extractLanguage';

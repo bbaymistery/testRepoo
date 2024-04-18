@@ -122,6 +122,18 @@ export default function Home(props) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hasScrolled]);
 
+  const fetchC = async (par) => {
+    await fetch("http://ip-api.com/json").then((response) => {
+      return response.json()
+    }).then((data) => {
+      console.log(data);
+      console.log("data");
+
+    })
+  }
+  useEffect(() => {
+    fetchC()
+  }, [])
 
 
   return (

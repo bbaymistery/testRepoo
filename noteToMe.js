@@ -7,5 +7,16 @@
 //topHeader da lINKleri a tagina cevirdik mence artg resetSelectedPoits redux durumuna ehtiyac yoxdur
 //6231028Fatih!   >PAROL CHAT GPT =>jay@aplcars.com
 //terms quotatio n turkce yap sonra butona klikle goreceysen dil degisir ingilisce olur
-//!next config.js  https://aplairtest.netlify.app/    adresini genel adres ile degis
+//!next config.js  https://aplairtest.netlify.app/    adresini genel adres ile degis (asset prefix)
 // env file change website domain to real website name such as =>   websiteDomain: isDevelopment? "http://localhost:7000": "https://www.heathrow-gatwick-transfers.com",
+
+
+//!Which is done metatitles
+//*Home page
+//*Terms page
+//*About page
+//*Airports && Cruise Ports
+
+
+
+// check sitemap url U should change it to SET_APPLICANT_FOR_CREADIT_DETAILS.com 
