@@ -44,7 +44,7 @@ const Footer = (props) => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">{appData?.words["strSiteMap"]}</a>
+                  <a href="/sitemap.xml">{appData?.words["strSiteMap"]}</a>
                 </li>
                 <li>
                   <a href={`${language === 'en' ? `/about-us` : `/${language}/about-us`}`} title={appData.words["strAboutUs"]}>
