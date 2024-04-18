@@ -19,4 +19,13 @@
 
 
 
-// check sitemap url U should change it to SET_APPLICANT_FOR_CREADIT_DETAILS.com 
+// check sitemap url U should change it to SET_APPLICANT_FOR_CREADIT_DETAILS.com  =>next-sitemap.config.js
+/*
+next-sitemap.config.js
+module.exports = {
+    siteUrl: 'http://aplairtest.netlify.app',  // Change this to your local or production URL
+    outDir: './public', 
+    generateIndexSitemap:false
+  }
+  
+*/
