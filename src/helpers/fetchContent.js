@@ -3,7 +3,7 @@ import { parseCookies } from "./cokieesFunc";
 
 
 
-export const fetchContent = async (pagePathname, cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar) => {
+export const    fetchContent = async (pagePathname, cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar) => {
     let metaTitle = ""
     let pageContent = ""
     let metaDescription = ""

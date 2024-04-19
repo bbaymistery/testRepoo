@@ -4,7 +4,7 @@ const TopHeaderWhiteLeftButtons = ({ language, appData}) => {
     return (
         <div className={styles.buttons}>
             <div className={styles.whitebtn_div}>
-                <a href={language === 'en' ? '/travelAgents' : `/${language}/travelAgents`} title={appData?.words["strTravelAgents"]}>
+                <a href={language === 'en' ? '/travel-agents' : `/${language}/travel-agents`} title={appData?.words["strTravelAgents"]}>
                     <button  >{appData?.words["strTravelAgents"]}</button>
                 </a>
             </div>

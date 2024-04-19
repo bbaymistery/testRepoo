@@ -349,7 +349,7 @@ export const navigatorMobile = [
         firstChild: false
     },{
         innerText: "Travel Agents",
-        path: "/travelAgents",
+        path: "/travel-agents",
         type: "cell",
         hasTaxiDeals: "",
         strInnerText: "strTravelAgents",

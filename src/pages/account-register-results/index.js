@@ -161,7 +161,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
 
     for (let i = 0; i < langs.length; i++) {
         const lang = langs[i]
-        const langUrl = lang === 'en' ? '/AccountRegisterResults' : `/${lang}/AccountRegisterResults`
+        const langUrl = lang === 'en' ? '/account-register-results' : `/${lang}/account-register-results`
         if (req.url === langUrl) {
             return {
                 redirect: {

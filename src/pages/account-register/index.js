@@ -67,7 +67,7 @@ const AccountRegister = (props) => {
                     console.log(jsonResponse); // Handle the response data as needed
                     setLoadingFetch(false)
                     if (jsonResponse.status === 100 || jsonResponse.status === 200) {
-                        router.push(`${language === 'en' ? "/AccountRegisterResults" : `${language}/AccountRegisterResults`}`)
+                        router.push(`${language === 'en' ? "/account-register" : `${language}/account-register`}`)
                     } else {
                         alert("Something went wrong please try again")
                     }

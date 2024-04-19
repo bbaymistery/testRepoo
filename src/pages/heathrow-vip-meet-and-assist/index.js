@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from "./styles.module.scss"
 import GlobalLayout from '../../components/layouts/GlobalLayout'
+import { parse } from 'url';
 import LeftSidebarInformation from '../../components/elements/LeftSidebarInformation'
 import ShowcaseRight from './ShowcaseRight'
 import DropDown from '../../components/elements/Dropdown/dropdown'
@@ -11,10 +12,10 @@ import { useRouter } from 'next/router';
 import { meetAndGreetActions } from '../../store/meetAndGreetActions'
 import store from '../../store/store'
 import Loading from '../../components/elements/alert/Loading'
+import { checkLanguageAttributeOntheUrl } from '../../helpers/checkLanguageAttributeOntheUrl'
+import { fetchContent } from '../../helpers/fetchContent';
 
-let description = "Heathrow VIP Meet and Assist service includes meet by the plane door and assist the passenger to final detsination."
-let title = "VIP Meet and assist at Heathrow Airport"
-let keywords = "VIP Meet and assist"
+
 const buttonLabels = [
     { labelName: "strArrival", headingName: "strArrivalAirport", normalName: "Arrival" },
     { labelName: "strDeparture", headingName: "strDepartureAirport", normalName: "Departure" },
@@ -22,6 +23,8 @@ const buttonLabels = [
 
 
 const HeathrowVipMeet = (props) => {
+    let { metaTitle, keywords, metaDescription, shortDescription, pageTitle,pageContent } = props
+
     const router = useRouter()
     const dispatch = useDispatch()
     //buttons
@@ -94,10 +97,11 @@ const HeathrowVipMeet = (props) => {
         }
     }
 
+console.log(props);
 
 
     return (
-        <GlobalLayout keywords={keywords} title={title} description={description} footerbggray={true}>
+        <GlobalLayout keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={true}>
             <div className={`${styles.vipmeet} ${direction} page`} bggray={String(bggray === "true")}>
                 <div className={styles.showcase_column}>
                     <div className={styles.showcase_column_container}>
@@ -177,103 +181,21 @@ const HeathrowVipMeet = (props) => {
                                 <LeftSidebarInformation direction={direction} appData={appData} />
                             </div>
                             <div className={styles.right_content}>
-                                <div className={`${styles.vipmeet_header}`}>
-                                    <h1>Start Your Journey with a Smile."Meet, Greet, and Fly with Ease."</h1>
-                                    <p>For bookings and information please email us at   <a style={{ fontWeight: "500" }} href="mailto: info@aplcars.com"> info@aplcars.com</a>
-                                    </p>
-                                </div>
-                                &nbsp;
                                 <div className={`${styles.vipmeet_footer}`}>
 
-                                    <h2>Heathrow's Premier Personal Assistance Service</h2>
+                                    <h1>{pageTitle}</h1>
                                     <ul className={styles.img_flex_ul}>
-                                        <li >
-                                            Navigating a bustling international airport like Heathrow can be overwhelming,
-                                            especially after a long flight. Whether you're a seasoned traveler or on your first
-                                            international journey, our Heathrow Meet and Assist service ensures a seamless and stress-free experience.
+                                        <p style={{listStyleType:"none"}}>
+                                            {shortDescription}
                                             <br />
-
-
-                                        </li>
-
-                                        <li>
+                                        </p>
+                                        <p style={{listStyleType:"none"}}>
                                             <img src="/images/meetGreet/meetCollective.jpg" alt="" />
-
-                                        </li>
-                                    </ul>
-
-                                    <br />
-                                    <h2>From the Airplane Door to Beyond</h2>
-                                    <ul className={styles.img_flex_ul}>
-                                        <li>
-                                            Our dedicated agents will be waiting
-                                            for you as soon as you step off the plane.
-                                            With a friendly smile and an in-depth knowledge
-                                            of Heathrow's layout and procedures, we'll ensure you feel taken care of from the moment you land.
-                                        </li>
-
-                                        <li>
-                                            <img src="/images/meetGreet/meetGroup2.jpg" alt="" />
-
-                                        </li>
+                                        </p>
                                     </ul>
                                     <br />
-                                    <h2>Swift Passport Control</h2>
+                                    <div className={`${styles.page_content} `} dangerouslySetInnerHTML={{ __html: pageContent.replace("URL-to-Porter-Service","/heathrow-porter-service") }} />
 
-                                    <ul className={styles.img_flex_ul}>
-                                        <li>
-                                            Avoid the long queues and uncertainty at Passport Control.
-                                            With our Meet and Assist service, our agents will guide you through a
-                                            streamlined process, making sure all your documentation is in order and assisting with any questions or concerns.
-                                        </li>
-
-                                        <li>
-                                            <img src="/images/meetGreet/passControl2.jpeg" alt="" />
-
-                                        </li>
-                                    </ul>
-
-
-
-                                    <br />
-                                    <h2>
-                                        Hassle-Free Baggage Claim
-                                    </h2>
-                                    <ul className={styles.img_flex_ul}>
-                                        <li>
-                                            No more waiting around or searching for your luggage. Our team will assist you at the baggage claim area, ensuring that you retrieve all your belongings quickly and efficiently.
-                                        </li>
-
-                                        <li>
-
-
-                                        </li>
-                                    </ul>
-                                    <br />
-                                    <br />
-                                    <h2>Why Choose Our Meet and Assist Service?</h2>
-                                    <ul className={styles.img_flex_ul}>
-                                        <li>
-                                            <ul className={styles.li_circle_ul}>
-                                                <li className={styles.li_circle}>Personalized Service: Our agents are trained to cater to your specific needs, ensuring a tailor-made experience every time.</li>
-                                                <li className={styles.li_circle}>Time-Saving: Navigate the airport quickly and efficiently, maximizing your time for what truly matters.</li>
-                                                <li className={styles.li_circle}>Peace of Mind: Travel can be stressful. Let us handle the complexities of the airport while you relax and enjoy the journey.</li>
-                                                <li className={styles.li_circle}>Take them to the VIP lounge if they have a booking (time permitting) and then escort them to the aircraft of the connecting flight.</li>
-                                                <br />
-                                                Join the hundreds of travelers who start their journey with a smile, knowing they're in capable hands. Choose Heathrow Meet and Assist for a smoother, more enjoyable travel experience.
-                                            </ul>
-                                        </li>
-
-                                        <li>
-
-                                        </li>
-                                    </ul>
-
-                                    <br />
-                                    <h2>{appData?.words["strPorterService"]}</h2>
-                                    <ul>
-                                        <li>For porter service please visit our  <a style={{ fontWeight: "500" }} href="/heathrow-porter-service">Porter page</a></li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -283,5 +205,14 @@ const HeathrowVipMeet = (props) => {
         </GlobalLayout>
     )
 }
-
+export async function getServerSideProps({ req, res }) {
+    let firstLoadLangauge = checkLanguageAttributeOntheUrl(req?.url)
+    const { cookie } = req.headers;
+    let { pathname } = parse(req?.url, true)
+    let pathnameUrlWHenChangeByTopbar = pathname
+    let { metaTitle, keywords, pageContent, metaDescription, shortDescription, pageTitle } = await fetchContent("/heathrow-vip-meet-and-assist", cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar)
+    return {
+        props: {   metaTitle, keywords, pageContent, metaDescription, shortDescription, pageTitle}
+    }
+}
 export default HeathrowVipMeet

@@ -135,6 +135,7 @@ export default function Home(props) {
     fetchC()
   }, [])
 
+      // birileri buyur harfler yazarsa sen onu kucuge cevir * bunu arasdir  / 
 
   return (
     <GlobalLayout keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={true} >

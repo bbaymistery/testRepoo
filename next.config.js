@@ -43,7 +43,6 @@ const nextConfig = {
   },
   async redirects() {
     return [
-
       {
         source: "/Heathrow",
         destination: "/heathrow-taxi-prices",
