@@ -142,6 +142,24 @@ const wrapper = createWrapper(makestore);
 
 
 MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ Component, ctx }) => {
+  // Sunucu tarafında çalışıp çalışmadığını kontrol et
+  if (ctx.req) {
+    // Sunucu tarafındaysanız, URL'de büyük harfleri kontrol et
+    const { req, res } = ctx;
+    const resolvedUrl = req.url;
+    const lowerCaseUrl = resolvedUrl.toLowerCase();
+
+    // Eğer URL'de büyük harf varsa, küçük harfe yönlendir
+    if (resolvedUrl !== lowerCaseUrl) {
+      res.setHeader('Location', lowerCaseUrl);
+      res.statusCode = 301;
+      res.end();
+      return {};
+    }
+  }
+
+
+
   const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
   //language congiguration based on the url (http://localhost:3500/it/gatwick-taxi-prices  if he pres enter we get lang)
   let lang = checkLanguageAttributeOntheUrl(ctx?.req?.url)
