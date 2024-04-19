@@ -54,16 +54,6 @@ const makestore = () => store;
 const wrapper = createWrapper(makestore);
 //?biz burada metatile metaDescriptionlari fethcContente gore alib gonderirirk Her sayfa icin ayri bi sekilde gider
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
-    const { resolvedUrl } = etc;
-    const lowerCaseUrl = resolvedUrl.toLowerCase();
-    console.log({ resolvedUrl, lowerCaseUrl });
-
-    if (resolvedUrl !== lowerCaseUrl) {
-        res.setHeader('Location', lowerCaseUrl);
-        res.statusCode = 301;
-        res.end();
-        return { props: { data: "not found", } }
-    }
 
     //!Dil ayarlarını kontrol etmek için URL'yi analiz et
     //language congiguration based on the url (http://localhost:3500/it/gatwick-taxi-prices  if he pres enter we get lang)
