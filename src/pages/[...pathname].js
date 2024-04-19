@@ -127,6 +127,16 @@ const cache = {}
 //     return kilobytes;
 // }
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
+      const { resolvedUrl } = etc;
+    const lowerCaseUrl = resolvedUrl.toLowerCase();
+
+    if (resolvedUrl !== lowerCaseUrl) {
+        res.setHeader('Location', lowerCaseUrl);
+        res.statusCode = 301;
+        res.end();
+        return { props: { data: "not found", } }
+    }
+   
     res?.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59')
     let pickUps = []
     let dropoffs = []

@@ -142,21 +142,6 @@ const wrapper = createWrapper(makestore);
 
 
 MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ Component, ctx }) => {
-  // Sunucu tarafında çalışıp çalışmadığını kontrol et
-  if (ctx.req) {
-    // Sunucu tarafındaysanız, URL'de büyük harfleri kontrol et
-    const { req, res } = ctx;
-    const resolvedUrl = req.url;
-    const lowerCaseUrl = resolvedUrl.toLowerCase();
-
-    // Eğer URL'de büyük harf varsa, küçük harfe yönlendir
-    if (resolvedUrl !== lowerCaseUrl) {
-      res.setHeader('Location', lowerCaseUrl);
-      res.statusCode = 301;
-      res.end();
-      return {};
-    }
-  }
 
 
 
