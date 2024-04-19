@@ -81,7 +81,6 @@ const TaxiDealViewContent = ({ points, dealsName, islinknamecomponent }) => {
 
     const { appData } = useSelector(state => state.initialReducer)
     function filterDatas(datas) {
-        console.log({ dealsName, datas });
         if (["portsmouth", "dover", "harwich", "southampton"].includes(dealsName)) {
             //we  do not need any destructing
             //0.8 yaziriq cunki bize 10 tane locations getirir

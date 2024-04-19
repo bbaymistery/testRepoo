@@ -37,8 +37,6 @@ const NavbarLinkName = (props) => {
         }
     }, [linkname, dispatch]); // Add linkname and dispatch to the dependency array
 
-    console.log({ pageContent });
-
 
     return (
         <GlobalLayout keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={false}>
@@ -56,9 +54,17 @@ const makestore = () => store;
 const wrapper = createWrapper(makestore);
 //?biz burada metatile metaDescriptionlari fethcContente gore alib gonderirirk Her sayfa icin ayri bi sekilde gider
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
+
+ 
+
+    //!Dil ayarlarını kontrol etmek için URL'yi analiz et
     //language congiguration based on the url (http://localhost:3500/it/gatwick-taxi-prices  if he pres enter we get lang)
     let pageStartLanguage = checkLanguageAttributeOntheUrl(req?.url)
+
+    //! Caching başlıklarını ayarla
     res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59');
+
+    //! Gelen URL'i analiz et
     const { cookie } = req.headers;
     let { pathname } = parse(req.url, true)
     let pathnameUrlWHenChangeByTopbar = pathname
@@ -71,11 +77,19 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
         pathname = `/${pathname.split("/")[2]}`
     }
     let { metaTitle, keywords, pageContent, metaDescription, status, lang } = await fetchContent(pathname, cookie, pageStartLanguage, pathnameUrlWHenChangeByTopbar)
-    let exceptions = pathname === "/dover-cruise-taxi" || pathname === "/portsmouth-taxi-prices" || pathname === "/harwich-taxi-prices"
+    console.log({ pathname, cookie, pageStartLanguage, pathnameUrlWHenChangeByTopbar });
+
+    //!Istisnalar
+    let exceptions = pathname === "/dover-cruise-taxi" || pathname === "/portsmouth-taxi-prices" || pathname === "/harwich-taxi-prices" || pathname === "/southampton-cruise-taxi"
+    console.log({ exceptions, status });
+
     if (exceptions) status = 200
+
+    //!Canoncakls
     let mainCanonical = lang === 'en' ? `${env.websiteDomain}${pathname}` : `${env.websiteDomain}/${lang}${pathname}`
     let canonicalAlternates = generateCanonicalAlternates(pathname);
 
+    //!Shemas
     // /harwich-taxi-prices =>destruct harwich and turn first letter to uppercase
     let breadcumbName1 = urlToTitle({ url: pathname, linknamePage: true })
     let breadcumbSchema = {
@@ -95,6 +109,9 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
         ]
     }
     let schemas = [breadcumbSchema]
+
+
+    //!respond
     if (status === 200) {
         return { props: { metaTitle, keywords, pageContent, metaDescription, canonicalAlternates, mainCanonical, schemas } }
     } else {

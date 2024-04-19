@@ -106,7 +106,6 @@ const PaymentMethods = (props) => {
         fetch(url, config)
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
 
             setDataTokenForWebSocket(data); //we use inside interval in order to detect it is which payment
             setStatusToken(data?.webSocketToken); //it will trigger interval and will make request

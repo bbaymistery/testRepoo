@@ -126,8 +126,6 @@ export default function Home(props) {
   //   await fetch("http://ip-api.com/json").then((response) => {
   //     return response.json()
   //   }).then((data) => {
-  //     console.log(data);
-  //     console.log("data");
 
   //   })
   // }
@@ -192,7 +190,6 @@ export async function getServerSideProps({ req, res }) {
 //   country = geo.country.toLowerCase();
 // }
 
-// console.log(`IP: ${ip}, Country: ${country}`);
 
 // return {
 //   props: {

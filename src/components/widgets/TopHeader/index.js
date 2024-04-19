@@ -81,7 +81,6 @@ const Header = () => {
   const toggleMenu = () => {
     // menuRef.current.classList.toggle(`${styles.menuActive}`);
     // mobileMenu?.current?.classList.toggle(`${styles.active_header_content_menu_mobile}`);
-    // console.log(mobileMenu);
 
     setOpenMenu(!openMenu)
     // let positionOfBody = getComputedStyle(document.body).position

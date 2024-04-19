@@ -133,7 +133,6 @@ const AccountRegister = (props) => {
     // Update the token state when the verification is successful
     const handleRecaptchaVerify = (newToken) => setRecapthcaToken(newToken)
 
-    console.log(language);
 
 
     return (

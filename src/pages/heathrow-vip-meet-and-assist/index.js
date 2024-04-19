@@ -50,7 +50,6 @@ const HeathrowVipMeet = (props) => {
                 ...previousLabels.slice(1) // This keeps the rest of the array items unchanged
             ]);
             dispatch({ type: "SET_TERMINAL", data: { newTerminal: `-- ${newSelectLabel} --` } })
-            console.log(newSelectLabel);
         }
 
         //baslangcda terminali secirik book now tikliyrq
@@ -97,7 +96,6 @@ const HeathrowVipMeet = (props) => {
         }
     }
 
-console.log(props);
 
 
     return (

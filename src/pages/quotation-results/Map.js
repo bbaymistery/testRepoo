@@ -41,8 +41,6 @@ const Map = ({ datas, selectedPickPoints, selectedDroppOfPoints, isTaxiDeal = fa
   let polyOptions = datas?.polylinePath?.map((poly) => { return { lat: poly[0], lng: poly[1] }; });
 
   let pathOptions = datas?.markerPoints?.map((poly) => { return { lat: poly[0], lng: poly[1] }; });
-  console.log({ polyOptions });
-  console.log({ pathOptions });
 
   const options = {
     strokeColor: "red",

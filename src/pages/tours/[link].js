@@ -249,7 +249,6 @@ const TourContentDetails = (props) => {
     )
 }
 const extractTourPath = async (url) => {
-    console.log(url);
     let languages = ['/tr', '/es', '/it', '/ar', '/zh', '/ru', '/en']
     // Check if the URL ends with '.json'
     if (url.endsWith('.json')) {

@@ -29,3 +29,7 @@ module.exports = {
   }
   
 */
+
+
+// https://octopus.do/purvokp0sq
+// https://www.xml-sitemaps.com/details-aplairtest.netlify.app-8ed5a4847.html

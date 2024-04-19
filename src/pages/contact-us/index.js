@@ -74,7 +74,6 @@ const ContactUs = (props) => {
             let reqOptions = { method, body, headers, };
             fetch(`${env.apiDomain}/tools/mailer`, reqOptions)
                 .then((res) => {
-                    console.log(res);
                     dispatch({ type: "ALERT", payload: { loading: false } })
                     if (res.status === 200) {
                         dispatch({ type: "ALERT", payload: { success: "Email successfully sended" } })
@@ -101,7 +100,6 @@ const ContactUs = (props) => {
         if (e === active) return setActive(null);
         setActive(e);
     };
-    console.log(language);
 
     return (
         <GlobalLayout title="Contact Us" keywords="Contact Us" description="Contact Us" footerbggray={true}>

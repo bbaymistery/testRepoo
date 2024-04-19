@@ -123,7 +123,6 @@ const cache = {}
 //     const jsonString = JSON.stringify(jsonObject);
 //     const bytes = jsonString.length * 2;
 //     const kilobytes = bytes / 1024;
-//     console.log({ kilobytes });
 
 //     return kilobytes;
 // }

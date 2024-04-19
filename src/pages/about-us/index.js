@@ -11,10 +11,6 @@ const AboutUs = (props) => {
     const state = useSelector(state => state.pickUpDropOffActions)
     let { params: { direction } } = state
     let { metaTitle, keywords, metaDescription, shortDescription, pageTitle } = props
-    console.log(props);
-
-
-
 
     return (
         <GlobalLayout keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={true}>

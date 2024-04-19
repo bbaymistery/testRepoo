@@ -84,7 +84,6 @@ const TourCustomerDetails = () => {
         dispatch({ type: 'SET_PASSEGER_DETAILS', data: { name, value, index: 0, updateBothJourneyCheckBox: passengerDetailsStatus } })
     }
 
-    // console.log(internalState);
 
     const onchangeHandler = (e) => {
         let { name, value } = e.target;
@@ -97,7 +96,6 @@ const TourCustomerDetails = () => {
 
     // let passengerDetails = { firstname, phone, email }
     // let errorHolder = tourSchemaValidator({ passengerDetails, pickupPoint });
-    // console.log(errorHolder);
 
     // setInternalState({ errorHolder })
     // if (errorHolder.status === 200) {

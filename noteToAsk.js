@@ -13,8 +13,7 @@ Navigationda Cruses icerisnde harwiche tikliyinca
 https://api.london-tech.com//api/v1/taxi-deals/list?points=harwich&language=en&channelId=2y    =>neden hic bir sey gelmyor   harwich yerine luton yaz pointsler geliyor
 
 Taxi deals pickDrop
-
-
+//ilk Swanage deki Airport kelimesi nerden geliyor   Heathr ((heathrow secilende View all tikla))
 */
 // tours/1 =>ordaki review nu apiden nece getire bilerem
 

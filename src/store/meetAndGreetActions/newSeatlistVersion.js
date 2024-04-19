@@ -46,7 +46,6 @@ function SET_SEATLISTS(params = {}) {
     //by defaults seatlist price is already180
     //incase if seatlist changes we update price of seatlist
     newState.seatListPrice = newTotalPrice
-    console.log(idx);
 
     if (idx === 0) {
         newState.passengersFormAdults = newPassengersForm

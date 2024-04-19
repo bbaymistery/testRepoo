@@ -2,7 +2,6 @@ function SET_TOUR_PICKUP_ADRESS(params = {}) {
     let { state, action } = params
     let { data: { pickupadress } } = action
     let newState = JSON.parse(JSON.stringify(state))
-console.log(pickupadress);
 
     newState.pickupPoint.pickupadress = pickupadress
     return newState;
