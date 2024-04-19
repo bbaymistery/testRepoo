@@ -59,8 +59,6 @@ const GlobalLayout = ({ children, title = seoDefaults.title, description = seoDe
         {children}
       </main>
       {((isVisible && router.pathname === '/[...pathname]') || (router.pathname !== '/[...pathname]')) && (<Footer bggray={footerbggray} />)}
-
-
     </>
   )
 }

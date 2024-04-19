@@ -11,7 +11,7 @@ import Tours from "./tours";
 import { fetchContent } from "../helpers/fetchContent";
 import { checkLanguageAttributeOntheUrl } from "../helpers/checkLanguageAttributeOntheUrl";
 import env from "../resources/env";
-import { useRouter } from "next/router";
+
 const structuredSchema = {
   "@context": "http://schema.org/",
   "@type": "LocalBusiness",
@@ -122,18 +122,18 @@ export default function Home(props) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hasScrolled]);
 
-  const fetchC = async (par) => {
-    await fetch("http://ip-api.com/json").then((response) => {
-      return response.json()
-    }).then((data) => {
-      console.log(data);
-      console.log("data");
+  // const fetchC = async (par) => {
+  //   await fetch("http://ip-api.com/json").then((response) => {
+  //     return response.json()
+  //   }).then((data) => {
+  //     console.log(data);
+  //     console.log("data");
 
-    })
-  }
-  useEffect(() => {
-    fetchC()
-  }, [])
+  //   })
+  // }
+  // useEffect(() => {
+  //   fetchC()
+  // }, [])
 
       // birileri buyur harfler yazarsa sen onu kucuge cevir * bunu arasdir  / 
 

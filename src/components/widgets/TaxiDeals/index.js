@@ -59,6 +59,24 @@ const TaxiDeals = (props) => {
             return a?.pageTitle?.localeCompare(b.pageTitle);
         });
     }
+    // Function to sort destinations
+    function sortDestinations(data, dealsName) {
+
+        data.sort((a, b) => {
+            let isHeathrowA = a.pickup.toLowerCase().includes(dealsName); // Check if 'pickup' includes "heathrow"
+            let isHeathrowB = b.pickup.toLowerCase().includes(dealsName); // Check if 'pickup' includes "heathrow"
+
+            // Prioritize entries that include "Heathrow" in the sort order
+            if (isHeathrowA && !isHeathrowB) {
+                return -1; // a comes first
+            }
+            if (isHeathrowB && !isHeathrowA) {
+                return 1; // b comes first
+            }
+            return 0; // no change
+        });
+    }
+
 
 
     const fecthPoints = async (params = {}) => {
@@ -67,18 +85,13 @@ const TaxiDeals = (props) => {
         // Encode the dealsNameProp to handle spaces and special characters
         let encodedDealsNameProp = encodeURIComponent(dealsNameProp);
         let url = `${env.apiDomain}/api/v1/taxi-deals/list?points=${encodedDealsNameProp}&language=${language}&channelId=${channelId}`;
-        console.log(url);
 
         let response = await fetch(url);
         let { data, status } = await response.json();
+
         if (status === 200) {
             setTaxiPoints(sortDestinationsAlphabetically(data?.destinations));
-
-            // Usage
-            // const sortedDestinations = sortDestinationsAlphabetically(data.destinations); // 'destinations' should be the array from your provided JSON
-            // console.log(sortedDestinations);
-            // console.log(getUniquePickups(data.destinations));
-
+            sortDestinations(data.destinations,hasTaxiDeals)
         }
     };
 
@@ -101,8 +114,6 @@ const TaxiDeals = (props) => {
         //asagidaki iki kod asagidaki use effecti acanda yox olmalidir
         dispatch({ type: "SET_NAVBAR_TAXI_DEALS", data: { hasTaxiDeals } });
     }, [language, hasTaxiDeals])
-
-
 
 
     return (
