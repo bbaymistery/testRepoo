@@ -481,7 +481,9 @@ const TransferDetails = (props) => {
                                                     </div>
                                                     <div className={` ${direction === 'rtl' ? styles.directionbuttons : styles.buttons}  ${quotations[0]?.taxiDeal ? styles.taxideal_buttons : ""}`} >
                                                         <div className={styles.left}>
-                                                            <Link href={`${localStorage?.getItem("path") ? localStorage?.getItem("path") : "/"}`}><button className='btn btn_primary'>{appData?.words["strGoBack"]}</button> </Link>
+                                                            <Link href={`${localStorage?.getItem("path") ? localStorage?.getItem("path") : "/"}`}>
+                                                                <button className='btn btn_primary'>{appData?.words["strGoBack"]}</button>
+                                                                 </Link>
                                                             <button onClick={(e) => checkValidation(e)} className='btn btn_primary'>{appData?.words["strNext"]}</button>
                                                         </div>
                                                         <div className={styles.right}></div>
@@ -575,7 +577,8 @@ const TransferDetails = (props) => {
                                                 </div>
                                                 {quotations[0].taxiDeal ? <></> : <TransferJourneySummaryPanel journeyType={journeyType} index={index} splitedHour={splitedHour} splitedMinute={splitedMinute} splitedDate={splitedDate} quotation={quotation} selectedDropoffPoints={selectedDropoffPoints} selectedPickupPoints={selectedPickupPoints} />}
                                             </div>
-                                            {index === 1 || (index === 0 && +journeyType === 0) ? <div className={`${direction === 'rtl' ? styles.directionbuttons_for_gap : styles.buttons_for_gap}  ${quotations[0]?.taxiDeal ? styles.taxideal_buttons : ""}`} >
+                                            {index === 1 || (index === 0 && +journeyType === 0) ?
+                                             <div className={`${direction === 'rtl' ? styles.directionbuttons_for_gap : styles.buttons_for_gap}  ${quotations[0]?.taxiDeal ? styles.taxideal_buttons : ""}`} >
                                                 <div className={styles.left}>
 
                                                 </div>

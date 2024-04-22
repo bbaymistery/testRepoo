@@ -691,7 +691,7 @@ $checkbox-selected: $primary; // Primary colour
                         }
                     }
 
-                    .buttons {
+                    .buttons,.directionbuttons {
                         display: flex;
                         gap: 1rem;
                         align-items: flex-start;
@@ -1039,7 +1039,7 @@ $checkbox-selected: $primary; // Primary colour
                         }
                     }
 
-                    .buttons {
+                    .buttons,.directionbuttons {
                         display: flex;
                         gap: 1rem;
                         align-items: flex-start;
