@@ -5,7 +5,7 @@ import Footer from '../../widgets/Footer';
 import { useRouter } from 'next/router';
 import { seoDefaults } from '../../../constants/seoDefaults';
 
-const GlobalLayout = ({ children, title = seoDefaults.title, description = seoDefaults.description, keywords = seoDefaults.keywords, footerbggray = seoDefaults.footerbggray, isVisible = seoDefaults.isVisible }) => {
+const GlobalLayout = ({ children, title = seoDefaults.title, description = seoDefaults.description, keywords = seoDefaults.keywords, footerbggray = seoDefaults.footerbggray, isVisible = seoDefaults.isVisible,  }) => {
   const router = useRouter()
   const currentYear = new Date().getFullYear(); // Get the current year
 
@@ -31,20 +31,20 @@ const GlobalLayout = ({ children, title = seoDefaults.title, description = seoDe
         <meta name="msvalidate.01" content="41FC097AFD6E06774C838AC3D486664F" />
         <meta httpEquiv="X-UA-Compatible" content="IE=9" />
         <meta httpEquiv="x-ua-compatible" content="IE=EmulateIE9" />
-        <meta name="twitter:site" content="@Airport_Pickups" />
-        <meta property="twitter:account_id" content="2194542811" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@Airport_Pickups" />
-        <meta name="twitter:title" content="Airport Pickups London" />
-        <meta name="twitter:description" content="APL offers cheap airport travel and cruise port transfers and shuttle service to London. We cover Heathrow, Gatwick, Stansted, Luton and City Airports" />
-        <meta name="twitter:image" content="https://www.airport-pickups-london.com/images/apl-tw-logo.png" />
-        <meta property="og:title" content="London Airport Transfers to Airport-Car Service-Minicab" />
-        <meta property="og:description" content="APL offers cheap airport travel and cruise port transfers and shuttle service to London. We cover Heathrow, Gatwick, Stansted, Luton and City Airports" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.airport-pickups-london.com/" />
-        <meta property="og:site_name" content="Airport Pickups London" />
+        {/* <meta name="twitter:site" content="@Airport_Pickups" /> */}
+        {/* <meta property="twitter:account_id" content="2194542811" /> */}
+        {/* <meta name="twitter:card" content="summary_large_image" /> */}
+        {/* <meta name="twitter:site" content="@Airport_Pickups" /> */}
+        {/* <meta name="twitter:title" content="Airport Pickups London" /> */}
+        {/* <meta name="twitter:description" content="APL offers cheap airport travel and cruise port transfers and shuttle service to London. We cover Heathrow, Gatwick, Stansted, Luton and City Airports" /> */}
+        {/* <meta name="twitter:image" content="https://www.airport-pickups-london.com/images/apl-tw-logo.png" /> */}
+        {/* <meta property="og:title" content="London Airport Transfers to Airport-Car Service-Minicab" /> */}
+        {/* <meta property="og:description" content="APL offers cheap airport travel and cruise port transfers and shuttle service to London. We cover Heathrow, Gatwick, Stansted, Luton and City Airports" /> */}
+        {/* <meta property="og:type" content="website" /> */}
+        {/* <meta property="og:url" content="https://www.airport-pickups-london.com/" /> */}
+        {/* <meta property="og:site_name" content="Airport Pickups London" /> */}
 
-
+      
         {/*//? no follow  */}
         <meta name="googlebot" content="noindex" />
         <meta name="robots" content="noindex" />

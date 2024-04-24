@@ -17,7 +17,7 @@
 //*About page
 //*Airports && Cruise Ports
 
-
+//Ask about contact us (cunki send message eliyende mesaj bize gelir Ama aple getmelidi)
 
 // check sitemap url U should change it to SET_APPLICANT_FOR_CREADIT_DETAILS.com  =>next-sitemap.config.js
 /*
