@@ -23,8 +23,7 @@ const QuotationResultsTaxiDeal = (props) => {
         duration,
         quotationOptions,
         breadcrumbs,
-        linkurl,
-        review
+        linkurl
     } = props//those props comes from ...pathname
 
     const state = useSelector(state => state.pickUpDropOffActions)
@@ -83,7 +82,6 @@ const QuotationResultsTaxiDeal = (props) => {
                                     isVisible={isVisible}
                                     breadcrumbs={breadcrumbs}
                                     linkurl={linkurl}
-                                    review={review}
                                 />
 
                             </div>

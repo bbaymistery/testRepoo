@@ -12,8 +12,8 @@ import QuotationResultsTaxiDeal from '../components/elements/QuotationResultsTax
 import { urlToTitle } from '../helpers/letters';
 
 function Pages(props) {
-    let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle, returnPageTitle, duration, distance, quotationOptions, breadcrumbs, linkurl,review } = props
-  
+    let { data, pickUps, dropoffs, keywords, language, pageTitle, headTitle, description, returnPathname, urlOfPage, pageContent, returnHeadTitle, returnPageTitle, duration, distance, quotationOptions, breadcrumbs, linkurl } = props
+
     if (data === "not found") return <Error404 />
 
     const state = useSelector(state => state.pickUpDropOffActions)
@@ -110,7 +110,6 @@ function Pages(props) {
         quotationOptions={quotationOptions}
         breadcrumbs={breadcrumbs}
         linkurl={linkurl}
-        review={review}
     />
 }
 
@@ -128,7 +127,7 @@ const cache = {}
 //     return kilobytes;
 // }
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
-    const { resolvedUrl } = etc;
+      const { resolvedUrl } = etc;
     const lowerCaseUrl = resolvedUrl.toLowerCase();
 
     if (resolvedUrl !== lowerCaseUrl) {
@@ -137,7 +136,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
         res.end();
         return { props: { data: "not found", } }
     }
-
+   
     res?.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59')
     let pickUps = []
     let dropoffs = []
@@ -146,16 +145,12 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
     dealUrl = pathname.replace(/^\/_next\/data\/[^/]+\//, '/').replace(/\.[^/.]+$/, '').replace(/\.json$/, '')
     const cacheKey = `page-${req.url}`
     let language = checkLanguageAttributeOntheUrl(dealUrl)
-
     // Check if the data is cached
     if (cache[cacheKey]) return { props: cache[cacheKey] }
-
     const body = { language, checkRedirect: true, taxiDealPathname: dealUrl, withoutExprectedPoints: true, }
     const url = `${env.apiDomain}/api/v1/taxi-deals/details`
     const { status, data } = await postDataAPI({ url, body })
-
     if (status === 205) return { redirect: { destination: data.redirectPathname, permanent: false } }
-
     // homepagedeki appDatafalanbunu asagisinda idi
     if (status === 200) {
         // getJsonSizeInKB(data)
@@ -163,17 +158,12 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
             distance,
             duration,
             quotationOptions,
-            taxiDeal: { pickupPoints, dropoffPoints, pageTitle = "", headTitle = "", description = "", keywords = "", returnPathname = "", pageContent = "", returnHeadTitle = "", returnPageTitle = "", pathname: linkurl, metaTags = [] } } = data
-
+            taxiDeal: { pickupPoints, dropoffPoints, pageTitle = "", headTitle = "", description = "", keywords = "", returnPathname = "", pageContent = "", returnHeadTitle = "", returnPageTitle = "", pathname: linkurl } } = data
         // select first item from all points
         pickUps = pickupPoints?.length >= 1 ? [pickupPoints[0]] : []
         dropoffs = dropoffPoints?.length >= 1 ? [dropoffPoints[0]] : []
 
         const newPageContent = pageContent?.replace(/__website_domain__/g, "https://www.airport-pickups-london.com/");
-        let review = {}
-        review.bestRating = data?.taxiDeal?.schema.Product.aggregateRating.bestRating || 5
-        review.ratingValue = data?.taxiDeal?.schema.Product.aggregateRating.ratingValue || 4.95
-        review.reviewCount = data?.taxiDeal?.schema.Product.aggregateRating.reviewCount || 1988
 
         let schemaOfTaxiDeals = data?.taxiDeal?.schema || []
         schemaOfTaxiDeals = Object.keys(schemaOfTaxiDeals).map(key => ({ [key]: schemaOfTaxiDeals[key] }));//array of objects [b:{ab:"1"},c:{ab:"2"},d:{ab:"3"}]
@@ -219,9 +209,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ r
             quotationOptions,
             schemas,
             breadcrumbs,
-            linkurl,
-            metaTags,
-            review
+            linkurl
         }
 
         return { props: cache[cacheKey] }

@@ -13,31 +13,18 @@ import { fetchContent } from '../helpers/fetchContent';
 import { parse } from 'url'
 import Error404 from './404/index'
 import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttributeOntheUrl';
-import { Airports, CruisePorts, navigatorMobile } from '../constants/navigatior';
+import { Airports, CruisePorts } from '../constants/navigatior';
 import { generateCanonicalAlternates } from '../helpers/canolicalAlternates';
 import env from '../resources/env';
 import { capitalizeFirstLetter, urlToTitle } from '../helpers/letters';
 
-// Function to extract paths from items with a list where firstChild is true
-const extractPathsFromListsWithFirstChild = (data) => {
-    const paths = [];
-    data.forEach(item => {
-        if (item.firstChild && Array.isArray(item.list)) {
-            item.list.forEach(subItem => {
-                paths.push(subItem.path);
-            });
-        }
-    });
-    return paths;
-}
 const NavbarLinkName = (props) => {
+    let { metaTitle, keywords, metaDescription, pageContent, data = "", } = props
+
+    if (data === "not found") return <Error404 />
     const dispatch = useDispatch()
     const router = useRouter();
     const { linkname } = router.query;
-    let { metaTitle, keywords, metaDescription, pageContent, data = "", } = props
-    const paths = extractPathsFromListsWithFirstChild(navigatorMobile);
-    if (data === "not found") return <Error404 />
-    if (!paths.includes(router.asPath)) return <Error404 />
     useEffect(() => {
         // Combine both Airports and CruisePorts into a single array
         const lists = [...Airports, ...CruisePorts];

@@ -32,7 +32,7 @@ const Fleet = (props) => {
                         </div>
                         <div className={styles.right_content}>
                             <div className={`${styles.fleet_header}`}>
-                                <h1>{appData?.words["strOurFleet"]}</h1>
+                                <h1>{appData?.words["strWelcomeToOurFleetPage"]}</h1>
                                 <p>{appData?.words["strWeOfferaRangeOfVehicles"]}
                                     <br />
                                     {appData?.words["strTakeaLookAtOur"]}</p>

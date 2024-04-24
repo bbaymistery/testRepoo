@@ -70,8 +70,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
         returnPageTitle,
         isVisible = false,
         breadcrumbs,
-        linkurl,
-        review
+        linkurl
     } = params
     const router = useRouter();
     const dispatch = useDispatch();
@@ -121,20 +120,20 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
 
         <h1 alt={pageTitle} className={`${styles.title} ${styles.title_center} ${direction}`}>{headTitle ? formatPriceInTitle(headTitle) : "..."}</h1>
         <p className={styles.breadcrumbs}>
-            <span>
-                <a href="/" title="Airport Pickups London">
-                    <span>Home</span>
-                </a>
-                →
-            </span>
-            &nbsp;
-            &nbsp;
-            <span>
-                <a href={linkurl} title={pageTitle}>
-                    <span>{pageTitle}</span>
-                </a>
-            </span>
-        </p>
+                <span>
+                    <a href="/" title="Airport Pickups London">
+                        <span>Home</span>
+                    </a>
+                    →
+                </span>
+                &nbsp;
+                &nbsp;
+                <span>
+                    <a href={linkurl} title={pageTitle}>
+                        <span>{pageTitle}</span>
+                    </a>
+                </span>
+            </p>
         <div direction={String(direction === "rtl")} className={styles.stars}>
             <a href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} title="Airport Pickups London Reviews" className={styles.reviews} rel="noreferrer"  >
                 <i className="fa-solid fa-star"></i>
@@ -142,19 +141,19 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                 <i className="fa-solid fa-star"></i>
                 <i className="fa-solid fa-star"></i>
                 <i className="fa-solid fa-star"></i>
-                <span style={{ marginLeft: "10px" }}> {review?.ratingValue}/{review?.bestRating}</span>
+                <span style={{ marginLeft: "10px" }}> 4.95/5</span>
 
             </a>
 
             <a href="https://www.reviews.co.uk/company-reviews/store/airport-pickups-london-com" target={"_blank"} title="Airport Pickups London Reviews  " className={styles.reviews} rel="noreferrer">
                 <i className="fa-solid fa-comment"></i>
-                {review?.reviewCount} {`${appData?.words["strReviews"]}`}
+                486 {`${appData?.words["strReviews"]}`}
             </a>
         </div>
         {/* 111  */}
         <p className={styles.viceversa}>
             <a href={returnPathname} title={returnPageTitle}> {returnHeadTitle ? formatPriceInTitle(returnHeadTitle) : "..."} </a>
-
+       
         </p>
 
         <div className={`${styles.quotation_header}`}>
