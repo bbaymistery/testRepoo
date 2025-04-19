@@ -6,7 +6,7 @@ const next = require("next");
 const { urls } = require('./src/resources/urls');
 
 // Set development or production mode
-const dev =  true; // process.env.NODE_ENV !== "production";
+const dev =  false; // process.env.NODE_ENV !== "production";
 const app = next({ dev, }); // Custom build directory
 const handle = app.getRequestHandler(); // Default request handler
 
