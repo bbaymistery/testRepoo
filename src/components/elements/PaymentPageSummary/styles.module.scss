@@ -1,0 +1,69 @@
+    @import '../../../styles/variables';
+
+    .journey_summary_panel {
+        position: relative;
+
+        .details_headerr_li {
+            display: grid;
+            grid-template-columns: 25px 1fr;
+            align-items: center;
+            grid-gap: 5px;
+            gap: 5px;
+
+            i {
+                font-size: 13px;
+                padding: 5px;
+                color: $--color-accent-1;
+            }
+
+            h5 {
+                font-size: 14px !important;
+                color: black !important;
+                font-weight: bold !important;
+                margin-bottom: 0px !important;
+            }
+            li{
+            }
+        }
+
+        .content {
+            .journey_card[direction="true"] {
+                flex-direction: row-reverse;
+            }
+
+            .journey_card {
+
+
+                @media (max-width: 990px) {
+                    flex-direction: column;
+                    gap: 0rem;
+                }
+
+
+
+                .details_div {
+
+                    h5 {
+                        font-weight: 500;
+                        line-height: 1.2;
+                        color: $input_text_color;
+                        text-transform: capitalize;
+                        font-size: 16px;
+                        margin-bottom: 0.5rem;
+                    }
+
+
+                    .space {
+                        margin-bottom: 15px;
+                    }
+
+
+                }
+            }
+
+
+
+
+
+        }
+    }

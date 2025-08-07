@@ -1,0 +1,150 @@
+@import '../../styles/variables';
+$checkbox-size: 20px;
+$checkbox-border: #cecece;
+$checkbox-selected: $--color-accent-1-dark; // Primary colour
+
+
+.tr_details_section {
+    padding-top: 0px;
+    padding-bottom: 0px !important;
+    position: relative;
+
+    .tr_details_section_container {
+        @media only screen and (max-width:1200px) {
+            max-width: 1150px !important;
+        }
+
+        .transferdetails_subcontainer {
+
+            //!thise styles belongs to passenger details and right part
+            .transferdetails_subcontainer_content.rtl {
+                flex-direction: row-reverse;
+            }
+
+            .transferdetails_subcontainer_content {
+                max-width: 990px;
+                display: flex;
+                background-color: transparent;
+                position: relative;
+                gap:1.5rem;
+                flex-direction: column-reverse;
+                margin: 0 auto;
+                justify-content: space-between;
+                z-index: 999999;
+
+                .transferdetails_subcontainer_content_points_and_passengerdetails {
+                    flex-basis: 60%;
+                    margin-top: 25px;
+                    position: relative;
+                    min-height: 500px;
+                    display: flex;
+                    flex-direction: column;
+
+                    @media (max-width:1100px) {
+                        flex-basis: 65%;
+                    }
+
+                    @media (max-width:990px) {
+                        flex-basis: 100% !important;
+                    }
+
+                    .textarea_div {
+                        margin-top: 1rem;
+                    }
+
+                    .buttons {
+                        display: flex;
+                        gap: 1rem;
+                        align-items: flex-start;
+                        margin-top: 3rem;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-end;
+
+                        .left {
+                            display: flex;
+                            justify-content: space-between;
+                            flex-basis: 100%;
+                        }
+                    }
+
+                    .directionbuttons {
+                        .left {
+                            display: flex;
+                            justify-content: space-between;
+                            margin-top: 3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        top: 30px;
+
+
+    }
+
+    10% {
+        opacity: 0;
+        top: 30px;
+
+    }
+
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+.passenger_details_div {
+    h2 {
+        margin-bottom: 15px;
+        font-size: 22px;
+    }
+
+    .return_pas_details_header {
+        margin-bottom: 40px;
+    }
+
+    .passenger_details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+
+        @media (max-width:768px) {
+            grid-template-columns: 1fr;
+        }
+
+        .input_div {
+            p {
+                color: $--color-accent-1-dark;
+                padding-left: 10px;
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .search-input-container[f="true"] {
+        position: fixed !important;
+        top: 70px !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow: auto;
+        background-color: white;
+        z-index: 100000;
+        padding: 12px !important;
+        overflow: hidden;
+
+    }
+}
