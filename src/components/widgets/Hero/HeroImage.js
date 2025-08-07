@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import React from 'react'
 import styles from "./styles.module.scss"
 const HeroImage = ({ islinknamecomponent, matchingLinkNameImage }) => {
     return (
@@ -9,7 +8,7 @@ const HeroImage = ({ islinknamecomponent, matchingLinkNameImage }) => {
                 style={{ objectFit: `${islinknamecomponent ? "fill" : "cover"}` }}
                 priority
                 fetchPriority="high"
-                quality={20}
+                quality={30}
                 alt="APL Transfers "
                 fill
                 className={styles.landing_image}
