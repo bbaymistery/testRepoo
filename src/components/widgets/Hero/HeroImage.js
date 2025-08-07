@@ -9,7 +9,7 @@ const HeroImage = ({ islinknamecomponent, matchingLinkNameImage }) => {
                 style={{ objectFit: `${islinknamecomponent ? "fill" : "cover"}` }}
                 priority
                 fetchPriority="high"
-                quality={30}
+                quality={20}
                 alt="APL Transfers "
                 fill
                 className={styles.landing_image}
