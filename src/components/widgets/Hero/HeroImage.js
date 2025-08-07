@@ -9,7 +9,7 @@ const HeroImage = ({ islinknamecomponent, matchingLinkNameImage }) => {
                 style={{ objectFit: `${islinknamecomponent ? "fill" : "cover"}` }}
                 priority
                 fetchPriority="high"
-                quality={40}
+                quality={30}
                 alt="APL Transfers "
                 fill
                 className={styles.landing_image}
@@ -17,7 +17,7 @@ const HeroImage = ({ islinknamecomponent, matchingLinkNameImage }) => {
                 src={islinknamecomponent ? matchingLinkNameImage : "/images/hero.webp"}
             />
              
-            <Image     quality={40} priority className={styles.shape_image} src={"/images/svgs/shape3.svg"} alt="APL Transfers " width={1700} height={600} style={{ height: "auto", width: "100%" }} />
+            <Image     quality={30} priority className={styles.shape_image} src={"/images/svgs/shape3.svg"} alt="APL Transfers " width={1700} height={600} style={{ height: "auto", width: "100%" }} />
         </div>
     )
 }
