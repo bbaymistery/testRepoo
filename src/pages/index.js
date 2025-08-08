@@ -98,7 +98,7 @@ const seoHomeDefaults = {
 };
 
 export async function getServerSideProps({ req, res, query, resolvedUrl }) {
-  // setNoCacheHeader(res, false);
+  setNoCacheHeader(res, false);
   // Cache'i kapat
   isUrlLoverCase(resolvedUrl, res)
   const env = await fetchConfig();

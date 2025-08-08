@@ -36,19 +36,28 @@ const nextConfig = {
       { hostname: 'www.airport-pickups-london.com' },
     ],
   },
-  // async headers() {
-  //   return [
-  //     {
-  //       source: '/:all*(js|css|png|jpg|webp|svg)',
-  //       headers: [
-  //         {
-  //           key: 'Cache-Control',
-  //           value: 'public, max-age=31536000, immutable',
-  //         }
-  //       ],
-  //     },
-  //   ];
-  // },
+  async headers() {
+    return [
+
+      // Font dosyaları (TTF/WOFF/WOFF2)
+      {
+        source: '/:all*.(woff2|woff|ttf)',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },],
+      },
+      // Diğer public statikler (js, css, img)
+      {
+        source: '/:all*.(js|css|png|jpg|jpeg|webp|svg|gif)',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },],
+      },
+      // İstersen klasör bazlı ekstra güvence:
+      {
+        source: '/fontawesome/webfonts/:all*',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },],
+      },
+
+    ];
+
+  },
 
   async redirects() {
     return [

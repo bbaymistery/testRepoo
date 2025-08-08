@@ -19,7 +19,7 @@ const STATIC_ROUTES = {
   CONTACT: '/contact-us',
   CONTACT: '/travel-agents',
   SITEMAP: '/sitemap',
-  SITEMAP: '/account-register',  
+  SITEMAP: '/account-register',
 };
 const GlobalLayout = ({ children, title = SeoDefaults.title, description = SeoDefaults.description, keywords = SeoDefaults.keywords, mainCanonical = "" }) => {
   const currentYear = new Date().getFullYear();
@@ -42,13 +42,7 @@ const GlobalLayout = ({ children, title = SeoDefaults.title, description = SeoDe
         <meta name="copyright" content={`Copyright APL transfers ${currentYear}. All rights reserved.`} />
         <meta name="author" content="APL Transfers" />
 
-    <link
-          rel="preload"
-          as="font"
-          href="/fontawesome/webfonts/fa-solid-900.ttf"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />
+
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         {Object.entries(STATIC_ROUTES).map(([key, path]) =>
           router.pathname === path && (
