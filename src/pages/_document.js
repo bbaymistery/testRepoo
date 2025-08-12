@@ -92,7 +92,7 @@ class CustomDocument extends Document {
                     <Partytown debug={true} forward={['dataLayer.push']} />
 
                     <script
-                    type="text/partytown"
+                        type="text/partytown"
                         dangerouslySetInnerHTML={{
                             __html: `
                         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -104,9 +104,9 @@ class CustomDocument extends Document {
                         }}
                         data-cfasync="false"
                     ></script>
-                    <link rel="preconnect" href="https://static.zdassets.com" />
                     <link rel="dns-prefetch" href="https://static.zdassets.com" />
-                    <link rel="preconnect" href="https://www.googletagmanager.com" />
+                    <link rel="preload" as="font" href="/fontawesome/webfonts/fa-solid-900.ttf" type="font/ttf" crossOrigin="anonymous" />
+                    <link rel="preconnect" href="https://api.london-tech.com" crossOrigin="anonymous" />
                 </Head>
                 <body>
                     <noscript>

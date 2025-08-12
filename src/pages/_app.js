@@ -1,16 +1,17 @@
-import { mobileAndTabletCheck } from '../helpers/mobileAndTabletCheck';
 import { createWrapper } from "next-redux-wrapper";
 import { Provider, useDispatch, } from "react-redux";
-import { useCallback, useEffect } from "react";
+import { useCallback, } from "react";
 import store from "../store/store";
 import "../styles/global.scss";
 import Error404 from './404/index'
 import { useRouter } from 'next/router';
 import { checkLanguageAttributeOntheUrl } from '../helpers/checkLanguageAttributeOntheUrl';
-import { getCookie, setCookie } from '../helpers/cokieesFunc';
-import { fetchAllLanguagesAppDatas } from '../helpers/fetchAllLanguagesAppDatas';
 import { fetchConfig, } from '../resources/getEnvConfig';
-import { useUserInteractionOnce } from '../hooks/useUserInteractionOnce';
+import dynamic from 'next/dynamic';
+const RouteLanguageSync = dynamic(() => import('../components/elements/RouteLanguageSync'), { ssr: false });
+const ScrollPositionManager = dynamic(() => import('../components/elements/ScrollPositionManager'), { ssr: false });
+const ErrorLoggerInjector = dynamic(() => import('../components/elements/ErrorLoggerInjector'), { ssr: false });
+const AppDataInitializer = dynamic(() => import('../components/elements/AppDataInitializer'), { ssr: false });
 
 export const MyApp = ({ Component, pageProps }) => {
 
@@ -48,99 +49,16 @@ export const MyApp = ({ Component, pageProps }) => {
 
   }, [dispatch, appData,])
 
+  console.log(pageProps);
 
-  useEffect(() => {
-    //global errors
-    if (typeof window === 'object') {
-      window.handelErrorLogs = (error = {}, location = '', logs = {}) => {
-        let raw = {};
-        try {
-          let { name, message, stack } = typeof error === 'string' ? new Error(error) : error;
-          raw = { "error": { name, message, stack }, "location": location, "logs": logs };
-        } catch (e) {
-          raw = { "error": { ...e, ...error }, "location": location, "logs": logs };
-        }
-
-        let requestOptions = {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify(raw),
-          redirect: 'follow'
-        };
-
-
-        if (!pageProps.env.websiteDomain.includes("localhost")) {
-          try {
-            fetch(`${!pageProps.env.apiDomain}/tools/add-error-logs`, requestOptions)
-              .then(response => response.text())
-              .then(result => { console.log(result) })
-              .catch(error => console.log('error', error));
-          } catch (err) {
-            console.log(err)
-          }
-        }
-      }
-    }
-    dispatch({ type: "CHECK_MOBILE_OR_NOT", data: { mobileAndTabletCheck: mobileAndTabletCheck() } })
-    //set language and bring appDAtas  when user write loaclhost3500/tr
-    setLanguage({ language: hasLanguage })
-    setCookie("lang", hasLanguage, 7);
-    //if user close browser initialize localstorage
-    const handleBeforeUnload = () => {
-      localStorage.removeItem("appData"); // remove an item from local storage
-      localStorage.removeItem("direction"); // remove an item from local storage
-      localStorage.removeItem("path"); // remove an item from local storage
-
-      // Dynamically inject the termsReducer when this component mounts
-
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-
-  }, [])
-
-
-  //gtmsss S
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: 'pageview',
-        page: url,
-      });
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
-
-
-
-  // when we r on payment page and change lang twice then go back with browser then our content changes
-  useEffect(() => {
-    const language = getCookie("lang")
-    //when cahnge on home page language then click browser back btn we update language vai  first condirtione
-    if (language !== router.asPath.split("/")[1] && router.asPath.split("/")[1].length === 2) {
-      setCookie("lang", router.asPath.split("/")[1], 7);
-      setLanguage({ language: router.asPath.split("/")[1], hydrate: false })
-    }
-    else {
-      setLanguage({ language: hasLanguage !== 'en' ? hasLanguage : language, hydrate: false })
-    }
-
-  }, [router.asPath])
-
-  useUserInteractionOnce(() => {
-    fetchAllLanguagesAppDatas({ initialFetch: false });
-  });
 
   return (<Provider store={store}>
     <main >
+      <ScrollPositionManager />
+      <RouteLanguageSync hasLanguage={hasLanguage} setLanguage={setLanguage} />
+      <ErrorLoggerInjector env={pageProps.env} hasLanguage={hasLanguage} setLanguage={setLanguage} />
+      <AppDataInitializer />
+
       <Component {...pageProps} />
     </main>
   </Provider>);
