@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import Script from 'next/script';
-import React from 'react';
+import { Partytown } from '@qwik.dev/partytown/react';
 class CustomDocument extends Document {
 
     // This is a static method in the CustomDocument class that fetches initial properties before rendering the document.
@@ -89,7 +89,10 @@ class CustomDocument extends Document {
                     {this.renderSchemaScripts(schemasOfPages)}
                     {this.createMetaTagElements(metaTags)}
                     {/* Option One From Mr Mustafa */}
+                    <Partytown debug={true} forward={['dataLayer.push']} />
+
                     <script
+                    type="text/partytown"
                         dangerouslySetInnerHTML={{
                             __html: `
                         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
