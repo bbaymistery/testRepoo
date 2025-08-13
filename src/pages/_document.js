@@ -105,7 +105,13 @@ class CustomDocument extends Document {
                         data-cfasync="false"
                     ></script>
                     <link rel="dns-prefetch" href="https://static.zdassets.com" />
-                    <link rel="preload" as="font" href="/fontawesome/webfonts/fa-solid-900.ttf" type="font/ttf" crossOrigin="anonymous" />
+                    <link
+                        rel="preload"
+                        as="font"
+                        href="/fontawesome/webfonts/fa-solid-900.ttf"
+                        type="font/ttf"
+                        crossOrigin="anonymous"
+                    />
                     <link rel="preconnect" href="https://api.london-tech.com" crossOrigin="anonymous" />
                 </Head>
                 <body>

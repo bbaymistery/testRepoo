@@ -7,12 +7,12 @@
     "build": "next build",
     "start": "next start",
     "live": "SET NODE_ENV=production && node server.js",
-     "partytown": "partytown copylib public/~partytown"
-
+    "partytown": "partytown copylib public/~partytown"
   },
   "dependencies": {
     "@qwik.dev/partytown": "^0.11.1",
     "@react-google-maps/api": "^2.19.3",
+    "compression": "^1.8.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "moment": "^2.30.1",
