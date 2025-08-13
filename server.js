@@ -8,7 +8,7 @@ const { urls } = require('./src/resources/urls');
 
 // Set development or production mode
 const dev = true; // process.env.NODE_ENV !== "production";
-const app = next({ dev, dir: '.', conf: { distDir: 'build' } }); // Custom build directory
+const app = next({ dev }); // Custom build directory
 const handle = app.getRequestHandler(); // Default request handler
 
 // Exclude specific paths (e.g., blog and news pages) from redirects

@@ -83,7 +83,7 @@ const nextConfig = {
     ],
     formats: ['image/webp',],
   },
-  distDir: 'build',
+  // distDir: 'build',
   /**
  * Adds long-term cache headers to static assets like JavaScript, CSS, and images.
  *
