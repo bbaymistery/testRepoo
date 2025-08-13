@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux'
-import logoImage from '../../../../public/logos/blueLogoAirPort.png'
-import fbImage from '../../../../public/social/fb.gif';
-import twImage from '../../../../public/social/tw.gif';
-import srImage from '../../../../public/social/rss.png';
-import instaIamge from '../../../../public/social/Instigram.gif';
+import logoImage from '../../../../public/logos/blueLogoAirPort.webp'
+import fbImage from '../../../../public/social/fb.webp';
+import twImage from '../../../../public/social/tw.webp';
+import srImage from '../../../../public/social/rss.webp';
+import instaIamge from '../../../../public/social/Instigram.webp';
 import styles from "./styles.module.scss"
 import { Airports, CruisePorts } from '../../../constants/navigatior';
 const Footer = (props) => {

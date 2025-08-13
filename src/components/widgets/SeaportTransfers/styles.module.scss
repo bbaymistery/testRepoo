@@ -56,6 +56,7 @@
                             cursor: pointer;
                             user-select: none;
                             position: relative;
+                                max-width: 400px;
 
                             &:hover {
                                 transform: scale(1.04);
@@ -67,7 +68,7 @@
                             .img_div {
                                 border-top-left-radius: 5px;
                                 border-top-right-radius: 5px;
-                                height: 250px;
+                                height: 280px;
                                 width: 100%;
                                 position: relative;
 

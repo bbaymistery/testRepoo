@@ -98,7 +98,7 @@ const Tours = (props) => {
                                     return (
                                         <Link href={`${language === "en" ? "" : `${language}`}${item.pathname}`} title={item?.pageTitle} className={`${styles.card}`} key={item.tourDealId}>
                                             <div className={styles.card_image_div}>
-                                                <Image quality={50} loading="lazy" src={`${tourCustomImages[index].image}`} className={styles.img} fill alt={item.headTitle} sizes="(max-width: 768px) 100vw, 50vw" />
+                                                <Image quality={30} loading="lazy" src={`${tourCustomImages[index].image}`} className={styles.img} fill alt={item.headTitle} sizes="(max-width: 768px) 100vw, 50vw" />
                                             </div>
                                             <div className={styles.card_body}>
                                                 <h2>{item.pageTitle}</h2>

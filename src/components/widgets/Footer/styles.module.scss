@@ -99,14 +99,6 @@
                     .logo {
                         margin-bottom: 10px;
                         display: flex;
-
-                        @media(max-width:450px) {
-                            img {
-                                max-width: 300px;
-                                width: 100%;
-                            }
-                        }
-
                     }
 
                     p {
