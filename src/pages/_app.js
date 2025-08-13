@@ -49,7 +49,6 @@ export const MyApp = ({ Component, pageProps }) => {
 
   }, [dispatch, appData,])
 
-  console.log(pageProps);
 
 
   return (<Provider store={store}>
