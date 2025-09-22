@@ -10,7 +10,7 @@ import GET_APP_DATA from './pickUpDropOffActions/GET_APP_DATA';
 Baslangicda en birinci 
 */
 // Initial ReducerIn your Redux actions file
-const initialReducer = (state = {}, action) => {
+const initialReducer = (state = {}, action) => { 
     switch (action.type) {
         case HYDRATE:
             if (typeof window !== 'undefined') {
