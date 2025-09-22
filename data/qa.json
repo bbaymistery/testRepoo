@@ -1,0 +1,95 @@
+{
+  "threads": [
+    {
+      "id": "q1",
+      "question": "How would you handle an angry customer?",
+      "answer": "I would stay calm and listen carefully without interrupting. I'd show empathy by acknowledging their frustration: “I understand this must be stressful for you.”Then, I would offer a practical solution, such as reassigning a driver or providing an ETA. If it was beyond my authority (e.g., refund request), I’d escalate politely to management while keeping the customer updated.",
+      "updatedAt": 1758540858158
+    },
+    {
+      "id": "q2",
+      "question": "How would you calm a customer who missed their flight due to traffic?",
+      "answer": "I would show empathy first: “I’m really sorry you missed your flight, I can imagine how upsetting this is.” Then, I would assist them in their next step — arranging transport back home, to another airport, or providing a receipt for travel insurance. Even if we cannot fix the situation, I’d make sure the customer feels supported."
+    },
+    {
+      "id": "q3",
+      "question": "How would you dispatch a last-minute job?",
+      "answer": "I would quickly check the availability of drivers closest to the pickup point using the system. I’d prioritize a driver with enough time to reach the customer promptly and call them directly to confirm. Once confirmed, I’d update the system and immediately inform the customer of the driver’s details and ETA.\n\nOn busy days, I’d also prepare in advance: I’d keep track of empty drivers at Heathrow and monitor which drivers are about to finish their jobs. This way, if a last-minute booking comes in, I can contact the right driver straight away without wasting time."
+    },
+    {
+      "id": "q4",
+      "question": "What would you do if a driver became unavailable 15 minutes before pickup?",
+      "answer": "I’d immediately find the next nearest available driver and reassign the job. At the same time, I’d call the customer, explain there’s been a change, and reassure them a replacement driver is on the way.\n\nIf it was a peak period, I’d already know which drivers might be free soon so I could react faster. And if no APL driver was available, I’d use our contingency option — contacting Uber or Bolt to cover the job and make sure the customer is not left stranded."
+    },
+    {
+      "id": "q5",
+      "question": "How would you prioritize jobs if two last-minute bookings came in at the same time?",
+      "answer": "I’d assess both jobs based on urgency (for example, a flight pickup takes priority over a local drop-off). I’d also check which drivers are available and consider journey time. If needed, I’d split the workload with another dispatcher so no customer is kept waiting unnecessarily."
+    },
+    {
+      "id": "q6",
+      "question": "What would you do if a flight landed 2 hours early and no driver was nearby?",
+      "answer": "I’d first check if any driver in the area could reach quickly. If not, I’d call the customer immediately, explain honestly, and give them an ETA. I’d then try to reroute another driver finishing nearby. Proactively, I would keep an eye on early flight arrivals throughout the day to reduce these situations."
+    },
+    {
+      "id": "q7",
+      "question": "How would you handle a booking system outage during a busy period?",
+      "answer": "I must send a WhatsApp message to the “System” and “Driver App” WhatsApp groups to inform staff and drivers about the outage. I would also contact management immediately to report the outage. Since we have backup servers that can be activated within 5–10 minutes, I’d coordinate with management/IT to switch over quickly."
+    },
+    {
+      "id": "q8",
+      "question": "What would you do if a customer left an item in a vehicle? (Lost Items Policy)",
+      "answer": "I’d contact the driver straight away to secure the item and arrange its return. I’d also log the incident in the booking notes. If the customer could not meet the driver immediately, I would ask for their postage address. The driver would then drop the item at our Heathrow office, and our staff would post it to the customer using next-day delivery.\n\nThe minimum charge for postage is £20, and I would always confirm with the customer before applying this charge."
+    },
+    {
+      "id": "q9",
+      "question": "How would you handle a driver who refuses a job you’ve dispatched?",
+      "answer": "I’d calmly ask why they cannot take it — sometimes there’s a valid reason (traffic, personal emergency, vehicle issue). If the refusal was unreasonable, I’d reassign the job immediately to avoid delays. I’d then note the incident and report it to management for follow-up.\n\nI would also send a WhatsApp message to our “Driver Issues” group to document the refusal (including job ID, driver name, time, and reason). If the driver declined last minute and we lost money because the job was outsourced, the driver would be penalized according to company policy."
+    },
+    {
+      "id": "q10",
+      "question": "How would you stay professional if a customer was rude to you?",
+      "answer": "I’d remain calm and avoid reacting emotionally. I’d keep my tone polite and focus on solving their problem. If the customer became abusive, I’d politely end the call and escalate to management. The key is to not let rudeness affect the service level we deliver."
+    },
+    {
+      "id": "q11",
+      "question": "How would you double-check a booking before confirming it to a customer?",
+      "answer": "I’d verify all key details: date, time, pickup and drop-off, flight number, vehicle type, passenger name, and contact number. I’d then repeat the details back to the customer for  confirmation before saving the booking. On peak days, I’d be extra careful with flight numbers and times, since one mistake could cause a missed job."
+    },
+    {
+      "id": "q12",
+      "question": "What would you do if the payment system failed while a customer was booking?",
+      "answer": "I’d explain honestly: “Our payment system is temporarily down, but I can confirm your booking now and send you a secure link for payment shortly.” I’d log the booking, secure a driver, and follow up as soon as payment was possible."
+    },
+    {
+      "id": "q13",
+      "question": "What would you do if a car broke down during a journey?",
+      "answer": "Ensure passenger safety first – The driver should pull over safely, switch on hazard lights, and keep the passenger informed. If necessary, the driver should help the passenger out of the vehicle and wait in a safe location.\n\nArrange a replacement vehicle – Operations should immediately dispatch the nearest available driver to continue the journey. If no APL driver is nearby, Uber/Bolt can be used as a backup to ensure the passenger reaches their destination without delay.\n\nKeep the customer updated – Inform the passenger clearly about what’s happening, reassure them, and provide the ETA of the replacement car.\n\nAfter-service procedure – Once the passenger is safely on their way, log the incident in the system. If money was lost (e.g., job outsourced), management should record it and review whether penalties or special actions apply."
+    },
+    {
+      "id": "q14",
+      "question": "What would you do if a customer’s flight was delayed?",
+      "answer": "Monitor the flight: We always track flights, so if we see a delay, we adjust the driver’s dispatch time accordingly.\n\nUpdate the driver: Inform the driver about the new landing time and adjust their schedule to avoid unnecessary waiting.\n\nIf the delay affects the driver’s next job: Liaise with the main dispatcher and remove or reschedule conflicting jobs so service is not disrupted."
+    },
+    {
+      "id": "q15",
+      "question": "What would you do if a customer’s suitcases don’t fit into their selected car type?",
+      "answer": "Check at pickup: If the driver sees that the luggage does not fit safely, they must not overload the vehicle. Safety and legal compliance come first.\n\nSuitcases inside passenger area: If the driver accepts to place some suitcases inside the passenger area, the customer must be informed there is a £15 charge. This covers car valeting, as the driver must do hygiene cleaning before the next customer.\n\nContact operations if needed: If luggage still cannot be accommodated safely, operations should arrange a larger vehicle (MPV, Large MPV, SUV) or an additional car.\n\nCustomer communication: Explain politely that the luggage exceeds the booked capacity and outline the options — paying the £15 hygiene charge, upgrading to a larger vehicle (extra cost), or booking an additional car.\n\nRecord the incident: Always note the situation in the booking system for transparency."
+    },
+    {
+      "id": "q16",
+      "question": "What would you do if a driver arrived more than 30 minutes late to a customer?",
+      "answer": "Immediate action: Contact the customer straight away, apologize, and explain honestly what caused the delay. Offer the updated ETA.\n\nReplacement option: If the delay is too long and we risk losing the job, operations should dispatch another available driver or use Uber/Bolt as backup.\n\nCustomer service: Reassure the customer that we are working to resolve the issue.\n\nJob handling: Write a note in the booking and inform the Quality Management team so the incident is properly logged.\n\nDriver accountability: If the lateness was avoidable, send a message to the Driver Issues WhatsApp group (with job ID, driver name, time, and reason). If the job had to be outsourced and we lost money, the responsible driver may be penalized to cover the loss."
+    },
+    {
+      "id": "q17",
+      "question": "What would you do if you see two bookings with the same name, same flight, and same car type?",
+      "answer": "Verify details: Check timestamps, pickup point, contact number, and notes to confirm if it’s a true duplicate.\n\nCall the pax immediately: Try phone/WhatsApp. If unreachable, apply the payment-rule logic below.\n\nPayment-method logic:\n- One CASH + one CARD: Treat as likely duplicate. Keep the CARD booking, cancel the CASH booking (note the reason).\n- Both CARD and pax unreachable: Send vehicles (treat as two valid paid bookings). Add a note that pax was unreachable.\n- CASH booking(s) and pax unreachable: Do not send any vehicle until the customer confirms.\n\nDispatch & notes: Inform dispatch to avoid accidental double assignment, and write a clear note on the surviving booking(s).\n\nIf customer confirms two cars: Keep both, confirm in notes, and proceed with dispatch."
+    },
+    {
+      "id": "q18",
+      "question": "What would you do if a booking is put on HOLD (customer missed flight, canceled flight, or uncertain but will use the service later)?",
+      "answer": "Update booking status: Change the job to “Booking on Hold” in the system.\n\nAssign driver carefully: Do not dispatch a driver until the customer confirms their new flight details.\n\nCustomer communication: Politely reassure the customer that their booking is safe and can be reactivated once they provide updated flight/time information.\n\nFollow-up: Add clear notes in the booking (reason for hold, customer’s request, time of call).\n\nMonitoring: Inform dispatch that the job is on hold so no driver is mistakenly sent."
+    }
+  ]
+}
