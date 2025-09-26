@@ -106,20 +106,21 @@
         //         }
         //     }
         // }
-     .reading_boxResolved {
-                    background: #ecfdf5;
-                    color: #065f46;
-                    border-color: #a7f3d0;
+        .reading_boxResolved {
+            background: #ecfdf5;
+            color: #065f46;
+            border-color: #a7f3d0;
 
-                }
+        }
 
-                .reading_boxPending {
-                    background: #fff7ed;
-                    color: #9a3412;
-                    border-color: #fed7aa;
-                }
+        .reading_boxPending {
+            background: #fff7ed;
+            color: #9a3412;
+            border-color: #fed7aa;
+        }
+
         .reading_box {
-                    padding: 4px 8px;
+            padding: 4px 8px;
 
             /* === Read Mode === */
             .cardText {
@@ -176,7 +177,7 @@
 
             .updatedAt {
 
-             
+
 
                 time {
                     font-size: 12px;
@@ -237,9 +238,6 @@
 
 /* Mobile niceties */
 @media (max-width: 568px) {
-    .card {
-        padding: 10px 12px;
-    }
 
     .meta {
         gap: 6px;
