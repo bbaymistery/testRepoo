@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import GlobalLayout from "../../components/layouts/GlobalLayout";
 import styles from "./styles.module.scss";
 import QaHeader from "./QaHeader";
 import QaAddBar from "./QaAddBar";
-
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 const keywords = "qa board";
 const metaTitle = "Airport Pickup London QA Board";
 const metaDescription = "You can find frequently asked questions and answers about our airport pickup services in London.";
@@ -16,6 +18,7 @@ const QaBoard = () => {
     const [items, setItems] = useState([]);
     const [editing, setEditing] = useState(null); // { id, question, answer }
     const [query, setQuery] = useState("");
+    const [expandedIds, setExpandedIds] = useState([]);
 
     // add form state
     const [showNew, setShowNew] = useState(false);
@@ -64,6 +67,7 @@ const QaBoard = () => {
     const addNew = async () => {
         const q = newQ.trim(), a = newA.trim();
         if (!q || !a) { alert("Both question and answer are required."); return; }
+        console.log({ q, a });
 
         try {
             const r = await fetch("/api/qa", {
@@ -96,6 +100,20 @@ const QaBoard = () => {
         );
     }, [items, query]);
 
+
+
+    const answerTextAreaRef = useRef(null);
+    const autosize = useCallback((el) => {
+        if (!el) return;
+        el.style.height = "auto";
+        el.style.height = el.scrollHeight + "px";
+    }, []);
+
+    const isEditingAnswerRow = (id) => editing?.id === id;
+    // editing.answer değiştikçe yükseklik güncelle
+    useEffect(() => { if (answerTextAreaRef.current) autosize(answerTextAreaRef.current); }, [editing?.answer, autosize]);
+
+
     useEffect(() => {
         (async () => {
             try {
@@ -115,11 +133,7 @@ const QaBoard = () => {
                     <div className={`page_section_container`}>
 
                         <QaHeader setQuery={setQuery} query={query} />
-                        <QaAddBar
-                            items={items} showNew={showNew} setShowNew={setShowNew}
-                            newQ={newQ} setNewQ={setNewQ} newA={newA} setNewA={setNewA}
-                            addNew={addNew} discardNew={discardNew}
-                        />
+                        <QaAddBar items={items} showNew={showNew} setShowNew={setShowNew} newQ={newQ} setNewQ={setNewQ} newA={newA} setNewA={setNewA} addNew={addNew} discardNew={discardNew} />
 
                         <div className={styles.list}>
                             {filtered.length === 0 ? (
@@ -128,7 +142,9 @@ const QaBoard = () => {
                                 filtered.map((it, idx) => {
                                     const isEditing = editing?.id === it.id;
                                     const qIndex = idx + 1;
-
+                                    // render içinde:
+                                    const compact = expandedIds.includes(it.id) ? it.answer : it.answer.length > 200 ? it.answer.slice(0, 200) + "..." : it.answer;
+                                    // const compact = it.answer;
                                     return (
                                         <div key={it.id} className={styles.item}>
                                             {/* Question Row */}
@@ -137,14 +153,18 @@ const QaBoard = () => {
                                                 <div className={styles.content}>
                                                     <h3 className={styles.qTitle}>
                                                         {isEditing ? (
-                                                            <input
-                                                                className={styles.input}
-                                                                value={editing.question}
-                                                                onChange={(e) => setEditing(s => ({ ...s, question: e.target.value }))}
-                                                                placeholder="Question..."
-                                                            />
-                                                        ) : (
-                                                            it.question
+                                                            <input className={styles.input} value={editing.question} onChange={(e) => setEditing(s => ({ ...s, question: e.target.value }))} placeholder="Question..." />
+                                                        ) : (it.question)}
+                                                        {it.answer.length > 200 && !isEditing && (
+                                                            <span
+                                                                className={styles.readMoreBtn}
+                                                                onClick={() => setExpandedIds(prev => prev.includes(it.id) ? prev.filter(x => x !== it.id) : [...prev, it.id])}
+                                                                title={expandedIds.includes(it.id) ? "Collapse" : "Expand"}
+                                                            >
+                                                                {expandedIds.includes(it.id)
+                                                                    ? <i className="fa-solid fa-angle-up"></i>
+                                                                    : <i className="fa-solid fa-angle-down"></i>}
+                                                            </span>
                                                         )}
                                                     </h3>
                                                 </div>
@@ -156,18 +176,10 @@ const QaBoard = () => {
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <button
-                                                                title="Edit this Q&A"
-                                                                className={styles.editBtn}
-                                                                onClick={() => startEdit(it)}
-                                                            >
+                                                            <button title="Edit this Q&A" className={styles.editBtn} onClick={() => startEdit(it)}  >
                                                                 <i className="fas fa-edit"></i>
                                                             </button>
-                                                            <button
-                                                                className={styles.cancelBtn}
-                                                                onClick={() => deleteQnA(it.id)}
-                                                                title="Delete this Q&A"
-                                                            >
+                                                            <button className={styles.cancelBtn} onClick={() => deleteQnA(it.id)} title="Delete this Q&A"   >
                                                                 <i className="fa-solid fa-trash" />
                                                             </button>
                                                         </>
@@ -179,21 +191,30 @@ const QaBoard = () => {
                                             <div className={`${styles.line} ${styles.answerLine}`}>
                                                 <div className={styles.aLabel}>A:</div>
                                                 <div className={styles.content}>
-                                                    {isEditing ? (
+                                                    {isEditingAnswerRow(it.id) ? (
                                                         <textarea
+                                                            ref={answerTextAreaRef}
                                                             className={styles.textarea}
-                                                            rows={3}
                                                             value={editing.answer}
-                                                            onChange={(e) => setEditing(s => ({ ...s, answer: e.target.value }))}
+                                                            onChange={(e) => {
+                                                                const v = e.target.value;
+                                                                setEditing((s) => ({ ...s, answer: v }));
+                                                                autosize(e.target);            // yazdıkça uzat
+                                                            }}
                                                             placeholder="Answer..."
                                                         />
                                                     ) : (
-                                                        <p className={styles.answer}>{it.answer}</p>
+                                                        <div className={styles.answerMd}>
+                                                            <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+                                                                {compact}
+                                                            </ReactMarkdown>
+                                                        </div>
                                                     )}
                                                 </div>
-                                                {/* boş actions sütunu (grid yapısını bozmasın diye) */}
                                                 <div className={styles.actions}></div>
                                             </div>
+
+
                                         </div>
                                     );
                                 })

@@ -1,0 +1,49 @@
+{
+  "messages": [
+    {
+      "id": "pmg0s6l79mk2v",
+      "shift": "night",
+      "author": "Night Test",
+      "text": "Test night",
+      "status": "pending",
+      "createdAt": 1758887464149,
+      "updatedAt": 1758887464149
+    },
+    {
+      "id": "pmg0q9w7h3wo9",
+      "shift": "evening",
+      "author": "Eliko",
+      "text": "tsetsetestsetset",
+      "status": "pending",
+      "createdAt": 1758884259149,
+      "updatedAt": 1758884259149
+    },
+    {
+      "id": "pmg0q5l7yt6u3",
+      "shift": "evening",
+      "author": "asdasdasd",
+      "text": "dsadsad",
+      "status": "pending",
+      "createdAt": 1758758400000,
+      "updatedAt": 1758884058286
+    },
+    {
+      "id": "m1",
+      "shift": "morning",
+      "author": "Murat",
+      "text": "Stocked all supplies",
+      "status": "resolved",
+      "createdAt": 1758799856654,
+      "updatedAt": 1758799856654
+    },
+    {
+      "id": "m2",
+      "shift": "morning",
+      "author": "Celal",
+      "text": "Issue with coffee machine",
+      "status": "pending",
+      "createdAt": 1758799856654,
+      "updatedAt": 1758799856654
+    }
+  ]
+}

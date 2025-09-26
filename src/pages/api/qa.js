@@ -8,7 +8,7 @@ import path from "path";
  * Not: Bu dizin/dosya, uzun süre çalışan bir Node sunucusunda kalıcıdır.
  * (VPS, kendi server'ında). Serverless ortamlarda kalıcı olmaz.
  */
-const DATA_DIR = path.join(process.cwd(), "data");
+const DATA_DIR = path.join(process.cwd(), "qa-data");
 const DATA_FILE = path.join(DATA_DIR, "qa.json");
 
 /**
@@ -48,10 +48,10 @@ export default async function handler(req, res) {
     if (req.method === "GET") {
         try {
             const data = await readAll(); // { threads: [...] } bekliyoruz
-            console.log({ data }); // debug log
+            // console.log({ data }); // debug log
             return res.status(200).json(data);
         } catch (e) {
-            console.log({ e }); // örn. ENOENT (dosya yok) veya diğer hatalar
+            // console.log({ e }); // örn. ENOENT (dosya yok) veya diğer hatalar
             if (e.code === "ENOENT") {
                 // Dosya hiç oluşturulmamışsa ilk kez çalışıyor olabiliriz.
                 // Boş bir liste döndürmek kullanıcı deneyimi açısından yeterli.
@@ -88,7 +88,7 @@ export default async function handler(req, res) {
             db.threads = Array.isArray(db.threads) ? db.threads : [];
 
             // Yeni kaydı listenin başına ekle (en güncel en üstte)
-            db.threads.unshift(item);
+            db.threads.push(item);
 
             // Diske yaz (atomic)
             await writeAll(db);

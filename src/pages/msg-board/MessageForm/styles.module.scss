@@ -1,0 +1,121 @@
+   .formWrap {
+       display: flex;
+       flex-direction: column;
+       gap: .5rem;
+       margin-top: 1rem;
+       position: relative;
+
+       .date_div {
+           position: relative;
+
+           /* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+           input[type="date"]::-webkit-calendar-picker-indicator {
+               position: absolute;
+               top: 0;
+               left: 0;
+               right: 0;
+               bottom: 0;
+               width: auto;
+               height: auto;
+               color: transparent;
+               background: transparent;
+               user-select: none;
+               z-index: 1;
+           }
+
+           .date_picker_icon {
+               position: absolute;
+               right: 10px;
+               top: 50%;
+               transform: translateY(-50%);
+               color: #888;
+               pointer-events: none;
+           }
+       }
+
+
+       /* === Edit Mode === */
+       .input,
+       .textarea,
+       .select {
+           width: 100%;
+           font: inherit;
+           color: #111827;
+           background: #fff;
+           border: 1px solid #d1d5db;
+           border-radius: 8px;
+           outline: none;
+           padding: 4px 10px;
+       }
+
+       .textarea {
+           resize: vertical;
+           min-height: 88px;
+           resize: none;
+       }
+
+       .input:focus,
+       .textarea:focus,
+       .select:focus {
+           border-color: #2563eb;
+           box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+       }
+
+       .row {
+           display: flex;
+           align-items: center;
+           margin-top: 5px;
+           flex-wrap: wrap;
+           justify-content: flex-end;
+           margin-bottom: 5px;
+
+           .lbl {
+               color: #6b7280;
+               min-width: 56px;
+               font-weight: bold;
+           }
+
+           .select {
+               width: auto;
+               padding: 8px 6px;
+               border: none;
+               outline: none;
+               border-bottom: 1px solid #ddd;
+
+           }
+
+           /* Save / Cancel */
+           .saveBtn,
+           .cancelBtn {
+               appearance: none;
+               border: 0;
+               border-radius: 8px;
+               font-size: 13px;
+               font-weight: 600;
+               padding: 4px 14px;
+               cursor: pointer;
+
+           }
+
+           .saveBtn {
+               background: #e7fbe7;
+               color: #065f46;
+               border: 1px solid #a7f3d0;
+           }
+
+           .saveBtn:hover {
+               background: #d1fae5;
+           }
+
+           .cancelBtn {
+               background: #fdf2f2;
+               color: #991b1b;
+               margin-left: 10px;
+               border: 1px solid #fecaca;
+           }
+
+           .cancelBtn:hover {
+               background: #fee2e2;
+           }
+       }
+   }

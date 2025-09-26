@@ -17,6 +17,7 @@
     padding: 12px 0;
 }
 
+
 .item {
     background: #fff;
     border: 1px solid #e8e8ec;
@@ -43,7 +44,7 @@
 
 .qLabel {
     font-weight: 700;
-    color: #2c6df2;
+    color: $blue-1;
     align-self: center;
 
     @media(max-width:568px) {
@@ -67,16 +68,62 @@
     font-size: 16px;
     font-weight: 700;
     color: #1d1d1f;
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
 }
 
-.answer {
-    margin: 0;
-    color: #333;
+.answerMd {
     line-height: 1.5;
+
+}
+
+.answerMd :where(p, ul, ol) {
+    margin: 0 0 8px;
+    /* paragraf & liste altı boşluk */
+}
+
+.answerMd ul,
+.answerMd ol {
+    padding-left: 1.25rem;
+    /* madde girintisi */
+}
+
+.answerMd li {
+    margin: 2px 0;
+    list-style: disc;
+}
+
+
+
+.readMoreBtn {
+    background: none;
+    border: 0;
+    color: #000000;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0px 10px;
+    margin-top: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+
+
+    i {
+        font-size: 20px;
+
+        &:hover {
+
+            transition: .4s ease-in-out all;
+            transform: scale(1.2);
+        }
+    }
 }
 
 .content {
     min-width: 0;
+
 }
 
 .actions {
@@ -117,7 +164,6 @@
     border: 1px solid #d9d9df;
     border-radius: 8px;
     outline: none;
-    resize: none;
 }
 
 .input:focus,
