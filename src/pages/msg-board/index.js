@@ -21,6 +21,8 @@ export default function ShiftBoard() {
     const [newOpen, setNewOpen] = useState(null);    // 'morning' | 'evening' | 'night' | null
 
     const filtered = useMemo(() => {
+        console.log({ query });
+
         const q = query.trim().toLowerCase();
         if (!q) return items;
         return items.filter(
@@ -150,6 +152,8 @@ export default function ShiftBoard() {
         try {
             const r = await fetch("/api/shifts");
             const d = await r.json();               // { messages: [...] }
+            console.log(d);
+
             setItems(d.messages || []);
         } catch (e) {
             console.warn("GET /api/shifts failed", e);

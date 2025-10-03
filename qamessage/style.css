@@ -1,0 +1,162 @@
+:root {
+    /* ===== Temel (senin verdiklerin) ===== */
+    --primary: #2c6df2;
+    --border: #DDDDDD;
+    --light-green: #e7fbe7;
+    --light-red: #f7e7e7;
+
+    /* Grays & Text */
+    --white: #fff;
+    --gray-600: #666;
+    --gray-700: #6b7280;
+    --gray-800: #374151;
+
+    --text: #111;
+    --text-900: #111827;
+
+    /* Borders */
+    --border-250: #d9d9df;
+    --border-400: #ddd;
+
+    /* Backgrounds (soluk tonlar) */
+    --bg-indigo-50: #eef2ff;
+    --bg-red-50: #fef2f2;
+    --bg-amber-50: #fff7ed;
+    --bg-emerald-50: #ecfdf5;
+
+    --accent-indigo-200: #c7d2fe;
+    --accent-emerald-200: #a7f3d0;
+    --accent-amber-200: #fed7aa;
+    --accent-red-200: #fecaca;
+
+    /* Status text colors */
+    --green-700: #065f46;
+    --red-700: #991b1b;
+    --amber-800: #9a3412;
+
+    /* Misc */
+    --icon-muted: #888;
+
+    /* Shadows */
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, .04);
+    --shadow-focus-blue: 0 0 0 3px rgba(37, 99, 235, .15);
+    --shadow-focus-primary: 0 0 0 3px rgba(44, 109, 242, .12);
+}
+
+@media only screen and (max-width: 1200px) {
+    body {
+        --window-margin: 20px !important;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    body {
+        --window-margin: 10px !important;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.page {
+    padding-bottom: 80px;
+    padding-top: 50px;
+}
+
+
+.page .page_section {
+    margin: 0 var(--window-margin);
+}
+
+.page .page_section .page_section_container {
+    width: 100%;
+    max-width: 1290px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+@media (max-width: 1400px) {
+    .page .page_section .page_section_container {
+        max-width: 1110px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .page .page_section .page_section_container {
+        max-width: 940px;
+    }
+}
+
+@media (max-width: 990px) {
+    .page .page_section .page_section_container {
+        max-width: 720px;
+    }
+}
+
+
+.list {
+    display: grid;
+    gap: 16px;
+}
+
+.empty {
+    color: var(--text);
+    padding: 12px 0;
+}
+
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+@media (max-width: 980px) {
+    .columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+.column {
+    background: var(--white);
+    border: 1px solid var(--border-400);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.colHead {
+    margin-bottom: 8px;
+}
+
+.colTitle {
+    margin: 0;
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.addPanel {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+    justify-content: flex-end;
+
+
+}
+
+.addPanel .addBtn {
+    background: var(--primary);
+    color: var(--white);
+    border: 0;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font: inherit;
+    cursor: pointer;
+    transition: background .15s ease;
+}

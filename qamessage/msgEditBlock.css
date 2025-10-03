@@ -1,0 +1,134 @@
+/* === Message Cards Grid === */
+.cards {
+    display: grid;
+    gap: 12px;
+    /* === Single Card === */
+}
+
+.cards .empty {
+    color: var(--gray-600);
+    font-size: 14px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.cards .card {
+    position: relative;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-card);
+}
+
+.cards .card .reading_boxResolved {
+    background: var(--bg-emerald-50);
+    color: var(--green-700);
+    border-color: var(--accent-emerald-200);
+}
+
+.cards .card .reading_boxPending {
+    background: var(--bg-amber-50);
+    color: var(--amber-800);
+    border-color: var(--accent-amber-200);
+}
+
+.cards .card .reading_box {
+    padding: 4px 8px;
+}
+
+.cards .card .reading_box .cardText {
+    color: var(--text-900);
+    line-height: 1.45;
+    white-space: pre-line;
+    /* \n'leri paragraf gibi gösterir */
+    margin-bottom: 10px;
+}
+
+.cards .card .reading_box .meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--gray-700);
+    /* Status badge */
+}
+
+.cards .card .reading_box .meta .author {
+    font-weight: 600;
+    color: var(--gray-800);
+    font-size: 15px;
+}
+
+.cards .card .reading_box .meta .dot {
+    user-select: none;
+}
+
+.cards .card .reading_box .meta .badge {
+    margin-left: auto;
+    /* meta satırının sağına it */
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 9px;
+    border: 1px solid transparent;
+}
+
+.cards .card .reading_box .meta .badgeResolved {
+    background: var(--bg-emerald-50);
+    color: var(--green-700);
+    border-color: var(--accent-emerald-200);
+}
+
+.cards .card .reading_box .meta .badgePending {
+    background: var(--bg-amber-50);
+    color: var(--amber-800);
+    border-color: var(--accent-amber-200);
+}
+
+.cards .card .reading_box .updatedAt time {
+    font-size: 12px;
+    color: var(--gray-700);
+}
+
+.cards .card .reading_box .actions {
+    display: inline-flex;
+    gap: 6px;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.cards .card .reading_box .actions .iconBtn {
+    appearance: none;
+    background: var(--bg-gray-100);
+    border: 1px solid var(--border-200);
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.cards .card .reading_box .actions .iconBtn:nth-child(1) {
+    background-color: var(--bg-indigo-50);
+}
+
+.cards .card .reading_box .actions .iconBtn:nth-child(2) {
+    background-color: var(--bg-red-50);
+}
+
+.cards .card .reading_box .actions .iconBtn:hover {
+    background: var(--bg-indigo-50);
+    border-color: var(--accent-indigo-200);
+}
+
+/* Mobile niceties */
+@media (max-width: 568px) {
+    .meta {
+        gap: 6px;
+        font-size: 11px;
+    }
+
+    .iconBtn {
+        padding: 3px 7px;
+    }
+}
