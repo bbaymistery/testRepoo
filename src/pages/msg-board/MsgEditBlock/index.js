@@ -1,16 +1,7 @@
 import styles from "./styles.module.scss";
 import MessageForm from "../MessageForm";
 
-// London time formatter
-const fmt = (ts) =>
-    new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Europe/London",
-        year: "numeric",
-        month: "short",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-    }).format(ts);
+
 
 /**
  * Props:
