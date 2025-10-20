@@ -1,0 +1,23 @@
+//*alert error succes info messages
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    line-height: 29px;
+}
+
+.alert_success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb
+}
+
+
+
+.alert_sky {
+    color: #060f43;
+    background-color: #d6efff;
+    border-color: #f7f7f7;
+}

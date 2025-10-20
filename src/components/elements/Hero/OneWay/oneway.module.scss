@@ -1,0 +1,237 @@
+         @import '../../../../styles/colors';
+
+         //!OneWay
+         .oneway_tab_content {
+             background-color: #fff;
+             padding: 22px;
+             border-radius: 8px;
+             margin-top: 10px;
+             display: flex;
+             flex-direction: column;
+             min-height: 230px;
+             height: 100%;
+             padding-bottom: 1.5rem;
+             font-family: Roboto,
+                 sans-serif;
+
+             @media (max-width: 1200px) {
+                 min-height: 260px;
+                 height: 100%;
+             }
+
+             @media (max-width: 1060px) {
+                 min-height: 280px;
+             }
+
+             @media (max-width: 990px) {
+                 height: auto;
+             }
+
+             .form_container {
+                 .form_flying {
+                     display: flex;
+                     justify-content: space-between;
+
+                     .inp_box {
+                         position: relative;
+
+                         @media (max-width: 990px) {
+                             flex-basis: 100%;
+                             max-width: 100%;
+                             width: 100%;
+                         }
+
+                         &:nth-child(1) {
+                             padding-right: 11px;
+
+                             @media (max-width: 990px) {
+                                 padding-right: 0px;
+                             }
+                         }
+
+                         &:nth-child(2) {
+                             padding-left: 11px;
+
+                             @media (max-width: 990px) {
+                                 padding-left: 0px;
+                             }
+                         }
+
+                         .popup_header[f="false"] {
+                             display: none;
+                         }
+
+                         .popup_header[f="true"] {
+                             display: flex;
+                             align-items: center;
+                             padding-bottom: 5px;
+
+                             i {
+                                 margin-right: 11px;
+                                 font-size: 21px;
+                                 cursor: pointer;
+                             }
+
+                             p {
+                                 font-size: 19px;
+                                 font-weight: 500;
+                                 color: #000;
+                             }
+                         }
+
+                         .add_extrafly_div {
+                             padding: 5px 16px;
+                             align-items: center;
+                             display: flex;
+                             cursor: pointer;
+                             transition: .5s ease;
+                             font-weight: 500;
+                             letter-spacing: .6px;
+                             margin-bottom: 1rem;
+                             margin-top: -4px;
+
+                             &:hover {
+                                 background-color: rgba(203, 201, 201, 0.5);
+                                 border-radius: 5px;
+
+                                 .add_extrafly_div_icon {
+                                     color: rgb(19, 19, 20);
+                                 }
+
+                                 .add_extrafly_div_text {
+                                     color: rgb(14, 22, 255);
+                                 }
+                             }
+
+                             &_icon {
+                                 margin-right: 10px;
+                                 font-size: 13px;
+                                 transition: .54s linear;
+                             }
+
+                             &_text {
+                                 font-size: 14px;
+                                 transition: .54s linear;
+                             }
+                         }
+
+                         .point_headerr {
+                             font-weight: 500;
+                             color: rgb(93, 100, 109) !important;
+                         }
+                     }
+
+                     @media (max-width: 990px) {
+                         flex-direction: column;
+                     }
+
+                     @media only screen and (max-width: 990px) {
+                         .search-input-container[f="true"] {
+                             position: fixed;
+                             top: 0;
+                             left: 0;
+                             width: 100vw;
+                             height: 100vh;
+                             overflow: auto;
+                             background-color: white;
+                             z-index: 1000;
+                             padding: 12px;
+                         }
+                     }
+                 }
+
+                 .form_departing {
+                     margin-top: .5rem;
+                     display: flex;
+                     justify-content: space-between;
+                     align-items: flex-end;
+                     flex-direction: row;
+
+                     @media (max-width: 990px) {
+                         flex-direction: column;
+                         margin-top: 0rem;
+                         align-items: center;
+                         width: 100%;
+                         align-items: flex-start;
+                     }
+
+                     .departing_date {
+                         flex-grow: 0;
+                         flex-shrink: 0;
+                         flex-basis: 33.3%;
+                         overflow-x: hidden;
+
+                         @media (max-width: 990px) {
+                             flex-basis: 100%;
+                             max-width: 100%;
+                             width: 100%;
+                         }
+                     }
+
+                     //!hour and minute
+                     .departing_time {
+                         display: flex;
+                         width: 100%;
+                         justify-content: space-around;
+                         flex-grow: 0;
+                         flex-shrink: 0;
+                         flex-basis: 33.3%;
+                         padding: 0 22px;
+
+                         .hour {
+                             margin-right: 11px;
+                             flex: 1
+                         }
+
+                         .minute {
+                             margin-left: 11px;
+                             flex: 1
+                         }
+
+                         @media (max-width: 990px) {
+
+                             flex-basis: 100%;
+                             max-width: 100%;
+                             justify-content: flex-start;
+                             padding: 0 0px;
+
+                             .minute {
+                                 margin-left: 10px;
+                             }
+                         }
+                     }
+
+                     //!btnnnnn
+                     .departing_btn {
+                         flex-basis: 33.3%;
+
+                         @media (max-width: 990px) {
+                             margin-top: 1.5rem;
+                             flex-basis: unset;
+                             width: 100%;
+                         }
+                     }
+                 }
+
+                 .errorBookedMessage {
+                     color: red;
+                     margin-top: 1rem;
+                     font-size: 14px;
+                 }
+             }
+
+             .alertOrMessage {
+                 position: relative;
+                 width: 100%;
+                 margin-top: 1.5rem;
+
+                 @media (max-width:660px) {
+                     font-size: .85rem;
+                 }
+
+             }
+         }
+
+         .border_blue {
+             border: 1px solid rgba(14, 22, 255, 0.467) !important;
+         }

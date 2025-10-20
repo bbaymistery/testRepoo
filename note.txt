@@ -1,0 +1,7 @@
+desktopdaki hgt dosyasina deymedim
+
+
+githubdaki hgt ni aldim ve onu buraya klonladim
+
+
+en axrda yekunlasdirdigimizda ise edeceyimiz sey :>  Burdaki file alib direk original hgt githubuna push etmek ve original hgt olanida her ehtimala garsi clone elemek (eger hata falan cixarsa onunu kese bilek)
