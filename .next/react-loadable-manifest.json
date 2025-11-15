@@ -1,0 +1,91 @@
+{
+  "..\\..\\node_modules\\jspdf\\dist\\jspdf.es.min.js -> canvg": {
+    "id": 4668,
+    "files": [
+      "static/chunks/72a30a16.bcc625a727571619.js",
+      "static/chunks/442.279db21fb62a748d.js"
+    ]
+  },
+  "..\\..\\node_modules\\jspdf\\dist\\jspdf.es.min.js -> dompurify": {
+    "id": 7856,
+    "files": [
+      "static/chunks/856.c9b7b6a82761d44b.js"
+    ]
+  },
+  "..\\..\\node_modules\\jspdf\\dist\\jspdf.es.min.js -> html2canvas": {
+    "id": 1120,
+    "files": []
+  },
+  "..\\components\\elements\\Hero\\OneWay\\OneWay.js -> ../../Buttons/BlueButton": {
+    "id": 1599,
+    "files": [
+      "static/css/3bd4f84ff22dcb83.css",
+      "static/chunks/599.fa2c84a79e982530.js"
+    ]
+  },
+  "..\\components\\elements\\Hero\\OneWay\\OneWay.js -> ../../Buttons/LoadBtn": {
+    "id": 8926,
+    "files": [
+      "static/css/14ff62fc497a5e4b.css",
+      "static/chunks/926.53b9d14ac402627b.js"
+    ]
+  },
+  "..\\components\\elements\\Hero\\OneWay\\OneWay.js -> ../../HandleSearchResults": {
+    "id": 7295,
+    "files": [
+      "static/css/c78223ed449053a4.css",
+      "static/chunks/295.af9737a06c42245c.js"
+    ]
+  },
+  "..\\components\\elements\\Hero\\OneWay\\OneWay.js -> ../../SeletedLists": {
+    "id": 809,
+    "files": [
+      "static/chunks/809-04a4460a3f9c9856.js",
+      "static/css/15602ff3f32934e7.css"
+    ]
+  },
+  "..\\components\\elements\\Hero\\OnewayForquotation\\index.js -> ../../Buttons/BlueButton": {
+    "id": 1599,
+    "files": []
+  },
+  "..\\components\\elements\\Hero\\OnewayForquotation\\index.js -> ../../Buttons/LoadBtn": {
+    "id": 8926,
+    "files": []
+  },
+  "..\\components\\elements\\Hero\\OnewayForquotation\\index.js -> ../../HandleSearchResults": {
+    "id": 7295,
+    "files": []
+  },
+  "..\\components\\elements\\Hero\\OnewayForquotation\\index.js -> ../../SeletedLists": {
+    "id": 809,
+    "files": []
+  },
+  "..\\components\\elements\\Hero\\Return\\Return.js -> ../../Buttons/BlueButton": {
+    "id": 1599,
+    "files": [
+      "static/css/3bd4f84ff22dcb83.css",
+      "static/chunks/599.fa2c84a79e982530.js"
+    ]
+  },
+  "..\\components\\elements\\Hero\\Return\\Return.js -> ../../Buttons/LoadBtn": {
+    "id": 8926,
+    "files": [
+      "static/css/14ff62fc497a5e4b.css",
+      "static/chunks/926.53b9d14ac402627b.js"
+    ]
+  },
+  "..\\components\\elements\\Hero\\Return\\Return.js -> ../../HandleSearchResults": {
+    "id": 7295,
+    "files": [
+      "static/css/c78223ed449053a4.css",
+      "static/chunks/295.af9737a06c42245c.js"
+    ]
+  },
+  "..\\components\\elements\\Hero\\Return\\Return.js -> ../../SeletedLists": {
+    "id": 809,
+    "files": [
+      "static/chunks/809-04a4460a3f9c9856.js",
+      "static/css/15602ff3f32934e7.css"
+    ]
+  }
+}
