@@ -33,10 +33,8 @@ const Layout = ({
         <meta name="description" content={description} />
         {keywords ? <meta name="keywords" content={keywords} /> : null}
         <meta name="copyright" content={`Copyright London-heathrow.taxi  ${currentYear}. All rights reserved.`} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 " /> */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 " />
         <meta name="google-site-verification" content="9niN--Hxw6fLfS5Om0lK1dGEvoDbwo-ZTxjamC9oz64" />
-
         {/* //alternates for terms abouts us aand other Static pages We dont need schema so we didnt include*/}
         {Object.entries(STATIC_ROUTES).map(([key, path, language = "en"]) => {
           return (
