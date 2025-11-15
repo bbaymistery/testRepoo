@@ -1,0 +1,21 @@
+@import '../../../styles/colors';
+
+.bg_holder {
+  position: relative;
+  padding: 3rem 0;
+  border-top: 1px solid $border_gray;
+
+
+  .bg_content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
+}
