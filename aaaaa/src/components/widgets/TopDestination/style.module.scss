@@ -1,0 +1,115 @@
+@import '../../../styles/colors';
+
+.top_destination {
+    margin: 30px var(--window-margin);
+    padding-bottom: 60px;
+    border-top: 1px solid $border_gray;
+    padding-top: 60px;
+
+    .dest_container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+
+        @media (max-width:1200px) {
+            padding: 0px 0px;
+            max-width: 970px;
+        }
+
+        @media (max-width:990px) {
+            max-width: 750px;
+            padding: 0px 0px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 2rem;
+
+            @media (max-width:768px) {
+                font-size: 25px;
+            }
+        }
+
+        .thumbs {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            justify-content: center;
+
+            @media (max-width: 855px) {
+                flex-direction: column;
+            }
+
+            .thumb {
+                overflow: hidden;
+
+                @media (max-width: 1200px) {
+                    width: 292px;
+                }
+
+                @media (max-width:855px) {
+                    width: auto;
+                }
+
+                .thumb_header {
+                    margin-bottom: 1rem;
+                    overflow: hidden;
+
+                    a {
+                        border-radius: 5px
+                    }
+                }
+
+
+                .icon_left {
+                    float: left;
+                    margin-right: 15px;
+
+                    i {
+                        border-radius: 50%;
+                        border-style: dashed;
+                        border: 1px dashed #ed8323;
+                        color: #ed8323;
+                        z-index: 2;
+                        position: relative;
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
+                        text-align: center;
+                        display: block;
+                        transition: .3s;
+                        transform: rotate(-45deg);
+                    }
+                }
+
+                .thumb_caption {
+                    display: table;
+
+                    .thumb_title {
+                        margin: 0;
+                        line-height: 1em;
+font-size: 24px;
+                        @media (max-width:768px) {
+                            font-size: 20px;
+                        }
+
+                        a {
+                            color: #565656;
+                        }
+                    }
+
+                    .thumb_caption {
+                        .thumb_desc {
+                            margin-bottom: 0;
+                            margin-top: 6px;
+                            font-size: 13px;
+                            color: #4e4d4d;
+                            line-height: 1.4em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

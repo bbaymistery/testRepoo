@@ -1,0 +1,55 @@
+@import '../../../styles/colors';
+
+.element_section_inside {
+    background-color: $bgBlackDark !important;
+    min-height: 100px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+
+    .section_inside {
+        margin: 0 var(--window-margin);
+
+        .section_container_inside {
+            padding: 0px 15px;
+            position: relative;
+            margin: 0 auto;
+            max-width: 1200px;
+            width: 100%;
+
+            .boxes {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+
+                .box {
+                    margin-bottom: 30px;
+
+                    .text_color {
+                        color: $yellow;
+                        font-size: 22px;
+
+                    }
+
+                    .text_white {
+                        color: white;
+                    }
+
+                    &_one {
+                        color: white;
+
+                        .box_logo {
+                            text-transform: uppercase;
+                            color: white;
+                            font-size: 20px;
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+}

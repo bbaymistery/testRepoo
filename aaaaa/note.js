@@ -1,0 +1,1 @@
+// 1.Where to add image in the snippet cause usually we dont add image to faqs snipet 

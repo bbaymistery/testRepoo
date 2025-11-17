@@ -1,0 +1,226 @@
+@import '../../../styles/colors';
+
+.ulDiv_mobile {
+
+    // bu sagda bg orange olan icondu
+    .fa_icon {
+        font-size: 15px;
+        z-index: 999999999;
+        display: block;
+        position: absolute;
+        background-color: $darkYellow;
+        padding: 16px;
+        right: 0px;
+        top: 44px;
+        color: white;
+
+        img {
+            filter: invert(100%) sepia(16%) saturate(7463%) hue-rotate(222deg) brightness(119%) contrast(115%);
+        }
+    }
+
+    .ul {
+        --padding: 15px;
+        --font-size: 16px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        transition: 0.5s ease;
+        position: relative;
+
+
+        --height: 0px;
+        flex-direction: column;
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        transform: translate(-50%);
+        top: 45px;
+        height: var(--height);
+        transition: .5s ease-in-out;
+        overflow-y: hidden;
+        max-width: 700px;
+        z-index: -1;
+
+        @media (max-width: 768px) {
+            max-width: 100%;
+        }
+
+        .li_item {
+            position: relative;
+            display: inline-block;
+
+            width: 100%;
+            text-align: left;
+            position: relative;
+
+            &:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                bottom: 0px;
+                width: 100%;
+                left: 0%;
+                right: 0%;
+                height: 1px;
+                background-color: #efefef;
+                ;
+            }
+
+            @media (max-width: 650px) {
+                text-align: start;
+            }
+
+            a {
+                padding: 12px;
+            }
+
+            &:hover {
+                transition: $transition;
+                background-color: $yellow;
+
+                a {
+                    color: white;
+                }
+            }
+
+            .item {
+                color: $gray;
+                text-decoration: none;
+                position: relative;
+                text-transform: uppercase;
+                cursor: pointer;
+                display: block;
+
+                width: 100%;
+                text-transform: capitalize;
+            }
+        }
+
+
+
+        .active {
+            background-color: #BD5B00;
+
+            a {
+                color: white !important;
+
+            }
+        }
+
+
+
+        .hoverlayItem {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: -1px;
+            flex-direction: column;
+            gap: 0px;
+
+
+
+            a {
+                padding: 12px;
+            }
+
+
+
+            a {
+                padding-left: 10px;
+                display: block;
+            }
+
+            .firstItem {
+                display: block;
+            }
+
+            .forMobileHover {
+                position: relative;
+                background-color: transparent;
+                background-color: white;
+                width: 100%;
+                top: 0px;
+                width: 100%;
+                height: 0px;
+                visibility: hidden;
+                transition: $transition;
+                display: block;
+
+
+                li {
+                    margin-left: 60px;
+
+                    &:not(:last-child)::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0px;
+                        width: 100%;
+                        left: 0%;
+                        right: 0%;
+                        height: 1px;
+                        background-color: #efefef;
+                        ;
+                    }
+
+                    @media (max-width: 400px) {
+                        margin-left: 60px;
+                        font-size: 14px;
+                    }
+
+                    &:hover {
+                        background-color: $yellow;
+                        transition: $transition;
+
+                        a {
+                            color: white !important;
+                        }
+                    }
+
+                    a {
+                        color: $yellow !important;
+                    }
+                }
+
+                //bunu yazdikkki li item uzerine gelen arada boslug galnmasin
+
+
+                text-transform: capitalize;
+
+                li.active {
+                    background-color: $yellow;
+
+                    a {
+                        color: white !important;
+                    }
+                }
+            }
+
+         
+        }
+    }
+
+    .ulActive {
+        margin: 0px;
+        margin-top: 12px;
+        background: white;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 0px calc(var(--window-margin) - 20px) 0 var(--window-margin);
+        transition: 0.4s linear;
+        min-height: 0px;
+
+        @media (max-width: 990px) {
+            --height: calc((((var(--padding)) + (var(--font-size) * 1.55.5))) * var(--childenNumber));
+            padding: 0px;
+            margin-top: -10px;
+            left: 50%;
+            top: 56px;
+            transform: translate(-50%);
+            opacity: 1;
+            visibility: visible;
+            z-index: 99999;
+            display: flex;
+            align-items: baseline;
+        }
+    }
+}
