@@ -1,0 +1,199 @@
+@import '../../../styles/variables';
+@import '../../../styles/fonts';
+
+.selected_points {
+    margin-top: -5px;
+
+    .point_div {
+        position: relative;
+        margin-right: 8px;
+        transition: 0.2s linear;
+
+        input {
+            outline: none;
+            padding: 6px 30px !important;
+            margin-bottom: 15px;
+            cursor: default;
+            transition: 0.2s linear;
+            width: 100%;
+            border: 1px solid lighten(#efefef, 7%);
+            font-size: 15px;
+            border-radius: 5px;
+            margin-top: -4px;
+            text-transform: capitalize;
+
+            box-shadow: rgba(50, 50, 93, 0.1) 0px 50px 100px -20px,
+                rgba(0, 0, 0, 0.1) 0px 30px 60px -30px,
+                rgba(10, 37, 64, 0.1) 0px -2px 6px 0px inset;
+
+            &::placeholder {
+                color: $dark-1;
+                font-weight: 500;
+            }
+
+            &:hover {
+                &::placeholder {
+                    color: darken($dark-1, 45%);
+                }
+
+                box-shadow: rgba(50, 50, 93, 0.1) 0px 50px 100px -20px,
+                rgba(0, 0, 0, 0.1) 0px 30px 60px -30px,
+                rgba(10, 37, 64, 0.15) 0px -2px 6px 0px inset;
+            }
+        }
+
+        img {
+            width: 12px;
+            position: absolute;
+            top: 32%;
+            transform: translateY(-50%);
+        }
+
+        .icons {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            z-index: 1;
+            width: 15px;
+            height: 15px;
+            color: #fff;
+            transition: 0.5s linear;
+            cursor: pointer;
+        }
+
+        .icons_check_span {
+            opacity: 1;
+            font-size: 15px;
+            display: flex;
+            justify-content: center;
+            color: #63ce26;
+            align-items: center;
+
+            @media (max-width: 990px) {
+                display: none;
+            }
+        }
+
+        .icons_delete_span {
+            font-size: 15px;
+            opacity: 0;
+            transform: scale(0);
+            color: red;
+
+            i {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            @media (max-width: 990px) {
+                opacity: 1;
+                transform: scale(1);
+                font-size: 19px;
+            }
+        }
+
+        @media (max-width: 990px) {
+
+            .icons_check_span[hideme="true"],
+            .icons_delete_span[hideme="true"] {
+                display: none;
+
+                &:hover {
+                    display: none;
+                }
+            }
+        }
+
+        &:hover {
+            .icons_delete_span {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .icons_check_span {
+                visibility: hidden;
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        // RTL
+        &.rtl {
+            img {
+                right: 9px;
+                transform: rotate(180deg) translateY(-50%);
+                top: 29%;
+                display: none;
+            }
+
+            input {
+                text-align: right;
+            }
+
+            .icons {
+                left: 10px;
+                top: 12px;
+            }
+        }
+
+        // LTR
+        &.ltr {
+            img {
+                left: 9px;
+            }
+
+            input {
+                text-align: left;
+            }
+
+            .icons {
+                right: 10px;
+                top: 8px;
+            }
+        }
+    }
+
+}
+
+.isTaxiDeal_selected_points {
+    .point_div {
+        margin-right: 0;
+
+        img {
+            top: 45% !important;
+            filter: invert(46%) sepia(39%) saturate(204%) hue-rotate(181deg) brightness(89%) contrast(91%);
+        }
+
+        input {
+            margin-bottom: 0 !important;
+            box-shadow: none !important;
+            border: 1px solid $border;
+            color: $input_text_color !important;
+
+            &::placeholder {
+                color: $input_text_color;
+            }
+
+            &:hover {
+                &::placeholder {
+                    color: $input_text_color;
+                }
+            }
+        }
+    }
+}
+
+
+.hasoneitem_taxideals {
+
+    .point_div.ltr:hover .icons_check_span,
+    .point_div.rtl:hover .icons_check_span {
+        visibility: visible;
+        transform: scale(1);
+        opacity: 1;
+    }
+}
