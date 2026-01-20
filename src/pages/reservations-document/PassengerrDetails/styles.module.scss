@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Reused Card/Title utility classes */
+.card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    overflow: hidden;
+}
+
+.cardPaddedSm {
+    padding: 20px;
+}
+
+.sectionTitle {
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0B3A82; /* Assuming brand blue */
+    font-family: 'Inter', sans-serif; 
+}
+
+
+.pList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.pItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pIcon {
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex: 0 0 auto; /* Iconun küçülmesini engeller */
+}
+
+.pName {
+    font-weight: 700;
+    color: #334155;
+    font-family: 'Inter', sans-serif;
+}
+
+.pText {
+    color: #64748b;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Truncation for long email addresses */
+.pTextTruncate {
+    max-width: 260px; /* Ya da istediğiniz max genişlik */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pNotes {
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #f1f5f9;
+    align-items: flex-start;
+    
+    .pIcon {
+        margin-top: 4px; /* Not ikonu hizalaması için */
+    }
+
+    small {
+        display: block;
+        font-size: 10px;
+        font-weight: 900;
+        color: #94a3b8;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+    }
+
+    em {
+        font-size: 12px;
+        color: #64748b;
+        font-style: normal; /* İtalik stilini kaldırır */
+    }
+}

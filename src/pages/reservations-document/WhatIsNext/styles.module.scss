@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    overflow: hidden;
+}
+
+.cardPaddedSm {
+    padding: 20px;
+}
+
+.sectionTitle {
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0B3A82;
+    /* Default brand color */
+    font-family: 'Inter', sans-serif;
+}
+
+.sectionTitleMuted {
+    color: #334155;
+    /* Section title for this component is muted */
+}
+
+/* Steps list structure */
+.steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.step {
+    display: flex;
+    gap: 12px;
+}
+
+/* Step Number Circle */
+.stepNum {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+    margin-top: 2px;
+    flex: 0 0 auto;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Step Number Colors */
+.stepNumGreen {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.stepNumBlue {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.stepNumPurple {
+    background: #ede9fe;
+    color: #7c3aed;
+}
+
+/* Step Content */
+.stepText {
+    font-size: 12px;
+    color: #64748b;
+    font-family: 'Inter', sans-serif;
+line-height: normal;
+    strong {
+        display: block;
+        color: #0f172a;
+        margin-bottom: 2px;
+    }
+}
+
+/* Link inside Step Content */
+.stepLink {
+    color: #0B3A82;
+    /* Assuming this is your brand blue */
+    font-weight: 800;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

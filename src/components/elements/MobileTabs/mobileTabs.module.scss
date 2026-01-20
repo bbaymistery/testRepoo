@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+.mobile-tabs-wrapper {
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1.5rem;
+  display: none;
+  font-family: 'Inter', sans-serif;
+}
+.return-journey {
+  margin-top: 50px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.mobile-tabs-inner {
+  display: flex;
+  margin-bottom: -1px;
+}
+
+.mobile-tab-button {
+  width: 50%;
+  padding: 12px 4px;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: capitalize;
+
+}
+
+.mobile-tab-button:hover {
+  color: #475569;
+}
+
+.mobile-tab-button i {
+  margin-right: 8px;
+}
+
+.mobile-tab-button.active {
+  color: #0B3A82;
+  border-bottom-color: #0B3A82;
+}
+
+/* Only mobile */
+@media (max-width: 1023px) {
+  .mobile-tabs-wrapper {
+    display: block;
+  }
+}

@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* --- Genel Ayarlar --- */
+.payment_container {
+    font-family: 'Inter', sans-serif;
+    color: #334155;
+    margin-top: 32px;
+    width: 100%;
+
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+
+}
+
+/* --- Animasyonlar --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade_in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* --- Ödeme Seçenekleri Grid --- */
+.payment_options_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    @media (min-width: 640px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --- Radyo Buton Kartları --- */
+.payment_radio_label {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    user-select: none;
+
+    &:hover {
+        border-color: #cbd5e1;
+        background-color: #f8fafc;
+        transition: 0.5s ease;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Gizli inputun tüm kutuyu kaplamasını sağla */
+    .payment_radio_input {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    /* --- SEÇİLİ DURUM (Checked) --- */
+    .payment_radio_input:checked+.payment_card_box {
+        border-color: #0B3A82 !important;
+        background-color: #eff6ff !important;
+        box-shadow: 0 0 0 1px #0B3A82 !important;
+    }
+
+    /* SAĞ ÜSTTEKİ ONAY İŞARETİ (Checked Icon) */
+    .payment_radio_input:checked+.payment_card_box::after {
+        content: '\f058';
+        /* FontAwesome check-circle kodu */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        color: #0B3A82;
+        animation: fadeIn 0.2s ease-in;
+    }
+
+    /* Seçili değilken görünecek boş daire (Opsiyonel: Daha profesyonel durur) */
+    .payment_card_box::before {
+        content: '';
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #cbd5e1;
+        border-radius: 50%;
+    }
+
+    /* Seçili olduğunda boş daireyi gizle */
+    .payment_radio_input:checked+.payment_card_box::before {
+        display: none;
+    }
+
+    .payment_card_box {
+        position: relative;
+        height: 100%;
+        padding: 31px 1rem;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        background-color: white;
+        text-align: center;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+
+
+        .icon_wrapper {
+            margin-bottom: 8px;
+            font-size: 45px;
+            transition: transform 0.2s;
+
+            &.blue {
+                color: #0B3A82;
+            }
+
+            &.dark_blue {
+                color: #003087;
+            }
+
+            &.green {
+                color: #16a34a;
+            }
+        }
+
+        .text {
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #334155;
+            text-align: center;
+
+            .payment_card_box_text_1 {
+                font-size: 16px;
+            }
+
+            .payment_card_box_text_2 {
+                color: #747577;
+                font-size: 12px;
+                font-weight: normal;
+                margin-top: -5px;
+            }
+
+            .payment_card_box_text_3 {
+                color: #0B3A82;
+                font-size: 14px;
+                font-weight: bold;
+                margin-top: 5px;
+                text-align: center;
+                background: #eff6ff;
+                border-radius: 10px;
+                border: 1px solid #dbeafe;
+    padding: 0px 20px !important;
+                @media(max-width:768px) {
+                    font-size: 12px;
+
+                }
+
+            }
+        }
+    }
+}
+
+/* --- Stripe Iframe --- */
+.stripe_container {
+    grid-column: 1 / -1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.iframe {
+    width: 100%;
+    min-height: 600px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+
+
+/* =========================================
+   CONFIRMATION MODAL (Yeni Eklenen)
+   ========================================= */
+
+.content_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    /* Arka plan karartma */
+    backdrop-filter: blur(5px);
+    /* Arka planı bulanıklaştır */
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+
+    /* Modal açılış animasyonu */
+    &.appear {
+        animation: modalFadeIn 0.3s forwards;
+
+        .confirmation_box {
+            animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    }
+}
+
+.confirmation_box {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid #f1f5f9;
+        background-color: #ffffff;
+
+        p {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        i {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 4px;
+
+            &:hover {
+                color: #ef4444;
+            }
+        }
+    }
+
+    .body {
+        padding: 2rem 1.5rem;
+        text-align: center;
+        color: #475569;
+        font-size: 1rem;
+        line-height: 1.5;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .footer {
+        padding: 1.25rem 1.5rem;
+        background-color: #f8fafc;
+        border-top: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            width: 100%;
+            padding: 0.85rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+
+            &.btn_primary {
+                background-color: #0B3A82;
+                color: white;
+                box-shadow: 0 4px 6px -1px rgba(11, 58, 130, 0.2);
+
+                &:hover {
+                    background-color: #092f69;
+                    transform: translateY(-1px);
+                }
+
+                &:active {
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+}
+
+/* --- Modal Animasyon Keyframes --- */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

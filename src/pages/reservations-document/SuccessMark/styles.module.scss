@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+
+
+/* ================================
+   SUCCESS ICON
+================================ */
+.successMark {
+    width: 60px;
+    height: 60px;
+    border-radius: 999px;
+    background: #dcfce7;
+    color: #16a34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    animation: popIn 0.6s cubic-bezier(.175, .885, .32, 1.275) forwards;
+
+    i {
+        font-size: 40px;
+    }
+
+    @media (max-width: 768px) {
+        width: 55px;
+        height: 55px;
+
+        i {
+            font-size: 30px;
+        }
+    }
+}
+
+/* Animation */
+@keyframes popIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ================================
+   HERO TEXT
+================================ */
+.heroTitle {
+    margin: 0 0 8px;
+    font-size: 28px;
+    color: #1e293b;
+    font-weight: 800;
+    font-family: 'Inter', sans-serif;
+
+}
+
+.heroSubtitle {
+    margin: 0 0 12px;
+    color: #64748b;
+    font-family: 'Inter', sans-serif;
+
+}
+
+.heroSubtitle strong {
+    color: #334155;
+}
+
+@media (min-width: 768px) {
+    .heroTitle {
+        font-size: 32px;
+    }
+}
+
+/* ================================
+   REFERENCE BOX
+================================ */
+.ref {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    flex-direction: column;
+    /* Mobile */
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    border-radius: 12px;
+    padding: 4px 16px;
+    margin: 0 auto 18px;
+    font-family: 'Inter', sans-serif;
+
+    @media (max-width: 768px) {
+        gap: 6px;
+
+    }
+}
+
+.refLabel {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #94a3b8;
+    font-family: 'Inter', sans-serif;
+
+}
+
+.refValue {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: #0B3A82;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+}
+
+.refCopy {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 12px;
+    color: #3b82f6;
+    text-decoration: underline;
+    padding: 6px 8px;
+    font-family: 'Inter', sans-serif;
+
+    border-radius: 8px;
+}
+
+.refCopy:hover {
+    color: #1d4ed8;
+}
+
+@media (min-width: 640px) {
+    .ref {
+        flex-direction: row;
+        /* Tablet & Desktop */
+    }
+}

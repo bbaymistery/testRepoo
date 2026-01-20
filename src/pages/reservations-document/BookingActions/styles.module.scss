@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.actions {
+    display: grid;
+    gap: 12px;
+}
+
+/* Sadece baskı/pdf için geçerli olan kurallar */
+@media print {
+
+    /* PDF'e dahil edilmesini istemediğiniz öğeleri gizleyin */
+    .no-print,
+    .actions {
+        display: none !important;
+    }
+
+    /* PDF çıktısının ana içerik alanını sayfaya yaymak için */
+    #pdf_file {
+        width: 100%;
+        margin: 0;
+        float: none;
+    }
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-weight: 900;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s, color .2s, border-color .2s;
+    border: 1px solid transparent;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Primary Button Style (Blue) */
+.colorPrimary {
+    background: #0B3A82;
+    /* Assuming this is your brand blue */
+    color: #fff;
+
+    &:hover {
+        background: #08306a;
+    }
+}
+
+/* Outline Button Style (White/Bordered) */
+.btnOutline {
+    background: #fff;
+    border-color: #cbd5e1;
+    color: #334155;
+
+    &:hover {
+        background: #f8fafc;
+    }
+}
+
+/* Print styles for no-print utility */
+/* @media print kuralınızda `no-print` sınıfının `display: none !important` olarak ayarlandığını varsayıyorum. */

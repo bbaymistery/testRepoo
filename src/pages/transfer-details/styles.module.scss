@@ -1,0 +1,44 @@
+@import '../../styles/variables';
+@import '../../styles/fonts';
+$checkbox-size: 20px;
+$checkbox-border: #cecece;
+$checkbox-selected: $primary; // Primary colour
+
+
+
+.tr_details_section {
+    padding-top: 0px;
+    padding-bottom: 50px;
+    position: relative;
+
+    .tr_details_section_container {
+        @media only screen and (max-width:1200px) {
+            max-width: 1150px !important;
+        }
+
+    }
+
+
+
+
+}
+
+
+
+
+@media only screen and (max-width: 990px) {
+    .search-input-container[f="true"] {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow: auto;
+        background-color: white;
+        z-index: 100000;
+        padding: 12px !important;
+        overflow: hidden;
+        padding-top: 15px !important;
+    }
+}
+

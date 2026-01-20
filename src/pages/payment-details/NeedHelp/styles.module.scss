@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.footerHelp {
+  padding-top: 1.5rem;
+  border-top: 1px solid #f1f5f9;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.helpText {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.contactLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.noteText {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.linkBlue, .linkGreen {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;    
+  cursor: pointer;
+}
+
+.linkBlue {
+  color: #0B3A82;
+  
+  &:hover {
+    color: #082d66;
+  }
+}
+
+.linkGreen {
+  color: #16a34a;
+
+  i {
+    font-size: 0.875rem;
+  }
+}

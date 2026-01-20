@@ -1,0 +1,50 @@
+.transferdetails_subcontainer {
+    border-radius: 4px;
+    position: relative;
+
+    .main_grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+        .main_grid {
+            grid-template-columns: 8fr 4fr;
+        }
+    }
+
+    /* Mobile visibility classes */
+    .show_mobile {
+        display: block;
+    }
+
+    .hide_mobile {
+        display: none;
+    }
+
+    /* Desktop overrides */
+    @media (min-width: 1024px) {
+
+        .show_mobile,
+        .hide_mobile {
+            display: block !important;
+        }
+    }
+
+    /* Sections */
+    .form_section {
+
+        .main_card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px var(--shadow-color), 0 1px 2px -1px var(--shadow-color);
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+        }
+    }
+
+    .summary_section {
+        position: relative;
+    }
+}

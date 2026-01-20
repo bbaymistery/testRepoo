@@ -1,0 +1,77 @@
+@import '../../styles/_fonts';
+@import '../../styles/variables';
+
+.rsv_details {
+    background-color: #fff;
+    padding-top: 20px !important;
+
+    .rsv_details_section {
+        @media (max-width:768px) {
+            padding: 0 0px;
+
+        }
+
+        .rsv_details_section_container {
+            @media (max-width:768px) {
+                padding: 0 0px;
+
+            }
+
+            .container_main {
+                max-width: 1100px;
+                padding: 0 16px;
+                margin: 0 auto;
+                margin-top: 2rem;
+
+                @media (max-width:768px) {
+                    padding: 0 0px;
+
+                }
+
+                .hero {
+                    text-align: center;
+                    margin-bottom: 32px
+                }
+
+
+                .grid {
+                    display: grid;
+                    gap: 24px;
+
+                    .left_section {
+                        position: relative;
+                    }
+
+                    .right_section {
+                        position: relative;
+                    }
+                }
+
+
+                .grid--3 {
+                    grid-template-columns: 1fr;
+
+                    /* Two cards row */
+                    .two-col {
+                        display: grid;
+                        gap: 24px
+                    }
+
+                    @media (min-width:768px) {
+                        .two-col {
+                            grid-template-columns: 1fr 1fr
+                        }
+                    }
+
+                }
+
+                @media (min-width:1024px) {
+                    .grid--3 {
+                        grid-template-columns: 2fr 1fr
+                    }
+                }
+
+            }
+        }
+    }
+}

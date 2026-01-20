@@ -1,0 +1,49 @@
+
+.section_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+    .section_header {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.section_title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0B3A82;
+}
+
+.payment_icons {
+    font-size: 1.25rem;
+    color: #cbd5e1;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.payment_icons i:hover {
+    transition: color 0.2s;
+}
+
+.visa:hover {
+    color: #1434CB;
+}
+
+.mastercard:hover {
+    color: #EB001B;
+}
+
+.amex:hover {
+    color: #006FCF;
+}
+
+.google_pay:hover,
+.apple_pay:hover {
+    color: #475569;
+}
