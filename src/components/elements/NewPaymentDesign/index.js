@@ -22,7 +22,6 @@ const NewPaymentDesign = (props) => {
     const [dataTokenForWebSocket, setDataTokenForWebSocket] = useState("");
     const [statusToken, setStatusToken] = useState("");
     const [popUpWindow, setPopUpWindow] = useState("")//for paypal
-    const popUpWindowRef = useRef(null);
     const [selectedMethod, setSelectedMethod] = useState(null);
     const [cashPaymentModal, setCashPaymentModal] = useState(false)
 
@@ -65,17 +64,19 @@ const NewPaymentDesign = (props) => {
     };
     //sadece paypal icin bunu saxladim
     const openPopUpWindow = (params = {}) => {
-        let { statusOfWindowCloseOrOpen, url } = params;
+        let { statusOfWindowCloseOrOpen, url } = params
         if (statusOfWindowCloseOrOpen === 'open') {
             let windowOptions = `menubar=no,location=yes,toolbar=no,left=${window.screen.width / 2 - 550 / 2},width=550,height=800`;
-            // State yerine ref'in current değerine atıyoruz
-            popUpWindowRef.current = window?.open(url, "_blank", windowOptions);
+            let willPopUp
+            willPopUp = window?.open(url, "_blank", windowOptions);
+            setPopUpWindow(willPopUp)
+
         }
         if (statusOfWindowCloseOrOpen === 'close') {
-            if (popUpWindowRef.current) {
-                popUpWindowRef.current.close();
+            if (popUpWindow) {
+                popUpWindow?.close();
             }
-            popUpWindowRef.current = null; // State'i temizlemek yerine ref'i null yapıyoruz
+            setPopUpWindow("")
         }
     };
     //*payment methods
@@ -113,7 +114,7 @@ const NewPaymentDesign = (props) => {
                         setStatusToken(data?.webSocketToken); //it will trigger interval and will make request
                         setIframeStripe(data?.href);
                         openPopUpWindow({ statusOfWindowCloseOrOpen: "close", url: "" })
-                        popUpWindowRef.current = null;
+                        setPopUpWindow("")
 
                     })
                     .catch((error) => {
@@ -150,7 +151,9 @@ const NewPaymentDesign = (props) => {
                 setDataTokenForWebSocket(data);
                 setStatusToken(data.webSocketToken);
                 popupRef.location.href = data.href;
-                popUpWindowRef.current = popupRef;
+                console.log({ popupRef });
+
+                setPopUpWindow(popupRef);
             })
             .catch(error => {
                 popupRef.close();
@@ -265,7 +268,7 @@ const NewPaymentDesign = (props) => {
         setCashPaymentModal(true)
         setIframeStripe("")
         openPopUpWindow({ statusOfWindowCloseOrOpen: "close", url: "" })
-        popUpWindowRef.current = null;
+        setPopUpWindow("")
         setStatusToken("");
         setDataTokenForWebSocket("")
     }
@@ -335,17 +338,18 @@ const NewPaymentDesign = (props) => {
     }, [statusToken]);
 
     useEffect(() => {
+        //make interval to check if pop  up windiw closed or not
+        //if yes then initialize status token
         const interval = setInterval(() => {
-            // popUpWindow yerine popUpWindowRef.current kullanıyoruz
-            if (popUpWindowRef.current && popUpWindowRef.current.closed) {
+            if (popUpWindow.closed) {
                 clearInterval(interval);
-                setStatusToken("");
-                popUpWindowRef.current = null;
-                setDataTokenForWebSocket("");
+                setStatusToken("")
+                setPopUpWindow("")
+                setDataTokenForWebSocket("")
             }
         }, 500);
         return () => clearInterval(interval);
-    }, []);
+    }, [popUpWindow])
 
     useEffect(() => {
         // Redux'taki reservations her değiştiğinde ref'i güncelle
@@ -421,10 +425,11 @@ const NewPaymentDesign = (props) => {
                     {/* paypal */}
                     <label className={styles.payment_radio_label}
                         onClick={() => {
+                            console.log({ popUpWindow });
 
                             // ✅ Zaten açık bir popup varsa tekrar açma
-                            if (popUpWindowRef.current && !popUpWindowRef.current.closed) {
-                                popUpWindowRef.current.focus();
+                            if (popUpWindow && !popUpWindow.closed) {
+                                popUpWindow.focus(); // mevcut popup'a odaklan
                                 return;
                             }
                             setSelectedMethod(5)
@@ -446,7 +451,7 @@ const NewPaymentDesign = (props) => {
                                     `);
                             popup.document.close();
 
-                            popUpWindowRef.current = popup;// popup state'ine yazıyoruz
+                            setPopUpWindow(popup); // popup state'ine yazıyoruz
                             startPayment(5, popup); // popup'ı gönderiyoruz
                         }}
                     >
