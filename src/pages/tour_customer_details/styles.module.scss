@@ -1,0 +1,335 @@
+@import '../../styles/variables';
+@import '../../styles/fonts';
+$checkbox-size: 20px;
+$checkbox-border: #cecece;
+$checkbox-selected: $primary; // Primary colour
+
+
+.tr_details_section {
+    padding-top: 0px;
+    padding-bottom: 50px;
+    position: relative;
+
+    .tr_details_section_container {
+
+
+        border-radius: 4px;
+        position: relative;
+
+        .main_grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .main_grid {
+                grid-template-columns: 8fr 4fr;
+            }
+        }
+
+        /* Mobile visibility classes */
+        .show_mobile {
+            display: block;
+        }
+
+        .hide_mobile {
+            display: none;
+        }
+
+        /* Desktop overrides */
+        @media (min-width: 1024px) {
+
+            .show_mobile,
+            .hide_mobile {
+                display: block !important;
+            }
+        }
+
+        /* Sections */
+        .form_section {
+
+            .main_card {
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 1px 3px var(--shadow-color), 0 1px 2px -1px var(--shadow-color);
+                border: 1px solid #e2e8f0;
+                padding: 20px;
+            }
+        }
+
+        .summary_section {
+            position: relative;
+        }
+    }
+}
+
+.search_menu {
+    min-height: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+margin-bottom: 1rem;
+    @media (max-width:990px) {
+        border-right: none;
+        margin-bottom: 0rem;
+    }
+
+    .point_title1 {
+             font-size: 18px;
+    font-weight: 700;
+    color: #0B3A82;
+    padding-bottom: 2px;
+      margin-bottom: 15px;
+
+    text-transform: capitalize;
+    }
+
+    .point_title {
+         font-size: 18px;
+    text-transform: capitalize;
+    font-weight: 700;
+    color: #0B3A82;
+    padding-bottom: 2px;
+    margin-bottom: 15px;
+    }
+
+    .input_div {
+        position: relative;
+
+        @media(max-width:990px) {
+            padding-right: 0px;
+            padding-bottom: 4px;
+
+        }
+
+        .popup_header[f="false"] {
+            display: none;
+        }
+
+        .popup_header[f="true"] {
+            display: flex;
+            align-items: center;
+            // padding-left: 14px;
+            padding-top: 12px;
+            padding-bottom: 10px;
+            padding-left: 3px;
+            text-transform: capitalize;
+
+            i {
+                margin-right: 11px;
+                font-size: 21px;
+                cursor: pointer;
+                z-index: 999999999999999;
+            }
+
+            p {
+                font-size: 19px;
+                // font-family: $font-jost;
+                font-weight: 500;
+                color: #000;
+            }
+        }
+
+        //[popupp="false"][direction="false"]
+        //[popupp="false"][direction="true"]
+        //[popupp="true"][direction="false"]
+        //[popupp="true"][direction="true"]
+        .input_delete_field_icon[popupp="false"][direction="false"] {
+            top: 7px;
+            font-size: 13px;
+            color: red;
+            right: 10px;
+            position: absolute;
+            display: inline;
+            width: 14px;
+            cursor: pointer;
+
+            &:hover {
+                color: darken(red, 10%);
+            }
+        }
+
+        .input_delete_field_icon[popupp="false"][direction="true"] {
+            position: absolute;
+            right: 97% !important;
+            color: red;
+            right: 5px;
+            font-size: 12px;
+            transform: rotate(180deg);
+            top: 9px;
+            cursor: pointer;
+            width: 10px;
+        }
+
+        .input_delete_field_icon[popupp="true"][direction="true"] {
+            position: absolute;
+            left: 23px !important;
+            color: red;
+            font-size: 12px;
+            transform: rotate(180deg);
+            top: 88px !important;
+            cursor: pointer;
+        }
+
+        .input_delete_field_icon[popupp="true"][direction="false"] {
+            position: absolute;
+            right: 23px !important;
+            color: red;
+            font-size: 12px;
+            top: 88px;
+            cursor: pointer;
+        }
+
+
+        .error_icon[popupp="false"][direction="false"] {
+            top: 0px;
+            font-size: 12px;
+            color: red;
+            right: 10px;
+            position: absolute;
+            display: inline;
+            width: 13px;
+        }
+
+        .error_icon[popupp="false"][direction="true"] {
+            position: absolute;
+            top: 0px;
+            left: 5px !important;
+            font-size: 12px;
+            color: red;
+
+
+            @media(max-width:990px) {
+                width: 100%;
+                left: 50%;
+                right: 97%;
+
+            }
+        }
+
+        .error_icon[popupp="true"][direction="true"] {
+            display: none;
+        }
+
+        .error_icon[popupp="true"][direction="false"] {
+            display: none;
+        }
+
+        input {
+            border: 1px solid $border;
+            outline: none;
+            width: 100%;
+            background-color: transparent;
+            outline-offset: -2px;
+            -webkit-appearance: textfield;
+            border-radius: 4px;
+            padding: 4px 6px !important;
+            min-height: 36px;
+
+            @media (max-width:990px) {
+                padding: 1px 0px;
+            }
+
+            &::placeholder {
+                // text-transform: capitalize;
+                color: $label_text_color;
+                font-weight: 400;
+                // font-family: $font-jost;
+                font-size: 13px;
+            }
+        }
+
+        input[f="true"] {
+            border: 1px solid #efefef;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        input[f="false"] {
+            // border-bottom: 1px solid #efefef !important;
+            padding: 1px 2px;
+
+
+        }
+
+        //normal english or turkish
+
+        .loading_div[direction="false"] {
+            position: absolute;
+            top: -36px;
+            right: 72px;
+
+            @media(max-width:1300px) {
+                right: 72px;
+            }
+
+            @media(max-width:990px) {
+                right: 80px;
+            }
+        }
+
+        .loading_div[popupp="false"][direction="true"] {
+            position: absolute;
+            top: -38px;
+            left: -22px;
+        }
+
+        .loading_div[popupp="true"][direction="false"] {
+            top: 42px !important;
+            right: 92px !important;
+            position: absolute;
+        }
+
+        .loading_div[popupp="true"][direction="true"] {
+            top: 36px !important;
+            position: absolute !important;
+            left: 0px !important;
+            background-color: red;
+
+        }
+
+        input[f="false"].error_input {
+            border-bottom: 1px solid red !important;
+        }
+
+
+    }
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        top: 30px;
+
+
+    }
+
+    10% {
+        opacity: 0;
+        top: 30px;
+
+    }
+
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+
+@media only screen and (max-width: 990px) {
+    .search-input-container[f="true"] {
+        position: fixed !important;
+        top: 70px !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow: auto;
+        background-color: white;
+        z-index: 100000;
+        padding: 12px !important;
+        overflow: hidden;
+
+    }
+}

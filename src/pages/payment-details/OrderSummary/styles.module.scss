@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Header */
+.summaryHeader {
+    background: #f8fafc;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+        color: #0B3A82;
+        font-size: 1.125rem;
+        font-weight: 700;
+        margin: 0;
+    }
+}
+
+.linkEdit {
+    font-size: 0.75rem;
+    color: #3b82f6;
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover {
+        color: #1d4ed8;
+    }
+}
+
+
+
+/* --- TAB BUTTONS (Minimalist Underline) --- */
+.tabContainer {
+    display: flex;
+    background-color: transparent;
+    /* Arka plan yok */
+    font-family: 'Inter', sans-serif;
+    padding: 0;
+    text-transform: capitalize;
+    margin: 0;
+    border-bottom: 1px solid #e2e8f0;
+    /* Tüm satırın altında ince çizgi */
+}
+
+.tabButton {
+    flex: 1;
+    padding: 0.8rem 0.5rem;
+    /* Yukarısı ve aşağısı biraz geniş */
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #64748b;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    /* Varsayılan olarak çizgi gizli */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 0;
+    /* Köşeli kalsın */
+    text-transform: capitalize;
+
+    &:hover {
+        color: #0B3A82;
+        background-color: #f8fafc;
+        /* Hover'da çok hafif gri */
+    }
+}
+
+.tabButton.active {
+    background-color: transparent;
+    color: #0B3A82;
+    font-weight: 700;
+    border-bottom: 2px solid #0B3A82;
+    /* Sadece aktif olanın altı mavi çizgi */
+}
+
+.summaryCard {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+
+    line-height: normal;
+}
+
+/* Passenger Section */
+.passengerSection {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.sectionLabel {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+}
+
+.passengerDetails {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.avatarCircle {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #0B3A82;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    margin-top: 2px;
+}
+
+.passengerName {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #334155;
+}
+
+.passengerContact {
+    font-size: 0.75rem;
+    color: #64748b;
+    line-height: 20px;
+}
+
+
+/* Vehicle Section */
+.vehicleReview {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 8px;
+}
+
+.vehicleImgBox {
+    width: 5rem;
+    height: 3.5rem;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+
+    img {
+        width: 100px;
+        height: 100%;
+        object-fit: contain;
+        mix-blend-mode: multiply;
+    }
+}
+
+.vehicleName {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 0.875rem;
+}
+
+.vehicleSpecs {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.2rem;
+
+    i {
+        font-size: 10px;
+    }
+}
+
+/* Body */
+.summaryBody {
+    padding: 1.25rem;
+}
+
+
+  .date-badge {
+    margin-bottom: 5px;
+                    margin-top: 5px;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    background-color: #eff6ff;
+                    color: #0B3A82;
+                    padding: 4px 8px;
+                    border-radius: 4px;
+                    font-size: 12px;
+                    border: 1px solid #dbeafe;
+
+                    span {
+                        color: #bfdbfe;
+                    }
+                }
+
+/* --- Header Kısmı --- */
+.panel_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+
+    .date_text {
+        font-size: 0.75rem;
+        color: #64748b;
+        font-weight: 500;
+    }
+}
+/* --- Uçuş Bilgisi --- */
+.flight_info_box {
+    background-color: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 15px;
+
+    .row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        i {
+            font-size: 0.875rem;
+            color: #0B3A82;
+        }
+
+        .flight_no {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        .pickup_time {
+            font-size: 0.75rem;
+            color: #475569;
+        }
+    }
+}
+
+//duraion box for spesific font size
+.duration_box{
+    text-transform: capitalize;
+    margin-bottom: -1px !important;
+    .row{
+        .flight_no{
+            font-size: 13px !important;
+            span{
+                font-size: 13px !important;
+                font-weight: 500 !important;
+            }
+        }
+    }
+}
+
+
+
+/* --- Timeline --- */
+.timeline_container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 20px;
+
+    .visual {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 6px;
+        gap: 4px;
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dot_start {
+            background-color: #0B3A82;
+        }
+
+        .dot_end {
+            background-color: white;
+            border: 2px solid #f97316;
+        }
+
+        .line {
+            width: 2px;
+            flex: 1;
+            background-color: #e2e8f0;
+            min-height: 40px;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        // gap: .5rem;
+        flex: 1;
+    }
+
+    .location_item {
+        .label {
+            font-size: 0.625rem;
+            color: #94a3b8;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .address {
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: #1e293b;
+            line-height: 1.3;
+        }
+    }
+}
+
+
+/* Flight Info Box */
+.flightInfo {
+    margin-top: 0.5rem;
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    color: #475569;
+}
+
+.flightRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 4px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    i {
+        color: #0B3A82;
+    }
+}
+
+
+
+
+
+
+
+
+/* Notes Section */
+.notesSection {
+    padding: 0.75rem 0;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 1.25rem;
+
+    .sectionLabel {
+        margin-bottom: 0.25rem;
+    }
+}
+
+.notesText {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-style: italic;
+}
+
+/* Cost Table */
+.costTable {
+    background: #f8fafc;
+    border-radius: 4px;
+    padding: 0.75rem;
+    text-transform: capitalize;
+    font-size: 0.75rem;
+}
+
+.costRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    color: #64748b;
+}
+
+.costRow.total {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+    align-items: center;
+}
+
+.textGreen {
+    color: #16a34a;
+    font-weight: 500;
+}
+
+.totalLabel {
+    font-weight: 700;
+    color: #334155;
+    font-size: 0.875rem;
+}
+
+.priceFinal {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0B3A82;
+}

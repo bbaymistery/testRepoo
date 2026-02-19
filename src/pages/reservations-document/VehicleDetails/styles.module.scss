@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+
+/* Reused Card/Title utility classes */
+.card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    overflow: hidden;
+
+    div {
+        line-height: normal;
+    }
+}
+
+.cardPaddedSm {
+    padding: 20px;
+}
+
+.sectionTitle {
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0B3A82;
+    /* Assuming brand blue */
+    font-family: 'Inter', sans-serif;
+}
+
+
+.vehicleRow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.vehicleImg {
+    width: 96px;
+    height: 64px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    /* Aracın arka planla daha iyi karışmasını sağlar */
+}
+
+.vehicleName {
+    font-weight: 900;
+    color: #0f172a;
+    font-family: 'Inter', sans-serif;
+}
+
+.vehicleMeta {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #64748b;
+    font-family: 'Inter', sans-serif;
+    text-transform: capitalize;
+
+    i {
+        width: 16px;
+        text-align: center;
+        margin-right: 4px;
+    }
+}
+
+
+/* Luggage Capacity Thumbnail */
+.capLabel {
+    margin: 10px 0 6px;
+    font-size: 10px;
+    font-weight: 900;
+    color: #94a3b8;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+}
+
+.capThumb {
+    position: relative;
+    height: 96px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    /* Assuming var(--border) */
+    cursor: pointer;
+}
+
+.capThumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s;
+}
+
+.capThumb:hover img {
+    transform: scale(1.05);
+    /* Zoom effect on hover */
+}
+
+.capOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity .2s;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+}
+
+.capThumb:hover .capOverlay {
+    opacity: 1;
+}

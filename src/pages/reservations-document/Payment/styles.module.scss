@@ -1,0 +1,89 @@
+/* ================================
+    PAYMENT SUMMARY
+================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Reused utility classes - assuming you have these defined globally or elsewhere */
+.card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    overflow: hidden;
+    text-transform: capitalize;
+}
+
+.cardPaddedSm {
+    padding: 20px;
+}
+
+.sectionTitle {
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0B3A82; /* Assuming this is your brand blue */
+    font-family: 'Inter', sans-serif; 
+}
+
+
+/* Payment Section Specific Styles */
+.payment {
+    /* Özel olarak, ödeme kartının arka plan rengi farklıdır */
+    background: #f8fafc;
+}
+
+.rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: #64748b;
+    font-family: 'Inter', sans-serif;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.total {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    font-family: 'Inter', sans-serif;
+}
+
+.totalLabel {
+    font-weight: 900;
+    color: #334155;
+}
+
+.totalValue {
+    font-weight: 900;
+    font-size: 22px;
+    color: #0B3A82; /* Assuming this is your brand blue */
+}
+
+.paid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #dcfce7;
+    color: #15803d;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+}
