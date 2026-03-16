@@ -1,0 +1,40 @@
+{
+    "$schema": "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
+    "version": "1.0",
+    "protocolVersion": "2025-03-26",
+    "serverInfo": {
+        "name": "london-airport-transfers",
+        "title": "London Airport Transfers by Airport Pickups London",
+        "version": "1.0.0"
+    },
+    "description": "Official booking agent for private airport transfers and cruise port transfers across the UK. Covers     Heathrow (T2, T3, T4, T5), Gatwick (North & South), Stansted, Luton, London City Airport, Edinburgh Airport, and UK cruise ports (Southampton, Dover, Portsmouth, Tilbury, Harwich). Transfers to and from any UK address or postcode nationwide.      Fixed prices with no hidden charges. Free cancellation. Free baby and child seats on request. Meet & greet service with    named driver holding a board at arrivals. Flight tracking monitored by our office — driver adjusts to your actual landing  time. 24/7 availability.",
+    "documentationUrl": "https://www.airport-pickups-london.com",
+    "transport": {
+        "type": "streamable-http",
+        "endpoint": "/mcp"
+    },
+    "capabilities": {
+        "tools": {
+            "listChanged": true
+        }
+    },
+    "authentication": {
+        "required": true,
+        "schemes": [
+            "bearer",
+            "oauth2"
+        ]
+    },
+    "tools": [
+        {
+            "name": "london_airport_transfer_quote",
+            "title": "London Airport Transfer Quote",
+            "description": "Get instant fixed-price transfer quotes from Heathrow, Gatwick, Stansted, Luton, City Airport,       Edinburgh, or any UK cruise port (Southampton, Dover, Portsmouth, Tilbury, Harwich) to any UK address or postcode. No       hidden charges. Free cancellation. Returns multiple car options with prices, passenger capacity, and luggage capacity."
+        },
+        {
+            "name": "book_london_airport_transfer",
+            "title": "Book London Airport Transfer",
+            "description": "Book a private airport or cruise port transfer to/from any UK address. Fixed price, freecancellation, free baby and child seats on request. Meet & greet with named driver holding a board at arrivals. Flight     tracking included — driver adjusts to your actual landing time. Instant confirmation with payment link and live driver     tracking."
+        }
+    ]
+}

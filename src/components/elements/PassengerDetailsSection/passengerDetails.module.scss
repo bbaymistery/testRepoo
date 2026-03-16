@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.section-wrapper {
+    margin-bottom: 24px;
+    font-family: 'Inter', sans-serif;
+
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0B3A82;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 1rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 4px;
+    display: block;
+}
+
+
+.flex-input {
+    display: flex;
+}
+.phone_input input{
+    width:100% !important;
+}
+

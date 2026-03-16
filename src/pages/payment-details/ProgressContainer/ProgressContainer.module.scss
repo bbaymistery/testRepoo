@@ -1,0 +1,79 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        /* --- PROGRESS STEPS --- */
+        .progress_container {
+            max-width: 48rem;
+            margin: 0 0 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: capitalize;
+              @media (max-width: 1024px) {
+              display: none;
+
+            }
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step.completed {
+            color: #16a34a;
+        }
+
+        .step.active {
+            color:#0B3A82;
+        }
+
+        .step.inactive {
+            opacity: 0.6;
+        }
+.mobile_hidden{
+
+            @media (max-width: 568px) {
+              display: none;
+
+            }
+}
+        .step_icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step.completed .step_icon {
+            background-color: #dcfce7;
+            border: 1px solid #bbf7d0;
+        }
+
+        .step.active .step_icon {
+            background-color: #0B3A82;
+            color: white;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .step.inactive .step_icon {
+            background-color: #f1f5f9;
+            border: 1px solid #e2e8f0;
+        }
+
+        .step_line {
+            flex: 1;
+            height: 1px;
+            background-color: #e2e8f0;
+            margin: 0 1rem;
+        }
+
+        .step_line.completed {
+            background-color: #bbf7d0;
+        }

@@ -1,0 +1,69 @@
+    @import '../../../styles/variables';
+    @import '../../../styles/_fonts';
+
+    .header_content_menu_mobile {
+
+        display: block;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        height: 100vh;
+
+
+        .menu_content_ul {
+            height: 100vh;
+            overflow-y: scroll;
+        }
+
+        ul {
+            padding: 10px;
+
+            li {
+
+                a {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-size: 18px;
+                    text-transform: capitalize;
+                    padding: 6px 8px;
+                }
+            }
+        }
+
+    }
+
+    .header_content_menu_mobile.active_header_content_menu_mobile {
+        opacity: 1;
+        visibility: visible;
+        transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        background: white;
+
+        ul {
+
+            li {
+
+                ul {
+                    li {
+                        padding: 4px 0px;
+                    }
+                }
+
+                .first_child_a {
+                    background-color: rgba(53, 84, 209, 0.09);
+                    color: $blue-1;
+                }
+            }
+        }
+    }
+
+    .header_content_menu_mobile[expand="true"] {
+        height: 100px !important;
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+
+        .menu_content_ul {
+            height: 100%;
+            overflow-y: hidden;
+        }
+    }

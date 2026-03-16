@@ -1,0 +1,49 @@
+User-agent: *
+Disallow:
+
+# --- AI SEARCH & AGENTS (Allow for Citations & Traffic) ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# --- SMARTPHONE & OS AGENTS ---
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# --- BROWSER AUTOMATION AGENTS ---
+User-agent: FirecrawlAgent
+Allow: /
+
+# --- CRAWL RULES & SITEMAPS ---
+Sitemap: https://www.airport-pickups-london.com/sitemap.xml
+
+# --- LLMs.txt for AI Discovery ---
+# Full pricing and service info for AI assistants
+# https://llmstxt.org
+LLMs-Txt: https://www.airport-pickups-london.com/llms.txt
