@@ -6,6 +6,8 @@ import styles from "./styles.module.scss"
 import Image from 'next/image'
 import WaveLoading from '../LoadingWave'
 import { carAccordionImages } from '../../../constants/carss'
+import LuggageAccordion from '../LuggageAccordion'
+import CardQuotationMobile from '../CardQuotationMobile'
 const OneWayCardItemComponent = (props) => {
     let { journeyType, datas, quotationLoading, selectedQuotation, carObject, direction, appData, handleClickForMobile, setQuotationHandleClick } = props
 
@@ -24,108 +26,102 @@ const OneWayCardItemComponent = (props) => {
     };
 
 
-    return (+journeyType === 0) && datas?.map((item, index) => {
-        let _item_details = getPriceDetailsFromQuotation({ quotation: item }).data || {}
-        let { price: original, normalPrice: net, amountOfVAT: vat } = _item_details
-        const car = carObject?.[item.carId] || {};
+    return <>
+        {(+journeyType === 0) && datas?.map((item, index) => {
+            let _item_details = getPriceDetailsFromQuotation({ quotation: item }).data || {}
+            let { price: original, normalPrice: net, amountOfVAT: vat } = _item_details
+            const car = carObject?.[item.carId] || {};
 
-        const isOpen = openAccordions.has(item?.carId);
-        const accId = `acc-${item?.carId}`;
-        // ✅ Bu arabanın galerisi
-        const gallery = carAccordionImages[item?.carId] ?? [];
+            const isOpen = openAccordions.has(item?.carId);
+            const accId = `acc-${item?.carId}`;
+            // ✅ Bu arabanın galerisi
+            const gallery = carAccordionImages[item?.carId] ?? [];
+            return (
+                <div id="main_container" key={item.carId + 10000} className={styles.main_container} >
 
+                    <div
+                        dataid={index === 0 ? "first_car" : ""}
+                        className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
+                        onClick={(e) => handleClickForMobile({ e, quotation: item })} >
+                        <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
+                        <div className={styles.column_second}>
+                            <div className={styles.column_second_flex_column}>
+                                <div className={styles.name_and_postcode_div}>
+                                    <div className={styles.postcode}>
+                                        {car?.transferType}
+                                        <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{car?.suitcases}</span></div>
+                                    </div>
+                                    <h3 className={styles.name}>
+                                        {car?.name}
+                                        <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{car?.pax}</span>  </div>
+                                    </h3>
 
-        return (
-            <div id="main_container" key={item.carId + 10000} className={styles.main_container} >
-
-                <div
-                    dataid={index === 0 ? "first_car" : ""}
-                    className={`${styles.card_item} ${Number(selectedQuotation?.carId) === Number(quotationImagesObjWebp[item?.carId].id) ? styles.selectedCard : ""}`}
-                    onClick={(e) => handleClickForMobile({ e, quotation: item })} >
-                    <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }}> </div>
-                    <div className={styles.column_second}>
-                        <div className={styles.column_second_flex_column}>
-                            <div className={styles.name_and_postcode_div}>
-                                <div className={styles.postcode}>
-                                    {car?.transferType}
-                                    <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{car?.suitcases}</span></div>
                                 </div>
-                                <h3 className={styles.name}>
-                                    {car?.name}
+                                <div className={styles.car_features}>
                                     <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{car?.pax}</span>  </div>
-                                </h3>
+                                    <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{car?.suitcases}</span></div>
+                                    <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
+                                        <Image src={meetAndGret} width="18" height="20" alt="" />
+                                        <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span>
+                                    </div>
+                                    <div className={`${styles.feature_column} ${styles.luggage_info}`} onClick={() => toggleAccordion(item?.carId)} aria-expanded={isOpen} aria-controls={accId}>
+                                        <i className="fa-solid fa-circle-info"></i> Luggage  Info
+                                    </div>
+                                </div>
+                                <div className={styles.apl_features}>
+                                    <div className={`${styles.feature_column} ${styles.luggage_info}`} onClick={() => toggleAccordion(item?.carId)} aria-expanded={isOpen} aria-controls={accId}>
+                                        <i className="fa-solid fa-circle-info"></i> Luggage  Info
+                                    </div>
+                                    <p className={`${styles.apl_feature}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                                    <p className={`${styles.apl_feature}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
+                                    <p className={`${styles.apl_feature}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
+                                    <p className={`${styles.apl_feature}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
+                                    <p className={`${styles.apl_feature}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                                    <p className={`${styles.apl_feature}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
 
-                            </div>
-                            <div className={styles.car_features}>
-                                <div className={styles.feature_column}> <i className="fa-solid fa-user"></i> <span>{car?.pax}</span>  </div>
-                                <div className={styles.feature_column}> <i className="fa-solid fa-suitcase"></i><span>{car?.suitcases}</span></div>
-                                <div className={`${styles.feature_column} ${styles.meet_greet_icon}`} direction={String(direction === 'rtl')}>
-                                    <Image src={meetAndGret} width="18" height="20" alt="" />
-                                    <span style={{ paddingLeft: "5px", fontWeight: '500' }}>Meet & Greet</span>
                                 </div>
-                                <div className={`${styles.feature_column} ${styles.luggage_info}`} onClick={() => toggleAccordion(item?.carId)} aria-expanded={isOpen} aria-controls={accId}>
-                                    <i className="fa-solid fa-circle-info"></i> Luggage  Info
-                                </div>
-                            </div>
-                            <div className={styles.apl_features}>
-                                <div className={`${styles.feature_column} ${styles.luggage_info}`} onClick={() => toggleAccordion(item?.carId)} aria-expanded={isOpen} aria-controls={accId}>
-                                    <i className="fa-solid fa-circle-info"></i> Luggage  Info
-                                </div>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
-                                <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_less_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
-                                <p className={`${styles.apl_feature} ${styles.show_less_than360} ${styles.show_less_than360_with_price}`} >
-
-                                    <span className={`${styles.price_span}`} >
-                                        {quotationLoading ? "..." : `£ ${Number(original).toFixed(2)}`}
-                                    </span>
-                                    {/* {vat > 0 && <span style={{ color: "#555", fontSize: '12px' }}>
-                                        {`( ${quotationLoading ? "..." : `£${net}`} + £${vat} ${appData.words["strVat"]} )`}
-                                    </span>} */}
-                                </p>
                             </div>
                         </div>
-                    </div>
 
-                    <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
-                        <div className={styles.total} style={{ color: 'black' }}>
-                            <span style={{ display: 'block', fontSize: '18px' }}>
-                                {quotationLoading ? "..." : `£ ${Number(original).toFixed(2)}`}
-                            </span>
-                            {/* {vat > 0 && <span style={{ color: "#555", fontSize: '12px' }}>
+                        <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
+                            <div className={styles.total} style={{ color: 'black' }}>
+                                <span style={{ display: 'block', fontSize: '18px' }}>
+                                    {quotationLoading ? "..." : `£ ${Number(original).toFixed(2)}`}
+                                </span>
+                                {/* {vat > 0 && <span style={{ color: "#555", fontSize: '12px' }}>
                                 {`( ${quotationLoading ? "..." : `£${net}`} + £${vat} ${appData.words["strVat"]} )`}
                             </span>} */}
+                            </div>
+                            <button onClick={() => setQuotationHandleClick({ quotation: item })} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(car.id) ? styles.selectedBtn : ""}`}   >
+                                {quotationLoading ? <WaveLoading /> : Number(selectedQuotation?.carId) === Number(car.id) ? `${appData?.words["quSelectedButton"]}` : `${appData?.words["quSelectButton"]}`}
+                            </button>
                         </div>
-                        <button onClick={() => setQuotationHandleClick({ quotation: item })} className={`btn btn_primary ${Number(selectedQuotation?.carId) === Number(car.id) ? styles.selectedBtn : ""}`}   >
-                            {quotationLoading ? <WaveLoading /> : Number(selectedQuotation?.carId) === Number(car.id) ? `${appData?.words["quSelectedButton"]}` : `${appData?.words["quSelectButton"]}`}
-                        </button>
+
                     </div>
+                    <LuggageAccordion styles={styles} car={car} gallery={gallery} isOpen={isOpen} accId={accId} />
 
                 </div>
-                {/* ✅ Accordion panel */}
-                <div id={accId} className={`${styles.accordion} ${isOpen ? styles.open : ""}`} role="region" aria-hidden={!isOpen}    >
-                    {gallery.length > 0 ? (
-                        <div className={styles.galleryGrid}>
-                            {gallery.map((img, idx) => (
-                                <div className={styles.galleryItem} key={idx}>
-                                    <Image src={img.imageUrl} alt={`${car?.name || 'Car'} luggage ${idx + 1}`} fill />
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <p className={styles.emptyNote}>Luggage gallery is not available for this vehicle.</p>
-                    )}
-                </div>
-            </div>
-        )
-    })
+            )
+        })}
+
+        {(+journeyType === 0) && <CardQuotationMobile
+            datas={datas}
+            toggleAccordion={toggleAccordion}
+            selectedQuotation={selectedQuotation}
+            carObject={carObject}
+            openAccordions={openAccordions}
+            quotationImagesObjWebp={quotationImagesObjWebp}
+            appData={appData}
+            setQuotationHandleClick={setQuotationHandleClick}
+        />}
+    </>
 
 }
 
 // en altına şunu ekle:
 export default React.memo(OneWayCardItemComponent);
+
+// 
+/*
+   
+*/

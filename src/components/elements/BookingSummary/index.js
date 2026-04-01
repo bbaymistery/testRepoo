@@ -47,13 +47,19 @@ const BookingSummary = (props) => {
                 }
 
                 <div className={styles["benefit-badges"]}>
+                    <div style={{ display: "flex", flexDirection: "row", gap: "4px" }}>
+                        <span className={styles["badge"]}>
+                            <i className="fa-solid fa-user-tie"></i>
+                            {appData?.words["strMeetandGreetIncluded"]}
+                        </span>
+                        <span className={styles["badge"]}>
+                            <i className="fa-solid fa-tag"></i>
+                            {appData.words["strFixedPrice"]}
+                        </span>
+                    </div>
                     <span className={styles["badge"]}>
-                        <i className="fa-solid fa-user-tie"></i>
-                        {appData?.words["strMeetandGreetIncluded"]}
-                    </span>
-                    <span className={styles["badge"]}>
-                        <i className="fa-solid fa-tag"></i>
-                        {appData.words["strFixedPrice"]}
+                        <i className="fa-solid fa-rotate-left"></i>
+                        {appData.words["strFreeCancellation24h"]}
                     </span>
                 </div>
 

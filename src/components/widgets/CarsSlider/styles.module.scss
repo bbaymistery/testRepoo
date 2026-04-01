@@ -60,6 +60,11 @@
     flex: 0 0 auto;
     /* Prevent items from shrinking */
     padding: 15px;
+
+    @media (max-width: 768px) {
+        padding: 30px;
+
+    }
 }
 
 /* Card styling for each item */
@@ -205,7 +210,7 @@
 }
 
 .rightArrow {
-    right:20px;
+    right: 20px;
 }
 
 /* Pagination dots */

@@ -1,26 +1,40 @@
 import GlobalLayout from "../components/layouts/GlobalLayout";
 import Hero from "../components/widgets/Hero";
 import dynamic from 'next/dynamic'
-const TaxiDeals = dynamic(() => import('../components/widgets/TaxiDeals'), { loading: () => <div>Loading...</div> });
-const Testimonials = dynamic(() => import('../components/widgets/Testimonials'),);
-const CarsSlider = dynamic(() => import('../components/widgets/CarsSlider'), { ssr: false });
-const SeaportTransfers = dynamic(() => import('../components/widgets/SeaportTransfers'),);
-import { parse } from 'url';
-// ⬇️ Dinamik olarak 'tours' bileşenini import ediyoruz.
-// 'ssr: false' kullanmamız şu anlama gelir:
-// - Bu bileşen sunucu tarafında (SSR) render edilmez ❌
-// - Sadece tarayıcı (client-side) tarafında render edilir ✅
-// - Bu, genelde window, localStorage gibi sadece tarayıcıda çalışan kodlar için tercih edilir
-// - SSR devre dışı bırakıldığında bileşen Next.js'in sunucusunda değil, yalnızca kullanıcı tarayıcısında yüklenir
 
-const Tours = dynamic(() => import('./tours'), {
-  loading: () => <div>Loading...</div>, // Bileşen yüklenirken geçici gösterilecek içerik
-  ssr: false // ⬅️ Bu satır ile bileşen sadece client-side'da render edilir
+// ✅ CLS FIX: All dynamic imports now have loading placeholders with min-height
+// This prevents layout shifts when components load in.
+// 
+// TO GET EXACT HEIGHTS: Open your site in Chrome, inspect each section once 
+// fully loaded, and note the rendered height. Replace the estimates below 
+// with those real values for a pixel-perfect result.
+
+const TaxiDeals = dynamic(() => import('../components/widgets/TaxiDeals'), {
+  loading: () => <div style={{ minHeight: '1110px' }} />,
 });
 
+const SeaportTransfers = dynamic(() => import('../components/widgets/SeaportTransfers'), {
+  loading: () => <div style={{ minHeight: '602.39px' }} />,
+});
+
+const Tours = dynamic(() => import('./tours'), {
+  loading: () => <div style={{ minHeight: '671px' }} />,
+  ssr: false,
+});
+
+// ✅ CLS FIX: Removed ssr:false was already set, added loading placeholder
+const CarsSlider = dynamic(() => import('../components/widgets/CarsSlider'), {
+  loading: () => <div style={{ minHeight: '654px' }} />,
+  ssr: false,
+});
+
+const Testimonials = dynamic(() => import('../components/widgets/Testimonials'), {
+  loading: () => <div style={{ minHeight: '1498px' }} />,
+});
+
+import { parse } from 'url';
 import { fetchContent } from "../helpers/fetchContent";
 import { checkLanguageAttributeOntheUrl } from "../helpers/checkLanguageAttributeOntheUrl";
-import { useEffect, useState } from "react";
 import { setNoCacheHeader } from "../helpers/setNoCacheHeader";
 
 const LocalBusinessSchema = {
@@ -59,6 +73,7 @@ const LocalBusinessSchema = {
     "https://www.youtube.com/c/Airport-pickups-london"
   ]
 }
+
 const organizationSchema = {
   "@context": "http://schema.org",
   "@type": "Organization",
@@ -79,6 +94,7 @@ const organizationSchema = {
     "availableLanguage": ["en", "tr", "ar", "es", "it", "ru", "zh-Hans"]
   }]
 }
+
 const websiteSchema = {
   "@context": "http://schema.org",
   "@type": "WebSite",
@@ -91,6 +107,7 @@ const websiteSchema = {
     "query-input": "required name=query"
   }
 }
+
 const breadcumbSchema = {
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
@@ -101,21 +118,18 @@ const breadcumbSchema = {
       "@id": "https://www.airport-pickups-london.com",
       "name": "Home"
     }
-  }
-  ]
+  }]
 }
 
 
 export default function Home(props) {
-  let { metaTitle, keywords, metaDescription, pageContent, mainCanonicalUrl , llmsHref} = props;
-  const [hasScrolled, setHasScrolled] = useState(false);
-  const handleScroll = () => {
-    if (!hasScrolled) setHasScrolled(true);
-  };
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasScrolled]);
+  let { metaTitle, keywords, metaDescription, pageContent, mainCanonicalUrl, llmsHref } = props;
+
+  // ✅ CLS FIX: Removed the hasScrolled state and scroll listener entirely.
+  // The old pattern: {hasScrolled && <CarsSlider />} caused CLS because
+  // CarsSlider would suddenly appear on first scroll, pushing Testimonials down.
+  // Now CarsSlider is always in the DOM with ssr:false + loading placeholder,
+  // so it lazy-loads naturally without shifting layout.
 
   return (
     <GlobalLayout mainCanonicalUrl={mainCanonicalUrl} keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={true} llmsHref={llmsHref} >
@@ -123,7 +137,7 @@ export default function Home(props) {
       <TaxiDeals env={props.env} />
       <SeaportTransfers bggray={true} />
       <Tours insideGlobalLayout={false} env={props.env} />
-      {hasScrolled && <CarsSlider bggray={true} />}
+      <CarsSlider bggray={true} />
       <Testimonials bggray={false} pageContent={pageContent} />
     </GlobalLayout>
   )
@@ -143,7 +157,6 @@ export async function getServerSideProps({ req, res }) {
     await fetchContent("/", cookie, firstLoadLangauge, pathnameUrlWHenChangeByTopbar, pathNameUrlCanonical)
   let schemas = [LocalBusinessSchema, breadcumbSchema, organizationSchema,
     websiteSchema];
-
 
   return { props: { metaTitle, keywords, pageContent, metaDescription, schemas, mainCanonicalUrl, llmsHref } }
 }

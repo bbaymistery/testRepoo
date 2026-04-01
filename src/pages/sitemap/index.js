@@ -6,7 +6,6 @@ import { titleStringOfHastaxiDeals } from '../../helpers/titleStringOfHasTaxiDea
 import { fetchConfig } from '../../resources/getEnvConfig';
 
 const INITIAL_DISPLAY_COUNT = 12;
-const keywords = "Sitemap";
 const metaTitle = "Airport Pickup London Sitemap";
 const metaDescription = "You can find your destination url from our Sitemap-Airport-pickups-london.com.";
 const API_POINTS = ["heathrow", "gatwick", "city airport", 'luton', 'stansted', 'portsmouth', 'dover', 'southampton'];
@@ -69,7 +68,7 @@ const Sitemap = (props) => {
     };
 
     return (
-        <GlobalLayout keywords={keywords} title={metaTitle} description={metaDescription} footerbggray={true}>
+        <GlobalLayout title={metaTitle} description={metaDescription} footerbggray={true}>
             <div className={`${styles.sitemap} page`}>
                 <div className={`${styles.sitemap_section} page_section`}>
                     <div className={`${styles.sitemap_section_container} page_section_container`}>

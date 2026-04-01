@@ -9,6 +9,8 @@ import { postDataAPI } from '../../../helpers/fetchDatas';
 import { splitAndTranslateDuration } from '../../../helpers/splitHelper';
 import { carAccordionImages } from '../../../constants/carss';
 import { getPriceDetailsFromQuotation } from '../../../helpers/getPriceDetailsFromQuotation';
+import LuggageAccordion from '../LuggageAccordion';
+import CardQuotationMobile from '../CardQuotationMobile';
 const checkJourneyTypeAndAddQuotationToReducer = (params = {}) => {
     //by this index  we r gonna assure in which journey we should add quotation
     //by journey type we r gonn assure should we directly pass to next page or not
@@ -117,19 +119,10 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
     // Masaüstü için
     const setQuotationHandleClick = async (params = {}) => {
         const { quotation } = params;
-        if (451 < document.documentElement.clientWidth) {
-            await fetchAndHandleTaxiDealDetails({ quotation });
-        }
+        await fetchAndHandleTaxiDealDetails({ quotation });
     };
 
-    // Mobil için
-    const handleClickForMobile = async ({ e, quotation }) => {
-        if (e.target.innerText === "Luggage Info" || e.target.className.includes("fa-circle-info")) return;
 
-        if (451 > document.documentElement.clientWidth) {
-            await fetchAndHandleTaxiDealDetails({ quotation });
-        }
-    };
 
     // Check if distance exists, remove 'mile', and convert to km
     const distanceInMiles = distance ? parseFloat(distance?.replace(' mile', '')) : null;
@@ -235,30 +228,18 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
             const accId = `acc-${item?.carId}`;
             // ✅ Bu arabanın galerisi
             const gallery = carAccordionImages[item?.carId] ?? [];
+            let _item_details = getPriceDetailsFromQuotation({ quotation: item }).data || {}
+            let { price: original, normalPrice: net, amountOfVAT: vat } = _item_details
 
-
-
-              let _item_details = getPriceDetailsFromQuotation({ quotation: item }).data || {}
-                let { price: original, normalPrice: net, amountOfVAT: vat } = _item_details
-                console.log({item});
-                
             return (
                 <div id="main_container" key={item.carId + 10000} className={styles.main_container} >
 
                     <div
                         dataid={index === 0 ? "first_car" : (index === 1 ? "second_car" : "")}
                         className={`${styles.card_item} ${isSelected ? styles.selectedCard : ""}`}
-                        onClick={(e) => handleClickForMobile({ e, quotation: item })} >
-                        {/* style={{ backgroundImage: `url(${quotationImagesObjWebp[item?.carId]?.image})` }} */}
+                    >
                         <div data={quotationImagesObjWebp[item?.carId].id} className={styles.column_first} >
-                            <Image
-                                src={quotationImagesObjWebp[item?.carId]?.image}
-                                alt="Car Image"
-                                width={300}
-                                height={100}
-                                style={{ objectFit: "contain", }}
-                                priority
-                            />
+                            <Image src={quotationImagesObjWebp[item?.carId]?.image} alt="Car Image" width={300} height={100} style={{ objectFit: "contain", }} priority />
                         </div>
                         <div className={styles.column_second}>
                             <div className={styles.column_second_flex_column}>
@@ -288,23 +269,12 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                                     <div className={`${styles.feature_column} ${styles.luggage_info}`} onClick={() => toggleAccordion(item?.carId)} aria-expanded={isOpen} aria-controls={accId}>
                                         <i class="fa-solid fa-circle-info"></i> Luggage  Info
                                     </div>
-                                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
-                                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
-                                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
-                                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
-                                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                                    <p className={`${styles.apl_feature} ${styles.show_more_than360}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
-                                    <p className={`${styles.apl_feature} ${styles.show_less_than360}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
-                                    <p className={`${styles.apl_feature} ${styles.show_less_than360}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
-
-                                    <p className={`${styles.apl_feature} ${styles.show_less_than360} ${styles.show_less_than360_with_price}`} style={{ flexDirection: "column", alignItems: 'flex-end' }}>
-                                        <span className={`${styles.price_span}`} >
-                                         {`£ ${Number(original).toFixed(2)}`}
-                                        </span>
-                                        {/* {vat > 0 && <span style={{ color: "#555", fontSize: '12px' }}>
-                                            {`( ${`£${net}`} + £${vat} ${appData.words["strVat"]} )`}
-                                        </span>} */}
-                                    </p>
+                                    <p className={`${styles.apl_feature}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i> <span>{appData?.words["strCarFeatureFreeMeetAndGreet"]}</span></p>
+                                    <p className={`${styles.apl_feature}`}>  <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureNoCharge4Delay"]}</span></p>
+                                    <p className={`${styles.apl_feature}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFreeWaitingTime"]}</span> </p>
+                                    <p className={`${styles.apl_feature}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strFreeCancellation24h"]}</span> </p>
+                                    <p className={`${styles.apl_feature}`}><i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strCarFeatureFlightTracking"]}</span></p>
+                                    <p className={`${styles.apl_feature}`}> <i className={`fa-solid fa-check ${direction === "rtl" ? styles.leftFeatureIcon : ""}`}></i><span>{appData?.words["strComfortableVehicles"]}</span> </p>
                                 </div>
                             </div>
                         </div>
@@ -312,7 +282,7 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                         <div className={`${direction === 'rtl' ? styles.thirdcolumnDirection : ""} ${styles.column_third}`}>
                             <div className={styles.total} style={{ color: 'black' }}>
                                 <span style={{ display: 'block', fontSize: '18px' }}>
-                                   {`£ ${Number(original).toFixed(2)}`}
+                                    {`£ ${Number(original).toFixed(2)}`}
                                 </span>
                                 {/* {vat > 0 && <span style={{ color: "#555", fontSize: '12px' }}>
                                     {`( ${`£${net}`} + £${vat} ${appData.words["strVat"]} )`}
@@ -324,22 +294,22 @@ const CardQuotationItemTaxiDeal = (params = {}) => {
                         </div>
                     </div>
                     {/* ✅ Accordion panel */}
-                    <div id={accId} className={`${styles.accordion} ${isOpen ? styles.open : ""}`} role="region" aria-hidden={!isOpen}    >
-                        {gallery.length > 0 ? (
-                            <div className={styles.galleryGrid}>
-                                {gallery.map((img, idx) => (
-                                    <div className={styles.galleryItem} key={idx}>
-                                        <Image src={img.imageUrl} alt={`${car?.name || 'Car'} luggage ${idx + 1}`} fill />
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <p className={styles.emptyNote}>Luggage gallery is not available for this vehicle.</p>
-                        )}
-                    </div>
+                    <LuggageAccordion car={car} gallery={gallery} isOpen={isOpen} accId={accId} />
                 </div>
             )
         })}
+
+
+        <CardQuotationMobile
+            datas={datas}
+            toggleAccordion={toggleAccordion}
+            selectedQuotation={selectedQuotation}
+            carObject={carObject}
+            openAccordions={openAccordions}
+            quotationImagesObjWebp={quotationImagesObjWebp}
+            appData={appData}
+            setQuotationHandleClick={setQuotationHandleClick}
+        />
 
         {isVisible && uploadedPageContent?.length > 5 ? <TaxiDealsContents pageContent={uploadedPageContent} isVisible={isVisible} /> : <></>}
 

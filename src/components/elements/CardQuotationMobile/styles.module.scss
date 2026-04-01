@@ -1,0 +1,206 @@
+       .mobile_quotations_wrapper {
+           display: none; // Default kapalı
+
+           @media (max-width: 767px) {
+               display: flex;
+               flex-direction: column;
+               gap: 16px;
+           }
+       }
+
+       .mobile_card {
+           background: #fff;
+           border: 1px solid #eef2f6;
+           border-radius: 16px;
+           padding: 16px;
+           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+           transition: all 0.3s ease;
+           display: none;
+
+           @media (max-width: 767px) {
+               display: block;
+           }
+
+           &.selected_mobile_card {
+               border-color: #041b47;
+               background: #f8fbff;
+           }
+
+           .mob_top_section {
+               display: flex;
+               gap: 12px;
+               margin-bottom: 16px;
+
+               .mob_car_image_container {
+                   flex: 0 0 110px; // Yazıları bozmamak için genişliği sabit tutuyoruz
+                   height: 75px; // Yüksekliği resimlerin duruşuna göre ayarlayabilirsin
+                   overflow: hidden;
+                   display: flex;
+                   align-items: center;
+                   justify-content: center;
+                   background-color: #f1f4f9; // Resim arkasında hafif bir gri ton (isteğe bağlı)
+                   border-radius: 8px;
+               }
+
+               .mob_car_bg_image {
+                   width: 100%;
+                   height: 100%;
+                   background-repeat: no-repeat;
+                   background-position: center center;
+                   background-size: 120%; // Genel varsayılan büyüklük
+                   transition: all 0.3s ease;
+
+                   // Index 0 için özel ayar (Örn: İlk araç çok küçükse)
+                   &.car_index_0 {
+                       background-size: 155%;
+                   }
+
+                   // Index 1 için özel ayar (Örn: Mercedes gibi uzun araçlar kesiliyorsa)
+                   &.car_index_1 {
+                       background-size: contain; // Tam sığdır
+                       background-position: center bottom; // Alt kısımdan hizala
+                       background-size: 105%;
+
+                   }
+
+                   // Index 2 için özel ayar
+                   &.car_index_2 {
+                       background-size: 100%;
+                   }
+
+                   &.car_index_3,
+                   &.car_index_4,
+                   &.car_index_5 {
+                       background-size: 130%;
+                   }
+               }
+
+               .mob_car_details {
+                   flex: 1;
+
+                   .mob_header_flex {
+                       display: flex;
+                       justify-content: space-between;
+                       align-items: center;
+
+                       .mob_transfer_type {
+                           font-size: 11px;
+                           font-weight: 700;
+                           color: #18449e;
+                           text-transform: uppercase;
+                           opacity: 0.7;
+                           letter-spacing: 0.5px;
+                       }
+
+                       .mob_price {
+                           font-size: 18px;
+                           font-weight: 800;
+                           color: #18449e;
+                       }
+                   }
+
+                   .mob_car_name {
+                       font-size: 15px;
+                       font-weight: 600;
+                       margin: 4px 0;
+                       color: #1a2b49;
+                   }
+
+                   .mob_capacity {
+                       display: flex;
+                       gap: 12px;
+                       color: #6c757d;
+                       font-size: 14px;
+
+                       .cap_item {
+                           display: flex;
+                           align-items: center;
+                           gap: 5px;
+                       }
+                   }
+               }
+           }
+
+           .mob_features_badges {
+               display: flex;
+               flex-wrap: wrap;
+               gap: 8px;
+               margin-bottom: 12px;
+
+               .badge {
+                   background: #f1f4f9;
+                   padding: 6px 10px;
+                   border-radius: 8px;
+                   font-size: 12px;
+                   font-weight: 500;
+                   color: #4a5568;
+                   display: flex;
+                   align-items: center;
+                   gap: 6px;
+                   text-transform: capitalize;
+
+                   i {
+                       font-size: 11px;
+                       color: #18449e;
+                   }
+
+                   &.free_cancel {
+                       background: #e6fffa;
+                       color: #008069;
+
+                       i {
+                           color: #008069;
+                       }
+                   }
+
+                   &.meet_greet {
+                       @media (max-width: 450px) {
+                           display: none;
+                       }
+                   }
+               }
+           }
+
+           .mob_luggage_trigger {
+               display: flex;
+               align-items: center;
+               gap: 8px;
+               font-size: 13px;
+               color: #708ab3;
+               cursor: pointer;
+
+               .rotate_icon {
+                   transform: rotate(180deg);
+               }
+
+               span {
+                   flex: 1;
+                   font-weight: 500;
+               }
+
+               .chevron_down_icon {
+                   font-size: 16px;
+               }
+           }
+
+           .mob_select_btn {
+               width: 100%;
+               height: 48px;
+               background: #1e4da1;
+               color: white;
+               border: none;
+               border-radius: 12px;
+               font-size: 16px;
+               font-weight: 700;
+               letter-spacing: 0.5px;
+               transition: 0.2s;
+
+               &:active {
+                   transform: scale(0.98);
+               }
+           }
+
+           .mob_selected_btn {
+               background: #041b47;
+           }
+       }

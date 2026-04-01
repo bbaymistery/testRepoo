@@ -140,31 +140,18 @@ const TaxiDeals = (props) => {
                 {pointsModalStatus && <PointsModal dealsName={hasTaxiDeals} fromLondonToAirport={fromLondonToAirport} fromAirportToLondon={fromAirportToLondon} points={taxiPoints} title={appData?.words[`${titleStringOfHastaxiDeals(hasTaxiDeals)}`]} />}
                 <div className={`${styles.taxideals_section} page_section`}>
                     <div className={`${styles.taxideals_section_container} page_section_container`}>
-                        {taxiPoints.length > 1 ?
-                            (
-                                <div className={styles.title}>
-                                    <h1>{appData?.words[`${titleStringOfHastaxiDeals(hasTaxiDeals)}`]}</h1>
-                                    {islinknamecomponent ? "" : <p>{appData?.words["strAllinclusiveprices"]}</p>}
-                                </div>
-
-                            ) : <div style={{ display: 'flex', justifyContent: "center", alignItems: "center", }}>
-                                <div style={{ height: "39px", width: "250px", background: "#eae6e6", marginBottom: "3rem" }}>
-                                    <Skeleton width={"100%"} height="100%" />
-                                </div>
-                            </div>}
+                        {<div className={styles.title}>
+                            <h1>{appData?.words[`${titleStringOfHastaxiDeals(hasTaxiDeals)}`]}</h1>
+                            {islinknamecomponent ? "" : <p>{appData?.words["strAllinclusiveprices"]}</p>}
+                        </div>}
 
 
                         {showTabs ?
                             <div className={`${styles.tabs} `}>
                                 {tabsBttons.map((btn, index) => {
-                                    return (taxiPoints.length > 1 ?
-                                        <button onClick={() => tabsHandler({ index, dealsNameProp: btn.dealsName })} className={`${tabs === index ? styles.active : ""} btn`} key={btn.name} >
-                                            {appData.words[btn.name]}
-                                        </button>
-                                        :
-                                        <div key={btn.name} style={{ height: "45px", width: "160px", background: "#eae6e6", }}>
-                                            <Skeleton width={"100%"} height="100%" />
-                                        </div>)
+                                    return (<button onClick={() => tabsHandler({ index, dealsNameProp: btn.dealsName })} className={`${tabs === index ? styles.active : ""} btn`} key={btn.name} >
+                                        {appData.words[btn.name]}
+                                    </button>)
                                 })}
                             </div>
                             : <></>}

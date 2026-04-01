@@ -136,7 +136,7 @@ class CustomDocument extends Document {
                     <link rel="preconnect" href="https://api.london-tech.com" crossOrigin="anonymous" />
                 </Head>
                 <body>
-                   <script dangerouslySetInnerHTML={{ __html: `/* Apl version 2.0.18*/` }}></script> 
+                   <script dangerouslySetInnerHTML={{ __html: `/* Apl version 2.0.25*/` }}></script> 
                     <noscript>
                         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8WXW8KC" height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe>
                     </noscript>

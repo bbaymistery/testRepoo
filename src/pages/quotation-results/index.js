@@ -396,6 +396,8 @@ const QuotationResults = (props) => {
                             setShowMapReturn={setShowMapReturn}
                             showMapOneWay={showMapOneWay}
                             showMapReturn={showMapReturn}
+                            selectedPickupPoints={selectedPickupPoints}
+                            selectedDropoffPoints={selectedDropoffPoints}
                           />
                         }
                       </div>

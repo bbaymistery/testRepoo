@@ -49,6 +49,8 @@ const CardQuotationItem = (params = {}) => {
     setShowMapReturn = () => { },
     showMapReturn = false,
     showMapOneWay = false,
+    selectedPickupPoints = [],
+    selectedDropoffPoints = [],
   } = params
 
   const router = useRouter();
@@ -115,7 +117,7 @@ const CardQuotationItem = (params = {}) => {
         </h2>
       )}
       <div className={`${styles.result_container}`}>
-        <HeaderOfResults duration={duration} distance={distance} language={language} />
+        <HeaderOfResults selectedPickupPoints={selectedPickupPoints} selectedDropoffPoints={selectedDropoffPoints} duration={duration} distance={distance} language={language} />
 
         {journeyType === 1 && [0, 1].includes(index) && (
           datas.map((item, i) => (
@@ -131,6 +133,7 @@ const CardQuotationItem = (params = {}) => {
               changeCar={changeCar}
               accordionStatus={index === 0 ? journeyAccrodionStatus : returnJourneyAccordionStatus}
               journeyType={journeyType}
+              datas={datas}
             />
           ))
         )}

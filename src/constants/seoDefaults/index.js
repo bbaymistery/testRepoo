@@ -89,6 +89,8 @@ export const STATIC_ROUTES = {
     VIP: '/heathrow-vip-meet-and-assist',
     CONTACT: '/contact-us',
     REGISTER_ACCOUNT: '/account-register',
+    FAQ:"/faq",
+    SITEMAP:"/sitemap"
 };
 
 export const LINKNAME_ROUTES = {

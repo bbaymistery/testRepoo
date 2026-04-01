@@ -55,10 +55,14 @@ const TransferDetails = (props) => {
     useEffect(() => {
         fetchArchieveToken({ stage: "LANDED_INTO_TRANSFER_DETAILS_PAGE" })
         //smooth scroll
-        window.scroll({
-            top: 0,
-            behavior: 'smooth'
-        })
+        setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        }, 50);
+
+
     }, [])
 
     if (!isPageAuthorized) {
