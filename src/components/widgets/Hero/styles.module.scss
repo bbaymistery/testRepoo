@@ -496,8 +496,6 @@
                                     text-align: left;
                                     min-width: 100%;
                                     max-width: 100%;
-                                    // -webkit-appearance: none;
-                                    // -moz-appearance: none;
                                     -webkit-border-radius: 0;
                                     -webkit-width: 100%;
                                     min-height: 28px !important;
@@ -510,38 +508,6 @@
                                     background-color: rgb(255, 255, 255);
                                     font-size: 15px;
 
-                                    // &:before {
-                                    //     content: '';
-                                    //     position: absolute;
-                                    //     height: 50%;
-                                    //     border-color: transparent transparent transparent rgba(#5d646d, .5);
-                                    //     border-style: solid;
-                                    //     border-width: 1px;
-                                    //     transform: skewX(-15deg);
-                                    //     top: 6px;
-                                    //     left: 23px;
-
-                                    //     @media (max-width:990px) {
-                                    //         display: none;
-                                    //     }
-                                    // }
-
-                                    // &:after {
-                                    //     content: '';
-                                    //     position: absolute;
-                                    //     height: 50%;
-                                    //     border-color: transparent transparent transparent rgba(#5d646d, .5);
-                                    //     border-style: solid;
-                                    //     border-width: 1px;
-                                    //     transform: skewX(-15deg);
-                                    //     left: 52px;
-                                    //     top: 6px;
-
-                                    //     @media (max-width:990px) {
-                                    //         display: none;
-                                    //     }
-
-                                    // }
                                 }
 
                                 /* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
@@ -559,36 +525,9 @@
                                     z-index: 1;
                                 }
 
-                                /* adjust increase/decrease button */
-                                input[type="date"]::-webkit-inner-spin-button {
-                                    z-index: 1;
-                                }
-
-                                /* adjust clear button */
-                                input[type="date"]::-webkit-clear-button {
-                                    z-index: 1;
-                                }
-
-                                //iphonelarda 2 aralik 2022 ni ortaliyan budur
-                                input::-webkit-date-and-time-value {
-                                    text-align: left;
-                                    text-align: -webkit-left;
-                                    display: flex;
-                                    align-items: center;
-                                    height: 100%;
-                                }
 
 
-
-                 
-                                input::-webkit-datetime-edit-day-field:focus,
-                                input::-webkit-datetime-edit-month-field:focus,
-                                input::-webkit-datetime-edit-year-field:focus {
-                                    background-color: rgb(12, 155, 243);
-                                    color: white;
-                                    outline: none;
-                                }
-
+            
                                 // in case if it is arabic language
                                 input[type="date"].rtl {
 
