@@ -484,76 +484,84 @@
                             position: relative;
 
                             .date_div {
+                                position: relative;
                                 max-width: 184px;
                                 width: 100%;
+                                min-height: 28px;
+                                height: 28px;
+                                border-bottom: 1px solid $border;
+                                background-color: rgb(255, 255, 255);
+                                cursor: pointer;
+                                display: flex;
+                                align-items: center;
 
-                                @media(max-width:990px) {
+                                @media (max-width: 990px) {
                                     max-width: 100%;
                                 }
 
                                 input[type="date"] {
-                                    position: relative;
-                                    text-align: left;
+                                    position: absolute;
+                                    inset: 0;
+                                    width: 100%;
+                                    height: 100%;
                                     min-width: 100%;
                                     max-width: 100%;
-                                    -webkit-border-radius: 0;
-                                    -webkit-width: 100%;
-                                    min-height: 28px !important;
-                                    height: 28px !important;
-                                    border: 0px;
-                                    border-bottom: 1px solid $border;
+                                    opacity: 0;
+                                    cursor: pointer;
+                                    z-index: 2;
+                                    border: 0;
                                     outline: none;
-                                    padding: 1px 2px;
-                                    outline-offset: -2px;
-                                    background-color: rgb(255, 255, 255);
-                                    font-size: 15px;
-
-                                }
-
-                                /* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
-                                input[type="date"]::-webkit-calendar-picker-indicator {
-                                    position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    right: 0;
-                                    bottom: 0;
-                                    width: auto;
-                                    height: auto;
-                                    color: transparent;
                                     background: transparent;
-                                    user-select: none;
-                                    z-index: 1;
                                 }
 
+                                .date_display_text {
+                                    display: flex;
+                                    align-items: center;
+                                    width: 100%;
+                                    height: 100%;
+                                    padding: 1px 30px 1px 2px;
+                                    font-size: 15px;
+                                    color: rgba(#130b37, 1);
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    user-select: none;
+                                    box-sizing: border-box;
+                                    text-align: left;
+                                }
 
+                                .date_placeholder {
+                                    color: rgba(#130b37, 0.45);
+                                }
+                            }
 
-            
-                                // in case if it is arabic language
-                                input[type="date"].rtl {
-
-                                    &:before {
-                                        display: none;
-                                    }
-
-                                    &:after {
-                                        display: none;
-                                    }
+                            .date_div_rtl {
+                                .date_display_text {
+                                    text-align: right;
+                                    justify-content: flex-end;
+                                    padding: 1px 2px 1px 30px;
                                 }
                             }
 
                             .date_picker_icon {
-                                top: 55px;
-                                transform: translateY(-100%);
-                                right: 13px;
+                                position: absolute;
+                                right: 8px;
+                                top: 50%;
+                                transform: translateY(-50%);
                                 font-size: 14px;
                                 user-select: none;
                                 color: rgba(#130b37, .7);
-                                position: absolute;
-                                z-index: 0;
+                                z-index: 1;
+                                pointer-events: none;
                             }
 
                             .date_picker_icon_on_linkame {
-                                top: 56px;
+                                top: 50%;
+                            }
+
+                            .rtl {
+                                direction: rtl;
+                                text-align: right;
                             }
                         }
 
